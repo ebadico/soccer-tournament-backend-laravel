@@ -12,6 +12,10 @@
 */
 
 Route::get('/', function () {
+    return view('main');
+});
+
+Route::get('/api', function () {
     return "Globus Cup API Version: " . env('APP_VERSION');
 });
 
@@ -27,5 +31,12 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::resource('/season'     , 'SeasonCtrl');
+    Route::resource('/round'      , 'RoundCtrl');
+    Route::resource('/team'       , 'TeamCtrl');
+    Route::resource('/player'     , 'PlayerCtrl');
+    Route::resource('/day'        , 'DayCtrl');
+    Route::resource('/match'      , 'MatchCtrl');
+    Route::resource('/attendance' , 'AttendanceCtrl');
+    Route::resource('/score'      , 'ScoreCtrl');
 });

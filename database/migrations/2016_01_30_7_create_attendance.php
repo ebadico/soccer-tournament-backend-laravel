@@ -12,7 +12,7 @@ class CreateAttendance extends Migration
      */
     public function up()
     {
-        Schema::create('attendance', function (Blueprint $table) {
+        Schema::create('attendances', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('player_id')->unsigned();
@@ -44,6 +44,6 @@ class CreateAttendance extends Migration
      */
     public function down()
     {
-        Schema::drop('attendance');
+        Schema::drop('attendances');
     }
 }
