@@ -6,7 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.2.*"
+        "laravel/framework": "5.2.*",
+        "vinkla/hashids": "^2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -40,7 +41,7 @@
             "php artisan optimize"
         ],
         "pre-update-cmd": [
-            "php artisan clear-compiled"
+            
         ],
         "post-update-cmd": [
             "php artisan optimize"
