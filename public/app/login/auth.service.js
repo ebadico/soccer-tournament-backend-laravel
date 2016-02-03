@@ -17,7 +17,4 @@ angular.module('app')
 	Auth.isLoggedIn = function(){
 		
 	}
-
-
-	return Auth;
 })

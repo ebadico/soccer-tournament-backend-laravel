@@ -3,7 +3,7 @@ angular.module('app')
 .controller('UserCtrl', function($scope, Auth, $http){
 	$scope.user = {};
 
-	$scope.login = function(credential){
+	$scope.createUser = function(credential){
 		if(credential.username){
 			if( credential.pwd === credential.pwdRetype){
 				$http.post('/api/user', credential)
