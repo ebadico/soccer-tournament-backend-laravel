@@ -15,7 +15,7 @@ class CreatePlayers extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('score')->unsigned()->default(0);
+            //$table->integer('score')->unsigned()->default(0); scores table hold everything.
             
             $table->integer('team_id')->unsigned();
             

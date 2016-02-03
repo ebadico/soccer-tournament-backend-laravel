@@ -40,4 +40,6 @@ Route::group(['prefix'=>'api/', 'middleware' => ['web']], function () {
     Route::resource('/match'      , 'MatchCtrl');
     Route::resource('/attendance' , 'AttendanceCtrl');
     Route::resource('/score'      , 'ScoreCtrl');
+
 });
+

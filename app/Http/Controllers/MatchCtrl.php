@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Match;
+use App\Season;
+use Hashids;
 
 class MatchCtrl extends Controller
 {
@@ -37,9 +39,22 @@ class MatchCtrl extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+      $match = new Match();
+
+      $match->fill([
+      'season_id' => Season::getCurrentSeason(),
+      'team_a_id' => Hashids::decode($request->team_a_id)[0],
+      'team_b_id' => Hashids::decode($request->team_b_id)[0],
+      'day_id'    => Hashids::decode($request->day_id)[0],
+      ]);
+
+      if($match->save()){
+          $res['saved'] = true;
+          $res['status'] = 200;
+      }
+
+      return response()->json($res, $res['status']);
     }
 
     /**

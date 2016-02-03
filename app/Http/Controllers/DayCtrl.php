@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Day;
+use App\Season;
+use Hashids;
 
 class DayCtrl extends Controller
 {
@@ -37,9 +39,19 @@ class DayCtrl extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+      $day = new Day();
+
+      $day->fill([
+      'season_id' => Season::getCurrentSeason(),
+      'round_id' => Hashids::decode($request->round_id)[0]
+      ]);
+
+      if($day->save()){
+          $res['saved'] = true;
+          $res['status'] = 200;
+      }
+      return response()->json($res, $res['status']);
     }
 
     /**

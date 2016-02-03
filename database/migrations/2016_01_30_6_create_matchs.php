@@ -15,6 +15,7 @@ class CreateMatchs extends Migration
         Schema::create('matchs', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('season_id')->unsigned();
             $table->integer('team_a_id')->unsigned();
             $table->integer('team_b_id')->unsigned();
             $table->integer('winner_id')->unsigned()->nullable(); // count() victories if null is a draw
@@ -37,7 +38,6 @@ class CreateMatchs extends Migration
                   ->references('id')
                   ->on('teams');
 
-            $table->integer('season_id')->unsigned();
             $table->foreign('season_id')
                   ->references('id')
                   ->on('seasons')

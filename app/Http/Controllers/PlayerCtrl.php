@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Player;
+use App\Season;
+use Hashids;
 
 class PlayerCtrl extends Controller
 {
@@ -37,9 +39,20 @@ class PlayerCtrl extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+      $player = new Player();
+
+      $player->fill([
+          'name' => $request->name,
+          'season_id' => Season::getCurrentSeason(),
+          'team_id' => Hashids::decode($request->team_id)[0],
+      ]);
+
+      if($player->save()){
+          $res['saved'] = true;
+          $res['status'] = 200;
+      }
+      return response()->json($res, $res['status']);
     }
 
     /**

@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Hashids;
+
 use App\Score;
+use App\Season;
 
 class ScoreCtrl extends Controller
 {
@@ -18,7 +21,7 @@ class ScoreCtrl extends Controller
      */
     public function index()
     {
-        return Score::al();
+        return Score::all();
     }
 
     /**
@@ -37,11 +40,22 @@ class ScoreCtrl extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(Request $request){
+      $score = new Score();
 
+      $score->fill([
+        'season_id' => Season::getCurrentSeason(),
+        'team_id' => Hashids::decode($request->team_id)[0],
+        'player_id' => Hashids::decode($request->player_id)[0],
+        'match_id' => Hashids::decode($request->match_id)[0],
+      ]);
+
+      if($score->save()){
+          $res['saved'] = true;
+          $res['status'] = 200;
+      }
+      return response()->json($res, $res['status']);
+    }
     /**
      * Display the specified resource.
      *

@@ -64,7 +64,7 @@ class Handler extends ExceptionHandler{
             $res['code'] = $dbCode;
           break;
           default:
-            $res['messagez'] = 'Unknown database error:';
+            $res['messsage'] = 'Unknown database error:';
             $res['code'] = $dbCode;
         }
 
