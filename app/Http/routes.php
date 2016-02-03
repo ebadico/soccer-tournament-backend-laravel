@@ -30,7 +30,8 @@ Route::get('/api', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['prefix'=>'api/', 'middleware' => ['web']], function () {
+    Route::resource('/user'       , 'UserCtrl');
     Route::resource('/season'     , 'SeasonCtrl');
     Route::resource('/round'      , 'RoundCtrl');
     Route::resource('/team'       , 'TeamCtrl');

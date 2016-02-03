@@ -18,7 +18,7 @@ class SeasonCtrl extends Controller
      */
     public function index()
     {
-        return view('season.create');
+        return Season::all();
     }
 
     /**
