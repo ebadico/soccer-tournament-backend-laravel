@@ -15,4 +15,8 @@ class Day extends Model
   {
       return Hashids::encode($id);
   }
+
+  public function day(){
+    return $this->belongsTo('App\Match');
+  }
 }

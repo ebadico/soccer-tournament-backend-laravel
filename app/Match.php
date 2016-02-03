@@ -17,4 +17,14 @@ class Match extends Model
   {
       return Hashids::encode($id);
   }
+
+  public function team(){
+    return $this->belongsTo('App\Team');
+  }
+  public function day(){
+    return $this->belongsTo('App\Day');
+  }
+  public function attendance(){
+    return $this->belongsTo('App\Attendance');
+  }
 }

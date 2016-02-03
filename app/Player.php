@@ -15,4 +15,9 @@ class Player extends Model
   {
       return Hashids::encode($id);
   }
+
+  public function attendance(){
+    return $this->hasMany('App\Attendance');
+  }
+
 }

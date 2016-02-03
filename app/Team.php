@@ -17,4 +17,11 @@ class Team extends Model
   {
       return Hashids::encode($id);
   }
+
+  public function match(){
+    return $this->hasMany('App\Match');
+  }
+  public function player(){
+    return $this->hasMany('App\Player');
+  }
 }

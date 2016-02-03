@@ -17,4 +17,11 @@ class Attendance extends Model{
   {
       return Hashids::encode($id);
   }
+
+  public function match(){
+    return $this->belongsTo('App\Match');
+  }
+  public function attendance(){
+    return $this->belongsTo('App\Attendance');
+  }
 }
