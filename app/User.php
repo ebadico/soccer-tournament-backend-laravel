@@ -23,4 +23,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Accessors
+     */
+    public function getIdAttribute($id)
+    {
+        return Hashids::encode($id);
+    }
 }

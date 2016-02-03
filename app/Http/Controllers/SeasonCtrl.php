@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use  App\Season;
+use Hashids;
 
 class SeasonCtrl extends Controller
 {
@@ -50,9 +51,15 @@ class SeasonCtrl extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id){
+        $id = Hashids::decode($id);
+        if(!$data = Season::find($id)){
+            $data['error'] = 'Item Not Found';
+            $status = 404;
+        }
+        $status = 200;
+
+        return response()->json($data, $status);
     }
 
     /**
