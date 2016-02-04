@@ -11,7 +11,6 @@ angular
      .then(function(res){
       var roundTeam = [];
        res.data.forEach(function(team){
-          console.log("team.service.js :15", team);
           if(team.round_id === round_id) roundTeam.push(team);
        });
        return roundTeam;

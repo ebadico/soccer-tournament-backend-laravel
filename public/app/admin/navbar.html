@@ -119,23 +119,15 @@
                 </li>
                 
                 <!-- GESTIONE PARTITE -->
-                <li>
+                <li style="background:black;">
                     <a><strong>Gestione Partite</strong></a>
                 </li>
                 <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#match"><i class="fa fa-fw fa-arrows-v"></i> Match <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="match" class="collapse">
-                        <li>
-                            <a ui-sref="admin.match">View All</a>
-                        </li>
-                        <li>
-                            <a ui-sref="admin.create-match">Inserisci Partita</a>
-                        </li>
-                    </ul>
-                </li>
+                    <a ui-sref="admin.match-result"><i class="fa fa-fw fa-power-off"></i>Risultati</a>
+                </li> 
 
                 <!-- GESTIONE TORENO -->
-                <li>
+                <li style="background:black;">
                     <a><strong>Gestione Torneo</strong></a>
                 </li>
 
@@ -198,6 +190,17 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#match"><i class="fa fa-fw fa-arrows-v"></i> Match <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="match" class="collapse">
+                        <li>
+                            <a ui-sref="admin.match">View All</a>
+                        </li>
+                        <li>
+                            <a ui-sref="admin.create-match">Inserisci Partita</a>
+                        </li>
+                    </ul>
+                </li>                
 
 
 

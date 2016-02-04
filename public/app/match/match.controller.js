@@ -13,36 +13,31 @@ angular
     Match
       .get()
       .then(function(res){
-        $scope.match = res.data;
+        $scope.matches = res.data;
       });
 
     Round
       .get()
       .then(function(res){
         $scope.rounds = res.data;
-      })
+      });
+
+    Day
+      .get()
+      .then(function(res){
+        $scope.days = res.data;
+      });
 
 
       $scope.getDataFromRound = function(round_id){
         Team.getFromRound(round_id)
         .then(function(res){
-          console.log(res);
+          $scope.teams = res;
         });
       }
 
       $scope.createMatch = function(match){
-        
-        // Player
-        // .create(player)
-        // .then(function(res){
-        //   if(res.status){
-        //     $scope.teams = res.data;
-        //   }
-        // },function(err){
-        //   console.log("player.controller.js :33", err);
-        //   $scope.error = err.statusText;
-        // });
-
+        Match.create(match);
       }
 
   });

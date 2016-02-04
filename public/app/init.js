@@ -37,7 +37,7 @@ angular.module('app', [
       	controller: 'UserCtrl'
       })
       .state('admin.create-user', {
-      	url:'/create-user',
+      	url:'/create/user',
       	templateUrl: 'app/user/create.html',
       	controller: 'UserCtrl'
       })
@@ -48,7 +48,7 @@ angular.module('app', [
         controller: 'SeasonCtrl',
       })
       .state('admin.create-season', {
-        url:'/create-season',
+        url:'/create/season',
         templateUrl: 'app/season/create.html',
         controller: 'SeasonCtrl',
       })
@@ -59,7 +59,7 @@ angular.module('app', [
         controller: 'RoundCtrl',
       })
       .state('admin.create-round', {
-        url:'/create-round',
+        url:'/create/round',
         templateUrl: 'app/round/create.html',
         controller: 'RoundCtrl',
       })
@@ -70,7 +70,7 @@ angular.module('app', [
         controller: 'DayCtrl',
       })
       .state('admin.create-day', {
-        url:'/create-day',
+        url:'/create/day',
         templateUrl: 'app/day/create.html',
         controller: 'DayCtrl',
       })
@@ -81,7 +81,7 @@ angular.module('app', [
         controller: 'TeamCtrl',
       })
       .state('admin.create-team', {
-        url:'/create-team',
+        url:'/create/team',
         templateUrl: 'app/team/create.html',
         controller: 'TeamCtrl',
       })
@@ -92,7 +92,7 @@ angular.module('app', [
         controller: 'PlayerCtrl',
       })
       .state('admin.create-player', {
-        url:'/create-player',
+        url:'/create/player',
         templateUrl: 'app/player/create.html',
         controller: 'PlayerCtrl',
       })
@@ -103,8 +103,13 @@ angular.module('app', [
         controller: 'MatchCtrl',
       })
       .state('admin.create-match', {
-        url:'/create-match',
+        url:'/create/match',
         templateUrl: 'app/match/create.html',
+        controller: 'MatchCtrl',
+      })
+      .state('admin.match-result', {
+        url:'/match/result',
+        templateUrl: 'app/match/result.html',
         controller: 'MatchCtrl',
       })
 })

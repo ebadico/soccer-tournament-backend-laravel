@@ -16,6 +16,12 @@ class Team extends Model
   public function getIdAttribute($id){
       return Hashids::encode($id);
   }
+  public function getRoundIdAttribute($id){
+      return Hashids::encode($id);
+  }
+  public function getSeasonIdAttribute($id){
+      return Hashids::encode($id);
+  }
 
   public function match(){
     return $this->hasMany('App\Match');
