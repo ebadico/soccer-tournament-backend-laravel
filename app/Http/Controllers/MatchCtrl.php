@@ -20,7 +20,11 @@ class MatchCtrl extends Controller
      */
     public function index()
     {
-        return Match::all();
+        $matches = Match::all();
+        foreach ($matches as $key => $value) {
+            $matches[$key]['day'] = Match::find( Hashids::decode($matches[$key]['day_id'])[0] )->day;
+        } 
+        return $matches;
     }
 
     /**

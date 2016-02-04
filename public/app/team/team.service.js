@@ -17,6 +17,10 @@ angular
      }); 
     }
 
+    this.getTeam = function(team_id){
+      return $http.get('/api/team/' + team_id);
+    }
+
     this.createTeam = function(data){
       console.log("team.service.js :10", data);
       return $http.post('/api/team', data);

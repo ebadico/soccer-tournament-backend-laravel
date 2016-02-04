@@ -13,18 +13,27 @@ class Match extends Model
  /**
    * Accessors
    */
-  public function getIdAttribute($id)
-  {
+    // ACCESSORS
+  public function getHashidAttribute(){
+      return Hashids::encode($this->attributes["id"]);
+  }
+  public function getIdAttribute($id){
+      return Hashids::encode($id);
+  }
+  public function getTeamAIdAttribute($id){
+      return Hashids::encode($id);
+  }
+  public function getTeamBIdAttribute($id){
+      return Hashids::encode($id);
+  }
+  public function getDayIdAttribute($id){
+      return Hashids::encode($id);
+  }
+  public function getSeasonIdAttribute($id){
       return Hashids::encode($id);
   }
 
-  public function team(){
-    return $this->belongsTo('App\Team');
-  }
   public function day(){
     return $this->belongsTo('App\Day');
-  }
-  public function attendance(){
-    return $this->belongsTo('App\Attendance');
   }
 }

@@ -64,8 +64,10 @@ class TeamCtrl extends Controller
      */
     public function show($id)
     {
+
+
         $id = Hashids::decode($id);
-        if(!$data = Season::find($id)){
+        if(!$data = Team::find($id)){
             $data['error'] = 'Item Not Found';
             $status = 404;
         }
