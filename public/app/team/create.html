@@ -1,1 +1,13 @@
 <h1>CREATE TEAM</h1>
+
+<form ng-submit="createTeam(team)">
+  <input type="text" ng-model="team.name" placeholder="Nome Team">
+  <br>
+  <label for="round" ng-repeat="round in rounds">
+    {{round.name}}
+    <input type="radio" name="round" value="{{round.id}}" ng-model="team.round_id">
+  </label>
+  <button type="submit" ng-disabled="{{ (team.round_id && team.name != '') ? true : false }}">Create</button>
+  
+</form>
+

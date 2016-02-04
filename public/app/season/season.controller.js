@@ -18,7 +18,7 @@ angular.module('app')
 
 			}
 		},function(err){
-			console.log("season.controller.js :21", err);	
+			console.log("season.controller.js :21", err);
 		});
 	}
 
