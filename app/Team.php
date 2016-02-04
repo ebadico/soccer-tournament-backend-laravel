@@ -13,8 +13,7 @@ class Team extends Model
  /**
    * Accessors
    */
-  public function getIdAttribute($id)
-  {
+  public function getIdAttribute($id){
       return Hashids::encode($id);
   }
 

@@ -1,1 +1,11 @@
 <h1>CREATE PLAYER</h1>
+{{ player }}
+<form ng-submit="createPlayer(player)">
+  <input type="text" ng-model="player.name">
+  <select ng-model="player.team_id">
+    <option value="{{team.id}}" ng-repeat="team in teams"> {{ team.name }} </option>
+  </select>
+  {{error}}
+  <button type="submit">Create</button>
+</form>
+

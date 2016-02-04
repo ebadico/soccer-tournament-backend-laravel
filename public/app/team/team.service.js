@@ -6,6 +6,18 @@ angular
       return $http.get('/api/team');
     }
 
+    this.getFromRound = function(round_id){
+     return $http.get('/api/team')
+     .then(function(res){
+      var roundTeam = [];
+       res.data.forEach(function(team){
+          console.log("team.service.js :15", team);
+          if(team.round_id === round_id) roundTeam.push(team);
+       });
+       return roundTeam;
+     }); 
+    }
+
     this.createTeam = function(data){
       console.log("team.service.js :10", data);
       return $http.post('/api/team', data);

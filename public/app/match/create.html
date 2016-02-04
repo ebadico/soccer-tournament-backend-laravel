@@ -1,0 +1,21 @@
+<h1>CREATE MATCH</h1>
+
+<form ng-submit="createMatch()">
+ 
+ <select ng-change="getDataFromRound(round_id)" ng-model="round_id">
+   <option value="{{ round.id }}" ng-repeat="round in rounds">{{round.name}}</option>
+ </select>
+
+ <select ng-model="match.team_a_id">
+   
+ </select>
+ <select ng-model="match.team_b_id">
+   
+ </select>
+ <select ng-model="match.day_id">
+   
+ </select>
+
+  <button type="submit">Create</button>
+</form>
+

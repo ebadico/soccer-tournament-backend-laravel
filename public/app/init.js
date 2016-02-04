@@ -27,8 +27,9 @@ angular.module('app', [
 	    * ADMIN
 	    */
     .state('admin', {
+      cache: false,
     	url:'/admin',
-    	templateUrl: 'app/admin/admin-template.html'
+    	templateUrl: 'app/admin/admin-template.html',
     })
       .state('admin.user', {
       	url:'/user',
@@ -63,6 +64,17 @@ angular.module('app', [
         controller: 'RoundCtrl',
       })
 
+      .state('admin.day', {
+        url:'/day',
+        templateUrl: 'app/day/index.html',
+        controller: 'DayCtrl',
+      })
+      .state('admin.create-day', {
+        url:'/create-day',
+        templateUrl: 'app/day/create.html',
+        controller: 'DayCtrl',
+      })
+
       .state('admin.team', {
         url:'/team',
         templateUrl: 'app/team/index.html',
@@ -72,6 +84,28 @@ angular.module('app', [
         url:'/create-team',
         templateUrl: 'app/team/create.html',
         controller: 'TeamCtrl',
+      })
+
+      .state('admin.player', {
+        url:'/player',
+        templateUrl: 'app/player/index.html',
+        controller: 'PlayerCtrl',
+      })
+      .state('admin.create-player', {
+        url:'/create-player',
+        templateUrl: 'app/player/create.html',
+        controller: 'PlayerCtrl',
+      })
+
+      .state('admin.match', {
+        url:'/match',
+        templateUrl: 'app/match/index.html',
+        controller: 'MatchCtrl',
+      })
+      .state('admin.create-match', {
+        url:'/create-match',
+        templateUrl: 'app/match/create.html',
+        controller: 'MatchCtrl',
       })
 })
 

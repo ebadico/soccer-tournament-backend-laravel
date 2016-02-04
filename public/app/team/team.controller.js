@@ -22,10 +22,16 @@ angular
         $scope.error = err;
       });
 
-      console.log("team.controller.js :25", $scope.team.round_id);
 
       $scope.createTeam = function(team){
-        Team.createTeam(team)
+        console.log("team.controller.js :25", $scope.team.round_id);
+        Team.createTeam(team).then(function(res){
+          console.log("team.controller.js :29", 'team created', res.status);
+        },function(err){
+         if(err){
+          console.log("team.controller.js :32", err);
+         }
+        })
       }
 
   });
