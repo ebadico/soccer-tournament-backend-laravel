@@ -6,7 +6,17 @@ angular.module('app')
 		return $http.get('/api/day');
 	}
 
+  //DO GET DAY FROM ROUNDs!!!!!!!!!!!!!!!!!!!!!!
+  //YOU ARE MATCHING THE WRONG TEAMSSSSSS IN THE WRONG DAY OF THE WRONG ROUND FFS
+  //IDIOT
+  
+  this.getFromRound = function(round_id){
+    return $http.get('/api/day?round_id=' + round_id);
+  }
+
+
 	this.createRound = function(day){
+    console.log("day.service.js :10 creating new day:", day);
 		return $http.post('/api/day', day);
 	}
 

@@ -44,10 +44,10 @@ class ScoreCtrl extends Controller
       $score = new Score();
 
       $score->fill([
-        'season_id' => Season::getCurrentSeason(),
-        'team_id' => Hashids::decode($request->team_id)[0],
-        'player_id' => Hashids::decode($request->player_id)[0],
-        'match_id' => Hashids::decode($request->match_id)[0],
+        'season_id' => Season::getCurrentSeason()->id,
+        'team_id' => $request->team_id,
+        'player_id' => $request->player_id,
+        'match_id' => $request->match_id,
       ]);
 
       if($score->save()){

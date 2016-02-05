@@ -7,14 +7,7 @@ angular
     }
 
     this.getFromRound = function(round_id){
-     return $http.get('/api/team')
-     .then(function(res){
-      var roundTeam = [];
-       res.data.forEach(function(team){
-          if(team.round_id === round_id) roundTeam.push(team);
-       });
-       return roundTeam;
-     }); 
+     return $http.get('/api/team?round_id=' + round_id );
     }
 
     this.getTeam = function(team_id){

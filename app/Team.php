@@ -10,17 +10,8 @@ class Team extends Model
 
   protected $fillable = ['name','wins','draws','losts','round_id','season_id'];
 
- /**
-   * Accessors
-   */
-  public function getIdAttribute($id){
-      return Hashids::encode($id);
-  }
-  public function getRoundIdAttribute($id){
-      return Hashids::encode($id);
-  }
-  public function getSeasonIdAttribute($id){
-      return Hashids::encode($id);
+  static public function getFromRound($round_id){
+    return parent::where('round_id', '=', $round_id)->get();
   }
 
   public function match(){

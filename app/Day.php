@@ -8,15 +8,6 @@ use Hashids;
 class Day extends Model
 {
   protected $fillable = ['season_id','round_id'];
- /**
-   * Accessors
-   */
-  public function getIdAttribute($id)
-  {
-      return Hashids::encode($id);
-  }
 
-  public function day(){
-    return $this->belongsTo('App\Match');
-  }
+
 }

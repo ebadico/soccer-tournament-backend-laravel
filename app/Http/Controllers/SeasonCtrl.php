@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use  App\Season;
 use Hashids;
+use Input;
 
 class SeasonCtrl extends Controller
 {
@@ -17,11 +18,14 @@ class SeasonCtrl extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->get('current')){
+            return Season::getCurrentSeason(); 
+        }
+
         return Season::all();
     }
-
     /**
      * Show the form for creating a new resource.
      *

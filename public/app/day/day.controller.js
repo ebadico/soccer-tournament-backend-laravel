@@ -24,6 +24,7 @@ angular.module('app')
 	$scope.createDay = function(day){
 		Day.createRound(day)
 		.then(function(res){
+			console.log("day.controller.js :27", res);
 			if(res.status === 200){
 				$scope.day = {};
 			}

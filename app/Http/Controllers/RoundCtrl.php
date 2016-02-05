@@ -44,7 +44,7 @@ class RoundCtrl extends Controller
       $round = new Round();
 
       $round->fill([
-      'season_id' => Season::getCurrentSeason(),
+      'season_id' => Season::getCurrentSeason()->id,
       'name' => $request->name
       ]);
 

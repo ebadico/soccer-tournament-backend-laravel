@@ -7,7 +7,6 @@ angular
     }
 
     this.create = function(data){
-      console.log("player.service.js :10", "asdasd");
       return $http.post('/api/player', data);
     }
   });

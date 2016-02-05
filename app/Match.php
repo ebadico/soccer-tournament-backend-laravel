@@ -10,30 +10,48 @@ class Match extends Model
 {
   protected $table = 'matchs'; 
   protected $fillable = ['season_id','team_a_id','team_b_id','day_id'];
- /**
-   * Accessors
-   */
-    // ACCESSORS
-  public function getHashidAttribute(){
-      return Hashids::encode($this->attributes["id"]);
-  }
-  public function getIdAttribute($id){
-      return Hashids::encode($id);
-  }
-  public function getTeamAIdAttribute($id){
-      return Hashids::encode($id);
-  }
-  public function getTeamBIdAttribute($id){
-      return Hashids::encode($id);
-  }
-  public function getDayIdAttribute($id){
-      return Hashids::encode($id);
-  }
-  public function getSeasonIdAttribute($id){
-      return Hashids::encode($id);
+
+  
+  static public function getFromDay($day_id){
+    return parent::where('day_id', '=', $day_id)->get();
   }
 
-  public function day(){
-    return $this->belongsTo('App\Day');
+  public function scopeGet_from_day($query, $day_id){
+    return $query->where('day_id', '=', $day_id);
   }
+
+  public function scopeGet_from_round($query, $round_id){
+    return $query->whereHas('day', function($query) use($round_id){
+      $query->where('round_id', "=", $round_id);
+    });
+  }
+
+  public function scopeGet_from_filter($query, $day_id, $round_id){
+   return $query->whereHas('day', function($query) use($round_id, $day_id){
+      $query->where('round_id', "=", $round_id)->where('id','=', $day_id);
+    }); 
+  }
+
+  public function scopeGet_all($query){
+      return $query->with('day','teamA','teamB')->get();
+  }
+  public function scopePopulate($query){
+      return $query->with('day','teamA','teamB');
+  }
+
+
+
+
+  public function day(){
+    return $this->hasOne('App\Day','id','day_id');
+  }
+
+  public function teamA(){
+    return $this->hasOne('App\Team','id','team_a_id');
+  }
+
+  public function teamB(){
+    return $this->hasOne('App\Team','id','team_b_id');
+  }
+
 }

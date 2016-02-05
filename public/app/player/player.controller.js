@@ -1,16 +1,20 @@
 angular
   .module('app')
 
-  .controller('PlayerCtrl', function($scope, Team, Player){
+  .controller('PlayerCtrl', function($scope, $state, Team, Player){
     $scope.players = [];
     $scope.teams = [];
     $scope.player = {};
 
-    Player
-      .get()
-      .then(function(res){
-        $scope.players = res.data;
-      });
+
+    if ( $state.current.name === "admin.player"){
+      Player
+        .get()
+        .then(function(res){
+          $scope.players = res.data;
+        });
+    }
+
 
     Team
       .get()
@@ -26,8 +30,8 @@ angular
       $scope.createPlayer = function(player){
         Player.create(player)
         .then(function(res){
-          if(res.status){
-            $scope.teams = res.data;
+          if(res.status === 200){
+            $scope.player = {};
           }
         },function(err){
           console.log("player.controller.js :33", err);

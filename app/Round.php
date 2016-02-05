@@ -11,12 +11,6 @@ class Round extends Model
  
   protected $fillable = ['name','season_id'];
 
-  /**
-   * Accessors
-   */
-  public function getIdAttribute($id)
-  {
-      return Hashids::encode($id);
-  }
+
   
 }

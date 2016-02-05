@@ -18,13 +18,25 @@ class MatchCtrl extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $matches = Match::all();
-        foreach ($matches as $key => $value) {
-            $matches[$key]['day'] = Match::find( Hashids::decode($matches[$key]['day_id'])[0] )->day;
-        } 
-        return $matches;
+    public function index(Request $request){
+
+        $day_id = $request->get('day_id');
+        $round_id = $request->get('round_id');
+
+
+
+        if( $day_id && $round_id ){
+            return Match::get_from_filter($day_id, $round_id)->get_all();
+        }else if ($day_id){
+            return Match::get_from_day($day_id)->get_all();
+        }else if ($round_id){
+           return Match::get_from_round($round_id)->get_all();
+        }else{
+
+        }
+
+
+        return Match::get_all();
     }
 
     /**
@@ -47,10 +59,10 @@ class MatchCtrl extends Controller
       $match = new Match();
 
       $match->fill([
-      'season_id' => Season::getCurrentSeason(),
-      'team_a_id' => Hashids::decode($request->team_a_id)[0],
-      'team_b_id' => Hashids::decode($request->team_b_id)[0],
-      'day_id'    => Hashids::decode($request->day_id)[0],
+      'season_id' => Season::getCurrentSeason()->id,
+      'team_a_id' => $request->team_a_id,
+      'team_b_id' => $request->team_b_id,
+      'day_id'    => $request->day_id,
       ]);
 
       if($match->save()){

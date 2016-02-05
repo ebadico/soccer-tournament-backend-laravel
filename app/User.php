@@ -24,11 +24,5 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * Accessors
-     */
-    public function getIdAttribute($id)
-    {
-        return Hashids::encode($id);
-    }
+
 }

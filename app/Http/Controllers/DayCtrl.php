@@ -18,8 +18,10 @@ class DayCtrl extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request){
+        if($round_id = $request->get('round_id')){
+            return Day::where('round_id','=', $round_id)->get();
+        }
         return Day::all();
     }
 
@@ -43,8 +45,8 @@ class DayCtrl extends Controller
       $day = new Day();
 
       $day->fill([
-      'season_id' => Season::getCurrentSeason(),
-      'round_id' => Hashids::decode($request->round_id)[0]
+          'season_id' => Season::getCurrentSeason()->id,
+          'round_id'  => $request->round_id
       ]);
 
       if($day->save()){

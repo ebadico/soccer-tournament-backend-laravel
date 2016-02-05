@@ -11,9 +11,17 @@ angular
     $scope.teams  = [];
     
     $scope.days   = [];
-    $scope.currentDay = "";
+    $scope.choosen_day_id = "";
+    $scope.filters = {
+      day_id: 1,
+      round_id: 1,
+    }
 
-
+    $scope.$watch('filters',function(current, prev){
+      console.log("match.controller.js :21", "changed");
+      getDays();
+      getMatchs();
+    }, true);
 
     Round
       .get()
@@ -21,50 +29,40 @@ angular
         $scope.rounds = res.data;
       });
 
-    Day
-      .get()
+    function getMatchs(){
+      Match.getWithFilter($scope.filters)
       .then(function(res){
-        $scope.days = res.data;
+        $scope.matches = res.data;
+      },function(err){
+        console.log("match.controller.js :27", err);
       });
+    }
 
-
-      $scope.getDataFromRound = function(round_id){
-        Team.getFromRound(round_id)
+    function getDays(){
+      Day
+        .getFromRound($scope.filters.round_id)
         .then(function(res){
-          $scope.teams = res;
+          $scope.days = res.data;
         });
-      }
+    }
 
-      $scope.createMatch = function(match){
-        Match.create(match);
-      }
+    $scope.getDataFromRound = function(round_id){
+      Team.getFromRound(round_id)
+      .then(function(res){
+        $scope.teams = res.data;
+      }, function(err){
+        console.log("match.controller.js :37", err);
+      });
+    }
 
-      $scope.loadMatchList = function(currentDay){
-        Match
-          .get()
-          .then(function(res){
-            $scope.matches = res.data.filter(function(element){
-              if(element.day_id === currentDay){
-                $q.all([
-                  Team.getTeam(element.team_a_id),
-                  Team.getTeam(element.team_b_id),
-                ])
-                .then(function(res){
-                  element.team_a = res[0].data[0];
-                  element.team_b = res[1].data[0];
-                });
-                return element;
-              }
+    $scope.createMatch = function(match){
+      Match.create(match)
+      .then(function(res){
+        console.log("match.controller.js :44", res);
+      },function(err){
+        console.log("match.controller.js :46", err);
+      });
+    }
 
-            });
-          })
-          .then(function(data){
-            console.log("match.controller.js :64", $scope.matches);
-          })
-      }
-    
-    // if( $state.current.name === 'admin.match' ){
-    //   $scope.loadMatchList();
-    // }
 
   });

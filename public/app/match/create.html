@@ -1,8 +1,9 @@
 <h1>CREATE MATCH</h1>
-
+{{ match }}
+{{ filters }}
 <form ng-submit="createMatch(match)">
  
- <select ng-change="getDataFromRound(round_id)" ng-model="round_id">
+ <select ng-change="getDataFromRound(filters.round_id)" ng-model="filters.round_id">
    <option value="{{ round.id }}" ng-repeat="round in rounds">{{round.name}}</option>
  </select>
   

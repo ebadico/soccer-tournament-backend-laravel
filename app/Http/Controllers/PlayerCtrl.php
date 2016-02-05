@@ -44,8 +44,8 @@ class PlayerCtrl extends Controller
 
       $player->fill([
           'name' => $request->name,
-          'season_id' => Season::getCurrentSeason(),
-          'team_id' => Hashids::decode($request->team_id)[0],
+          'season_id' => Season::getCurrentSeason()->id,
+          'team_id' => $request->team_id,
       ]);
 
       if($player->save()){

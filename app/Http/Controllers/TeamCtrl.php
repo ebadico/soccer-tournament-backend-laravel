@@ -19,8 +19,12 @@ class TeamCtrl extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->get('round_id')){
+            return Team::getFromRound($request->get('round_id'));
+        }
+        
         return Team::all();
     }
 
@@ -44,9 +48,9 @@ class TeamCtrl extends Controller
 
 
         $team->fill([
+            'season_id' => Season::getCurrentSeason()->id,
             'name' => $request['name'],
-            'round_id' => Hashids::decode($request['round_id'])[0],
-            'season_id' => Season::getCurrentSeason()
+            'round_id' => $request['round_id'],
         ]);
 
         if($team->save()){

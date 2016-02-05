@@ -1,7 +1,17 @@
 <h1>LIST MATCH</h1>
-<select ng-change="loadMatchList(currentDay)" ng-model="currentDay">
+
+{{ filters }}
+
+<label for="round">Scegli il girone </label>
+<select name="round"  ng-model="filters.round_id">i+
+  <option value="{{ round.id }}" ng-repeat="round in rounds">{{ round.name }}</option>
+</select>
+
+<label for="day">Scegli la giornata </label>
+<select name="day" ng-model="filters.day_id">i+
   <option value="{{ day.id }}" ng-repeat="day in days track by $index">{{ $index + 1 }}</option>
 </select>
+
 <table class="table table-hover table-striped">
 <thead>
   <tr>

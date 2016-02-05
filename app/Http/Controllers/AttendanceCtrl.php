@@ -43,9 +43,9 @@ class AttendanceCtrl extends Controller
     $attendance = new Attendance();
 
     $attendance->fill([
-    'season_id' => Season::getCurrentSeason(),
-    'player_id' => Hashids::decode($request->player_id)[0],
-    'match_id'  => Hashids::decode($request->match_id)[0]
+    'season_id' => Season::getCurrentSeason()->id,
+    'player_id' => $request->player_id,
+    'match_id'  => $request->match_id,
     ]);
 
     if($attendance->save()){
