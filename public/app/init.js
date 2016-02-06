@@ -1,5 +1,7 @@
 angular.module('app', [
-	'ui.router'
+	'ngAnimate',
+  'ui.router',
+  'toastr'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {

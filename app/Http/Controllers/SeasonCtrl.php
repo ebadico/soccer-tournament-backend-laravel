@@ -45,10 +45,14 @@ class SeasonCtrl extends Controller
     public function store(Request $request)
     {
         $season = new Season();
+        if (!Season::all()->count()){
+            $season->current = 1;
+        }
         if($season->save()){
             $res['saved'] = true;
             $res['status'] = 200;
         }
+
         return response()->json($res, $res['status']);
     }
 

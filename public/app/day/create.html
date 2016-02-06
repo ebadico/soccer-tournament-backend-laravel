@@ -1,11 +1,31 @@
 <h1>CREATE GIORNATE</h1>
 
-
 <form ng-submit="createDay(day)">
-  <p>Scegli il girone della giornata: </p>
-  <label ng-repeat="round in rounds">
-    &nbsp; {{ round.name }} 
-    <input type="radio" value="{{ round.id}}" ng-model="day.round_id">
-  </label>
-  <button type="submit" ng-show='day.round_id'>Create</button>
+  <div class="form-group">
+    <label>Scegli il girone della giornata</label>
+    <div class="radio" ng-repeat="round in rounds">
+      <label>
+        <input type="radio" name="round" value="{{round.id}}" ng-model="day.round_id"> {{round.name}}
+      </label>
+    </div>
+  </div>
+  <div class="submit-box" ng-show='day.round_id'>
+    <button class="btn btn-primary" type="submit">Create</button>
+  </div>
 </form>
+
+
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th class="col-sm-1">#</th>
+      <th class="col-sm-1">Giornate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="day in days track by $index">
+      <td>{{ $index +1 }}</td>
+      <td>{{ day.round.name }}</td>
+    </tr>
+  </tbody>
+</table>

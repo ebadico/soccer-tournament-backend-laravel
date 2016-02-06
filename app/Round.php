@@ -9,8 +9,10 @@ use Hashids;
 class Round extends Model
 {
  
-  protected $fillable = ['name','season_id'];
+  protected $fillable = ['name','season_id', 'current'];
 
 
-  
+  public function days(){
+    return $this->hasMany('App\Day');
+  }  
 }

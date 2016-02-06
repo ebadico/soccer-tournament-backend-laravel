@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('SeasonCtrl', function($scope, $http, Season){
+.controller('SeasonCtrl', function($scope, $http, Season, toastr){
 
 	$scope.seasons = null;
 
@@ -15,10 +15,10 @@ angular.module('app')
 		Season.createSeason()
 		.then(function(res){
 			if(res.status === 200){
-
+				toastr.success('New Season Created!');
 			}
 		},function(err){
-			console.log("season.controller.js :21", err);
+			toastr.error(err, 'Errore...');
 		});
 	}
 

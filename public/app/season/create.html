@@ -1,3 +1,23 @@
-<h1>CREATE SEASON</h1>
+<h2>Stagioni <small>Gestisci Stagioni</small></h2>
 
-<button ng-click="createSeason()">Create Season</button>
+<form ng-submit="createSeason()">
+  <button class="btn btn-primary pull-right">Create Stagione</button>
+  <div class="clearfix"></div>
+</form>
+
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th class="col-sm-1">#</th>
+      <th class="col-sm-2">Actions</th>
+      <th>Corrente</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="season in seasons track by $index">
+      <td>{{ $index +1 }}</td>
+      <td> <i class="fa fa-close" style="color:red;"></i> </td>
+      <td> <i class="fa fa-check" ng-show="{{season.current}}"></i></td>
+    </tr>
+  </tbody>
+</table>

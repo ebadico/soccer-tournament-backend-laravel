@@ -1,16 +1,10 @@
 angular.module('app')
 
-.controller('RoundCtrl', function($rootScope, $scope, $http, Season, Round){
+.controller('RoundCtrl', function($rootScope, $scope, $http, toastr, Season, Round){
 
 	$scope.rounds = [];
 	$scope.round = {};
 	
-	
-	Round
-		.get()
-		.then(function(res){
-			console.log(res);
-		});	
 
 	Round.get()
 	.then(function(res){
@@ -24,7 +18,10 @@ angular.module('app')
 		.then(function(res){
 			if(res.status === 200){
 				$scope.round = {};
+				toastr.success('Girone creato!');
 			}
+		},function(err){
+			toastr.error(err, 'Errore...');
 		})
 	}
 

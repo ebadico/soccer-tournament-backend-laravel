@@ -1,13 +1,21 @@
 <h1>CREATE TEAM</h1>
 
-<form ng-submit="createTeam(team)">
-  <input type="text" ng-model="team.name" placeholder="Nome Team">
+<form ng-submit="createTeam(team)" ng-show="rounds.length">
+  <label>Nome Squadra</label>
+  <input class="form-control" type="text" ng-model="team.name" placeholder="Nome Team">
   <br>
-  <label for="round" ng-repeat="round in rounds">
-    {{round.name}}
-    <input type="radio" name="round" value="{{round.id}}" ng-model="team.round_id">
-  </label>
-  <button type="submit">Create</button>
+  <div class="form-group">
+      <label>Scegli il girone della squadra</label>
+      <div class="radio" ng-repeat="round in rounds">
+          <label>
+              <input type="radio" name="round" value="{{round.id}}" ng-model="team.round_id"> {{round.name}}
+          </label>
+      </div>
+  </div>
+  
+  <div class="submit-box">
+    <button class="btn btn-primary" type="submit" ng-disabled="team.round_id && team.name.length ? false : true">Crea team </button>
+  </div>
   
 </form>
 
