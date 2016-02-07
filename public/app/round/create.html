@@ -1,25 +1,29 @@
-<h1>CREATE GIRONI</h1>
 
-<form ng-submit="createRound(round)" data-season-id="{{currentSeasonId}}">
+<form ng-submit="create(round)" data-season-id="{{currentSeasonId}}">
+  <h3>CREA GIRONE</h3>
+  <hr>
   <input type="text" ng-model="round.name" class="form-control" placeholder="Nome del girone">
   <div class="submit-box">
-    <button class="btn btn-primary" type="submit">Create</button>
+    <button class="btn btn-primary" type="submit" ng-disabled="!round.name">Create</button>
   </div>
 </form>
 
+<h3>GESTISCI</h3>
 <table class="table table-hover table-striped">
   <thead>
     <tr>
       <th class="col-sm-1">#</th>
       <th class="col-sm-2">Actions</th>
       <th>Girone</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="round in rounds track by $index">
       <td>{{ $index +1 }}</td>
-      <td> <i class="fa fa-close" style="color:red;"></i></td>
-      <td>{{ round.name }}</td>
+      <td ng-click="delete(round)"> <i class="fa fa-close" style="color:red;"></i></td>
+      <td> <input type="text" ng-model="round.name" value="{{round.name}}"> </td>
+      <td ng-click="edit(round)"> <i class="fa fa-save"></i> </td>
     </tr>
   </tbody>
 </table>

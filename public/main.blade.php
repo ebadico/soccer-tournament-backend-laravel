@@ -9,25 +9,38 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/theoinglis/ngAnimate.css/master/build/nga.min.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/sb-admin.css">
+    <style>
+      /* The starting CSS styles for the enter animation */
+      .ng-enter {
+        transition:0.5s linear all;
+        opacity:0;
+      }
+
+      /* The finishing CSS styles for the enter animation */
+      .ng-enter.ng-enter-active {
+        opacity:1;
+      }
+    </style>
 </head>
 <body style="background:#ECECEC;">
    
   <div ui-view></div>
 
-	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-	<!-- ANGULAR -->
-	<script src="bower_components/angular/angular.min.js"></script>
+  <!-- ANGULAR -->
+  <script src="bower_components/angular/angular.min.js"></script>
   <!-- PLUGIN -->
-	<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
   <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="https://code.angularjs.org/1.5.0/angular-sanitize.min.js"></script>
 	
   <!-- CORE -->
 	<script src="app/init.js"></script>

@@ -11,6 +11,11 @@ angular
     }
 
     this.create = function(data){
+      console.log("match.service.js :14", data);
       return $http.post('/api/match', data);
+    }
+
+    this.delete = function(match){
+      return $http.delete('/api/match/' + match.id);
     }
   });

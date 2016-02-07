@@ -15,9 +15,13 @@ angular.module('app')
   }
 
 
-	this.createRound = function(day){
+	this.create = function(day){
     console.log("day.service.js :10 creating new day:", day);
 		return $http.post('/api/day', day);
 	}
+
+  this.delete = function(day){
+    return $http.delete('/api/day/' + day.id);
+  }
 
 })

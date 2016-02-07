@@ -1,6 +1,12 @@
-<h1>CREATE TEAM</h1>
-
-<form ng-submit="createTeam(team)" ng-show="rounds.length">
+<div ng-show="!rounds.length" class="globus-box warning">
+  <h4>Attenzione</h4>
+  <p>
+    Crea dei <a ui-sref="admin.round">gironi</a> prima di poter creare una squadra!
+  </p>
+</div>
+<form ng-submit="create(team)" ng-show="rounds.length">
+  <h3>CREATE TEAM</h3>
+  <hr>
   <label>Nome Squadra</label>
   <input class="form-control" type="text" ng-model="team.name" placeholder="Nome Team">
   <br>
@@ -19,3 +25,24 @@
   
 </form>
 
+
+<div class="col-md-6" ng-repeat="(key, value) in teams | groupBy: 'round_id' ">
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th class="col-sm-1">#</th>
+        <th class="col-sm-1"></th>
+        <th>Girone</th>
+        <th>Team</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="team in value track by $index">
+        <td>{{ $index +1 }}</td>
+        <td> <i class="fa fa-remove" style="color:red;" ng-click="delete(team)"></i></td>
+        <td>{{ team.round.name }}</td>
+        <td> {{ team.name }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

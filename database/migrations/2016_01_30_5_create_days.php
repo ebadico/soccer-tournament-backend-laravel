@@ -18,7 +18,8 @@ class CreateDays extends Migration
             $table->integer('round_id')->unsigned();
             $table->foreign('round_id')
                   ->references('id')
-                  ->on('rounds');
+                  ->on('rounds')
+                  ->onDelete('cascade');
             
 
             $table->integer('season_id')->unsigned();

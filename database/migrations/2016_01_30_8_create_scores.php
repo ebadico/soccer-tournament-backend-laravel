@@ -18,17 +18,20 @@ class CreateScores extends Migration
             $table->integer('team_id')->unsigned(); 
             $table->foreign('team_id')
                   ->references('id')
-                  ->on('teams');
+                  ->on('teams')
+                  ->onDelete('cascade');
 
             $table->integer('player_id')->unsigned(); 
             $table->foreign('player_id')
                   ->references('id')
-                  ->on('players');
+                  ->on('players')
+                  ->onDelete('cascade');
 
             $table->integer('match_id')->unsigned(); 
             $table->foreign('match_id')
                   ->references('id')
-                  ->on('matchs');
+                  ->on('matchs')
+                  ->onDelete('cascade');
 
             $table->integer('season_id')->unsigned();
             $table->foreign('season_id')

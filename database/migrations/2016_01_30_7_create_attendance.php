@@ -19,13 +19,15 @@ class CreateAttendance extends Migration
 
             $table->foreign('player_id')
                   ->references('id')
-                  ->on('players');
+                  ->on('players')
+                  ->onDelete('cascade');
 
             
             $table->integer('match_id')->unsigned();
             $table->foreign('match_id')
                   ->references('id')
-                  ->on('matchs');
+                  ->on('matchs')
+                  ->onDelete('cascade');
 
             $table->integer('season_id')->unsigned();
             $table->foreign('season_id')

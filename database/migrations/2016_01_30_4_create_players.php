@@ -21,7 +21,8 @@ class CreatePlayers extends Migration
             
             $table->foreign('team_id')
                   ->references('id')
-                  ->on('teams');
+                  ->on('teams')
+                  ->onDelete('cascade');
 
             $table->integer('season_id')->unsigned();
             $table->foreign('season_id')

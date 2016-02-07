@@ -98,6 +98,14 @@ class DayCtrl extends Controller
      */
     public function destroy($id)
     {
-        //
+        $day = Day::find($id);
+        if($day->delete()){
+            $res['deleted'] = true;
+            $res['status'] = 204;
+        }else{
+            $res['deleted'] = false;
+            $res['status'] = 404;
+        }
+        return response()->json($res, $res['status']);
     }
 }

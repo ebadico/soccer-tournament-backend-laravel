@@ -16,8 +16,17 @@ angular.module('app')
     })
   }
 
-	this.createSeason = function(){
-		return $http.post('/api/season');
+	this.create = function(season){
+		return $http.post('/api/season', season);
 	}
+
+  this.delete = function(season){
+    return $http.delete('/api/season/' + season.id);
+  }
+
+  this.edit = function(season){
+    return $http.put('/api/season/' + season.id, season);
+  }
+
 
 })

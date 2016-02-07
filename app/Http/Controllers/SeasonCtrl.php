@@ -48,6 +48,8 @@ class SeasonCtrl extends Controller
         if (!Season::all()->count()){
             $season->current = 1;
         }
+        $season->year = $request->get('year');
+        
         if($season->save()){
             $res['saved'] = true;
             $res['status'] = 200;
@@ -93,7 +95,15 @@ class SeasonCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id = $request->get('id');
+        $season = Season::where('current','=', '1')->first();
+        $season->current = 0;
+        $season->save();
+        $season = Season::find($id);
+        $season->current = 1;
+        $season->save();
+
+        return 200;
     }
 
     /**
@@ -104,6 +114,15 @@ class SeasonCtrl extends Controller
      */
     public function destroy($id)
     {
-        //
+        if($season = Season::find($id)){
+            if($season->delete()){
+                $res['status'] = 202;
+                $res['message'] = 'resource deleted successfully';
+            }else{
+                $res['status'] = 401;
+            }
+        }
+        return response()->json( $res ,$res['status']);
+
     }
 }

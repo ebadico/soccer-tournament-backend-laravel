@@ -6,6 +6,11 @@
 
 /* Global Styles */
 
+h1,h2,h3,h4,h5,h6{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
 body {
     margin-top: 100px;
     background-color: #222;
@@ -227,12 +232,18 @@ ul.alert-dropdown {
 
 /* @blue:; #19B5FE */
 
-form, table{
+form, table, .globus-box{
   margin-bottom: 20px;
   background:white;
   padding:10px;
   border-radius:5px !important;
   border-top:5px solid #19B5FE;
+}
+input,select{
+    margin-top: 5px;
+}
+.globus-box, .warning{
+    border-top:5px solid red;
 }
 .submit-box{
     text-align: right;
@@ -246,4 +257,16 @@ button[type=submit]{
     border:none;
     border-radius: 0px;
     background: #19B5FE;
+}
+.input-group-addon{
+    background: #19B5FE !important;
+    color: white;
+    border:none;
+}
+.navbar-ex1-collapse i{
+    color:#19B5FE;
+}
+.fa-remove{
+    color:red;
+    cursor:pointer;
 }

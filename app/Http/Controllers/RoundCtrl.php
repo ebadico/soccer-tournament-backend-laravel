@@ -92,7 +92,20 @@ class RoundCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $name = $request->get('name');
+
+        $round = Round::find($id);
+
+        $round->name = $name;
+
+        if(!$round->save()){
+            $res['err'] = 'Cannot edit document';
+            $res['status'] = 401;
+        }
+        
+        $res['status'] = 200;
+
+        return response()->json($res, $res['status']);
     }
 
     /**
@@ -103,6 +116,15 @@ class RoundCtrl extends Controller
      */
     public function destroy($id)
     {
-        //
+        if($round = Round::find($id)){
+            if($round->delete()){
+                $res['status'] = 202;
+                $res['message'] = 'resource deleted successfully';
+            }else{
+                $res['status'] = 401;
+            }
+        }
+        return response()->json( $res ,$res['status']);
+
     }
 }

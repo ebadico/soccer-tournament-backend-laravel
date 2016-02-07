@@ -25,7 +25,7 @@ class TeamCtrl extends Controller
             return Team::getFromRound($request->get('round_id'));
         }
         
-        return Team::all();
+        return Team::with('round')->get();
     }
 
     /**
@@ -111,6 +111,15 @@ class TeamCtrl extends Controller
      */
     public function destroy($id)
     {
-        //
+        if($team = Team::find($id)){
+            if($team->delete()){
+                $res['status'] = 202;
+                $res['message'] = 'resource deleted successfully';
+            }else{
+                $res['status'] = 401;
+            }
+        }
+        return response()->json( $res ,$res['status']);
+
     }
 }

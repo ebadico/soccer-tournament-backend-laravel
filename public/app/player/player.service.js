@@ -9,4 +9,8 @@ angular
     this.create = function(data){
       return $http.post('/api/player', data);
     }
+
+    this.delete = function(player){
+      return $http.delete('/api/player/' + player.id);
+    }
   });

@@ -7,10 +7,9 @@ use Hashids;
 
 class Day extends Model
 {
-  protected $fillable = ['season_id','round_id'];
-
+  protected $fillable = ['season_id','round_id','num'];
 
   public function round(){
-    return $this->hasOne('App\Round', 'id', 'round_id');
+    return $this->belongsTo('App\Round');
   }
 }

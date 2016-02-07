@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Match;
 use App\Season;
 use Hashids;
+use Carbon\Carbon;
 
 class MatchCtrl extends Controller
 {
@@ -59,10 +60,11 @@ class MatchCtrl extends Controller
       $match = new Match();
 
       $match->fill([
-      'season_id' => Season::getCurrentSeason()->id,
-      'team_a_id' => $request->team_a_id,
-      'team_b_id' => $request->team_b_id,
-      'day_id'    => $request->day_id,
+          'season_id' => Season::getCurrentSeason()->id,
+          'team_a_id' => $request->team_a_id,
+          'team_b_id' => $request->team_b_id,
+          'day_id'    => $request->day_id,
+          'match_date'=> $request->match_date,
       ]);
 
       if($match->save()){
@@ -115,6 +117,15 @@ class MatchCtrl extends Controller
      */
     public function destroy($id)
     {
-        //
+        if($match = Match::find($id)){
+            if($match->delete()){
+                $res['status'] = 202;
+                $res['message'] = 'resource deleted successfully';
+            }else{
+                $res['status'] = 401;
+            }
+        }
+        return response()->json( $res ,$res['status']);
+
     }
 }

@@ -1,11 +1,37 @@
 <h1>CREATE PLAYER</h1>
-{{ player }}
-<form ng-submit="createPlayer(player)">
-  <input type="text" ng-model="player.name">
-  <select ng-model="player.team_id">
-    <option value="{{team.id}}" ng-repeat="team in teams"> {{ team.name }} </option>
-  </select>
-  {{error}}
-  <button class="btn btn-primary" type="submit">Create</button>
+<form ng-submit="create(player)">
+  <div class="col-sm-12 col-md-6">
+    <input type="text" class="form-control" placeholder="Nome Giocatore" ng-model="player.name">
+  </div>
+  <div class="col-sm-12 col-md-6">
+    <select ng-model="player.team_id" class="form-control ">
+      <option value disabled selected>Seleziona team</option>
+      <option value="{{team.id}}" ng-repeat="team in teams track by $index"> {{ team.name }} - {{ team.round.name}} </option>
+    </select>
+  </div>
+  <div class="clearfix"></div>
+  <div class="submit-box">
+    <button class="btn btn-primary" type="submit">Create</button>
+  </div>
 </form>
 
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th class="col-sm-1">#</th>
+      <th class="col-sm-1"></th>
+      <th>Giocatore</th>
+      <th>Team</th>
+      <th>Girone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="player in players track by $index">
+      <td>{{ $index +1 }}</td>
+      <td> <i class="fa fa-close" style="color:red;" ng-click="delete(player)"></i> </td>
+      <td>{{ player.name }}</td>
+      <td>{{ player.team.name }}</td>
+      <td>{{ player.team.round.name }}</td>
+    </tr>
+  </tbody>
+</table>

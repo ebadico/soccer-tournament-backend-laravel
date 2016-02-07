@@ -9,8 +9,8 @@ angular.module('app')
 	getRounds();
 	getDays();
 
-	$scope.createDay = function(day){
-		Day.createRound(day)
+	$scope.create = function(day){
+		Day.create(day)
 		.then(function(res){
 			console.log("day.controller.js :27", res);
 			if(res.status === 200){
@@ -24,6 +24,19 @@ angular.module('app')
 		});
 	}
 
+	$scope.delete = function(day){
+		if(confirm('Sicuro di volerlo rimuovere?')){
+			Day.delete(day)
+			.then(function(res){
+				console.log("day.controller.js :30", res);
+				toastr.warning('Rimosso!');
+				getDays();
+			}, function(err){
+				toastr.error(err, 'Errore...');
+				console.log("day.controller.js :32", err);
+			})
+		}
+	}
 
 	function getRounds(){
 		Round.get()

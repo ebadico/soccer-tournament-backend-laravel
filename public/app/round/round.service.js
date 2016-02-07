@@ -6,8 +6,17 @@ angular.module('app')
 		return $http.get('/api/round');
 	}
 
-	this.createRound = function(round){
+	this.create = function(round){
 		return $http.post('/api/round', round);
 	}
+
+  this.edit = function(round){
+    console.log("round.service.js :14", round);
+    return $http.put('/api/round/' + round.id, round);
+  }
+
+  this.delete = function(round){
+    return $http.delete('/api/round/' + round.id);
+  }
 
 })

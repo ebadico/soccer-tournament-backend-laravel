@@ -5,15 +5,21 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use Hashids;
+use Carbon\Carbon;
 
 class Match extends Model
 {
   protected $table = 'matchs'; 
-  protected $fillable = ['season_id','team_a_id','team_b_id','day_id'];
+  protected $date = ['match_date'];
+  protected $fillable = ['season_id','team_a_id','team_b_id','day_id', 'match_date'];
 
-  
+  public function setMatchDateAttribute($startDate) {
+    $this->attributes['match_date'] = Carbon::parse($startDate)->toDateTimeString();
+  }
+
   static public function getFromDay($day_id){
     return parent::where('day_id', '=', $day_id)->get();
+
   }
 
   public function scopeGet_from_day($query, $day_id){
@@ -33,10 +39,10 @@ class Match extends Model
   }
 
   public function scopeGet_all($query){
-      return $query->with('day','teamA','teamB')->get();
+      return $query->with('day.round','teamA','teamB')->get();
   }
   public function scopePopulate($query){
-      return $query->with('day','teamA','teamB');
+      return $query->with('day.round','teamA','teamB');
   }
 
 

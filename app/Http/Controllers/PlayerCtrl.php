@@ -20,7 +20,7 @@ class PlayerCtrl extends Controller
      */
     public function index()
     {
-        return Player::all();
+        return Player::with('team.round')->get();
     }
 
     /**
@@ -97,6 +97,15 @@ class PlayerCtrl extends Controller
      */
     public function destroy($id)
     {
-        //
+        if($player = Player::find($id)){
+            if($player->delete()){
+                $res['status'] = 202;
+                $res['message'] = 'resource deleted successfully';
+            }else{
+                $res['status'] = 401;
+            }
+        }
+        return response()->json( $res ,$res['status']);
+
     }
 }

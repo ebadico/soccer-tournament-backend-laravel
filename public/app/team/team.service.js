@@ -14,8 +14,12 @@ angular
       return $http.get('/api/team/' + team_id);
     }
 
-    this.createTeam = function(data){
+    this.create = function(data){
       console.log("team.service.js :10", data);
       return $http.post('/api/team', data);
+    }
+
+    this.delete = function(team){
+      return $http.delete('/api/team/' + team.id);
     }
   });

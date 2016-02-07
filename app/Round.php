@@ -13,6 +13,6 @@ class Round extends Model
 
 
   public function days(){
-    return $this->hasMany('App\Day');
+    return $this->belongsTo('App\Day');
   }  
 }

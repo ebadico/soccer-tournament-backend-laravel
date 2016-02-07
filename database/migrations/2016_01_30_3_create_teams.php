@@ -14,8 +14,8 @@ class CreateTeams extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             
+            $table->string('name');
             $table->integer('wins')->unsigned()->default(0);
             $table->integer('draws')->unsigned()->default(0);
             $table->integer('losts')->unsigned()->default(0);
@@ -23,7 +23,8 @@ class CreateTeams extends Migration
             $table->integer('round_id')->unsigned();
             $table->foreign('round_id')
                   ->references('id')
-                  ->on('rounds');
+                  ->on('rounds')
+                  ->onDelete('cascade');
             
             $table->integer('season_id')->unsigned();
             $table->foreign('season_id')

@@ -23,7 +23,8 @@ class CreateMatchs extends Migration
             
             $table->foreign('day_id')
                   ->references('id')
-                  ->on('days');
+                  ->on('days')
+                  ->onDelete('cascade');
 
 
             $table->foreign('winner_id')
@@ -32,11 +33,13 @@ class CreateMatchs extends Migration
             
             $table->foreign('team_a_id')
                   ->references('id')
-                  ->on('teams');
+                  ->on('teams')
+                  ->onDelete('cascade');
 
             $table->foreign('team_b_id')
                   ->references('id')
-                  ->on('teams');
+                  ->on('teams')
+                  ->onDelete('cascade');
 
             $table->foreign('season_id')
                   ->references('id')

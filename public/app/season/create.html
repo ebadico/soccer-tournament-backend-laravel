@@ -1,23 +1,26 @@
-<h2>Stagioni <small>Gestisci Stagioni</small></h2>
 
-<form ng-submit="createSeason()">
-  <button class="btn btn-primary pull-right">Create Stagione</button>
+<form ng-submit="create(season)">
+  <h3>STAGIONI</h3>
+  <input class="form-control" type="number" ng-model="season.year" placeholder="Anno">
+  <div class="submit-box">
+    <button type="submit" class="btn btn-primary pull-right" ng-disabled="!season.year">Create Stagione</button>
+  </div>
   <div class="clearfix"></div>
 </form>
 
-<table class="table table-hover table-striped">
+<table class="table table-hover table-striped" >
   <thead>
     <tr>
-      <th class="col-sm-1">#</th>
-      <th class="col-sm-2">Actions</th>
-      <th>Corrente</th>
+      <th class="col-sm-1"></th>
+      <th class="col-sm-2">Anno</th>
+      <th>Stagione Corrente</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="season in seasons track by $index">
-      <td>{{ $index +1 }}</td>
-      <td> <i class="fa fa-close" style="color:red;"></i> </td>
-      <td> <i class="fa fa-check" ng-show="{{season.current}}"></i></td>
+      <td> <i class="fa fa-close" style="color:red;" ng-click="delete(season)"></i> </td>
+      <td>{{ season.year}} </td>
+      <td ng-click="edit(season)"> <i class="fa fa-check" ng-show="{{season.current}}"></i></td>
     </tr>
   </tbody>
 </table>
