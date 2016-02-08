@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Arvo:700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300);
 /*!
  * Start Bootstrap - SB Admin Bootstrap Admin Template (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
@@ -5,10 +7,14 @@
  */
 
 /* Global Styles */
-
+*{
+    font-family: 'Lato', sans-serif;
+    font-weight: lighter;
+}
 h1,h2,h3,h4,h5,h6{
     margin-top: 10px;
     margin-bottom: 20px;
+    font-family: 'Arvo', serif;
 }
 
 body {
@@ -239,8 +245,12 @@ form, table, .globus-box{
   border-radius:5px !important;
   border-top:5px solid #19B5FE;
 }
-input,select{
+input,select, .input-group{
     margin-top: 5px;
+}
+
+.input-group > .form-control{
+    margin: 0;
 }
 .globus-box, .warning{
     border-top:5px solid red;
@@ -270,3 +280,4 @@ button[type=submit]{
     color:red;
     cursor:pointer;
 }
+

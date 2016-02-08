@@ -1,5 +1,5 @@
-<form ng-submit="edit(match)">
-  <h3>Risultato partita <small>{{ teamAScores.length}} - {{ teamBScores.length}} </small> </h3>
+<form ng-submit="edit(match)" class="text-center">
+  <h1>{{ teamAScores.length}} - {{ teamBScores.length}}</h1>
   <hr>
   <label>Team di casa: </label> 
   <span>{{ match.team_a.name }}</span>
@@ -8,28 +8,32 @@
   <span>{{ match.team_b.name }}</span>
 
   <br>
-  <label>Winner: </label> {{ match.winner.name}}
-  <br>
+  <label>Winner: </label> {{ match.winner_id ? match.winner_id === match.team_a.id ? match.team_a.name : match.team_b.name : null }}
+  <br><br>
+  <hr>
   
   <h3>Presenze & Goals</h3>
-
-
   <div class="col-md-6">
     <h5>{{ match.team_a.name}}</h5>
     <hr>
-    <label ng-repeat="player in match.team_a.player" >
-      <input style="width:50px;" type="number" ng-model="player.score">
-      <input type="checkbox" ng-model="player.attendance" ng-checked="player.attendance"> {{ player.name }}
-    </label>
+
+    <div ng-repeat="player in match.team_a.player" class="input-group">
+      <span class="input-group-addon" style="width:75%; text-align:left;" ng-click="player.attendance = !player.attendance">
+        <input type="checkbox" ng-model="player.attendance" ng-checked="player.attendance"> 
+        {{ player.name }}
+      </span>
+      <input class="form-control" type="number" ng-model="player.score">
+    </div>
   </div>
 
   <div class="col-md-6">
     <h5>{{ match.team_b.name}}</h5>
     <hr>
-    <label ng-repeat="player in match.team_b.player">
+    <div ng-repeat="player in match.team_b.player">
       <input style="width:50px;" type="number" ng-model="player.score">
       <input type="checkbox" ng-model="player.attendance" ng-checked="player.attendance"> {{ player.name }} 
-    </label>
+    </div>
+
   </div>
 
   <div class="clearfix"></div>
