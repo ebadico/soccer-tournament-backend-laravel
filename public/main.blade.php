@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/sb-admin.css">
     <style>
       /* The starting CSS styles for the enter animation */
@@ -40,7 +40,7 @@
   <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
   <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-  <script src="https://code.angularjs.org/1.5.0/angular-sanitize.min.js"></script>
+  <!-- <script src="https://code.angularjs.org/1.5.0/angular-sanitize.min.js"></script> -->
 	
   <!-- CORE -->
 	<script src="app/init.js"></script>
@@ -68,5 +68,6 @@
 
   <script src="app/match/match.service.js"></script>
   <script src="app/match/match.controller.js"></script>
+  <script src="app/match/result.controller.js"></script>
 </body>
 </html>

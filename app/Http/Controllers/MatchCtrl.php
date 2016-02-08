@@ -8,8 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Match;
+use App\Score;
 use App\Season;
-use Hashids;
+use App\Attendance;
 use Carbon\Carbon;
 
 class MatchCtrl extends Controller
@@ -83,7 +84,7 @@ class MatchCtrl extends Controller
      */
     public function show($id)
     {
-        //
+        return Match::where('id', '=', $id)->with('teamA.player','teamB.player','day.round','winner','attendance.player','scores')->first();
     }
 
     /**
@@ -106,7 +107,30 @@ class MatchCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    
+        $scores = $request->get('all_scores');
+        Score::where('match_id', '=', $request->get('id') )->delete();
+
+        foreach($scores as $score){
+            Score::create($score);
+        }
+
+        Attendance::where('match_id', '=', $request->get('id') )->delete();
+
+        foreach($request->get('attendances') as $attendance ){
+            $attendance['season_id'] = Season::getCurrentSeason()->id;
+            if(!Attendance::where('player_id','=', $attendance['player_id'] )->where('match_id','=', $attendance['match_id'])->first()){
+                Attendance::create($attendance);                
+            }
+        }
+
+        // $result = Match::find($id);
+
+        // $result->fill($request->all());
+
+        // $result->save();
+
+        return $request->get('attendances');
     }
 
     /**
@@ -117,7 +141,7 @@ class MatchCtrl extends Controller
      */
     public function destroy($id)
     {
-        if($match = Match::find($id)){
+        if($match = Match::where('id', '=', $id)){
             if($match->delete()){
                 $res['status'] = 202;
                 $res['message'] = 'resource deleted successfully';

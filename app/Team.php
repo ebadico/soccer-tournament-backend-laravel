@@ -3,11 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Hashids;
 
 class Team extends Model
 {
-
+  protected static function boot(){
+    parent::boot();
+    static::addGlobalScope(new \App\Scopes\SeasonScope);
+  }
   protected $fillable = ['name','wins','draws','losts','round_id','season_id'];
 
   static public function getFromRound($round_id){

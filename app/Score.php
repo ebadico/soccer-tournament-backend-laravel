@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Hashids;
 
 class Score extends Model{
+  protected static function boot(){
+    parent::boot();
+    static::addGlobalScope(new \App\Scopes\SeasonScope);
+  }
 
   protected $fillable = ['team_id','player_id','match_id','season_id'];
 

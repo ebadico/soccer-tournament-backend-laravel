@@ -8,7 +8,6 @@ use Hashids;
 class Season extends Model
 {
 
-
   static public function getCurrentSeason(){
     $id = parent::where('current', '=', 1)->first();
     return $id;

@@ -12,7 +12,9 @@ class Attendance extends Model{
   public function match(){
     return $this->belongsTo('App\Match');
   }
-  public function attendance(){
-    return $this->belongsTo('App\Attendance');
+
+  public function player(){
+    return $this->belongsTo('App\Player');
   }
+
 }

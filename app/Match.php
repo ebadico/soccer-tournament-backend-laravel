@@ -3,15 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
-use Hashids;
 use Carbon\Carbon;
 
-class Match extends Model
-{
+class Match extends Model{
+  protected static function boot(){
+    parent::boot();
+    static::addGlobalScope(new \App\Scopes\SeasonScope);
+  }
   protected $table = 'matchs'; 
   protected $date = ['match_date'];
-  protected $fillable = ['season_id','team_a_id','team_b_id','day_id', 'match_date'];
+  protected $fillable = ['season_id','team_a_id','team_b_id','day_id', 'match_date','winner_id'];
 
   public function setMatchDateAttribute($startDate) {
     $this->attributes['match_date'] = Carbon::parse($startDate)->toDateTimeString();
@@ -49,15 +50,23 @@ class Match extends Model
 
 
   public function day(){
-    return $this->hasOne('App\Day','id','day_id');
+    return $this->belongsTo('App\Day');
   }
 
   public function teamA(){
-    return $this->hasOne('App\Team','id','team_a_id');
+    return $this->belongsTo('App\Team');
   }
 
   public function teamB(){
-    return $this->hasOne('App\Team','id','team_b_id');
+    return $this->belongsTo('App\Team');
   }
-
+  public function  winner(){
+    return $this->belongsTo('App\Team');
+  } 
+  public function attendance(){
+    return $this->hasMany('App\Attendance');
+  } 
+  public function scores(){
+    return $this->hasMany('App\Score');
+  }
 }

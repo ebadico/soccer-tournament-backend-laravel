@@ -3,10 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Hashids;
+
 
 class Day extends Model
 {
+
+  protected static function boot(){
+      parent::boot();
+      static::addGlobalScope(new \App\Scopes\SeasonScope);
+  }
+
   protected $fillable = ['season_id','round_id','num'];
 
   public function round(){

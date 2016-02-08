@@ -1,42 +1,53 @@
-<form ng-submit="filter(filters)">
-  <h3>CREA GIOCATORI</h3>
+<form ng-submit="edit(match)">
+  <h3>Risultato partita <small>{{ teamAScores.length}} - {{ teamBScores.length}} </small> </h3>
   <hr>
-  <div class="col-sm-12 col-md-6">
-    <input type="text" class="form-control" placeholder="Nome Giocatore" ng-model="player.name">
+  <label>Team di casa: </label> 
+  <span>{{ match.team_a.name }}</span>
+  <br>
+  <label>Team ospite: </label> 
+  <span>{{ match.team_b.name }}</span>
+
+  <br>
+  <label>Winner: </label> {{ match.winner.name}}
+  <br>
+  <select ng-model="match.winner_id">
+    <option value="{{ match.team_a.id }}">{{ match.team_a.name }}</option>
+    <option value="{{ match.team_b.id }}">{{ match.team_b.name }}</option>
+  </select>
+  <br>
+  <br>
+  <h3>Presenze & Goals</h3>
+
+
+  <div class="col-md-6">
+    <h5>{{ match.team_a.name}}</h5>
+    <hr>
+    <label ng-repeat="player in match.team_a.player" >
+      <input style="width:50px;" type="number" ng-model="player.score">
+      <input type="checkbox" ng-model="teamAAttendances[player.id]" ng-checked="player.id === loadedAttendances[player.team_id][player.id].player_id "> {{ player.name }}
+    </label>
   </div>
-  <div class="col-sm-12 col-md-6">
-    <select ng-model="player.team_id" class="form-control ">
-      <option value disabled selected>Seleziona team</option>
-      <option value="{{team.id}}" ng-repeat="team in teams track by $index"> {{ team.name }} - {{ team.round.name}} </option>
-    </select>
+
+  <div class="col-md-6">
+    <h5>{{ match.team_b.name}}</h5>
+    <hr>
+    <label ng-repeat="player in match.team_b.player">
+      <input style="width:50px;" type="number" ng-model="player.score">
+      <input type="checkbox" ng-model="teamBAttendances[player.id]" ng-checked="player.id === loadedAttendances[player.team_id][player.id].player_id "> {{ player.name }} 
+    </label>
   </div>
+
   <div class="clearfix"></div>
+
   <div class="submit-box">
-    <button class="btn btn-primary" type="submit">Create</button>
+    <button type="submit" class="btn btn-primary">Salva</button>
   </div>
+
 </form>
 
-<table class="table table-hover table-striped">
-  <thead>
-    <tr>
-      <th class="col-sm-1"> <i class="fa fa-cog"></i></th>
-      <th class="col-sm-2">Team in casa</th>
-      <th class="col-sm-1 text-center"></th>
-      <th class="col-sm-2">Team ospite</th>
-      <th>Girone</th>
-      <th>Data</th>
-      <th class="col-sm-1"><input type="text" placeholder="search" ng-model="searchTeam"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="match in matches | filter:searchTeam ">
-      <td> <i class="fa fa-remove" ng-click="delete(match)"></i></td>
-      <td>{{ match.team_a.name }}</td>
-      <td> <strong>VS</strong> </td>
-      <td>{{ match.team_b.name }}</td>
-      <td>{{ match.day.round.name }}</td>
-      <td>{{ match.match_date }}</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+
+{{ match.scores }}
+{{ teamAAttendances }}
+{{ teamBAttendances }}
+<!-- <pre>{{ result }}</pre> -->
+<!-- <pre> {{ loadedAttendances }}</pre> -->

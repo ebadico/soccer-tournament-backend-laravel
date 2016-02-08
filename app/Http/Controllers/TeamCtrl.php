@@ -25,7 +25,7 @@ class TeamCtrl extends Controller
             return Team::getFromRound($request->get('round_id'));
         }
         
-        return Team::with('round')->get();
+        return Team::with('round','player')->get();
     }
 
     /**

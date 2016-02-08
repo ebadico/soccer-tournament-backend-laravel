@@ -80,11 +80,16 @@ angular.module('app', [
         templateUrl: 'app/match/create.html',
         controller: 'MatchCtrl',
       })
-      .state('admin.match-result', {
-        url:'/match/result',
-        templateUrl: 'app/match/result.html',
+      .state('admin.results', {
+        url:'/match/results',
+        templateUrl: 'app/match/results.html',
         controller: 'MatchCtrl',
       })
+        .state('admin.result', {
+          url:'/match/result/{match_id}',
+          templateUrl: 'app/match/result.html',
+          controller: 'ResultCtrl',
+        })
 })
 
 
