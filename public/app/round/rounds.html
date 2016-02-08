@@ -1,4 +1,3 @@
-
 <form ng-submit="create(round)" data-season-id="{{currentSeasonId}}">
   <h3>CREA GIRONE</h3>
   <hr>
@@ -13,17 +12,22 @@
   <thead>
     <tr>
       <th class="col-sm-1">#</th>
-      <th class="col-sm-2">Actions</th>
+      <th class="col-sm-1"><i class="fa fa-cog"></i></th>
       <th>Girone</th>
-      <th></th>
+      <th>Giornate</th>
+      <th>Teams</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="round in rounds track by $index">
       <td>{{ $index +1 }}</td>
-      <td ng-click="delete(round)"> <i class="fa fa-close" style="color:red;"></i></td>
-      <td> <input type="text" ng-model="round.name" value="{{round.name}}"> </td>
-      <td ng-click="edit(round)"> <i class="fa fa-save"></i> </td>
+      <td> 
+        <i class="fa fa-close pointer" ng-click="delete(round)" style="color:red;"></i> 
+        <i class="fa fa-pencil pointer" ui-sref="admin.round({ round_id: round.id })"></i> 
+      </td>
+      <td> {{round.name }}</td>
+      <td> {{ round.day.length }}</td>
+      <td> {{ round.team.length }}</td>
     </tr>
   </tbody>
 </table>

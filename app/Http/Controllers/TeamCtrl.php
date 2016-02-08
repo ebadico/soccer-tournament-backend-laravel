@@ -70,7 +70,7 @@ class TeamCtrl extends Controller
     {
 
 
-        if(!$data = Team::find($id)->with('player','round')->first()  ){
+        if(!$data = Team::where('id','=',$id)->with('player','round')->first()  ){
             $data['error'] = 'Item Not Found';
             $status = 404;
         }

@@ -21,7 +21,7 @@ class RoundCtrl extends Controller
      */
     public function index()
     {
-        return Round::all();
+        return Round::with('day','team')->get();
     }
 
     /**
@@ -62,8 +62,7 @@ class RoundCtrl extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        $id = Hashids::decode($id);
-        if(!$data = Round::find($id)){
+        if(!$data = Round::where('id','=', $id)->with('day')->first()){
             $data['error'] = 'Item Not Found';
             $status = 404;
         }

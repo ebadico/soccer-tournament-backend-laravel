@@ -57,8 +57,9 @@
   <script src="app/day/day.service.js"></script>
   <script src="app/day/day.controller.js"></script>
 
-	<script src="app/round/round.service.js"></script>
 	<script src="app/round/round.controller.js"></script>
+  <script src="app/round/single.controller.js"></script>
+  <script src="app/round/round.service.js"></script>
   
   <script src="app/team/team.controller.js"></script>
   <script src="app/team/single.controller.js"></script>

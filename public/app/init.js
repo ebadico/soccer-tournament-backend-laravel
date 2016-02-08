@@ -51,17 +51,22 @@ angular.module('app', [
         controller: 'SeasonCtrl',
       })
 
-      .state('admin.round', {
-        url:'/round',
-        templateUrl: 'app/round/create.html',
-        controller: 'RoundCtrl',
+      .state('admin.rounds', {
+        url:'/rounds',
+        templateUrl: 'app/round/rounds.html',
+        controller: 'RoundsCtrl',
       })
+        .state('admin.round', {
+          url:'/rounds/{round_id}',
+          templateUrl: 'app/round/round.html',
+          controller: 'RoundCtrl',
+        })
 
-      .state('admin.day', {
-        url:'/day',
-        templateUrl: 'app/day/create.html',
-        controller: 'DayCtrl',
-      })
+      // .state('admin.day', {
+      //   url:'/day',
+      //   templateUrl: 'app/day/create.html',
+      //   controller: 'DayCtrl',
+      // })
 
       .state('admin.teams', {
         url:'/teams',

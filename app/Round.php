@@ -15,7 +15,11 @@ class Round extends Model
  
   protected $fillable = ['name','season_id', 'current'];
 
-  public function days(){
-    return $this->belongsTo('App\Day');
+  public function day(){
+    return $this->hasMany('App\Day');
+  } 
+
+  public function team(){
+    return $this->hasMany('App\Team');
   }  
 }

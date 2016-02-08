@@ -6,6 +6,10 @@ angular.module('app')
 		return $http.get('/api/round');
 	}
 
+  this.getSingle = function(id){
+    return $http.get('/api/round/' + id);
+  }
+
 	this.create = function(round){
 		return $http.post('/api/round', round);
 	}

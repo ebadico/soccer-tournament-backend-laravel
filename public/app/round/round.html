@@ -1,0 +1,37 @@
+<form ng-submit="editRound(round)" class="text-center">
+  <i class="fa fa-pencil pull-right pointer" ng-click="editMode = !editMode"></i>
+  <div class="clearfix"></div>
+  <div ng-show="!editMode">
+    <h3><small>GIRONE</small></h3>
+    <h3>{{ round.name | uppercase }}</h3>
+  </div>
+  <div ng-show="editMode">
+    <input type="text" class="form-control" ng-model="round.name" value="{{round.name}}">
+    <div class="submit-box">
+      <button class="btn btn-primary" type="submit" ng-disabled='!round.name'>Modifica</button>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</form>
+
+<form ng-submit="createDay()" class="text-center">
+  <h3>Aggiungi giornata</h3>
+  <div class="submit-box">
+    <button class="btn btn-primary" type="submit">Aggiungi</button>
+  </div>
+</form>
+
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th class="col-sm-2"><i class="fa fa-cog"></i></th>
+      <th><i class="fa fa-calendar"></i></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="day in round.day track by $index">
+      <td> <i class="fa fa-close pointer" style="color:red;" ng-click="deleteDay(day)"></i> </td>
+      <td>Giornata {{ $index +1 }}</td>
+    </tr>
+  </tbody>
+</table>
