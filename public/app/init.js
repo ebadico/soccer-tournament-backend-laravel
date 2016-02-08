@@ -63,11 +63,16 @@ angular.module('app', [
         controller: 'DayCtrl',
       })
 
-      .state('admin.team', {
-        url:'/team',
+      .state('admin.teams', {
+        url:'/teams',
         templateUrl: 'app/team/create.html',
-        controller: 'TeamCtrl',
+        controller: 'TeamsCtrl',
       })
+        .state('admin.team', {
+          url:'/team/{team_id}',
+          templateUrl: 'app/team/team.html',
+          controller: 'TeamCtrl',
+        })
 
       .state('admin.player', {
         url:'/player',

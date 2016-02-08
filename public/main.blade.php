@@ -61,6 +61,7 @@
 	<script src="app/round/round.controller.js"></script>
   
   <script src="app/team/team.controller.js"></script>
+  <script src="app/team/single.controller.js"></script>
   <script src="app/team/team.service.js"></script>
 
   <script src="app/player/player.service.js"></script>

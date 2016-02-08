@@ -70,8 +70,7 @@ class TeamCtrl extends Controller
     {
 
 
-        $id = Hashids::decode($id);
-        if(!$data = Team::find($id)){
+        if(!$data = Team::find($id)->with('player','round')->first()  ){
             $data['error'] = 'Item Not Found';
             $status = 404;
         }

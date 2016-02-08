@@ -1,7 +1,7 @@
 angular
   .module('app')
 
-  .controller('TeamCtrl', function($scope, toastr, Team, Round){
+  .controller('TeamsCtrl', function($scope, toastr, Team, Round){
     $scope.teams = [];
     $scope.team = {
       round_id: undefined,
