@@ -19,6 +19,10 @@ angular
       return $http.post('/api/team', data);
     }
 
+    this.edit = function(team){
+      return $http.put('/api/team/' + team.id, team);
+    }
+
     this.delete = function(team){
       return $http.delete('/api/team/' + team.id);
     }

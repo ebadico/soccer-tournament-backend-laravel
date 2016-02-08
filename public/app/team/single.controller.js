@@ -3,8 +3,24 @@ angular
 
   .controller('TeamCtrl', function($scope, $stateParams, toastr, Team, Round, Player){
     $scope.team = {};
+    $scope.rounds = undefined;
+    $scope.editMode = false;
 
     getTeam();
+    getRounds();
+
+    $scope.editTeam = function(team){
+      Team
+        .edit(team) 
+        .then(function(res){
+          console.log("single.controller.js :14", res.data);
+          toastr.warning('Modificato');
+          getTeam();
+          $scope.editMode = false;
+        },function(err){
+          toastr.error(err, 'Error...');
+        })
+    }
 
 
     $scope.deletePlayer = function(player){
@@ -42,6 +58,14 @@ angular
         .then(function(res){
           $scope.team = res.data;
           console.log("single.controller.js :11", res.data);
+        });
+    }
+    function getRounds(){
+      Round
+        .get()
+        .then(function(res){
+          console.log("single.controller.js :66", res.data);
+          $scope.rounds = res.data;
         });
     }
 

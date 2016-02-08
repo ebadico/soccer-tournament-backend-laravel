@@ -280,4 +280,7 @@ button[type=submit]{
     color:red;
     cursor:pointer;
 }
+.pointer{
+    cursor:pointer;
+}
 

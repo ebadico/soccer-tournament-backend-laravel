@@ -99,7 +99,19 @@ class TeamCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        if($team = Team::find($id)->first()){
+            $team->name = $request->get('name');
+            //$team->round_id = $request->get('round_id');
+            if($team->save()){
+                $res['status'] = 202;
+                $res['message'] = 'resource updated successfully';
+            }else{
+                $res['status'] = 401;
+                $res['message'] = 'error updating model';
+            }
+        }
+        return response()->json( $res ,$res['status']);
     }
 
     /**
