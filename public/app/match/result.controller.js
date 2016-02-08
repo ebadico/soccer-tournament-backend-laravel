@@ -6,33 +6,11 @@ angular
 
     $scope.teamAScores = [];
     $scope.teamBScores = [];
-    $scope.loadedAttendances = {}; // ex.  { 'team_id': { 'player_id': {} }  }
-    $scope.teamAAttendances = {};
-    $scope.teamBAttendances = {};
 
     getMatch();
 
     $scope.edit = function(result){
       result.attendances = [];
-
-      for(value in $scope.teamAAttendances){
-        var attendance = { player_id: Number(value), match_id: $scope.match.id };
-        if($scope.teamAAttendances[value]){
-          attendance.action = 'add';
-        }else{
-          attendance.action = 'remove';
-        }
-        result.attendances.push(attendance); 
-      }
-      for(value in $scope.teamBAttendances){
-        var attendance = { player_id: Number(value), match_id: $scope.match.id };
-        if($scope.teamBAttendances[value]){
-          attendance.action = 'add';
-        }else{
-          attendance.action = 'remove';
-        }
-        result.attendances.push(attendance);
-      }
 
       result.all_scores = $scope.teamAScores.concat($scope.teamBScores);
 
@@ -51,24 +29,29 @@ angular
         .then(function(res){
           $scope.match = res.data;
 
-          /** attendances two way <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< FINISH_IT */
-          $scope.match.attendance.forEach(function(element, index, array){
-            console.log("result.controller.js :56", array.length);
-            $scope.loadedAttendances[element.player.team_id] = $scope.loadedAttendances[element.player.team_id] || {};
-            $scope.loadedAttendances[element.player.team_id][element.player.id] = element;
-          });
+         
 
-          /** scores two way */
+          /** scores two way && attendance */
           $scope.match.team_a.player.forEach(function(player){
             player.score = 0;
             $scope.match.scores.forEach(function(score){
               if( score.player_id === player.id ) player.score++;
             });
+
+            player.attendance.forEach(function(attend){
+              if(attend.match_id === $scope.match.id ) player.attendance = true;
+              else player.attendance = false;
+            });
+
           });
           $scope.match.team_b.player.forEach(function(player){
             player.score = 0;
             $scope.match.scores.forEach(function(score){
               if( score.player_id === player.id ) player.score++;
+            });
+            player.attendance.forEach(function(attend){
+              if(attend.match_id === $scope.match.id ) player.attendance = true;
+              else player.attendance = false;
             });
           });
         });
@@ -76,7 +59,7 @@ angular
     }
 
     $scope.$watch('match', function(newVal, oldVal){
-      if( newVal !== oldVal && typeof oldVal.id != 'undefined' ) {
+      if( typeof newVal.id != 'undefined' ) {
         var match = newVal;
         var teamAScores = [];
         var teamBScores = [];
@@ -96,6 +79,16 @@ angular
           }
           $scope.teamBScores = teamBScores;
         });
+        if($scope.teamAScores.length === $scope.teamBScores.length ){
+          $scope.match.winner_id = null;
+        }
+        if($scope.teamAScores.length > $scope.teamBScores.length ){
+          $scope.match.winner_id = $scope.match.team_a.id;
+        }
+        if($scope.teamAScores.length < $scope.teamBScores.length ){
+         $scope.match.winner_id = $scope.match.team_b.id; 
+        }
+
       }
     },true);
 

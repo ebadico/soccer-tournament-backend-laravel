@@ -46,9 +46,6 @@ class Match extends Model{
       return $query->with('day.round','teamA','teamB');
   }
 
-
-
-
   public function day(){
     return $this->belongsTo('App\Day');
   }

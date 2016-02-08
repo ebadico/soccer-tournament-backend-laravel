@@ -11,6 +11,7 @@ class Player extends Model
     static::addGlobalScope(new \App\Scopes\SeasonScope);
   }
   protected $fillable = ['name','season_id','team_id'];
+  
   public function attendance(){
     return $this->hasMany('App\Attendance');
   }

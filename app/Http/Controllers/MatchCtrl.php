@@ -84,7 +84,7 @@ class MatchCtrl extends Controller
      */
     public function show($id)
     {
-        return Match::where('id', '=', $id)->with('teamA.player','teamB.player','day.round','winner','attendance.player','scores')->first();
+        return Match::where('id', '=', $id)->with('teamA.player.attendance','teamB.player.attendance','day.round','winner','attendance.player','scores')->first();
     }
 
     /**
@@ -108,6 +108,10 @@ class MatchCtrl extends Controller
     public function update(Request $request, $id)
     {
     
+
+        /**
+         * SCORES
+         */
         $scores = $request->get('all_scores');
         Score::where('match_id', '=', $request->get('id') )->delete();
 
@@ -115,22 +119,46 @@ class MatchCtrl extends Controller
             Score::create($score);
         }
 
+        /**
+         * ATTENDANCES
+         */
+
         Attendance::where('match_id', '=', $request->get('id') )->delete();
 
-        foreach($request->get('attendances') as $attendance ){
-            $attendance['season_id'] = Season::getCurrentSeason()->id;
-            if(!Attendance::where('player_id','=', $attendance['player_id'] )->where('match_id','=', $attendance['match_id'])->first()){
-                Attendance::create($attendance);                
+        $team_a = $request->get('team_a');
+        $team_b = $request->get('team_b');
+
+        foreach($team_a['player'] as $player){
+            if($player['attendance']){
+                Attendance::create([
+                    'player_id' => $player['id'],
+                    'match_id'  => $request->get('id'),
+                    'season_id' => $request->get('season_id'),
+                ]);
+            }
+        }
+        foreach($team_b['player'] as $player){
+
+            if($player['attendance']){
+                Attendance::create([
+                    'player_id' => $player['id'],
+                    'match_id'  => $request->get('id'),
+                    'season_id' => $request->get('season_id'),
+                ]);
             }
         }
 
-        // $result = Match::find($id);
+        /**
+         * MATCH
+         */
 
-        // $result->fill($request->all());
+        $result = Match::find($id);
 
-        // $result->save();
+        $result->fill($request->all());
 
-        return $request->get('attendances');
+        $result->save();
+
+        return 200;
     }
 
     /**

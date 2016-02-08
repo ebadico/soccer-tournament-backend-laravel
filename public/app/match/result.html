@@ -10,12 +10,7 @@
   <br>
   <label>Winner: </label> {{ match.winner.name}}
   <br>
-  <select ng-model="match.winner_id">
-    <option value="{{ match.team_a.id }}">{{ match.team_a.name }}</option>
-    <option value="{{ match.team_b.id }}">{{ match.team_b.name }}</option>
-  </select>
-  <br>
-  <br>
+  
   <h3>Presenze & Goals</h3>
 
 
@@ -24,7 +19,7 @@
     <hr>
     <label ng-repeat="player in match.team_a.player" >
       <input style="width:50px;" type="number" ng-model="player.score">
-      <input type="checkbox" ng-model="teamAAttendances[player.id]" ng-checked="player.id === loadedAttendances[player.team_id][player.id].player_id "> {{ player.name }}
+      <input type="checkbox" ng-model="player.attendance" ng-checked="player.attendance"> {{ player.name }}
     </label>
   </div>
 
@@ -33,7 +28,7 @@
     <hr>
     <label ng-repeat="player in match.team_b.player">
       <input style="width:50px;" type="number" ng-model="player.score">
-      <input type="checkbox" ng-model="teamBAttendances[player.id]" ng-checked="player.id === loadedAttendances[player.team_id][player.id].player_id "> {{ player.name }} 
+      <input type="checkbox" ng-model="player.attendance" ng-checked="player.attendance"> {{ player.name }} 
     </label>
   </div>
 
@@ -45,9 +40,3 @@
 
 </form>
 
-
-{{ match.scores }}
-{{ teamAAttendances }}
-{{ teamBAttendances }}
-<!-- <pre>{{ result }}</pre> -->
-<!-- <pre> {{ loadedAttendances }}</pre> -->
