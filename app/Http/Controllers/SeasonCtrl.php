@@ -24,7 +24,7 @@ class SeasonCtrl extends Controller
             return Season::getCurrentSeason(); 
         }
 
-        return Season::all();
+        return Season::with('team','round','player','day')->get();
     }
     /**
      * Show the form for creating a new resource.

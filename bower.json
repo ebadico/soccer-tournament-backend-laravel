@@ -1,0 +1,32 @@
+{
+  "name": "globus_cup",
+  "description": "Globus Cup MVX",
+  "main": "server.php",
+  "authors": [
+    "Kirkhammetz <Neofrascati@hotmail.it>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "www.globuscup.it",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-filter": "~0.5.8",
+    "angular-animate": "~1.5.0",
+    "angular-toastr": "~1.7.0",
+    "angular-ui-router": "~0.2.17",
+    "angular": "~1.4.9",
+    "angular-ui-tinymce": "~0.0.12",
+    "bootstrap": "~3.3.6",
+    "ng-flow": "~2.7.1",
+    "font-awesome": "fontawesome#~4.5.0",
+    "tinymce": "~4.3.3"
+  }
+}

@@ -32,6 +32,7 @@
 
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="bower_components/tinymce-dist/tinymce.js"></script>
 
   <!-- ANGULAR -->
   <script src="bower_components/angular/angular.min.js"></script>
@@ -40,6 +41,7 @@
   <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
   <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
   <!-- <script src="https://code.angularjs.org/1.5.0/angular-sanitize.min.js"></script> -->
 	
   <!-- CORE -->
@@ -49,13 +51,18 @@
 	<script src="app/login/auth.service.js"></script>
 	<script src="app/login/login.controller.js"></script>
 	
-	<script src="app/user/user.controller.js"></script>
+	<script src="app/news/news.controller.js"></script>
+  <script src="app/news/news.service.js"></script>
+
+  <script src="app/media/media.controller.js"></script>
+  <script src="app/media/media.service.js"></script>
+
+  <script src="app/user/user.controller.js"></script>
 
 	<script src="app/season/season.service.js"></script>
 	<script src="app/season/season.controller.js"></script>
 
   <script src="app/day/day.service.js"></script>
-  <script src="app/day/day.controller.js"></script>
 
 	<script src="app/round/round.controller.js"></script>
   <script src="app/round/single.controller.js"></script>
@@ -66,7 +73,6 @@
   <script src="app/team/team.service.js"></script>
 
   <script src="app/player/player.service.js"></script>
-  <script src="app/player/player.controller.js"></script>
 
   <script src="app/match/match.service.js"></script>
   <script src="app/match/match.controller.js"></script>

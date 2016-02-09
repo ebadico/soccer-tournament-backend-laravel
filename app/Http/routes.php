@@ -30,16 +30,18 @@ Route::get('/api', function () {
 |
 */
 
-Route::group(['prefix'=>'api/', 'middleware' => ['web']], function () {
-    Route::resource('/user'       , 'UserCtrl');
-    Route::resource('/round'      , 'RoundCtrl');
-    Route::resource('/team'       , 'TeamCtrl');
-    Route::resource('/player'     , 'PlayerCtrl');
-    Route::resource('/day'        , 'DayCtrl');
-    Route::resource('/match'      , 'MatchCtrl');
-    Route::resource('/attendance' , 'AttendanceCtrl');
-    Route::resource('/score'      , 'ScoreCtrl');
-    Route::resource('/season'     , 'SeasonCtrl');
+Route::group(['prefix'=>'api/' , 'middleware' => ['web']] , function () {
+    Route::resource('/news'        , 'NewsCtrl');
+    Route::resource('/media'       , 'MediaCtrl');
+    Route::resource('/user'        , 'UserCtrl');
+    Route::resource('/round'       , 'RoundCtrl');
+    Route::resource('/team'        , 'TeamCtrl');
+    Route::resource('/player'      , 'PlayerCtrl');
+    Route::resource('/day'         , 'DayCtrl');
+    Route::resource('/match'       , 'MatchCtrl');
+    Route::resource('/attendance'  , 'AttendanceCtrl');
+    Route::resource('/score'       , 'ScoreCtrl');
+    Route::resource('/season'      , 'SeasonCtrl');
 
 });
 

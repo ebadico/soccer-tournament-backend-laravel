@@ -83,4 +83,9 @@ angular
           $scope.days = res.data;
         });
     }
+
+    $scope.selectRound = function(round){
+      $scope.selectedRound = round.id;
+    }
+
   });

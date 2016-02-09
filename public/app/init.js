@@ -3,6 +3,7 @@ angular.module('app', [
   'angular.filter',
   'ui.router',
   'toastr',
+  'ui.tinymce',
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -39,10 +40,16 @@ angular.module('app', [
       	templateUrl: 'app/user/index.html',
       	controller: 'UserCtrl'
       })
-      .state('admin.create-user', {
-      	url:'/create/user',
-      	templateUrl: 'app/user/create.html',
-      	controller: 'UserCtrl'
+
+      .state('admin.news',{
+        url: '/news',
+        templateUrl: 'app/news/index.html',
+        controller: 'NewsCtrl',
+      })
+      .state('admin.medias',{
+        url: '/medias',
+        templateUrl: 'app/media/index.html',
+        controller: 'MediaCtrl',
       })
 
       .state('admin.season', {
@@ -62,11 +69,6 @@ angular.module('app', [
           controller: 'RoundCtrl',
         })
 
-      // .state('admin.day', {
-      //   url:'/day',
-      //   templateUrl: 'app/day/create.html',
-      //   controller: 'DayCtrl',
-      // })
 
       .state('admin.teams', {
         url:'/teams',
@@ -79,11 +81,6 @@ angular.module('app', [
           controller: 'TeamCtrl',
         })
 
-      .state('admin.player', {
-        url:'/player',
-        templateUrl: 'app/player/create.html',
-        controller: 'PlayerCtrl',
-      })
 
       .state('admin.match', {
         url:'/match',
