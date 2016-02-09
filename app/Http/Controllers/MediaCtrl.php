@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Media;
+use App\Medias;
+
+use Flow;
 
 class MediaCtrl extends Controller
 {
@@ -26,15 +28,6 @@ class MediaCtrl extends Controller
         return Media::with('season')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -44,7 +37,41 @@ class MediaCtrl extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tmp = storage_path() . '/upload_tmp';
+        $storage = public_path() . '/uploads/';
+
+        $config = new Flow\Config();
+        $request = new Flow\Request();
+        $config->setTempDir( $tmp );
+
+        $res = array();
+        $res['filename'] = $request->getFileName();
+        $res['size'] = $request->getTotalSize();
+        $res['path'] = '/uploads/' . (string)$request->getFileName();
+
+        $media = new Medias();
+        $media->fill([
+            "path"=> $res['path'] = '/uploads/' . (string)$request->getFileName()
+        ]);
+        $media->save();
+
+        if (Flow\Basic::save( $storage . $request->getFileName(), $config, $request)) {
+          Flow\Uploader::pruneChunks($tmp);
+          return response()->json($res, 200);
+        } else {
+          return response()->json($res, 401);
+        }
+    }
+    public function StoreVideo(Request $request){
+       $media = new Medias();
+       $media->path = $request->get('url');
+       $media->type = "video";
+       if($media->save()){
+        return response()->json($media, 200);
+       }else{
+        return response()->json(["error"=>"error"], 401);
+       }
+
     }
 
     /**
@@ -58,16 +85,6 @@ class MediaCtrl extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMediaTable extends Migration
+class CreateMediasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,14 @@ class CreateMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('medias', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
 
-            $table->string('url');
+            $table->string('path');
             $table->string('type')->default('photo');
 
-            $table->integer('season_id')->unsigned();
+            $table->integer('season_id')->unsigned()->nullable();
             $table->foreign('season_id')
                   ->references('id')
                   ->on('seasons')
@@ -34,6 +34,6 @@ class CreateMediaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('media');
+        Schema::drop('medias');
     }
 }

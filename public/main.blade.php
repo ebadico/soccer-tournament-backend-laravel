@@ -37,6 +37,7 @@
   <!-- ANGULAR -->
   <script src="bower_components/angular/angular.min.js"></script>
   <!-- PLUGIN -->
+  <script src="bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
   <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>

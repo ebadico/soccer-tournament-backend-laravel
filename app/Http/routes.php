@@ -33,6 +33,7 @@ Route::get('/api', function () {
 Route::group(['prefix'=>'api/' , 'middleware' => ['web']] , function () {
     Route::resource('/news'        , 'NewsCtrl');
     Route::resource('/media'       , 'MediaCtrl');
+    Route::post('/video'           , 'MediaCtrl@StoreVideo');
     Route::resource('/user'        , 'UserCtrl');
     Route::resource('/round'       , 'RoundCtrl');
     Route::resource('/team'        , 'TeamCtrl');
@@ -44,4 +45,3 @@ Route::group(['prefix'=>'api/' , 'middleware' => ['web']] , function () {
     Route::resource('/season'      , 'SeasonCtrl');
 
 });
-

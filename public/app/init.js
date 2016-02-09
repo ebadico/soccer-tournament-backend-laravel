@@ -4,6 +4,7 @@ angular.module('app', [
   'ui.router',
   'toastr',
   'ui.tinymce',
+  'flow',
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
