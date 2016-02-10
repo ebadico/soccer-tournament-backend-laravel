@@ -30,7 +30,7 @@ Route::get('/api', function () {
 |
 */
 
-Route::group(['prefix'=>'api/' , 'middleware' => ['web','jwt.auth']] , function () {
+Route::group(['prefix'=>'api/' , 'middleware' => ['web']] , function () {
     Route::resource('/news'        , 'NewsCtrl');
     Route::resource('/user'        , 'UserCtrl');
     Route::resource('/round'       , 'RoundCtrl');
@@ -44,7 +44,10 @@ Route::group(['prefix'=>'api/' , 'middleware' => ['web','jwt.auth']] , function 
     Route::resource('/media'       , 'MediaCtrl');
     Route::post('/video'           , 'MediaCtrl@StoreVideo');
 
+
 });
-Route::get('/api/auth', 'AuthCtrl@index');
 Route::post('/api/auth', 'AuthCtrl@authenticate');
 
+Route::get('/api/auth/check', ['middleware' => 'jwt.auth', function () {
+    return response()->json([ "auth"=>true ], 200);
+}]);

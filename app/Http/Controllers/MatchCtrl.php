@@ -15,6 +15,9 @@ use Carbon\Carbon;
 
 class MatchCtrl extends Controller
 {
+    public function __construct(){
+       $this->middleware('jwt.auth', ['except' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

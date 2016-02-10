@@ -12,9 +12,6 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthCtrl extends Controller
 {
-    public function index(){
-
-    }
 
     public function authenticate(Request $request)
     {

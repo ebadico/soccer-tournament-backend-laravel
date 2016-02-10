@@ -41,6 +41,16 @@ angular.module('app', [
     	url:'/admin',
     	templateUrl: 'app/admin/admin-template.html',
       controller: 'AdminCtrl',
+      resolve: {
+        authResolve: function(Auth){
+          return Auth.check()
+            .then(function(data){
+              return { "auth": true};
+            }, function(){
+              return { "auth": false};
+            });
+        }
+      }
     })
       .state('admin.user', {
       	url:'/user',

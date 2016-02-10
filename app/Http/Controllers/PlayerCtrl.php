@@ -13,6 +13,9 @@ use Hashids;
 
 class PlayerCtrl extends Controller
 {
+    public function __construct(){
+       $this->middleware('jwt.auth', ['except' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *
