@@ -8,8 +8,6 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "5.2.*",
-        "vinkla/hashids": "^2.2",
-        "hashids/hashids": "^1.0",
         "nesbot/carbon": "^1.21",
         "flowjs/flow-php-server": "^1.0"
     },
