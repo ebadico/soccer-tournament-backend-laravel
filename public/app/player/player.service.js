@@ -1,7 +1,7 @@
 angular
   .module('app')
 
-  .service('Player', function($http){
+  .service('Player', ['$http', function($http){
     this.get = function(){
       return $http.get('/api/player');
     }
@@ -13,4 +13,4 @@ angular
     this.delete = function(player){
       return $http.delete('/api/player/' + player.id);
     }
-  });
+  }])

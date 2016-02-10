@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('RoundsCtrl', function($rootScope, $scope, $http, toastr, Season, Round){
+.controller('RoundsCtrl', ['$rootScope', '$scope', '$http', 'toastr', 'Season', 'Round', function($rootScope, $scope, $http, toastr, Season, Round){
 
 	$scope.rounds = [];
 	$scope.round = {};
@@ -55,4 +55,4 @@ angular.module('app')
 			});
 	}
 
-})
+}])

@@ -8,8 +8,8 @@ angular
   })
 
   /** FOR YOUTUBE LINKS */
-  .filter('trustedUrl', function($sce) {
-    return function(input) {
-      return $sce.trustAsResourceUrl(input);
-    };
-  })
+  .filter('trustedUrl', ['$sce', function($sce) {
+      return function(input) {
+        return $sce.trustAsResourceUrl(input);
+      };
+    }])
