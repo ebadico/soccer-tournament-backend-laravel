@@ -48,4 +48,9 @@ gulp.task('concat_angular_app', function(){
     .pipe(gulp.dest(public_dir + 'js'));
 });
 
-gulp.task('default', ['concat_vendors','concat_angular_vendors','concat_angular_app']);
+gulp.task('watch', function() {
+  gulp.watch('public/app/**/**', ['concat_angular_app']);
+});
+
+
+gulp.task('default', ['concat_vendors','concat_angular_vendors','concat_angular_app','watch']);
