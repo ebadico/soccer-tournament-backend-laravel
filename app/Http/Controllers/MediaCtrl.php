@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Medias;
-
+use Storage;
 use Flow;
 
 class MediaCtrl extends Controller
@@ -22,10 +22,10 @@ class MediaCtrl extends Controller
     {
         
         if($type = $request->get('type')){
-            return Media::where('type','=', $type)->with('season')->get();
+            return Medias::where('type','=', $type)->with('season')->get();
         }
 
-        return Media::with('season')->get();
+        return Medias::with('season')->get();
     }
 
 
@@ -44,27 +44,39 @@ class MediaCtrl extends Controller
         $request = new Flow\Request();
         $config->setTempDir( $tmp );
 
-        $res = array();
-        $res['filename'] = $request->getFileName();
-        $res['size'] = $request->getTotalSize();
-        $res['path'] = '/uploads/' . (string)$request->getFileName();
+        $filename = $request->getFileName();
+        if (strpos($filename, '.jpg') || strpos($filename, '.jpeg')) {
+            $extension = '.jpg';
+        }
+        if (strpos($filename, '.png')) {
+            $extension = '.png';
+        }
+        if (strpos($filename, '.gif')) {
+            $extension = '.gif';
+        }
+
+        $img = array();
+        $img['filename'] = time() . $extension;
+        $img['size'] = $request->getTotalSize();
+        $img['path'] = '/uploads/' . $img['filename'];
 
         $media = new Medias();
         $media->fill([
-            "path"=> $res['path'] = '/uploads/' . (string)$request->getFileName()
+            "path"=> $img['path'],
+            "filename" => $img['filename']
         ]);
         $media->save();
 
-        if (Flow\Basic::save( $storage . $request->getFileName(), $config, $request)) {
+        if (Flow\Basic::save( $storage . $img['filename'], $config, $request)) {
           Flow\Uploader::pruneChunks($tmp);
-          return response()->json($res, 200);
+          return response()->json($img, 200);
         } else {
-          return response()->json($res, 401);
+          return response()->json($img, 401);
         }
     }
     public function StoreVideo(Request $request){
        $media = new Medias();
-       $media->path = $request->get('url');
+       $media->path = 'https://www.youtube.com/v/' . $request->get('url');
        $media->type = "video";
        if($media->save()){
         return response()->json($media, 200);
@@ -106,6 +118,12 @@ class MediaCtrl extends Controller
      */
     public function destroy($id)
     {
-        //
+        $media = Medias::find($id);
+        if($media->type === 'photo'){
+            Storage::delete($media->filename);
+        }
+        $media->delete();
+        $media->exists = false;
+        return $media;
     }
 }

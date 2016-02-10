@@ -45,3 +45,4 @@ Route::group(['prefix'=>'api/' , 'middleware' => ['web']] , function () {
     Route::resource('/season'      , 'SeasonCtrl');
 
 });
+

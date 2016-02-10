@@ -24,6 +24,30 @@
       .ng-enter.ng-enter-active {
         opacity:1;
       }
+
+      .ng-hide-add, .ng-hide-remove {
+        transition: all linear .25s;
+      }
+
+      .ng-hide {
+        opacity: 0;
+      }
+      .rwd-video {
+        height: 0;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        padding-top: 30px;
+        position: relative;
+      }
+      .rwd-video iframe,
+      .rwd-video object,
+      .rwd-video embed {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
     </style>
 </head>
 <body style="background:#ECECEC;">
@@ -48,6 +72,8 @@
   <!-- CORE -->
 	<script src="app/init.js"></script>
 
+  <!-- FILTERS -->
+  <script src="app/filters/filters.js"></script>
   <!-- MODULES -->
 	<script src="app/login/auth.service.js"></script>
 	<script src="app/login/login.controller.js"></script>

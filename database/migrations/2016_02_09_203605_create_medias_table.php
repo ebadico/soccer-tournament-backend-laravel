@@ -16,6 +16,7 @@ class CreateMediasTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
+            $table->string('filename')->nullable();
             $table->string('path');
             $table->string('type')->default('photo');
 

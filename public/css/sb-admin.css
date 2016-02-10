@@ -252,7 +252,7 @@ input,select, .input-group{
 .input-group > .form-control{
     margin: 0;
 }
-.globus-box, .warning{
+.globus-box.warning{
     border-top:5px solid red;
 }
 .submit-box{

@@ -156,9 +156,16 @@ class MatchCtrl extends Controller
 
         $result->fill($request->all());
 
-        $result->save();
+        if($result->save()){
+            $res['message'] = "saved";
+            $res['obj'] = $result;
+            $res['status'] = 200; 
+        }else{
+           $res['message'] = "error saving"; 
+           $res['status'] = 401; 
+        }
 
-        return 200;
+        return response()->json($res, $res['status']);
     }
 
     /**

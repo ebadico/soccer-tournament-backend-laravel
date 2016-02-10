@@ -1,41 +1,71 @@
-
-<form ng-submit="createVideo(video)">
-  <h2 class="text-center">UPLOAD MEDIA</h2>
+<div class="row">
   
-  <div class="text-center">
-    <i class="fa fa-photo fa-2x pointer text-center" ng-click='addPhotoMode = !addPhotoMode'></i>
-    <i class="fa fa-youtube fa-2x pointer text-center" ng-click='addVideoMode = !addVideoMode'></i>
-  </div>
+  <div class="col-md-6">
+    <form>
+      <h3 class="text-center">UPLOAD FOTO</h3>
+      <hr>
+      
+      <div  flow-init="{target: '/api/media', testChunks:false, singleFile: true }" 
+            flow-files-submitted="$flow.upload()"
+            flow-file-success="uploadSucces()">
 
-  <br>
-  <hr>
+        <!-- <div class="row">
+          <div class="col-xs-4 col-md-3" ng-repeat="file in $flow.files">
+            <a class="thumbnail">
+              <img ng-src="/uploads/{{ file.name | spaceless }}">
+            </a>
+          </div>
+        </div> -->
 
-  <div  ng-show="addPhotoMode" 
-        flow-init="{target: '/api/media', testChunks:false }" 
-        flow-files-submitted="$flow.upload()"
-        flow-file-success="$file.msg = $message">
-
-    <div class="row">
-      <div class="col-xs-4 col-md-3" ng-repeat="file in $flow.files">
-        <a class="thumbnail">
-          <img src="/uploads/{{file.name}}">
-        </a>
+        <div class="submit-box">
+          <button class="btn btn-primary" flow-btn flow-attrs="{accept:'image/*'}">Upload</button>
+        </div>
       </div>
-    </div>
+    </form>
+  </div>
 
-    <div class="submit-box">
-      <button class="btn btn-primary" flow-btn flow-attrs="{accept:'image/*'}">Upload</button>
+  <div class="col-md-6">
+    <form ng-submit="createVideo(video)">
+      <h3 class="text-center">AGGIUNGI VIDEO</h3>
+      <hr>
+      <input type="text" class="form-control" ng-model="video.url" placeholder="Youtube video code">
+      <div class="submit-box">
+        <button class="btn btn-primary">Add Video</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<ul class="nav nav-tabs" ng-init="showPhotos = true">
+  <li class="active" ng-click=" showPhotos = !showPhotos; showVideos = false;">
+    <a>Photo</a>
+  </li>
+  <li class="active" ng-click=" showVideos = !showVideos; showPhotos = false;">
+    <a>Video</a>
+  </li>
+</ul>
+<div class="row globus-box">
+  
+  <div class="photos" ng-show="showPhotos">
+    <div class="col-xs-6 col-md-3" ng-repeat="photo in photos">
+      <a class="thumbnail">
+        <i class="fa fa-remove fa-2x" ng-click="delete(photo)"></i>
+        <img ng-src="{{ photo.path }}" alt="">
+      </a>
     </div>
   </div>
 
-
-  <div ng-show="addVideoMode">
-    <input type="text" class="form-control" ng-model="video.url" placeholder="Youtube video link">
-    <div class="submit-box">
-      <button class="btn btn-primary">Add Video</button>
+  <div class="videos" ng-show="showVideos">
+    <div class="col-xs-6 col-md-3" ng-repeat="video in videos">
+      <a class="thumbnail">
+      <i class="fa fa-remove fa-2x" ng-click="delete(video)"></i>
+        <div class="rwd-video">
+          <iframe ng-src="{{video.path | trustedUrl }}" allowfullscreen="" frameborder="0" height="315" width="560">
+          </iframe>
+        </div>
+      </a>
     </div>
   </div>
 
-
-</form>
-
+</div>
