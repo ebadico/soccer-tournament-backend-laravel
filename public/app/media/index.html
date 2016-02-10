@@ -52,6 +52,7 @@
       <a class="thumbnail">
         <i class="fa fa-remove fa-2x" ng-click="delete(photo)"></i>
         <img ng-src="{{ photo.path }}" alt="">
+        <input class="form-control" type="text" value="{{photo.path}}" readonly>
       </a>
     </div>
   </div>

@@ -14,7 +14,7 @@ use Flow;
 class MediaCtrl extends Controller
 {
     public function __construct(){
-       $this->middleware('jwt.auth', ['except' => ['index','show']]);
+       $this->middleware('jwt.auth', ['except' => ['index','show','store']]);
     }
     /**
      * Display a listing of the resource.

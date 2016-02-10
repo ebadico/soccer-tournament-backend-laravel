@@ -1,10 +1,12 @@
 angular
   .module('app')
 
-  .controller('MediaCtrl', function($scope, $sce, toastr, Media){
+  .controller('MediaCtrl', function($scope, $auth, $sce, toastr, Media){
+    $scope.upload = {};
+
     $scope.videos = [];
     $scope.photos = [];
-    
+
     getPhotos();
     getVideos();
 
