@@ -5,10 +5,15 @@ angular.module('app', [
   'toastr',
   'ui.tinymce',
   'flow',
+  'satellizer',
 ])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($authProvider, $stateProvider, $urlRouterProvider) {
   
+
+   $authProvider.loginUrl = '/api/auth';
+
+
   // For any unmatched url, redirect to /state1
   $urlRouterProvider.otherwise("/");
   //
@@ -23,8 +28,8 @@ angular.module('app', [
       templateUrl: 'app/public/public-template.html'
     })
       .state('public.login', {
-        url: "/login",
-        templateUrl: 'app/user/login.html',
+        url: "login",
+        templateUrl: 'app/login/login.html',
         controller: 'LoginCtrl'
       })
 
@@ -35,6 +40,7 @@ angular.module('app', [
       cache: false,
     	url:'/admin',
     	templateUrl: 'app/admin/admin-template.html',
+      controller: 'AdminCtrl',
     })
       .state('admin.user', {
       	url:'/user',

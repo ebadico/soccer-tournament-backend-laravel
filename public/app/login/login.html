@@ -1,5 +1,6 @@
-<form ng-submit="loginFormSubmit(login)">
-	<input type="text" name="username" ng-model="login.username">
-	<input type="password" name="username" ng-model="login.password">
+<form ng-submit="login(credential)">
+	<input type="text" ng-model="credential.username">
+	<input type="password"  ng-model="credential.password">
 	<button type="submit">submit</button>
 </form>
+{{ credential }}

@@ -61,6 +61,7 @@
   <!-- ANGULAR -->
   <script src="bower_components/angular/angular.min.js"></script>
   <!-- PLUGIN -->
+  <script src="bower_components/satellizer/satellizer.min.js"></script>
   <script src="bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
   <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -75,7 +76,9 @@
   <!-- FILTERS -->
   <script src="app/filters/filters.js"></script>
   <!-- MODULES -->
-	<script src="app/login/auth.service.js"></script>
+	<script src="app/admin/admin.controller.js"></script>
+
+  <script src="app/login/auth.service.js"></script>
 	<script src="app/login/login.controller.js"></script>
 	
 	<script src="app/news/news.controller.js"></script>

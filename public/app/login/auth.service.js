@@ -1,20 +1,10 @@
 angular.module('app')
 
-.factory('Auth', function($http){
-	var Auth = {
-		token:'',
-	};
-
-	Auth.login = function(credential){
-		//$http.get(), get token back
-		console.log("Auth.factory.js :7", credential);
+.service('Auth', function($http, $rootScope){
+	this.login = function(credential){
+		return $http.post('/api/auth', credential);
 	}
-
-	Auth.logout = function(){
-		//$http.get(), get token back
-	}
-
-	Auth.isLoggedIn = function(){
-		
-	}
+	this.token = function(){
+		return $rootScope.jwd_token;
+	}	
 })

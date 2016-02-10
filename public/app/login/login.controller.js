@@ -1,12 +1,17 @@
 angular.module('app')
 
-.controller('LoginCtrl', function($scope, Auth){
-	$scope.login = {};
+.controller('LoginCtrl', function($auth, $state, $scope, $rootScope, $http, Auth){
+	$scope.credential = {};
 
-	$scope.loginFormSubmit = function(credential){
-		Auth.login(credential);
+  if($auth.isAuthenticated()){
+    $state.go('admin');
+  }
+
+	$scope.login = function(credential){
+		$auth.login(credential).then(function(res) {
+      console.log("login.controller.js :8", res);
+      $state.go('admin');
+    });
 	}
-
-
 
 })

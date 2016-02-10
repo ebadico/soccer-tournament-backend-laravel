@@ -1,8 +1,8 @@
 angular.module('app')
 
-.service('Season', function($http){
-
-	this.get = function(){
+.service('Season', function($http, $rootScope){
+  
+  this.get = function(){
 		return $http.get('/api/season');
 	}
 
