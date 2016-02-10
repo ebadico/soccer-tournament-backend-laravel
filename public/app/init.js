@@ -119,12 +119,12 @@ angular.module('app', [
 
 .run(function($rootScope, Season){
 
-  Season
-    .getCurrentSeason(function(season){
-      if(season){
-	       $rootScope.currentSeasonId = season.id;
-      }
-    });
+  // Season
+  //   .getCurrentSeason(function(season){
+  //     if(season){
+	 //       $rootScope.currentSeasonId = season.id;
+  //     }
+  //   });
 
   console.log("init.js :4", "Angular Loaded!");
 })
