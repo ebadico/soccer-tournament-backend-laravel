@@ -43,3 +43,15 @@
     </tr>
   </tbody>
 </table>
+
+
+<div class="globus-box">
+  <div  flow-init="{ testChunks:false, singleFile: true }" 
+            flow-files-submitted="submit($file, $event, $flow, team)"
+            flow-file-success="">
+
+        <div class="submit-box">
+          <button class="btn btn-primary" flow-btn flow-attrs="{accept:'image/*'}">Upload</button>
+        </div>
+      </div>
+</div>

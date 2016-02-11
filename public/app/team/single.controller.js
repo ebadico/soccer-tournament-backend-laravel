@@ -9,6 +9,11 @@ angular
     getTeam();
     getRounds();
 
+    $scope.submit =  function($files, $event, $flow, team) {
+      $flow.opts.target = '/api/media?type=avatar&team_id=' + team.id;
+      $flow.upload();
+    }
+
     $scope.editTeam = function(team){
       Team
         .edit(team) 

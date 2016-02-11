@@ -10,7 +10,7 @@ class Team extends Model
     parent::boot();
     static::addGlobalScope(new \App\Scopes\SeasonScope);
   }
-  protected $fillable = ['name','wins','draws','losts','round_id','season_id'];
+  protected $fillable = ['name','wins','draws','losts','round_id','season_id','avatar'];
 
   static public function getFromRound($round_id){
     return parent::where('round_id', '=', $round_id)->get();
