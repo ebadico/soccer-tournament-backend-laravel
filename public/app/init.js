@@ -8,18 +8,18 @@ angular.module('app', [
   'satellizer',
 ])
 
-.config(['$authProvider', '$stateProvider', '$urlRouterProvider', function($authProvider, $stateProvider, $urlRouterProvider) {
+.config(['flowFactoryProvider', '$authProvider', '$stateProvider', '$urlRouterProvider', function(flowFactoryProvider, $authProvider, $stateProvider, $urlRouterProvider) {
   
+  flowFactoryProvider.defaults = {
+    chunkSize: 2048 * 2048,
+  };
 
-   $authProvider.loginUrl = '/api/auth';
-
+  $authProvider.loginUrl = '/api/auth';
 
   // For any unmatched url, redirect to /state1
   $urlRouterProvider.otherwise("/");
-  //
-  // Now set up the states
-  $stateProvider
-    
+
+  $stateProvider  
     /**
       * PUBLIC
       */
