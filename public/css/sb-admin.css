@@ -288,6 +288,10 @@ button[type=submit]{
     font-weight: bold;
     text-transform: uppercase;
 }
+th, td{
+    text-align: center;
+    
+}
 .avatar > img, .small-avatar > img{
   display:block !important;
   margin: auto !important;

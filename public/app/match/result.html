@@ -13,7 +13,11 @@
   <hr>
   
   <h3>Presenze & Goals</h3>
+
   <div class="col-md-6">
+    <div class="small-avatar">
+      <img ng-src="{{ match.team_a.media.path }}" alt="">
+    </div>
     <h5>{{ match.team_a.name}}</h5>
     <hr>
 
@@ -26,14 +30,21 @@
     </div>
   </div>
 
+
   <div class="col-md-6">
+    <div class="small-avatar">
+      <img ng-src="{{ match.team_b.media.path }}" alt="">
+    </div>
     <h5>{{ match.team_b.name}}</h5>
     <hr>
-    <div ng-repeat="player in match.team_b.player">
-      <input style="width:50px;" type="number" ng-model="player.score">
-      <input type="checkbox" ng-model="player.attendance" ng-checked="player.attendance"> {{ player.name }} 
-    </div>
 
+    <div ng-repeat="player in match.team_b.player" class="input-group">
+      <span class="input-group-addon" style="width:75%; text-align:left;" ng-click="player.attendance = !player.attendance">
+        <input type="checkbox" ng-model="player.attendance" ng-checked="player.attendance"> 
+        {{ player.name }}
+      </span>
+      <input class="form-control" type="number" ng-model="player.score">
+    </div>
   </div>
 
   <div class="clearfix"></div>

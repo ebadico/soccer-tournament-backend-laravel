@@ -28,9 +28,16 @@ gulp.task('concat_angular_vendors', function() {
     public_dir + 'bower_components/angular-toastr/dist/angular-toastr.tpls.min.js',
     public_dir + 'bower_components/angular-animate/angular-animate.min.js',
     public_dir + 'bower_components/angular-ui-tinymce/src/tinymce.js',
+    public_dir + 'bower_components/angular-ui-tinymce/src/tinymce.js',
+    public_dir + 'bower_components/tinymce-dist/themes/modern/theme.min.js',
   ])
   .pipe(concat('angular-vendors.js'))
   .pipe(gulp.dest(public_dir + 'js'));
+
+  //TinyMCE vendors
+  gulp
+    .src(public_dir + 'bower_components/tinymce-dist/skins/**/**')
+    .pipe(gulp.dest(public_dir + 'js/skins/'));
 
 });
 

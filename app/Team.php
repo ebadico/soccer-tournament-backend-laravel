@@ -30,4 +30,8 @@ class Team extends Model
   public function media(){
     return $this->hasOne('App\Medias');
   }
+
+  public function scores(){
+    return $this->hasMany('App\Score');
+  }
 }

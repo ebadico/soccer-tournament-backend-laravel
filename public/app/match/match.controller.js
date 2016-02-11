@@ -71,6 +71,7 @@ angular
         Match.get()
         .then(function(res){
           $scope.matches = res.data;
+          filterScores();
         },function(err){
           console.log("match.controller.js :27", err);
         });
@@ -86,6 +87,20 @@ angular
   
       $scope.selectRound = function(round){
         $scope.selectedRound = round.id;
+      }
+
+      function filterScores (){
+        $scope.matches.forEach(function(match){
+          match.team_a.match_score = [];
+          match.team_b.match_score = [];
+          match.scores.forEach(function(score){
+            if(score.team_id === match.team_a.id){
+              match.team_a.match_score.push(score);
+            }else{
+              match.team_b.match_score.push(score);
+            }
+          });
+        });
       }
   
     }])

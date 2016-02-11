@@ -36,14 +36,14 @@ class Match extends Model{
   public function scopeGet_from_filter($query, $day_id, $round_id){
    return $query->whereHas('day', function($query) use($round_id, $day_id){
       $query->where('round_id', "=", $round_id)->where('id','=', $day_id);
-    }); 
+    });
   }
 
   public function scopeGet_all($query){
-      return $query->with('day.round','teamA','teamB')->get();
+      return $query->with('day.round','teamA.media','teamB.media','scores')->get();
   }
   public function scopePopulate($query){
-      return $query->with('day.round','teamA','teamB');
+      return $query->with('day.round','teamA.media','teamB.media', 'scores');
   }
 
   public function day(){
