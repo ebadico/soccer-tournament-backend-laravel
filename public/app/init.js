@@ -8,7 +8,7 @@ angular.module('app', [
   'satellizer',
 ])
 
-.config(function($authProvider, $stateProvider, $urlRouterProvider) {
+.config(['$authProvider', '$stateProvider', '$urlRouterProvider', function($authProvider, $stateProvider, $urlRouterProvider) {
   
 
    $authProvider.loginUrl = '/api/auth';
@@ -19,10 +19,10 @@ angular.module('app', [
   //
   // Now set up the states
   $stateProvider
-		
-		/**
-	    * PUBLIC
-	    */
+    
+    /**
+      * PUBLIC
+      */
     .state('public', {
       url: "/",
       templateUrl: 'app/public/public-template.html'
@@ -33,13 +33,13 @@ angular.module('app', [
         controller: 'LoginCtrl'
       })
 
-	   /**
-	    * ADMIN
-	    */
+     /**
+      * ADMIN
+      */
     .state('admin', {
       cache: false,
-    	url:'/admin',
-    	templateUrl: 'app/admin/admin-template.html',
+      url:'/admin',
+      templateUrl: 'app/admin/admin-template.html',
       controller: 'AdminCtrl',
       resolve: {
         authResolve: function(Auth){
@@ -53,9 +53,9 @@ angular.module('app', [
       }
     })
       .state('admin.user', {
-      	url:'/user',
-      	templateUrl: 'app/user/index.html',
-      	controller: 'UserCtrl'
+        url:'/user',
+        templateUrl: 'app/user/index.html',
+        controller: 'UserCtrl'
       })
 
       .state('admin.news',{
@@ -114,17 +114,9 @@ angular.module('app', [
           templateUrl: 'app/match/result.html',
           controller: 'ResultCtrl',
         })
-})
+}])
 
 
-.run(function($rootScope, Season){
-
-  // Season
-  //   .getCurrentSeason(function(season){
-  //     if(season){
-	 //       $rootScope.currentSeasonId = season.id;
-  //     }
-  //   });
-
+.run([function(){
   console.log("init.js :4", "Angular Loaded!");
-})
+}])

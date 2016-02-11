@@ -1,10 +1,10 @@
 angular.module('app')
 
-.service('Season', function($http, $rootScope){
+.service('Season', ['$http', '$rootScope', function($http, $rootScope){
   
   this.get = function(){
-		return $http.get('/api/season');
-	}
+    return $http.get('/api/season');
+  }
 
   this.getCurrentSeason = function(callback){
     $http.get('/api/season')
@@ -16,9 +16,9 @@ angular.module('app')
     })
   }
 
-	this.create = function(season){
-		return $http.post('/api/season', season);
-	}
+  this.create = function(season){
+    return $http.post('/api/season', season);
+  }
 
   this.delete = function(season){
     return $http.delete('/api/season/' + season.id);
@@ -29,4 +29,4 @@ angular.module('app')
   }
 
 
-})
+}])
