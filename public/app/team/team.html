@@ -1,6 +1,20 @@
 <form ng-submit="editTeam(team)" class="text-center">
   <i class="fa fa-pencil pull-right pointer" ng-click="editMode = !editMode"></i>
   <div ng-show="!editMode">
+    <div class="small-avatar" ng-show="team.media">
+      <img ng-src="{{ team.media.path }}"
+      flow-init="{ testChunks:false, singleFile: true }" 
+      flow-files-submitted="submit($file, $event, $flow, team)"
+      flow-file-success="upload()"
+      flow-btn flow-attrs="{accept:'image/*'}">
+    </div>
+    <i class="fa fa-photo fa-3x"
+      ng-show="!team.media" 
+      flow-init="{ testChunks:false, singleFile: true }" 
+      flow-files-submitted="submit($file, $event, $flow, team)"
+      flow-file-success=""
+      flow-btn flow-attrs="{accept:'image/*'}">
+    </i>
     <h3>{{ team.name | uppercase }}</h3>
     <small>Girone: {{ team.round.name }} </small>
   </div>
@@ -44,14 +58,3 @@
   </tbody>
 </table>
 
-
-<div class="globus-box">
-  <div  flow-init="{ testChunks:false, singleFile: true }" 
-            flow-files-submitted="submit($file, $event, $flow, team)"
-            flow-file-success="">
-
-        <div class="submit-box">
-          <button class="btn btn-primary" flow-btn flow-attrs="{accept:'image/*'}">Upload</button>
-        </div>
-      </div>
-</div>

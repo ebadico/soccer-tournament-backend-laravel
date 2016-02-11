@@ -71,37 +71,37 @@ angular.module('app', [
 
       .state('admin.season', {
         url:'/season',
-        templateUrl: 'app/season/create.html',
+        templateUrl: 'app/season/index.html',
         controller: 'SeasonCtrl',
       })
 
       .state('admin.rounds', {
         url:'/rounds',
-        templateUrl: 'app/round/rounds.html',
+        templateUrl: 'app/round/index.html',
         controller: 'RoundsCtrl',
       })
         .state('admin.round', {
           url:'/rounds/{round_id}',
           templateUrl: 'app/round/round.html',
-          controller: 'RoundCtrl',
+          controller: 'SingleRoundCtrl',
         })
 
 
       .state('admin.teams', {
         url:'/teams',
-        templateUrl: 'app/team/create.html',
+        templateUrl: 'app/team/index.html',
         controller: 'TeamsCtrl',
       })
         .state('admin.team', {
           url:'/team/{team_id}',
           templateUrl: 'app/team/team.html',
-          controller: 'TeamCtrl',
+          controller: 'SingleTeamCtrl',
         })
 
 
       .state('admin.match', {
         url:'/match',
-        templateUrl: 'app/match/create.html',
+        templateUrl: 'app/match/index.html',
         controller: 'MatchCtrl',
       })
       .state('admin.results', {

@@ -28,7 +28,7 @@ class TeamCtrl extends Controller
             return Team::getFromRound($request->get('round_id'));
         }
         
-        return Team::with('round','player')->get();
+        return Team::with('round','player','media')->get();
     }
 
     /**
@@ -73,7 +73,7 @@ class TeamCtrl extends Controller
     {
 
 
-        if(!$data = Team::where('id','=',$id)->with('player','round')->first()  ){
+        if(!$data = Team::where('id','=',$id)->with('player','round','media')->first()  ){
             $data['error'] = 'Item Not Found';
             $status = 404;
         }

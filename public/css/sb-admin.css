@@ -288,4 +288,24 @@ button[type=submit]{
     font-weight: bold;
     text-transform: uppercase;
 }
-
+.avatar > img, .small-avatar > img{
+  display:block !important;
+  margin: auto !important;
+  max-height: 100%;
+}
+.avatar{
+  display:block;
+  margin:auto;
+  width:250px;
+  height:250px;
+  border-radius: 50%;
+  overflow:hidden;
+}
+.small-avatar{
+  display:block;
+  margin:auto;
+  width:75px;
+  height:75px;
+  border-radius: 50%;
+  overflow:hidden;
+}

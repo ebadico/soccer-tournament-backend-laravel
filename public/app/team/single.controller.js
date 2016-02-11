@@ -1,6 +1,6 @@
 angular
 .module('app')
-.controller('TeamCtrl', ['$scope', '$stateParams', 'toastr', 'Team', 'Round', 'Player', function($scope, $stateParams, toastr, Team, Round, Player){
+.controller('SingleTeamCtrl', ['$scope', '$stateParams', 'toastr', 'Team', 'Round', 'Player', function($scope, $stateParams, toastr, Team, Round, Player){
   $scope.team = {};
   $scope.rounds = undefined;
   $scope.editMode = false;
@@ -11,6 +11,9 @@ angular
   $scope.submit = function($files, $event, $flow, team) {
     $flow.opts.target = '/api/media?type=avatar&team_id=' + team.id;
     $flow.upload();
+  }
+  $scope.upload = function() {
+    getTeam();
   }
 
   $scope.editTeam = function(team){

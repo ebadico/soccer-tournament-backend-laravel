@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('RoundCtrl', ['$stateParams', '$scope', '$http', 'toastr', 'Season', 'Round', 'Day', function($stateParams, $scope, $http, toastr, Season, Round, Day){
+.controller('SingleRoundCtrl', ['$stateParams', '$scope', '$http', 'toastr', 'Season', 'Round', 'Day', function($stateParams, $scope, $http, toastr, Season, Round, Day){
 
 	$scope.round = {};
 	$scope.editMode = false;
