@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('UserCtrl', function($scope, Auth, $http){
+.controller('UserCtrl', ['$scope', 'Auth', '$http', function($scope, Auth, $http){
 	$scope.user = {};
 
 	$scope.createUser = function(credential){
@@ -26,4 +26,4 @@ angular.module('app')
 
 
 
-})
+}])

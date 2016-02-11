@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('AdminCtrl', function($auth, $scope, $rootScope, $state, Auth, authResolve){
+.controller('AdminCtrl', ['$auth', '$scope', '$rootScope', '$state', 'Auth', 'authResolve', function($auth, $scope, $rootScope, $state, Auth, authResolve){
   // if(!$auth.isAuthenticated()){
   //   $state.go('public.login');
   // }
@@ -15,4 +15,4 @@ angular.module('app')
     $auth.logout();
     $state.reload();
   }
-})
+}])
