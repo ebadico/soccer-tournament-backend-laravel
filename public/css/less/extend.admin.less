@@ -1,0 +1,92 @@
+@import 'angular-animation.less';
+
+@blue: #19B5FE;
+@grey: #ececec;
+@red: #D91E18;
+
+form, table, .globus-box{
+  margin-bottom: 20px;
+  background:white;
+  padding:10px;
+  border-radius:5px !important;
+  border-top:5px solid @blue;
+}
+input,select, .input-group{
+    margin-top: 5px;
+}
+
+.input-group{
+  .form-control{
+    margin: 0;
+  }
+}
+
+.globus-box{
+  &.warning{
+    border-top:5px solid @red;
+  }
+}
+
+.submit-box{
+    text-align: right;
+    width: 100%;
+    border-top:1px solid @grey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 20px;
+}
+button[type=submit]{
+    border:none;
+    border-radius: 0px;
+    background: @blue;
+}
+.input-group-addon{
+    background: @blue !important;
+    color: white;
+    border:none;
+}
+.navbar-ex1-collapse i{
+    color: @blue;
+}
+.fa-remove{
+    color:@red;
+    cursor:pointer;
+}
+.pointer{
+    cursor:pointer;
+}
+
+.table{
+  thead{
+    tr{
+      th{
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+      }
+    }
+  }
+  td{
+    text-align: center;
+  }
+}
+
+.avatar, .small-avatar{
+  display:block;
+  margin:auto;
+  border-radius: 50%;
+  overflow:hidden;
+  img{
+    display:block !important;
+    margin: auto !important;
+    max-height: 100%;
+  }
+}
+.avatar{
+  width:250px;
+  height:250px;  
+}
+.small-avatar{
+  width:75px;
+  height:75px;  
+}

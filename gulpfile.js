@@ -1,9 +1,30 @@
-var gulp = require('gulp'); 
+var gulp   = require('gulp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
- 
-var public_dir = 'public/';
+var less   = require('gulp-less');
+var cssmin = require('gulp-cssmin');
+var rename = require('gulp-rename');
+
+var public_dir  = 'public/';
 var angular_dir = 'public/app/';
+
+
+gulp.task('less', function (){
+  gulp
+  .src(public_dir + 'css/less/main.admin.less')
+  .pipe(less())
+  .pipe(cssmin())
+  .pipe(rename({ suffix:'.min'}))
+  .pipe(gulp.dest(public_dir + 'css'));
+
+  gulp
+  .src(public_dir + 'css/less/main.public.less')
+  .pipe(less())
+  .pipe(cssmin())
+  .pipe(rename({ suffix:'.min'}))
+  .pipe(gulp.dest(public_dir + 'css'));
+});
+
 
 gulp.task('concat_vendors', function() {
   
@@ -56,8 +77,8 @@ gulp.task('concat_angular_app', function(){
 });
 
 gulp.task('watch', function() {
-  gulp.watch('public/app/**/**', ['concat_angular_app']);
+  gulp.watch(['public/app/**/**','public/css/**/**'], ['concat_angular_app','less']);
 });
 
 
-gulp.task('default', ['concat_vendors','concat_angular_vendors','concat_angular_app','watch']);
+gulp.task('default', ['less','concat_vendors','concat_angular_vendors','concat_angular_app','watch']);

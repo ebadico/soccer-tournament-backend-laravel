@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('main');
+    View::addExtension('html', 'php');
+    return View::make('main');
 });
 
 Route::get('/api', function () {

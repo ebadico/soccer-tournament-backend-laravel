@@ -19,24 +19,37 @@ angular.module('app', [
   // For any unmatched url, redirect to /state1
   $urlRouterProvider.otherwise("/");
 
+
   $stateProvider  
     /**
       * PUBLIC
       */
     .state('public', {
       url: "/",
-      templateUrl: 'app/public/public-template.html'
+      templateUrl: 'app/public/public-template.html',
+      controller: 'PublicCtrl'
     })
       .state('public.login', {
         url: "login",
         templateUrl: 'app/login/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        resolve: {
+        authResolve: function(Auth, $state){
+          return Auth.check()
+            .then(function(data){
+              $state.go('admin.dashboard');
+            }, function(){
+              $state.go('public.login');
+            });
+        }
+      }
       })
 
      /**
       * ADMIN
       */
     .state('admin', {
+      abstract: true,
       cache: false,
       url:'/admin',
       templateUrl: 'app/admin/admin-template.html',
@@ -52,6 +65,10 @@ angular.module('app', [
         }
       }
     })
+      .state('admin.dashboard', {
+        url:'',
+        templateUrl: 'app/admin/dashboard.html'
+      })
       .state('admin.user', {
         url:'/user',
         templateUrl: 'app/user/index.html',
@@ -117,6 +134,7 @@ angular.module('app', [
 }])
 
 
-.run([function(){
-  console.log("init.js :4", "Angular Loaded!");
+.run(['$rootScope',function($rootScope){
+  $rootScope.sitename = '_MyTournament_'
+  console.log("init.js :4", "Core Loaded!");
 }])
