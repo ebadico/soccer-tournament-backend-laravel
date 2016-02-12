@@ -28,6 +28,7 @@
     "ng-flow": "~2.7.1",
     "font-awesome": "fontawesome#~4.5.0",
     "tinymce": "~4.3.3",
-    "satellizer": "~0.13.4"
+    "satellizer": "~0.13.4",
+    "foundation-sites": "~6.1.2"
   }
 }

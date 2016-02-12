@@ -9,13 +9,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- GET BOOTSTRAP IN ADMIN AND FOUNDATION ON FRONT -->
+    <link id="grid-framework" rel="stylesheet" ng-href="{{ framework }}">
+
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
     
     <link rel="stylesheet" ng-href="css/main.{{ location || 'public' }}.min.css">
 </head>
-<body style="background:#ECECEC;">
+<body class="body-{{ location }}">
  
   <div ui-view></div>
 

@@ -25,6 +25,7 @@ angular.module('app', [
       * PUBLIC
       */
     .state('public', {
+      abstract:true,
       url: "/",
       templateUrl: 'app/public/public-template.html',
       controller: 'PublicCtrl'
@@ -34,15 +35,21 @@ angular.module('app', [
         templateUrl: 'app/login/login.html',
         controller: 'LoginCtrl',
         resolve: {
-        authResolve: function(Auth, $state){
-          return Auth.check()
+          authResolve: function(Auth, $state){
+            return Auth.check()
             .then(function(data){
               $state.go('admin.dashboard');
             }, function(){
               $state.go('public.login');
             });
+          }
         }
-      }
+      })
+
+      .state('public.home', {
+        url:'',
+        templateUrl: 'app/public/home/index.html',
+        controller: 'HomeCtrl',
       })
 
      /**
