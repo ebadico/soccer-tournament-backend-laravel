@@ -1,8 +1,8 @@
-//@import 'public/fonts';
+@import 'public/fonts';
 @import 'public/colors';
 @import 'public/responsive';
 
-
+.smooth{ transition:ease-in .25s; }
 
 body,html{
   height: 100%;
@@ -19,8 +19,37 @@ h6{ font-size:1em; }
 
 .title{
   text-transform: uppercase;
-  color: @black;
-  strong{ color: @red; }
+  color: @secondary;
+  .light;
+  strong{ 
+    color: @primary;
+    .regular;
+  }
+}
+
+.follow-up{
+  cursor: pointer;
+  display:inline-block;
+  text-align: center;
+  line-height: 40px;
+  background: @primary;
+  color:@black;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  .bold;
+  width: 160px;
+  height: 40px;
+
+  outline: 1px solid @black;
+  outline-offset: -5px;
+
+  .smooth;
+
+  &:hover{
+    font-size: 0.9em;
+    outline: 3px solid @black;
+    outline-offset: -2px;    
+  }
 }
 
 .navbar{
@@ -46,9 +75,9 @@ h6{ font-size:1em; }
   }
 
   .dropdown-menu{
-    background: fade(@black, 35%) !important;
+    background: fade(@secondary, 35%) !important;
     text-align: center !important;
-    border-bottom:5px solid @red;
+    border-bottom:5px solid @primary;
   }
 }
 
@@ -78,7 +107,7 @@ h6{ font-size:1em; }
   padding-top: 75px;
   padding-bottom: 75px;
   .latest-match{
-    border: 3px solid @red;
+    border: 3px solid @primary;
     text-align: center;
     
     .title{ 
@@ -91,6 +120,38 @@ h6{ font-size:1em; }
       padding: 10px;
     }
   }
+
+  .team-a{
+    float:left;
+  }
+  .team-b{
+    float:left;
+  }
+  .scores{
+    outline: 1px solid @primary;
+    outline-offset: 2px;
+    float:left;
+  }
+  .scores-a{
+    background: @primary;
+    padding:10px 20px;
+    color:@white;
+    font-size: 2em;
+    .bold;
+    
+    float:left;
+  }
+  .scores-b{
+    background: @secondary;
+    padding:10px 20px;
+    color:@white;
+    font-size: 2em;
+    .bold;
+    
+    float:left;
+  }
+
+
 }
 
 .next-match-container{
@@ -100,16 +161,86 @@ h6{ font-size:1em; }
   background-position: bottom center;
 
   .left-container{
-    background:  fade(@red, 85%);
+    background:  fade(@primary, 85%);
     height:100%;
     width: 40%;
     float:left;
     
   }
   .right-container{
-    background: fade(@black, 85%);
+    background: fade(@secondary, 85%);
     height: 100%;
     width: 60%;
     float:left;
   }
+}
+
+.news-container{
+  padding-top: 75px;
+  padding-bottom: 75px;
+  
+  & > .title{
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .single-news{
+    position: relative;
+    height: 200px; 
+    
+    .featured{
+      height: 100%;
+      float:left;
+      width: 40%;
+
+      background: url('/images/field.jpg');
+      background-position: center center;
+    }
+    .excerpt{
+      text-align: center;
+      height: 100%;
+      background: @grey;
+      float:left;
+      width: 60%;
+      .title{ 
+        .bold;
+        font-size: 1.5em; 
+        color: @primary;
+      }
+      .body{
+        .light;
+        padding:5px;
+      }
+      .read-more{
+        cursor:pointer;
+        .bold;
+        text-transform: uppercase;
+        position: absolute;
+        bottom:10px;
+        right:25px;
+        font-size: 0.9em;
+        color:@primary;
+        
+        i{ .smooth; }
+
+        &:hover{
+          i{font-size: 1.1em;}
+        }
+      }
+    }
+  }
+}
+
+.sponsor-container{
+  min-height: 250px;
+  background: url('/images/field.jpg');
+  background-position: bottom center;
+  .title{
+    color: @white;
+    text-align: center;
+  }
+}
+
+.footer-container{
+
 }
