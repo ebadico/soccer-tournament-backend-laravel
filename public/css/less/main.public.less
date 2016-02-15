@@ -1,7 +1,23 @@
-@white: white;
-@black: black;
+@import 'public/fonts';
+@import 'public/colors';
+@import 'public/responsive';
 
-.public-nav{
+
+
+body,html{
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+}
+
+h1{ font-size:6em; }
+h2{ font-size:4em; }
+h3{ font-size:3em; }
+h4{ font-size:2em; }
+h5{ font-size:1.5em; }
+h6{ font-size:1em; }
+
+.navbar{
   background: transparent;
   border-radius: 0px;
   border:none;
@@ -10,6 +26,44 @@
   top:0;
   left:0;
   width: 100%;
-  
-  //a{ color:white !important; }
+  color:@white;
+  text-transform: uppercase;
+
+  .open{
+    a{ background: none !important;}
+  }
+
+  .nav{ 
+    a{
+      color:@white !important;
+    }
+  }
+
+  .dropdown-menu{
+    background: fade(@black, 35%) !important;
+    text-align: center !important;
+    border-bottom:5px solid @red;
+  }
+}
+
+.landing-container{
+  position:relative;
+  top:0; left:0;
+  z-index: -9;
+  height: 100%;
+  background-image: url('/images/stadium.jpg');
+  background-size: cover;
+  background-position: center center;
+
+  .heading{
+    color:white;
+    text-transform: uppercase;
+    max-width: 500px;
+    min-width: 150px;
+    width: 100%;
+    text-align: right;
+    position:absolute;
+    bottom:20%;
+    right:20%;
+  }
 }

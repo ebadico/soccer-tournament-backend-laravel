@@ -31,7 +31,6 @@ gulp.task('concat_vendors', function() {
   gulp.src([
     public_dir + 'bower_components/jquery/dist/jquery.min.js',
     public_dir + 'bower_components/bootstrap/dist/js/bootstrap.min.js',
-    public_dir + 'bower_components/foundation-sites/dist/foundation.min.js',
     public_dir + 'bower_components/tinymce-dist/tinymce.min.js',
   ])
   .pipe(concat('vendors.js'))
@@ -49,7 +48,6 @@ gulp.task('concat_angular_vendors', function() {
     public_dir + 'bower_components/angular-ui-router/release/angular-ui-router.min.js',
     public_dir + 'bower_components/angular-toastr/dist/angular-toastr.tpls.min.js',
     public_dir + 'bower_components/angular-animate/angular-animate.min.js',
-    public_dir + 'bower_components/angular-ui-tinymce/src/tinymce.js',
     public_dir + 'bower_components/angular-ui-tinymce/src/tinymce.js',
     public_dir + 'bower_components/tinymce-dist/themes/modern/theme.min.js',
   ])

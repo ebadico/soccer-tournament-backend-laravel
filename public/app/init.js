@@ -35,13 +35,13 @@ angular.module('app', [
         templateUrl: 'app/login/login.html',
         controller: 'LoginCtrl',
         resolve: {
-          authResolve: function(Auth, $state){
+        authResolve: function(Auth){
             return Auth.check()
-            .then(function(data){
-              $state.go('admin.dashboard');
-            }, function(){
-              $state.go('public.login');
-            });
+              .then(function(data){
+                return { "auth": true};
+              }, function(){
+                return { "auth": false};
+              });
           }
         }
       })
