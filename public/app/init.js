@@ -1,5 +1,5 @@
 angular.module('app', [
-	'ngAnimate',
+  'ngAnimate',
   'angular.filter',
   'ui.router',
   'toastr',

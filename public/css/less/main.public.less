@@ -1,4 +1,4 @@
-@import 'public/fonts';
+//@import 'public/fonts';
 @import 'public/colors';
 @import 'public/responsive';
 
@@ -16,6 +16,12 @@ h3{ font-size:3em; }
 h4{ font-size:2em; }
 h5{ font-size:1.5em; }
 h6{ font-size:1em; }
+
+.title{
+  text-transform: uppercase;
+  color: @black;
+  strong{ color: @red; }
+}
 
 .navbar{
   background: transparent;
@@ -50,7 +56,7 @@ h6{ font-size:1em; }
   position:relative;
   top:0; left:0;
   z-index: -9;
-  height: 100%;
+  height: 100vh;
   background-image: url('/images/stadium.jpg');
   background-size: cover;
   background-position: center center;
@@ -65,5 +71,45 @@ h6{ font-size:1em; }
     position:absolute;
     bottom:20%;
     right:20%;
+  }
+}
+
+.latest-match-container{
+  padding-top: 75px;
+  padding-bottom: 75px;
+  .latest-match{
+    border: 3px solid @red;
+    text-align: center;
+    
+    .title{ 
+      display: inline-block;
+      font-size: 2em; 
+      width: auto;
+      position: relative;
+      top:-47px;
+      background: @white;
+      padding: 10px;
+    }
+  }
+}
+
+.next-match-container{
+  padding: 0;
+  height: 400px;
+  background: url('/images/player.jpg');
+  background-position: bottom center;
+
+  .left-container{
+    background:  fade(@red, 85%);
+    height:100%;
+    width: 40%;
+    float:left;
+    
+  }
+  .right-container{
+    background: fade(@black, 85%);
+    height: 100%;
+    width: 60%;
+    float:left;
   }
 }
