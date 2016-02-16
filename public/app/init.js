@@ -34,16 +34,6 @@ angular.module('app', [
         url: "login",
         templateUrl: 'app/login/login.html',
         controller: 'LoginCtrl',
-        resolve: {
-        authResolve: function(Auth){
-            return Auth.check()
-              .then(function(data){
-                return { "auth": true};
-              }, function(){
-                return { "auth": false};
-              });
-          }
-        }
       })
 
       .state('public.home', {
@@ -61,16 +51,6 @@ angular.module('app', [
       url:'/admin',
       templateUrl: 'app/admin/admin-template.html',
       controller: 'AdminCtrl',
-      resolve: {
-        authResolve: function(Auth){
-          return Auth.check()
-            .then(function(data){
-              return { "auth": true};
-            }, function(){
-              return { "auth": false};
-            });
-        }
-      }
     })
       .state('admin.dashboard', {
         url:'',
@@ -141,16 +121,25 @@ angular.module('app', [
 }])
 
 
-.run(['$rootScope', '$state', function($rootScope, $state){
+.run(['$rootScope', '$state', 'Auth', function($rootScope, $state, Auth){
   $rootScope.sitename = '_MyTournament_';
 
-  $rootScope.$on('$stateChangeStart', function(e, stateTo){
-    if (stateTo.name.match(/^admin\./)){
-      e.preventDefault();
-    }else{
-    }
+  $rootScope.$on('$stateChangeStart', function(e, stateTo, toParams, stateFrom){
 
-    if (stateTo.name.match(/^admin\./)){
+    if (stateTo.name.match(/^admin/) && !stateFrom.name.match(/^admin/)){
+      Auth.check()
+      .then(function(data){
+        console.log("init.js :132", data);
+        $state.transitionTo('admin.dashboard');
+      }, function(err){
+        console.log("init.js :135", err);
+        $state.transitionTo('public.login');
+      });
+    }
+  });
+
+  $rootScope.$on('$stateChangeStart', function(e, stateTo, toParams, stateFrom){
+    if ( stateTo.name.match(/^admin/) ){
       $rootScope.location = 'admin';
     }else{
       $rootScope.location = 'public';

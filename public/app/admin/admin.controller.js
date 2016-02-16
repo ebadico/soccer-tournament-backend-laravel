@@ -1,16 +1,14 @@
 angular.module('app')
 
-.controller('AdminCtrl', ['$auth', '$scope', '$rootScope', '$state', 'Auth', 'authResolve', function($auth, $scope, $rootScope, $state, Auth, authResolve){
-  //$rootScope.framework = 'bower_components/bootstrap/dist/css/bootstrap.css';
-  //$rootScope.location = 'admin';
-
-  if(!authResolve.auth){
-    $state.go('public.login');
-  }
+.controller('AdminCtrl', ['$auth', '$scope', '$rootScope', '$state', 'Auth', function($auth, $scope, $rootScope, $state, Auth){
 
   $scope.logout = function(){
     $auth.logout();
-    $state.reload();
+    $state.go('public.login');
+  }
+
+  $scope.isAuthenticated = function(){
+    return $auth.isAuthenticated();
   }
 
 }])
