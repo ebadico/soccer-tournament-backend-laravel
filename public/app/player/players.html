@@ -1,19 +1,28 @@
 
+<input type="text" class="form-control" placeholder="search..." ng-model="searchPlayer">
 
 <table class="table table-hover table-striped">
   <thead>
     <tr>
-      <th class="col-sm-2"> <i class="fa fa-cog"></i> </th>
+      <th class="col-sm-1"> <i class="fa fa-cog"></i> </th>
+      <th class="col-sm-2"><i class="fa fa-user"></i></th>
       <th><i class="fa fa-users"></i></th>
+      <th><i class="fa fa-futbol-o"></i></th>
+      <th><i class="fa fa-check"></i></th>
+      <th><i class="fa fa-square" style="color:orange;"></i> / <i class="fa fa-square" style="color:red;"></i></th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="player in players">
+    <tr ng-repeat="player in players | filter: searchPlayer">
       <td>  
         <i class="fa fa-remove" ng-click="delete(player)"></i>
         <i class="fa fa-pencil" ui-sref="admin.player({ player_id: player.id })"></i>
       </td>
       <td> {{ player.name }} </td>
+      <td> {{ player.team.name }} </td>
+      <td> {{ player.scores.length }} </td>
+      <td> {{ player.attendance.length }} </td>
+      <td> {{ player.warning.length }} / {{ player.expulsion.length }} </td>
     </tr>
   </tbody>
 </table>
