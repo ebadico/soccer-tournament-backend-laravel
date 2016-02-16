@@ -53,6 +53,16 @@ class MediaCtrl extends Controller
         $media->team_id = $request->get('team_id');
         $media->type = 'avatar';
     }
+    if($request->has('player_id')){
+      /**
+       * IF A TEAM AVATAR DELETE THE PREVIOUS BEFORE
+       */
+        if($m = Medias::where('player_id', '=', $request->get('player_id'))->first()){
+          $m->delete();
+        }
+        $media->player_id = $request->get('player_id');
+        $media->type = 'avatar';
+    }
     /**
      * FEATURED IMAGE OF A POST
      */

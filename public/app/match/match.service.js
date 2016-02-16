@@ -15,7 +15,6 @@ angular
       }
   
       this.create = function(data){
-        console.log("match.service.js :14", data);
         return $http.post('/api/match', data);
       }
   

@@ -12,7 +12,7 @@
       ng-show="!team.media" 
       flow-init="{ testChunks:false, singleFile: true }" 
       flow-files-submitted="submit($file, $event, $flow, team)"
-      flow-file-success=""
+      flow-file-success="upload()"
       flow-btn flow-attrs="{accept:'image/*'}">
     </i>
     <h3>{{ team.name | uppercase }}</h3>

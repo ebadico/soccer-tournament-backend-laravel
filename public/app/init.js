@@ -102,6 +102,16 @@ angular.module('app', [
           controller: 'SingleTeamCtrl',
         })
 
+      .state('admin.players', {
+        url: '/players',
+        templateUrl: 'app/player/players.html',
+        controller: 'PlayerCtrl'
+      })
+      .state('admin.player', {
+        url: '/player/{player_id}',
+        templateUrl: 'app/player/single.html',
+        controller: 'SinglePlayerCtrl'
+      })
 
       .state('admin.match', {
         url:'/match',
@@ -125,11 +135,10 @@ angular.module('app', [
   $rootScope.sitename = '_MyTournament_';
 
   $rootScope.$on('$stateChangeStart', function(e, stateTo, toParams, stateFrom){
-
     if (stateTo.name.match(/^admin/) && !stateFrom.name.match(/^admin/)){
       Auth.check()
       .then(function(data){
-        $state.transitionTo('admin.dashboard');
+        $state.transitionTo(stateTo.name, toParams);
       }, function(err){
         $state.transitionTo('public.login');
       });

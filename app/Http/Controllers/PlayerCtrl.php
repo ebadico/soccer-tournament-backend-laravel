@@ -9,106 +9,111 @@ use App\Http\Controllers\Controller;
 
 use App\Player;
 use App\Season;
-use Hashids;
+
 
 class PlayerCtrl extends Controller
 {
-    public function __construct(){
-       $this->middleware('jwt.auth', ['except' => ['index','show']]);
+  public function __construct(){
+     $this->middleware('jwt.auth', ['except' => ['index','show']]);
+  }
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+      return Player::with('team.round', 'media','attendance.match','scores.match','warning','expulsion')->get();
+  }
+
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create()
+  {
+      //
+  }
+
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function store(Request $request){
+    $player = new Player();
+
+    $player->fill([
+        'name' => $request->name,
+        'season_id' => Season::getCurrentSeason()->id,
+        'team_id' => $request->team_id,
+    ]);
+
+    if($player->save()){
+        $res['saved'] = true;
+        $res['status'] = 200;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return Player::with('team.round')->get();
-    }
+    return response()->json($res, $res['status']);
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request){
-      $player = new Player();
-
-      $player->fill([
-          'name' => $request->name,
-          'season_id' => Season::getCurrentSeason()->id,
-          'team_id' => $request->team_id,
-      ]);
-
-      if($player->save()){
-          $res['saved'] = true;
-          $res['status'] = 200;
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id)
+  {
+      if(!$data = Player::where('id','=',$id)->with('team.round', 'media','attendance.match','scores.match','warning','expulsion')->first()  ){
+          $data['error'] = 'Item Not Found';
+          $status = 404;
       }
-      return response()->json($res, $res['status']);
-    }
+      $status = 200;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+      return response()->json($data, $status);
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function update(Request $request, $id){
+    if($player = Player::where('id', '=', $id)->first()){
+      $player->name = $request->get('name');
+      //$player->round_id = $request->get('round_id');
+      if($player->save()){
+        $res['status'] = 202;
+        $res['message'] = 'resource updated successfully';
+      }else{
+        $res['status'] = 401;
+        $res['message'] = 'error updating model';
+      }
     }
+    return response()->json( $res ,$res['status']);
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        if($player = Player::find($id)){
-            if($player->delete()){
-                $res['status'] = 202;
-                $res['message'] = 'resource deleted successfully';
-            }else{
-                $res['status'] = 401;
-            }
-        }
-        return response()->json( $res ,$res['status']);
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy($id)
+  {
+      if($player = Player::find($id)){
+          if($player->delete()){
+              $res['status'] = 202;
+              $res['message'] = 'resource deleted successfully';
+          }else{
+              $res['status'] = 401;
+          }
+      }
+      return response()->json( $res ,$res['status']);
 
-    }
+  }
 }

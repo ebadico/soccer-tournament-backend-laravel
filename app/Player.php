@@ -16,8 +16,23 @@ class Player extends Model
     return $this->hasMany('App\Attendance');
   }
 
+  public function scores(){
+    return $this->hasMany('App\Score');
+  }
+
   public function team(){
     return $this->belongsTo('App\Team');
+  }
+
+  public function media(){
+    return $this->hasOne('App\Medias', 'player_id', 'id');
+  }
+
+  public function warning(){
+    return $this->hasMany('App\Warning');
+  }
+  public function expulsion(){
+    return $this->hasMany('App\Expulsion');
   }
 
 }

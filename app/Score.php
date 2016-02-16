@@ -13,4 +13,8 @@ class Score extends Model{
 
   protected $fillable = ['team_id','player_id','match_id','season_id'];
 
+
+  public function match(){
+    return $this->belongsTo('App\Match');
+  }
 }

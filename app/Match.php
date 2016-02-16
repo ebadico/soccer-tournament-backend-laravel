@@ -39,13 +39,19 @@ class Match extends Model{
     });
   }
 
+  /** OMG I SHOULD MAYBE DO LESS QUERY IN ONE SHOT */
+  /** bah who cares, it's a low traffic app */
   public function scopeGet_all($query){
-      return $query->with('day.round','teamA.media','teamB.media','scores')->get();
+      return $query->with('teamA.player.attendance','teamB.player.attendance','day.round','winner','attendance.player','scores','teamA.player.warning','teamA.player.expulsion', 'teamB.player.warning','teamB.player.expulsion')->get();
   }
   public function scopePopulate($query){
-      return $query->with('day.round','teamA.media','teamB.media', 'scores');
+      return $query->with('teamA.player.attendance','teamB.player.attendance','day.round','winner','attendance.player','scores','teamA.player.warning','teamA.player.expulsion', 'teamB.player.warning','teamB.player.expulsion')->first();
   }
 
+
+  /**
+   * RELATIONSHIPS
+   */
   public function day(){
     return $this->belongsTo('App\Day');
   }
@@ -65,5 +71,12 @@ class Match extends Model{
   } 
   public function scores(){
     return $this->hasMany('App\Score');
+  }
+
+  public function warning(){
+    return $this->hasMany('App\Warning');
+  }
+  public function expulsion(){
+    return $this->hasMany('App\Expulsion');
   }
 }

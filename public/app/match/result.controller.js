@@ -19,6 +19,7 @@ angular
           .then(function(res){
             console.log("result.controller.js :25", res.data);
             getMatch();
+            toastr.success('Risultato salvato!');
             //$scope.attendances = {};
           })
       }
@@ -28,8 +29,6 @@ angular
           .single($stateParams.match_id)
           .then(function(res){
             $scope.match = res.data;
-  
-           
   
             /** scores two way && attendance */
             $scope.match.team_a.player.forEach(function(player){
@@ -42,6 +41,15 @@ angular
                 if(attend.match_id === $scope.match.id ) player.attendance = true;
                 else player.attendance = false;
               });
+
+              player.warning.forEach(function(warning){
+                if(warning.match_id === $scope.match.id ) player.penalty = 'warning';
+              });
+
+              player.expulsion.forEach(function(expulsion){
+                if(expulsion.match_id === $scope.match.id ) player.penalty = 'expulsion';
+              });
+
   
             });
             $scope.match.team_b.player.forEach(function(player){
@@ -52,6 +60,13 @@ angular
               player.attendance.forEach(function(attend){
                 if(attend.match_id === $scope.match.id ) player.attendance = true;
                 else player.attendance = false;
+              });
+              player.warning.forEach(function(warning){
+                if(warning.match_id === $scope.match.id ) player.penalty = 'warning';
+              });
+
+              player.expulsion.forEach(function(expulsion){
+                if(expulsion.match_id === $scope.match.id ) player.penalty = 'expulsion';
               });
             });
           });
