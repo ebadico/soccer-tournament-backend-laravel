@@ -1,0 +1,19 @@
+
+
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th class="col-sm-2"> <i class="fa fa-cog"></i> </th>
+      <th><i class="fa fa-users"></i></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="player in players">
+      <td>  
+        <i class="fa fa-remove" ng-click="delete(player)"></i>
+        <i class="fa fa-pencil" ui-sref="admin.player({ player_id: player.id })"></i>
+      </td>
+      <td> {{ player.name }} </td>
+    </tr>
+  </tbody>
+</table>
