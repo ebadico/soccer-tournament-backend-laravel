@@ -141,7 +141,21 @@ angular.module('app', [
 }])
 
 
-.run(['$rootScope',function($rootScope){
-  $rootScope.sitename = '_MyTournament_'
+.run(['$rootScope', '$state', function($rootScope, $state){
+  $rootScope.sitename = '_MyTournament_';
+
+  $rootScope.$on('$stateChangeStart', function(e, stateTo){
+    if (stateTo.name.match(/^admin\./)){
+      e.preventDefault();
+    }else{
+    }
+
+    if (stateTo.name.match(/^admin\./)){
+      $rootScope.location = 'admin';
+    }else{
+      $rootScope.location = 'public';
+    }
+  });
+
   console.log("init.js :4", "Core Loaded!");
 }])
