@@ -129,10 +129,8 @@ angular.module('app', [
     if (stateTo.name.match(/^admin/) && !stateFrom.name.match(/^admin/)){
       Auth.check()
       .then(function(data){
-        console.log("init.js :132", data);
         $state.transitionTo('admin.dashboard');
       }, function(err){
-        console.log("init.js :135", err);
         $state.transitionTo('public.login');
       });
     }

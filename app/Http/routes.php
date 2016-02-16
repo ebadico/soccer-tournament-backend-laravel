@@ -52,6 +52,3 @@ Route::post('/api/auth', 'AuthCtrl@authenticate');
 Route::get('/api/auth/check', ['middleware' => 'jwt.auth', function () {
     return response()->json([ "auth"=>true ], 200);
 }]);
-
-
-Route::get('/api/check', 'AuthCtrl@check');

@@ -1,6 +1,15 @@
-<form ng-submit="login(credential)" style="margin-top: 100px;">
-	<input type="text" ng-model="credential.username">
-	<input type="password"  ng-model="credential.password">
-	<button type="submit">submit</button>
-</form>
-{{ credential }}
+<div class="container-fluid login-page">
+
+<!--   <form ng-submit="login(credential)" class="login-form">
+
+  </form> -->
+
+   <div class="form" ng-submit="login(credential)">
+    <form class="login-form">
+      <input type="text" ng-model="credential.username" placeholder="username">
+      <input type="password"  ng-model="credential.password" placeholder="password">
+      <button type="submit">connect</button>
+    </form>
+  </div>
+</div>
+
