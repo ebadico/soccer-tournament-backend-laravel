@@ -42,6 +42,47 @@ angular.module('app', [
         controller: 'HomeCtrl',
       })
 
+      .state('public.calendars', {
+        url:'/calendari',
+        templateUrl: 'app/public/calendars/calendars.html',
+        controller: 'PublicCalendarsCtrl',
+      })
+      .state('public.contacts', {
+        url:'/contatti',
+        templateUrl: 'app/public/contacts/contacts.html',
+        controller: 'PublicContactsCtrl',
+      })
+      .state('public.media', {
+        url:'/media',
+        templateUrl: 'app/public/medias/medias.html',
+        controller: 'PublicMediasCtrl',
+      })
+      .state('public.news', {
+        url:'/news',
+        templateUrl: 'app/public/news/news.html',
+        controller: 'PublicNewsCtrl',
+      })
+      .state('public.rankings', {
+        url:'/classifiche',
+        templateUrl: 'app/public/rankings/rankings.html',
+        controller: 'PublicRankingsCtrl',
+      })
+      .state('public.rules', {
+        url:'/regolamento',
+        templateUrl: 'app/public/rules/rules.html',
+        controller: 'PublicRulesCtrl',
+      })
+      .state('public.scorers', {
+        url:'/marcatori',
+        templateUrl: 'app/public/scorers/scorers.html',
+        controller: 'PublicScorersCtrl',
+      })
+      .state('public.team', {
+        url:'/team/{team_id}',
+        templateUrl: 'app/public/team/team.html',
+        controller: 'PublicTeamCtrl',
+      })
+
      /**
       * ADMIN
       */
