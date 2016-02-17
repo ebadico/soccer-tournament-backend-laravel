@@ -21,8 +21,17 @@ class PlayerCtrl extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
+  public function index(Request $request)
   {
+      // filtered per round
+      if($request->has('round_id')){
+        $players = Player::with('team.round', 'media','attendance.match','scores.match','warning','expulsion')->get()->toArray();
+        $filtered = array_filter($players, function($item) use($request){
+          return $item['team']['round_id'] == $request->get('round_id');
+        });
+        return $filtered;
+      }
+
       return Player::with('team.round', 'media','attendance.match','scores.match','warning','expulsion')->get();
   }
 

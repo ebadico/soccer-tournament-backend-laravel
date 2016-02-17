@@ -27,3 +27,17 @@ angular
 
     };
   })
+
+  .filter('playerRoundFilter', function(){
+    return function(array, round_id){
+
+      if(!round_id) return array;
+
+      var filtered = array.filter(function(index) {
+        return (index.team.round_id === round_id);
+      });
+
+      return filtered;
+
+    };
+  })

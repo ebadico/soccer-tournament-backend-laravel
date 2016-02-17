@@ -2,7 +2,8 @@ angular
   .module('app')
 
   .service('Player', ['$http', function($http){
-    this.get = function(){
+    this.get = function(round_id){
+      if(round_id) return $http.get('/api/player?round_id=' + round_id);
       return $http.get('/api/player');
     }
 

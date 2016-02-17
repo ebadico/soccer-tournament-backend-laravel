@@ -15,15 +15,17 @@ class Team extends Model
 
   protected $appends = ['points'];
 
+  public function getPointsAttribute(){
+    $points = ($this->attributes["wins"] * 3) + ($this->attributes["draws"] * 1);
+    return $this->attributes["points"] = $points;
+  }
+
   public function getWinsAttribute(){
     $won = Match::where('winner_id', '=', $this->id)->count();
     $this->attributes["draws"] = 20;
     return $this->attributes["wins"] = $won;
   }
-  public function getPointsAttribute(){
-    $points = ($this->attributes["wins"] * 3) + ($this->attributes["draws"] * 1);
-    return $this->attributes["points"] = $points;
-  }
+  
   public function getDrawsAttribute(){
     $draws = Match::whereNull('winner_id')
                   ->where(function($query){

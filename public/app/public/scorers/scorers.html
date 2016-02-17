@@ -1,4 +1,6 @@
-<div class="container-fluid landing-container">
+<div class="container-fluid">
     <h1 class="title">Classifiche<strong>marcatori</strong></h1>
+    <button ng-repeat="round in rounds" ng-click="roundChange(round.id)">{{ round.name }}</button>
+    <pre>{{ players | playerRoundFilter: round_id }}</pre>
 </div>
 
