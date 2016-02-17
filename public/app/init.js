@@ -9,7 +9,7 @@ angular.module('app', [
 ])
 
 .config(['flowFactoryProvider', '$authProvider', '$stateProvider', '$urlRouterProvider', function(flowFactoryProvider, $authProvider, $stateProvider, $urlRouterProvider) {
-  
+
   flowFactoryProvider.defaults = {
     chunkSize: 2048 * 2048,
   };
@@ -30,62 +30,62 @@ angular.module('app', [
       templateUrl: 'app/public/public-template.html',
       controller: 'PublicCtrl'
     })
-      .state('public.login', {
-        url: "login",
-        templateUrl: 'app/login/login.html',
-        controller: 'LoginCtrl',
-      })
-
       .state('public.home', {
         url:'',
         templateUrl: 'app/public/home/index.html',
         controller: 'HomeCtrl',
       })
 
+      .state('public.login', {
+        url: "login",
+        templateUrl: 'app/login/login.html',
+        controller: 'LoginCtrl',
+      })
+
       .state('public.calendars', {
-        url:'/calendari',
+        url:'calendari',
         templateUrl: 'app/public/calendars/calendars.html',
         controller: 'PublicCalendarsCtrl',
       })
       .state('public.contacts', {
-        url:'/contatti',
+        url:'contatti',
         templateUrl: 'app/public/contacts/contacts.html',
         controller: 'PublicContactsCtrl',
       })
       .state('public.media', {
-        url:'/media',
+        url:'media',
         templateUrl: 'app/public/medias/medias.html',
         controller: 'PublicMediasCtrl',
       })
       .state('public.news', {
-        url:'/news',
+        url:'news',
         templateUrl: 'app/public/news/news.html',
         controller: 'PublicNewsCtrl',
       })
       .state('public.rankings', {
-        url:'/classifiche',
+        url:'classifiche',
         templateUrl: 'app/public/rankings/rankings.html',
         controller: 'PublicRankingsCtrl',
       })
       .state('public.rules', {
-        url:'/regolamento',
+        url:'regolamento',
         templateUrl: 'app/public/rules/rules.html',
         controller: 'PublicRulesCtrl',
       })
       .state('public.scorers', {
-        url:'/marcatori',
+        url:'marcatori',
         templateUrl: 'app/public/scorers/scorers.html',
         controller: 'PublicScorersCtrl',
       })
       .state('public.team', {
-        url:'/team/{team_id}',
+        url:'team/{team_id}',
         templateUrl: 'app/public/team/team.html',
         controller: 'PublicTeamCtrl',
       })
 
-     /**
+    /**
       * ADMIN
-      */
+      **/
     .state('admin', {
       abstract: true,
       cache: false,
