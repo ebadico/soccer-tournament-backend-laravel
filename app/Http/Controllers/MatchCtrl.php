@@ -42,7 +42,6 @@ class MatchCtrl extends Controller
 
       }
 
-
       return Match::get_all();
   }
 

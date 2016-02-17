@@ -79,4 +79,5 @@ class Match extends Model{
   public function expulsion(){
     return $this->hasMany('App\Expulsion');
   }
+
 }

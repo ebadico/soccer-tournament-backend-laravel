@@ -1,5 +1,5 @@
 angular.module('app')
 
-.controller('PublicRankingCtrl', ['$scope', function($scope){
+.controller('PublicScorersCtrl', ['$scope', function($scope){
   
 }])

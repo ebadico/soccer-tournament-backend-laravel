@@ -25,10 +25,10 @@ class TeamCtrl extends Controller
     public function index(Request $request)
     {
         if($request->get('round_id')){
-            return Team::getFromRound($request->get('round_id'));
+            return Team::get_round($request->get('round_id'))->get_all();
         }
         
-        return Team::with('round','player','media')->get();
+        return Team::get_all();
     }
 
     /**
@@ -73,7 +73,7 @@ class TeamCtrl extends Controller
     {
 
 
-        if(!$data = Team::where('id','=',$id)->with('player','round','media')->first()  ){
+        if(!$data = Team::where('id','=',$id)->populate()  ){
             $data['error'] = 'Item Not Found';
             $status = 404;
         }

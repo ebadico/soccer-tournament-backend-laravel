@@ -52,7 +52,7 @@ angular.module('app', [
         templateUrl: 'app/public/contacts/contacts.html',
         controller: 'PublicContactsCtrl',
       })
-      .state('public.media', {
+      .state('public.medias', {
         url:'media',
         templateUrl: 'app/public/medias/medias.html',
         controller: 'PublicMediasCtrl',

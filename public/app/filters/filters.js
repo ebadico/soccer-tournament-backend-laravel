@@ -13,3 +13,17 @@ angular
         return $sce.trustAsResourceUrl(input);
       };
     }])
+
+  .filter('roundFilter', function(){
+    return function(array, round_id){
+
+      if(!round_id) return array;
+
+      var filtered = array.filter(function(index) {
+        return (index.round_id === round_id);
+      });
+
+      return filtered;
+
+    };
+  })
