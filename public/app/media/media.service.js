@@ -20,4 +20,8 @@ angular
       this.getVideos = function(){
         return $http.get('/api/media?type=video');
       }
+      this.getSponsors = function(){
+        return $http.get('/api/media?type=sponsor');
+      }
+      
     }])

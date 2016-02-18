@@ -32,6 +32,7 @@ gulp.task('concat_vendors', function() {
     public_dir + 'bower_components/jquery/dist/jquery.min.js',
     public_dir + 'bower_components/bootstrap/dist/js/bootstrap.min.js',
     public_dir + 'bower_components/tinymce-dist/tinymce.min.js',
+    public_dir + 'bower_components/underscore/underscore-min.js'
   ])
   .pipe(concat('vendors.js'))
   .pipe(gulp.dest(public_dir + 'js'));

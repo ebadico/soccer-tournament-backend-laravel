@@ -18,4 +18,8 @@ class Day extends Model
   public function round(){
     return $this->belongsTo('App\Round');
   }
+
+  public function matches(){
+    return $this->hasMany('App\Match');
+  }
 }

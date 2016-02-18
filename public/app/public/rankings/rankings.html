@@ -1,5 +1,14 @@
-<div class="container-fluid">
-    <h1 class="title">Classifiche<strong>Squadre</strong></h1>
+<div class="container-fluid common-page-container">
+  <div class="heading-image">
+    <h1 class="title">Globus Cup <strong>Classifiche</strong></h1>
+  </div>
+
+  <loading show='teams.length'></loading>
+
+  <main-content ng-show="teams.length">
     <button ng-repeat="round in rounds track by $index" ng-click=" changeRound(round.id) ">{{ round.name}}</button>
-    <pre>{{ teams | orderBy: '-points' | roundFilter: roundFilterId  }}</pre>
+    <div ng-repeat="team in teams | orderBy: '-points' | roundFilter: roundFilterId ">
+      <a ui-sref="public.team({team_id: team.id })"> {{ team.name }} </a>
+    </div>
+  </main-content>
 </div>

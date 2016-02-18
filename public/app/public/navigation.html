@@ -26,18 +26,18 @@
         <li><a ui-sref="public.calendars"> Calendari</a></li>
         
         <li class="dropdown">  
-          <a ui-sref="public.news" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a> Articoli</a></li>
-            <li><a> Comunicati</a></li>
+            <li><a ui-sref="public.news({ type: 'news' })"> Articoli</a></li>
+            <li><a ui-sref="public.news({ type: 'comunicato' })"> Comunicati</a></li>
           </ul>
         </li>
 
         <li class="dropdown">  
-          <a ui-sref="public.medias" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a> Foto</a></li>
-            <li><a> Video</a></li>
+            <li><a ui-sref="public.medias({ type: 'photo' })"> Foto</a></li>
+            <li><a ui-sref="public.medias({ type: 'video' })"> Video</a></li>
           </ul>
         </li>
 

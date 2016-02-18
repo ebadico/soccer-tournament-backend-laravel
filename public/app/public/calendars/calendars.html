@@ -1,4 +1,13 @@
-<div class="container-fluid landing-container">
-    <h1 class="title">Classifiche<strong>Squadre</strong></h1>
+<div class="container-fluid common-page-container">
+  <div class="heading-image">
+    <h1 class="title">Calendario <strong>Giornate</strong></h1>
+  </div>
+
+  <loading show='rounds.length'></loading>
+  <main-content ng-show="rounds.length">
+    <button ng-repeat="round in rounds" ng-click="changeRound(round.id)">{{ round.name }}</button>
+    <pre>{{days | dayRoundFilter: round_id }}</pre>
+  </main-content>
+
 </div>
 

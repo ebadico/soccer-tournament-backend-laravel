@@ -1,187 +1,11 @@
+@import 'public/angular-animation';
 @import 'public/fonts';
 @import 'public/colors';
 @import 'public/responsive';
-.vertical-center{
-  //position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.outline-box{
-  border: 3px solid @primary;
-  text-align: center;
-  position: relative;
-  padding-bottom: 25px;
-  padding-top: 50px;
-    
-  .title{ 
-    display: inline-block;
-    font-size: 2em; 
-    width: auto;
-    position: absolute;
-    left:36%;
-    top:-47px;
-    background: @white;
-    padding: 10px;
-  }
-
-  .follow-up{
-    position: relative;
-    bottom: -47px;
-
-    &:before{
-      content:'';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top:0;
-      left:0;
-      outline: 25px solid @white;
-    }
-  }
-}
-.smooth{ transition:ease-in .25s; }
-.avatar{
- overflow: hidden; 
- width: 150px;
- height: 150px;
- margin:auto;
-
- &.round-avatar{
-  border-radius: 50%;
- }
-}
-.small-avatar{
-  overflow: hidden;
-  width: 75px;
-  height: 75px;
-  margin:auto;
-
-  &.round-avatar{
-    border-radius: 50%;
-  }
-}
-.splitted-box{
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  background: @dark-grey;
-  padding: 0;
-  overflow:hidden;
-  
-  &.splitted-fluid{
-    height: 100%;
-
-    &:before{
-      content:"";
-      position: absolute;
-      top:0;
-      left:0;
-      width: 100%;
-      height: 100%;
-      background-image: url('/images/player.jpg');
-      background-size: cover;
-      background-position: center center;
-      z-index: -9;
-    }
-
-    .right-box{
-      height: 100% !important;
-    }
-
-    span{
-      width: auto !important;
-      font-size: 2em;
-      //border-bottom: 1px solid @white;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      .bold;
-    }
-  }
-
-  span{
-    .light;
-    font-size: 3em;
-    width: 20px;
-    position: absolute;
-    z-index: 99;
-    color:@white;
-    line-height: 50px;
-    right:30px;
-  }
-  
-  .right-box{
-      background: @primary;
-      width: 42.5%;
-      height:50px;
-      position:relative;
-      z-index: 9;
-
-      span{
-        line-height: 50px;
-        left:30px;
-      }
-    
-    &:after {
-      background: @primary;
-      content:'';
-      width:100%;
-      height:100%;
-      position:absolute;
-      transform:skewX(-25deg);
-      left:20%;
-      z-index: 0;
-    }
-  }
-}
+@import 'public/resets';
+@import 'public/common';
 
 
-body,html{
-  height: 100%;
-  width: 100%;
-  font-size: 14px;
-}
-
-h1{ font-size:6em; }
-h2{ font-size:4em; }
-h3{ font-size:3em; }
-h4{ font-size:2em; }
-h5{ font-size:1.5em; }
-h6{ font-size:1em; }
-
-.title{
-  text-transform: uppercase;
-  color: @secondary;
-  .light;
-  strong{ 
-    color: @primary;
-    .regular;
-  }
-}
-
-.follow-up{
-  cursor: pointer;
-  display:inline-block;
-  text-align: center;
-  line-height: 40px;
-  background: @primary;
-  color:@black;
-  text-transform: uppercase;
-  font-size: 0.8em;
-  .bold;
-  width: 160px;
-  height: 40px;
-
-  outline: 1px solid @black;
-  outline-offset: -5px;
-
-  .smooth;
-
-  &:hover{
-    font-size: 0.9em;
-    outline: 3px solid @black;
-    outline-offset: -2px;    
-  }
-}
 
 .navbar{
   background: transparent;
@@ -225,6 +49,8 @@ h6{ font-size:1em; }
     border-bottom:5px solid @primary;
   }
 }
+
+
 
 .landing-container{
   position:relative;
@@ -389,40 +215,6 @@ h6{ font-size:1em; }
   height: 100vh;
   background: @dark-grey;
 
-  // .login-form{
-  //   padding-top: 30px;
-  //   padding-bottom: 30px;
-  //   max-width: 350px;
-  //   width: 100%;
-  //   background: @white;
-  //   position: relative;
-  //   margin:auto;
-  //   text-align: center;
-    
-  //   .vertical-center;
-
-  //   input{
-  //     margin-bottom: 20px !important;
-  //     border:1px solid @dark-grey;
-  //     border-radius: 5px;
-  //     width: 80%;
-  //     height: 30px;
-  //     line-height: 30px;
-  //     margin:auto;
-  //     display: block;
-  //   }
-
-  //   button{
-  //     width: 80%;
-  //     background:@dark-grey;
-  //     color: @white;
-  //     .bold;
-  //     text-transform: uppercase;
-  //     outline: none;
-  //     border:none;
-  //   }
-
-  // }
   .form {
     .vertical-center;
     position: relative;
@@ -433,34 +225,36 @@ h6{ font-size:1em; }
     padding: 45px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    
+    input {
+      font-family: "Roboto", sans-serif;
+      outline: 0;
+      background: #f2f2f2;
+      width: 100%;
+      border: 0;
+      margin: 0 0 15px;
+      padding: 15px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    button {
+      font-family: "Roboto", sans-serif;
+      text-transform: uppercase;
+      outline: 0;
+      background: @primary;
+      width: 100%;
+      border: 0;
+      padding: 15px;
+      color: #FFFFFF;
+      font-size: 14px;
+      -webkit-transition: all 0.3 ease;
+      transition: all 0.3 ease;
+      cursor: pointer;
+      .smooth;
+        
+      &:hover, &:active, &:focus{
+        background: @dark-grey;
+      }
+    }
   }
-  .form input {
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-  }
-  .form button {
-    font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
-    outline: 0;
-    background: @primary;
-    width: 100%;
-    border: 0;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-  }
-  .form button:hover,.form button:active,.form button:focus {
-    background: #43A047;
-}
-
 }

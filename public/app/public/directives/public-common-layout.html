@@ -1,0 +1,15 @@
+<!-- CONTENT CONTAINER -->
+<div class="col-xs-10 col-xs-offset-1">
+
+  <!-- TABLES CONTAINER -->
+  <div class="col-md-10">
+    <div ng-transclude></div>
+  </div><!-- /TABLES CONTAINER -->
+  
+  <!-- SPONSOR CONTAINER -->
+  <div class="col-md-2" ng-controller="PublicSponsorCtrl">
+    <h5>SPONSORS</h5>
+    <img ng-src="{{ sponsor.path }}" alt="" class="public-sponsor" ng-repeat="sponsor in sponsors">
+  </div>
+
+</div><!-- /CONTENT CONTAINER -->

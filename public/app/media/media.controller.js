@@ -9,6 +9,7 @@ angular
   
       getPhotos();
       getVideos();
+      getSponsors();
   
       $scope.createVideo = function(video){
         Media.createVideo(video)
@@ -20,9 +21,13 @@ angular
         });
       }
   
-      $scope.uploadSucces = function(){
+      $scope.uploadPhotoSucces = function(){
         toastr.success('Photo Uploaded!');
         getPhotos();
+      }
+      $scope.uploadSponsorSucces = function(){
+        toastr.success('Photo Uploaded!');
+        getSponsors();
       }
   
       $scope.delete = function(media){
@@ -52,6 +57,15 @@ angular
           .getVideos()
           .then(function(data){
             $scope.videos = data.data;
+          }, function(err){
+            console.log("media.controller.js :39", err);
+          });
+      }
+      function getSponsors(){
+        Media
+          .getSponsors()
+          .then(function(data){
+            $scope.sponsors = data.data;
           }, function(err){
             console.log("media.controller.js :39", err);
           });

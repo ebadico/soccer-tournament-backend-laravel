@@ -1,53 +1,64 @@
 <div class="row">
   
-  <div class="col-md-6">
-    <form>
-      <h3 class="text-center">UPLOAD FOTO</h3>
-      <hr>
-      
-      <div  flow-init="{target: '/api/media', testChunks:false, singleFile: true }" 
-            flow-files-submitted="$flow.upload()"
-            flow-file-success="uploadSucces()">
+  <div class="col-md-12">
+    <div class="globus-box">
 
-        <!-- <div class="row">
-          <div class="col-xs-4 col-md-3" ng-repeat="file in $flow.files">
-            <a class="thumbnail">
-              <img ng-src="/uploads/{{ file.name | spaceless }}">
-            </a>
+      <!-- FOTO UPLOAD -->
+      <div class="col-xs-12 col-md-4">
+        <h3 class="text-center">FOTO</h3>
+        <div  flow-init="{target: '/api/media', testChunks:false, singleFile: true }" 
+              flow-files-submitted="$flow.upload()"
+              flow-file-success="uploadPhotoSucces()">
+
+          <div class="submit-box">
+            <button class="btn btn-primary" flow-btn flow-attrs="{accept:'image/*'}">Upload</button>
           </div>
-        </div> -->
-
-        <div class="submit-box">
-          <button class="btn btn-primary" flow-btn flow-attrs="{accept:'image/*'}">Upload</button>
         </div>
-      </div>
-    </form>
+      </div><!-- FOTO UPLOAD -->
+      
+      <!-- SPONSOR UPLOAD -->
+      <div class="col-xs-12 col-md-4">
+        <h3 class="text-center">SPONSORs</h3>
+        <div  flow-init="{target: '/api/media?type=sponsor', testChunks:false, singleFile: true }" 
+              flow-files-submitted="$flow.upload()"
+              flow-file-success="uploadSponsorSucces()">
+
+          <div class="submit-box">
+            <button class="btn btn-primary" flow-btn flow-attrs="{accept:'image/*'}">Upload</button>
+          </div>
+        </div>
+      </div><!-- SPONSOR UPLOAD -->
+
+      <!-- YOUTUBE LINK -->
+      <div class="col-xs-12 col-md-4">
+        <h3 class="text-center">AGGIUNGI VIDEO</h3>
+        <input type="text" class="form-control" ng-model="video.url" placeholder="Youtube video code">
+        <div class="submit-box">
+          <button class="btn btn-primary" ng-click="createVideo(video)">Add Video</button>
+        </div>
+      </div><!-- YOUTUBE LINK -->
+
+      <div class="clearfix"></div>
+    </div>
   </div>
 
-  <div class="col-md-6">
-    <form ng-submit="createVideo(video)">
-      <h3 class="text-center">AGGIUNGI VIDEO</h3>
-      <hr>
-      <input type="text" class="form-control" ng-model="video.url" placeholder="Youtube video code">
-      <div class="submit-box">
-        <button class="btn btn-primary">Add Video</button>
-      </div>
-    </form>
-  </div>
-
-</div>
+</div><!-- ROW -->
 
 <ul class="nav nav-tabs" ng-init="showPhotos = true">
-  <li class="active" ng-click=" showPhotos = !showPhotos; showVideos = false;">
+  <li class="active" ng-click=" showPhotos = !showPhotos; showVideos = false; showSponsors = false;">
     <a>Photo</a>
   </li>
-  <li class="active" ng-click=" showVideos = !showVideos; showPhotos = false;">
+  <li class="active" ng-click=" showVideos = !showVideos; showPhotos = false; showSponsors = false;">
     <a>Video</a>
+  </li>
+  <li class="active" ng-click=" showSponsors = !showSPonsors; showPhotos = false; showVideos = false;">
+    <a>Sponsor</a>
   </li>
 </ul>
 <div class="row globus-box">
   
   <div class="photos" ng-show="showPhotos">
+    <p class="text-center" ng-show="!photos.length">Nessuna <strong>foto</strong> presente</p>
     <div class="col-xs-6 col-md-3" ng-repeat="photo in photos">
       <a class="thumbnail">
         <i class="fa fa-remove fa-2x" ng-click="delete(photo)"></i>
@@ -57,7 +68,19 @@
     </div>
   </div>
 
+  <div class="photos" ng-show="showSponsors">
+    <p class="text-center" ng-show="!sponsors.length">Nessuno <strong>sponsor</strong> presente</p>
+    <div class="col-xs-6 col-md-3" ng-repeat="sponsor in sponsors">
+      <a class="thumbnail">
+        <i class="fa fa-remove fa-2x" ng-click="delete(sponsor)"></i>
+        <img ng-src="{{ sponsor.path }}" alt="">
+        <input class="form-control" type="text" value="{{sponsor.path}}" readonly>
+      </a>
+    </div>
+  </div>
+
   <div class="videos" ng-show="showVideos">
+    <p class="text-center" ng-show="!videos.length">Nessuna <strong>video</strong> presente</p>
     <div class="col-xs-6 col-md-3" ng-repeat="video in videos">
       <a class="thumbnail">
       <i class="fa fa-remove fa-2x" ng-click="delete(video)"></i>

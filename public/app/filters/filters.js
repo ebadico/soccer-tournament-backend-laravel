@@ -28,6 +28,20 @@ angular
     };
   })
 
+  .filter('dayRoundFilter', function(){
+    return function(array, round_id){
+
+      if(!round_id) return array;
+
+      var filtered = array.filter(function(index) {
+        return (index.round_id === round_id);
+      });
+
+      return filtered;
+
+    };
+  })
+
   .filter('playerRoundFilter', function(){
     return function(array, round_id){
 
@@ -39,5 +53,12 @@ angular
 
       return filtered;
 
+    };
+  })
+
+  .filter('orderByScores', function(){
+    return function(array, scores){
+      console.log("filters.js :47", "asdasd");
+      return _.sortBy(array, function (item) { return item.scores.length });
     };
   })

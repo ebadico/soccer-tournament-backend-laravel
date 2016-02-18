@@ -53,12 +53,12 @@ angular.module('app', [
         controller: 'PublicContactsCtrl',
       })
       .state('public.medias', {
-        url:'media',
+        url:'media?type',
         templateUrl: 'app/public/medias/medias.html',
         controller: 'PublicMediasCtrl',
       })
       .state('public.news', {
-        url:'news',
+        url:'news?type',
         templateUrl: 'app/public/news/news.html',
         controller: 'PublicNewsCtrl',
       })
@@ -173,6 +173,7 @@ angular.module('app', [
 
 
 .run(['$rootScope', '$state', 'Auth', function($rootScope, $state, Auth){
+  $rootScope.isLoginPage = false;
   $rootScope.sitename = '_MyTournament_';
 
   $rootScope.$on('$stateChangeStart', function(e, stateTo, toParams, stateFrom){

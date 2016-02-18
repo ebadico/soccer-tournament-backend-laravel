@@ -1,0 +1,204 @@
+button{
+  outline: none !important;
+  border:none;
+  .smooth;
+  &.active{
+    box-shadow: inset 0 -2px 0 darken(@primary, 10%);
+  }
+}
+.vertical-center{
+  //position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.outline-box{
+  border: 3px solid @primary;
+  text-align: center;
+  position: relative;
+  padding-bottom: 25px;
+  padding-top: 50px;
+    
+  .title{ 
+    display: inline-block;
+    font-size: 2em; 
+    width: auto;
+    position: absolute;
+    left:36%;
+    top:-47px;
+    background: @white;
+    padding: 10px;
+  }
+
+  .follow-up{
+    position: relative;
+    bottom: -47px;
+
+    &:before{
+      content:'';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top:0;
+      left:0;
+      outline: 25px solid @white;
+    }
+  }
+}
+.smooth{ transition:ease-in .25s; }
+.avatar{
+ overflow: hidden; 
+ width: 150px;
+ height: 150px;
+ margin:auto;
+
+ &.round-avatar{
+  border-radius: 50%;
+ }
+}
+.small-avatar{
+  overflow: hidden;
+  width: 75px;
+  height: 75px;
+  margin:auto;
+
+  &.round-avatar{
+    border-radius: 50%;
+  }
+}
+.splitted-box{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  background: @dark-grey;
+  padding: 0;
+  overflow:hidden;
+  
+  &.splitted-fluid{
+    height: 100%;
+
+    &:before{
+      content:"";
+      position: absolute;
+      top:0;
+      left:0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/images/player.jpg');
+      background-size: cover;
+      background-position: center center;
+      z-index: -9;
+    }
+
+    .right-box{
+      height: 100% !important;
+    }
+
+    span{
+      width: auto !important;
+      font-size: 2em;
+      //border-bottom: 1px solid @white;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      .bold;
+    }
+  }
+
+  span{
+    .light;
+    font-size: 3em;
+    width: 20px;
+    position: absolute;
+    z-index: 99;
+    color:@white;
+    line-height: 50px;
+    right:30px;
+  }
+  
+  .right-box{
+      background: @primary;
+      width: 42.5%;
+      height:50px;
+      position:relative;
+      z-index: 9;
+
+      span{
+        line-height: 50px;
+        left:30px;
+      }
+    
+    &:after {
+      background: @primary;
+      content:'';
+      width:100%;
+      height:100%;
+      position:absolute;
+      transform:skewX(-25deg);
+      left:20%;
+      z-index: 0;
+    }
+  }
+}
+
+
+.follow-up{
+  cursor: pointer;
+  display:inline-block;
+  text-align: center;
+  line-height: 40px;
+  background: @primary;
+  color:@black;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  .bold;
+  width: 160px;
+  height: 40px;
+
+  outline: 1px solid @black;
+  outline-offset: -5px;
+
+  .smooth;
+
+  &:hover{
+    font-size: 0.9em;
+    outline: 3px solid @black;
+    outline-offset: -2px;    
+  }
+}
+
+
+.title{
+  text-transform: uppercase;
+  color: @secondary;
+  .light;
+  strong{ 
+    color: @primary;
+    .regular;
+  }
+}
+
+.heading-image{
+  margin-bottom: 35px;
+  height: 350px;
+  width: 100%;
+  background-image: url('/images/stadium.jpg');
+  background-size: cover;
+  background-position: center center;
+
+  .title{
+    text-align: center;
+    position: relative;
+    margin-top: 0;
+    color: @white;
+    text-shadow: 1px 1px 1px @black;
+    .vertical-center;
+  }
+}
+
+.common-page-container{
+  padding: 0;
+}
+
+.public-sponsor{
+  width: 100%;
+  height: auto;
+}

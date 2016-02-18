@@ -25,7 +25,7 @@ class DayCtrl extends Controller
         if($round_id = $request->get('round_id')){
             return Day::where('round_id','=', $round_id)->get();
         }
-        return Day::with('round')->get();
+        return Day::with('round','matches')->get();
     }
 
     /**

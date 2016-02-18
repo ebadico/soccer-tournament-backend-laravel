@@ -1,4 +1,15 @@
-<div class="container-fluid landing-container">
+<div class="container-fluid common-page-container">
+  <div class="heading-image">
     <h1 class="title">Globus<strong>News</strong></h1>
+  </div>
+  
+<loading show='news.length'></loading>
+<main-content ng-show="news.length">
+    <button ng-class="{ 'active': newsType === undefined }" ng-click="newsType = undefined ">ALL</button>
+    <button ng-class="{ 'active': newsType === 'news' }" ng-click="newsType = 'news'">News</button>
+    <button ng-class="{ 'active': newsType === 'comunicato' }" ng-click="newsType = 'comunicato'">Comunicati</button>
+    <br>
+    <pre>{{ news | filter: { type: newsType   } }}</pre>
+  </main-content>
 </div>
 

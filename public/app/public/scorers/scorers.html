@@ -1,6 +1,13 @@
-<div class="container-fluid">
-    <h1 class="title">Classifiche<strong>marcatori</strong></h1>
+<div class="container-fluid common-page-container">
+  <div class="heading-image">
+    <h1 class="title">Classifica <strong>Marcatori</strong></h1>
+  </div>
+  
+
+  <loading show='players.length'></loading>
+  <main-content ng-show="players.length">
     <button ng-repeat="round in rounds" ng-click="roundChange(round.id)">{{ round.name }}</button>
-    <pre>{{ players | playerRoundFilter: round_id }}</pre>
+    <pre ng-repeat="player in players | playerRoundFilter: round_id | filter: orderByScores">{{ $index }} - {{ player.name  }} | {{ player.scores.length  }}</pre>
+  </main-content>
 </div>
 
