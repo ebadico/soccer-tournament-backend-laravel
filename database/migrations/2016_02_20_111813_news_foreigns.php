@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRounds extends Migration
+class NewsForeigns extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,12 @@ class CreateRounds extends Migration
      */
     public function up()
     {
-        Schema::create('rounds', function (Blueprint $table) {
-            $table->increments('id');
-
-            $table->string('name');
-
-            $table->integer('season_id')->unsigned();
+        Schema::table('news', function (Blueprint $table) {
+            $table->integer('season_id')->unsigned()->nullable();
             $table->foreign('season_id')
                   ->references('id')
                   ->on('seasons')
                   ->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 
@@ -34,6 +28,8 @@ class CreateRounds extends Migration
      */
     public function down()
     {
-        Schema::drop('rounds');
+        Schema::table('news', function (Blueprint $table) {
+            $table->dropForeign('news_season_id_foreign');
+        });
     }
 }

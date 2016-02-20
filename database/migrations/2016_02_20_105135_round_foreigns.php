@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsTable extends Migration
+class RoundForeigns extends Migration
 {
     /**
      * Run the migrations.
@@ -12,20 +12,12 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('news', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-
-            $table->string('title');
-            $table->string('body');
-            $table->string('type')->default('news');
-
-            $table->integer('season_id')->unsigned()->nullable();
+        Schema::table('rounds', function (Blueprint $table) {
+            $table->integer('season_id')->unsigned();
             $table->foreign('season_id')
                   ->references('id')
                   ->on('seasons')
-                  ->onDelete('cascade');
-
+                  ->onDelete('cascade');           
         });
     }
 
@@ -36,6 +28,8 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('news');
+        Schema::table('rounds', function (Blueprint $table) {
+            $table->dropForeign('rounds_season_id_foreign');
+        });
     }
 }

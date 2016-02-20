@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttendance extends Migration
+class AttendancesForeigns extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class CreateAttendance extends Migration
      */
     public function up()
     {
-        Schema::create('attendances', function (Blueprint $table) {
-            $table->increments('id');
-
+        Schema::table('attendances', function (Blueprint $table) {
             $table->integer('player_id')->unsigned();
+            $table->integer('match_id')->unsigned();
+            $table->integer('season_id')->unsigned();
 
             $table->foreign('player_id')
                   ->references('id')
@@ -23,19 +23,15 @@ class CreateAttendance extends Migration
                   ->onDelete('cascade');
 
             
-            $table->integer('match_id')->unsigned();
             $table->foreign('match_id')
                   ->references('id')
                   ->on('matchs')
                   ->onDelete('cascade');
 
-            $table->integer('season_id')->unsigned();
             $table->foreign('season_id')
                   ->references('id')
                   ->on('seasons')
                   ->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 
@@ -46,6 +42,10 @@ class CreateAttendance extends Migration
      */
     public function down()
     {
-        Schema::drop('attendances');
+        Schema::table('attendances', function (Blueprint $table) {
+            $table->dropForeign('attendances_player_id_foreign');
+            $table->dropForeign('attendances_match_id_foreign');
+            $table->dropForeign('attendances_season_id_foreign');
+        });
     }
 }

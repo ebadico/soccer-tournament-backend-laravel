@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlayers extends Migration
+class PlayersForeigns extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,8 @@ class CreatePlayers extends Migration
      */
     public function up()
     {
-        Schema::create('players', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            //$table->integer('score')->unsigned()->default(0); scores table hold everything.
-            
-            $table->integer('team_id')->unsigned();
-            
+        Schema::table('players', function (Blueprint $table) {
+            $table->integer('team_id')->unsigned();            
             $table->foreign('team_id')
                   ->references('id')
                   ->on('teams')
@@ -29,8 +24,6 @@ class CreatePlayers extends Migration
                   ->references('id')
                   ->on('seasons')
                   ->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 
@@ -41,6 +34,9 @@ class CreatePlayers extends Migration
      */
     public function down()
     {
-        Schema::drop('players');
+        Schema::table('players', function (Blueprint $table) {
+            $table->dropForeign('players_team_id_foreign');
+            $table->dropForeign('players_season_id_foreign');
+        });
     }
 }

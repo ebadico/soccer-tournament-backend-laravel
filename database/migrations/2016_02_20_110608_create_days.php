@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddMetaToMatch extends Migration
+class CreateDays extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,9 @@ class AddMetaToMatch extends Migration
      */
     public function up()
     {
-        Schema::table('matchs', function (Blueprint $table) {
-            $table->date('match_date');
+        Schema::create('days', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
         });
     }
 
@@ -24,8 +25,6 @@ class AddMetaToMatch extends Migration
      */
     public function down()
     {
-        Schema::table('matchs', function (Blueprint $table) {
-            $table->dropColumn('match_date');
-        });
+        Schema::drop('days');
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMediasTable extends Migration
+class CreateMedias extends Migration
 {
     /**
      * Run the migrations.
@@ -20,11 +20,6 @@ class CreateMediasTable extends Migration
             $table->string('path');
             $table->string('type')->default('photo');
 
-            $table->integer('season_id')->unsigned()->nullable();
-            $table->foreign('season_id')
-                  ->references('id')
-                  ->on('seasons')
-                  ->onDelete('cascade');
         });
     }
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExpulsionsTable extends Migration
+class WarningsForeigns extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,7 @@ class CreateExpulsionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('expulsions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+        Schema::table('warnings', function (Blueprint $table) {
 
             $table->integer('match_id')->unsigned()->nullable();
             $table->integer('player_id')->unsigned()->nullable();
@@ -38,6 +36,9 @@ class CreateExpulsionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('expulsions');
+        Schema::table('warnings', function (Blueprint $table) {
+            $table->dropForeign('warnings_match_id_foreign');
+            $table->dropForeign('warnings_player_id_foreign');
+        });
     }
 }

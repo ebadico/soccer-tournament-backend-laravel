@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDays extends Migration
+class DaysForeigns extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,7 @@ class CreateDays extends Migration
      */
     public function up()
     {
-        Schema::create('days', function (Blueprint $table) {
-            $table->increments('id');
-
+        Schema::table('days', function (Blueprint $table) {
             $table->integer('round_id')->unsigned();
             $table->foreign('round_id')
                   ->references('id')
@@ -27,8 +25,6 @@ class CreateDays extends Migration
                   ->references('id')
                   ->on('seasons')
                   ->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 
@@ -39,6 +35,9 @@ class CreateDays extends Migration
      */
     public function down()
     {
-        Schema::drop('days');
+        Schema::table('days', function (Blueprint $table) {
+            $table->dropForeign('days_round_id_foreign');
+            $table->dropForeign('days_season_id_foreign');
+        });
     }
 }
