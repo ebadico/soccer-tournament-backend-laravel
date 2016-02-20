@@ -19,10 +19,10 @@
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                <li>
+                <li ng-class="{active: adminActive === 'admin.news'}">
                     <a ui-sref="admin.news"><i class="fa fa-fw fa-edit"></i>&nbsp; News</a>
                 </li>
-                <li>
+                <li ng-class="{active: adminActive === 'admin.medias'}">
                     <a ui-sref="admin.medias"><i class="fa fa-fw fa-photo"></i>&nbsp; Media</a>
                 </li> 
                 
@@ -30,7 +30,7 @@
                 <li style="background:black;">
                     <a><strong>Gestione</strong></a>
                 </li>
-                <li>
+                <li ng-class="{active: adminActive === 'admin.results'}">
                     <a ui-sref="admin.results"><i class="fa fa-fw fa-futbol-o"></i>&nbsp; Risultati</a>
                 </li> 
 
@@ -39,19 +39,19 @@
                     <a><strong>Configurazione</strong></a>
                 </li>
 
-                <li>
+                <li ng-class="{active: adminActive === 'admin.season'}">
                     <a ui-sref="admin.season"><i class="fa fa-fw fa-list-alt"></i>&nbsp;  Stagioni</a>
                 </li> 
-                <li>
+                <li ng-class="{active: adminActive === 'admin.rounds'}">
                     <a ui-sref="admin.rounds"><i class="fa fa-fw fa-sitemap"></i>&nbsp;  Gironi & Giornate</a>
                 </li>  
-                <li>
+                <li ng-class="{active: adminActive === 'admin.teams'}">
                     <a ui-sref="admin.teams"><i class="fa fa-fw fa-users"></i>&nbsp; Teams</a>
                 </li>
-                <li>
+                <li ng-class="{active: adminActive === 'admin.players'}">
                     <a ui-sref="admin.players"><i class="fa fa-fw fa-user"></i>&nbsp; Giocatori</a>
                 </li>
-                <li>
+                <li ng-class="{active: adminActive === 'admin.match'}">
                     <a ui-sref="admin.match"><i class="fa fa-fw fa-bolt"></i>&nbsp; Incontri</a>
                 </li> 
 
