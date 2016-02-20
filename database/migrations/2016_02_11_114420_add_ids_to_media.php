@@ -15,6 +15,7 @@ class AddIdsToMedia extends Migration
       Schema::table('medias', function (Blueprint $table) {
           $table->integer('team_id')->unsigned()->nullable();
           $table->integer('news_id')->unsigned()->nullable();
+          $table->integer('player_id')->unsigned()->nullable();
 
           $table->foreign('team_id')
                 ->references('id')
@@ -24,6 +25,11 @@ class AddIdsToMedia extends Migration
           $table->foreign('news_id')
                 ->references('id')
                 ->on('news')
+                ->onDelete('cascade');
+
+          $table->foreign('player_id')
+                ->references('id')
+                ->on('players')
                 ->onDelete('cascade');
 
       });
@@ -37,8 +43,9 @@ class AddIdsToMedia extends Migration
   public function down()
   {
       Schema::table('medias', function (Blueprint $table) {
-          $table->dropColumn('team_id');
-          $table->dropColumn('news_id');
+          $table->dropForeign('player_id');
+          $table->dropForeign('team_id');
+          $table->dropForeign('news_id');
       });
   }
 }
