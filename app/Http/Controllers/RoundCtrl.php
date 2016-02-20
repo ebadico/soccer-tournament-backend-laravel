@@ -96,10 +96,12 @@ class RoundCtrl extends Controller
     public function update(Request $request, $id)
     {
         $name = $request->get('name');
+        $club = $request->get('club');
 
-        $round = Round::find($id);
+        $round = Round::where('id', '=', $id)->first();
 
         $round->name = $name;
+        $round->club = $club;
 
         if(!$round->save()){
             $res['err'] = 'Cannot edit document';

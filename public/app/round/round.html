@@ -2,11 +2,27 @@
   <i class="fa fa-pencil pull-right pointer" ng-click="editMode = !editMode"></i>
   <div class="clearfix"></div>
   <div ng-show="!editMode">
+    <i  ng-show="!round.media"
+      class="fa fa-photo pointer"
+      ng-show="!club.photo" 
+      flow-init="{ testChunks:false, singleFile: true }" 
+      flow-files-submitted="submit($file, $event, $flow, round)"
+      flow-file-success="uploaded()"
+      flow-btn flow-attrs="{accept:'image/*'}">
+  </i>
+  <img ng-src="{{ round.media.path}}" alt="" ng-show="round.media"
+      ng-show="!club.photo" 
+      flow-init="{ testChunks:false, singleFile: true }" 
+      flow-files-submitted="submit($file, $event, $flow, round)"
+      flow-file-success="uploaded()"
+      flow-btn flow-attrs="{accept:'image/*'}">
     <h3><small>GIRONE</small></h3>
     <h3>{{ round.name | uppercase }}</h3>
+    <h5>{{ round.club }}</h5>
   </div>
   <div ng-show="editMode">
     <input type="text" class="form-control" ng-model="round.name" value="{{round.name}}">
+    <input type="text" class="form-control" ng-model="round.club" value="{{round.club}}">
     <div class="submit-box">
       <button class="btn btn-primary" type="submit" ng-disabled='!round.name'>Modifica</button>
     </div>

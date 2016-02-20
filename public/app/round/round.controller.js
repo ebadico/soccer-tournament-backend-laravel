@@ -46,15 +46,6 @@ angular.module('app')
 		}
 	}
 
-  $scope.submit = function($files, $event, $flow, round) {
-    $flow.opts.target = '/api/media?type=club&round_id=' + round.id;
-    $flow.upload();
-  }
-
-  $scope.uploaded = function(){
-    toastr.success('Avatar club caricato!');
-    getRounds();
-  }
 
 	function getRounds(){
 		Round.get()

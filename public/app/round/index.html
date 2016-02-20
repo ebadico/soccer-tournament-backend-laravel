@@ -27,25 +27,11 @@
         <i class="fa fa-pencil pointer" ui-sref="admin.round({ round_id: round.id })"></i> 
       </td>
       <td>
-        <i  ng-show="!round.media"
-            class="fa fa-photo pointer"
-            ng-show="!club.photo" 
-            flow-init="{ testChunks:false, singleFile: true }" 
-            flow-files-submitted="submit($file, $event, $flow, round)"
-            flow-file-success="uploaded()"
-            flow-btn flow-attrs="{accept:'image/*'}">
-        </i>
-        <img ng-src="{{ round.media.path}}" alt="" ng-show="round.media"
-            ng-show="!club.photo" 
-            flow-init="{ testChunks:false, singleFile: true }" 
-            flow-files-submitted="submit($file, $event, $flow, round)"
-            flow-file-success="uploaded()"
-            flow-btn flow-attrs="{accept:'image/*'}">
+        <i ng-show="!round.media" class="fa fa-photo"></i>
+        <img ng-src="{{ round.media.path}}" alt="" ng-show="round.media" ng-show="!club.photo" >
       </td>
       <td> {{round.name }}</td>
-      <td>  
-        {{round.club }}
-      </td>
+      <td> {{round.club }}</td>
       <td> {{ round.day.length }}</td>
       <td> {{ round.team.length }}</td>
     </tr>
