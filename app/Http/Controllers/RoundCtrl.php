@@ -24,7 +24,7 @@ class RoundCtrl extends Controller
      */
     public function index()
     {
-        return Round::with('day','team')->get();
+        return Round::with('day','team','media')->get();
     }
 
     /**
@@ -47,8 +47,9 @@ class RoundCtrl extends Controller
       $round = new Round();
 
       $round->fill([
-      'season_id' => Season::getCurrentSeason()->id,
-      'name' => $request->name
+          'season_id' => Season::getCurrentSeason()->id,
+          'name' => $request->name,
+          'club' => $request->club
       ]);
 
       if($round->save()){
@@ -65,7 +66,7 @@ class RoundCtrl extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        if(!$data = Round::where('id','=', $id)->with('day')->first()){
+        if(!$data = Round::where('id','=', $id)->with('day','team','media')->first()){
             $data['error'] = 'Item Not Found';
             $status = 404;
         }

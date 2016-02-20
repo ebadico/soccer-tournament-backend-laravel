@@ -13,7 +13,7 @@ class Round extends Model
       static::addGlobalScope(new SeasonScope);
   }
  
-  protected $fillable = ['name','season_id', 'current'];
+  protected $fillable = ['name','season_id', 'club'];
 
   public function day(){
     return $this->hasMany('App\Day');
@@ -21,5 +21,9 @@ class Round extends Model
 
   public function team(){
     return $this->hasMany('App\Team');
-  }  
+  }
+
+  public function media(){
+    return $this->hasOne('App\Medias', 'round_id', 'id');
+  }
 }

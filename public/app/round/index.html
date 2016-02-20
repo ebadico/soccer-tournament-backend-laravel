@@ -2,8 +2,9 @@
   <h3>CREA GIRONE</h3>
   <hr>
   <input type="text" ng-model="round.name" class="form-control" placeholder="Nome del girone">
+  <input type="text" ng-model="round.club" class="form-control" placeholder="Nome del circolo">
   <div class="submit-box">
-    <button class="btn btn-primary" type="submit" ng-disabled="!round.name">Create</button>
+    <button class="btn btn-primary" type="submit" ng-disabled="!round.name || !round.club">Crea</button>
   </div>
 </form>
 
@@ -11,21 +12,40 @@
 <table class="table table-hover table-striped">
   <thead>
     <tr>
-      <th class="col-sm-1">#</th>
       <th class="col-sm-1"><i class="fa fa-cog"></i></th>
+      <th class="col-sm-1"> <i class="fa fa-photo"></i></th>
       <th>Girone</th>
+      <th>Circolo</th>
       <th>Giornate</th>
       <th>Teams</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="round in rounds track by $index">
-      <td>{{ $index +1 }}</td>
       <td> 
         <i class="fa fa-close pointer" ng-click="delete(round)" style="color:red;"></i> 
         <i class="fa fa-pencil pointer" ui-sref="admin.round({ round_id: round.id })"></i> 
       </td>
+      <td>
+        <i  ng-show="!round.media"
+            class="fa fa-photo pointer"
+            ng-show="!club.photo" 
+            flow-init="{ testChunks:false, singleFile: true }" 
+            flow-files-submitted="submit($file, $event, $flow, round)"
+            flow-file-success="uploaded()"
+            flow-btn flow-attrs="{accept:'image/*'}">
+        </i>
+        <img ng-src="{{ round.media.path}}" alt="" ng-show="round.media"
+            ng-show="!club.photo" 
+            flow-init="{ testChunks:false, singleFile: true }" 
+            flow-files-submitted="submit($file, $event, $flow, round)"
+            flow-file-success="uploaded()"
+            flow-btn flow-attrs="{accept:'image/*'}">
+      </td>
       <td> {{round.name }}</td>
+      <td>  
+        {{round.club }}
+      </td>
       <td> {{ round.day.length }}</td>
       <td> {{ round.team.length }}</td>
     </tr>

@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('RoundsCtrl', ['$rootScope', '$scope', '$http', 'toastr', 'Season', 'Round', function($rootScope, $scope, $http, toastr, Season, Round){
+.controller('RoundsCtrl', ['$rootScope', '$scope', '$http', 'toastr', 'Season', 'Round', 'Media', function($rootScope, $scope, $http, toastr, Season, Round, Media){
 
 	$scope.rounds = [];
 	$scope.round = {};
@@ -45,6 +45,16 @@ angular.module('app')
 				});
 		}
 	}
+
+  $scope.submit = function($files, $event, $flow, round) {
+    $flow.opts.target = '/api/media?type=club&round_id=' + round.id;
+    $flow.upload();
+  }
+
+  $scope.uploaded = function(){
+    toastr.success('Avatar club caricato!');
+    getRounds();
+  }
 
 	function getRounds(){
 		Round.get()

@@ -46,7 +46,6 @@ class Handler extends ExceptionHandler{
      */
     public function render($request, Exception $e){
 
-    
       if ($this->isHttpException($e)){
 
         return $this->renderHttpException($e);
@@ -57,25 +56,17 @@ class Handler extends ExceptionHandler{
 
         $dbCode = trim($e->getCode());
         
-        //Codes specific to mysql errors
-        // switch ($dbCode){
-        //   case 23000:
-        //     $res['full'] = $e;
-        //     $res['messsage'] = 'Duplicate entry - Please change the values';
-        //     $res['code'] = $dbCode;
-        //   break;
-        //   default:
-        //     $res['full'] = $e;
-        //     $res['messsage'] = 'Unknown database error:';
-        //     $res['code'] = $dbCode;
-        // }
-
          return response()->json($e, 400);
 
       }
-      else
-      {
-        return parent::render($request, $e);
+      else{
+        $res['message'] = $e->getMessage();
+        $res['code'] = $e->getCode();
+        $res['file'] = $e->getFile();
+        $res['line'] = $e->getLine();
+        $res['trace'] = $e->getTrace();
+        return response()->json($res, 500);
       }
+
     }
   }
