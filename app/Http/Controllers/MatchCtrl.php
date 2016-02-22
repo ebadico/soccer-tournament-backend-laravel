@@ -190,7 +190,6 @@ class MatchCtrl extends Controller
       /**
        * MATCH
        */
-
       $result = Match::find($id);
 
       $result->fill($request->all());

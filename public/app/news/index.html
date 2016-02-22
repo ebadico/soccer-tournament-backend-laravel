@@ -5,20 +5,34 @@
     <input type="text" class="form-control" placeholder="title" ng-model="post.title">
     <br>
     <textarea ui-tinymce ng-model="post.body"></textarea>
-
-    <div class="input-group col-sm-4" style="margin-top:15px;">
+    <div class="col-sm-4 pull-left">
+      <!-- <img ng-src="{{ player.media.path }}"
+        flow-init="{ testChunks:false, singleFile: true }" 
+        flow-files-submitted="submit($file, $event, $flow, player)"
+        flow-file-success="upload()"
+        flow-btn flow-attrs="{accept:'image/*'}"> -->
+      <i class="fa fa-photo fa-3x"
+        ng-show="!player.media" 
+        flow-init="{ testChunks:false, singleFile: true }" 
+        flow-files-submitted="submit($file, $event, $flow, player)"
+        flow-file-success="upload()"
+        flow-btn flow-attrs="{accept:'image/*'}">
+      </i>
+    </div>
+    <div class="input-group col-sm-4 pull-left" style="margin-top:15px;">
       <h6>Seleziona tipo</h6>
       <select class="form-control" ng-model="post.type">
         <option value="news">news</option>
         <option value="comunicato">comunicato</option>
       </select>
     </div>
-    <div class="input-group col-sm-4" style="margin-top:15px;"  ng-show="post.type === 'comunicato' ">
+    <div class="input-group col-sm-4 pull-left" style="margin-top:15px;"  ng-show="post.type === 'comunicato' ">
       <h6>Seleziona Stagione</h6>
       <select class="form-control" ng-model="post.season_id">
         <option value="{{ season.id }}" ng-repeat="season in seasons">{{ season.year }}</option>
       </select>
     </div>
+    <div class="clearfix"></div>
     <div class="submit-box">
       <button class="btn btn-primary" type="submit" ng-disabled='!post.title.length || !post.body.length'>Salva</button>
     </div>
