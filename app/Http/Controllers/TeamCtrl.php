@@ -126,6 +126,7 @@ class TeamCtrl extends Controller
     public function destroy($id)
     {
         if($team = Team::find($id)){
+            if ($team->media()->get()->count()) $team->media()->first()->delete();
             if($team->delete()){
                 $res['status'] = 202;
                 $res['message'] = 'resource deleted successfully';

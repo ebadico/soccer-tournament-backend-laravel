@@ -115,6 +115,7 @@ class PlayerCtrl extends Controller
   public function destroy($id)
   {
       if($player = Player::find($id)){
+        if ($player->media()->get()->count()) $player->media()->first()->delete();
           if($player->delete()){
               $res['status'] = 202;
               $res['message'] = 'resource deleted successfully';

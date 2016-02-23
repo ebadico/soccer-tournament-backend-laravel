@@ -53,7 +53,7 @@ class MediaCtrl extends Controller
     $media = new Medias();
     if($request->has('round_id')){
       /**
-       * IF A TEAM AVATAR DELETE THE PREVIOUS BEFORE
+       * IF A CLUB AVATAR DELETE THE PREVIOUS BEFORE
        */
         if($m = Medias::where('round_id', '=', $request->get('round_id'))->first()){
           $m->delete();

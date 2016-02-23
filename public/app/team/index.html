@@ -31,8 +31,9 @@
     <thead>
       <tr>
         <th class="col-sm-2"> <i class="fa fa-cog"></i> </th>
+        <th class="col-sm-1"><i class="fa fa-photo"></i></th>
         <th class="col-sm-3"><i class="fa fa-sitemap"></i></th>
-        <th><i class="fa fa-futbol-o"></i></th>
+        <th><i class="fa fa-home"></i></th>
         <th><i class="fa fa-users"></i></th>
       </tr>
     </thead>
@@ -42,6 +43,7 @@
           <i class="fa fa-remove" style="color:red;" ng-click="delete(team)"></i>
           <i class="fa fa-pencil" ui-sref="admin.team({ team_id: team.id })"></i>
         </td>
+        <td> <img ng-src="{{ team.media.path }}" alt=""></td>
         <td>{{ team.round.name }}</td>
         <td> {{ team.name }} </td>
         <td>{{ team.player.length }}</td>

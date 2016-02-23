@@ -56,10 +56,10 @@ class Team extends Model
   }
 
   public function scopeGet_all($query){
-    return $query->with('round','player','media','won_match')->get();
+    return $query->with('round','player.media','media','won_match')->get();
   }
   public function scopePopulate($query){
-    return $query->with('round','player','media','won_match')->first();
+    return $query->with('round','player.media','media','won_match')->first();
   }
 
   public function match(){
