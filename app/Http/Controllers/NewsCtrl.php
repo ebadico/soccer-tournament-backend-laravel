@@ -12,7 +12,7 @@ use App\Medias;
 class NewsCtrl extends Controller{
 
   public function __construct(){
-     $this->middleware('jwt.auth', ['except' => ['index','show']]);
+     $this->middleware( 'jwt.auth', ['except' => ['index','show']] );
   }
   /**
    * Display a listing of the resource.
@@ -56,8 +56,6 @@ class NewsCtrl extends Controller{
         array_push($filenameToDelete, $value->filename);
       }
       Medias::where('type','=','featured')->whereNotIn('id', $featured)->delete();
-      \Storage::delete($filenameToDelete);
-
 
       if($news){
         $res['status'] = 200;
@@ -102,11 +100,8 @@ class NewsCtrl extends Controller{
   public function destroy($id)
   {
       $post = News::find($id);
-      $deleteMedia = Medias::where('id', '=', $post->featured_id )->first();
       if($post->delete()){
-        \Storage::delete($deleteMedia->filename);
-        $deleteMedia->delete();
-
+        Medias::where('id', '=', $post->featured_id )->first()->delete();
         $res['status'] = 200;
         $res['message'] = "deleted successful";
       }else{

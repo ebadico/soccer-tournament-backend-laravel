@@ -12,11 +12,19 @@ use Storage;
 use Flow;
 use Image;
 
+class MediaObserver{
+
+  public function deleting($item){
+    \Storage::delete($item->filename);
+  }
+}
+
 class MediaCtrl extends Controller
 {
   public function __construct(){
      $this->middleware('jwt.auth', ['except' => ['index','show','store']]);
   }
+  
   /**
    * Display a listing of the resource.
    *
@@ -174,9 +182,6 @@ class MediaCtrl extends Controller
   public function destroy($id)
   {
     $media = Medias::find($id);
-    if($media->type === 'photo'){
-        Storage::delete($media->filename);
-    }
     $media->delete();
     $media->exists = false;
     return $media;

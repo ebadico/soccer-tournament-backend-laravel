@@ -30,6 +30,11 @@ class MediasForeigns extends Migration
                 ->on('teams')
                 ->onDelete('cascade');
 
+            $table->foreign('round_id')
+                ->references('id')
+                ->on('rounds')
+                ->onDelete('cascade');
+
             // $table->foreign('news_id')
             //     ->references('id')
             //     ->on('news')

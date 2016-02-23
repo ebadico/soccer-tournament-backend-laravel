@@ -9,6 +9,7 @@ angular
   getPosts();
 
   $scope.submit = function($files, $event, $flow) {
+    $scope.uploadingBlock = true;
     $flow.opts.target = '/api/media?type=featured';
     $flow.upload();
   }
@@ -19,6 +20,7 @@ angular
       $scope.post.featured_id = dbRecord.id;
     }
     toastr.success('Immagine di copertina aggiunta!');
+    $scope.uploadingBlock = false;
     // $scope.editMode = !$scope.editMode;
     // getPosts();
   }
