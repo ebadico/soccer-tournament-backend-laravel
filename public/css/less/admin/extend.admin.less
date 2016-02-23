@@ -76,20 +76,26 @@ button[type=submit]{
   }
 }
 
-.avatar, .small-avatar{
+.avatar, .small-avatar, .medium-avatar{
   display:block;
   margin:auto;
-  border-radius: 50%;
   overflow:hidden;
   img{
     display:block !important;
     margin: auto !important;
     max-height: 100%;
   }
+  &.round{
+    border-radius: 50%;
+  }
 }
 .avatar{
   width:250px;
   height:250px;  
+}
+.medium-avatar{
+  width:150px;
+  height:150px;  
 }
 .small-avatar{
   width:75px;

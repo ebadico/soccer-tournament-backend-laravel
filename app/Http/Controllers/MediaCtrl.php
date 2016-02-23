@@ -12,11 +12,19 @@ use Storage;
 use Flow;
 use Image;
 
+class MediaObserver{
+
+  public function deleting($item){
+    \Storage::delete($item->filename);
+  }
+}
+
 class MediaCtrl extends Controller
 {
   public function __construct(){
      $this->middleware('jwt.auth', ['except' => ['index','show','store']]);
   }
+  
   /**
    * Display a listing of the resource.
    *
@@ -45,7 +53,7 @@ class MediaCtrl extends Controller
     $media = new Medias();
     if($request->has('round_id')){
       /**
-       * IF A TEAM AVATAR DELETE THE PREVIOUS BEFORE
+       * IF A CLUB AVATAR DELETE THE PREVIOUS BEFORE
        */
         if($m = Medias::where('round_id', '=', $request->get('round_id'))->first()){
           $m->delete();
@@ -71,13 +79,6 @@ class MediaCtrl extends Controller
         }
         $media->player_id = $request->get('player_id');
         $media->type = 'avatar';
-    }
-    /**
-     * FEATURED IMAGE OF A POST
-     */
-    if($request->has('news_id')){
-        $media->news_id = $request->get('news_id');
-        $media->type = 'featured';   
     }
     /**
      * MAYBE NEEDED IN FUTURE
@@ -131,7 +132,7 @@ class MediaCtrl extends Controller
 
       // $crop->save($storage . $img['filename']);
     
-      return response()->json($img, 200);
+      return response()->json($media, 200);
     } else {
       return response()->json($img, 401);
     }
@@ -181,9 +182,6 @@ class MediaCtrl extends Controller
   public function destroy($id)
   {
     $media = Medias::find($id);
-    if($media->type === 'photo'){
-        Storage::delete($media->filename);
-    }
     $media->delete();
     $media->exists = false;
     return $media;

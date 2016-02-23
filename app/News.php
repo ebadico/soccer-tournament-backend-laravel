@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    protected $fillable = ['title','body','type', 'season_id'];
+  protected $fillable = ['title','body','type', 'season_id', 'featured_id'];
 
 
-    public function season(){
-      return $this->belongsTo('App\Season');
-    }
+  public function season(){
+    return $this->belongsTo('App\Season');
+  }
+  public function featured(){
+    return $this->hasOne('App\Medias', 'id', 'featured_id');
+  }
 }

@@ -3,22 +3,18 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class NewsForeigns extends Migration
-{
+class AddFeaturedImageToNews extends Migration{
   /**
    * Run the migrations.
    *
    * @return void
    */
-  public function up()
-  {
+  public function up(){
       Schema::table('news', function (Blueprint $table) {
-          $table->integer('season_id')->unsigned()->nullable();
-          $table->foreign('season_id')
-                ->references('id')
-                ->on('seasons')
-                ->onDelete('cascade');
-
+        $table->integer('featured_id')->unsigned()->nullable();
+        $table->foreign('featured_id')
+              ->references('id')
+              ->on('medias');
       });
   }
 
@@ -27,10 +23,9 @@ class NewsForeigns extends Migration
    *
    * @return void
    */
-  public function down()
-  {
+  public function down(){
       Schema::table('news', function (Blueprint $table) {
-          $table->dropForeign('news_season_id_foreign');
+        $table->dropForeign('news_featured_id_foreign');
       });
   }
 }
