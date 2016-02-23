@@ -1,3 +1,4 @@
+{{ post }}
 <form ng-submit="create(post)">
   <h3 ng-click='editMode = !editMode'><i class="fa fa-pencil pointer"></i> &nbsp; CREA ARTICOLO</h3>
   <div ng-show="editMode">
@@ -5,19 +6,22 @@
     <input type="text" class="form-control" placeholder="title" ng-model="post.title">
     <br>
     <textarea ui-tinymce ng-model="post.body"></textarea>
-    <div class="col-sm-4 pull-left">
-      <!-- <img ng-src="{{ player.media.path }}"
-        flow-init="{ testChunks:false, singleFile: true }" 
-        flow-files-submitted="submit($file, $event, $flow, player)"
-        flow-file-success="upload()"
-        flow-btn flow-attrs="{accept:'image/*'}"> -->
-      <i class="fa fa-photo fa-3x"
-        ng-show="!player.media" 
-        flow-init="{ testChunks:false, singleFile: true }" 
-        flow-files-submitted="submit($file, $event, $flow, player)"
-        flow-file-success="upload()"
-        flow-btn flow-attrs="{accept:'image/*'}">
+    <div class="input-group col-sm-4 pull-left">
+      <h6>Immagine di copertina</h6>
+      <i  ng-show="!post.featured"  
+          class="fa fa-photo fa-3x"
+          flow-init="{ testChunks:false, singleFile: true }" 
+          flow-files-submitted="submit($file, $event, $flow)"
+          flow-file-success="uploaded( $file, $message, $flow )"
+          flow-btn flow-attrs="{accept:'image/*'}">
       </i>
+      <div class="medium-avatar">
+        <img ng-src="{{ post.featured.path }}" alt="" ng-show="post.featured.path"
+            flow-init="{ testChunks:false, singleFile: true }" 
+            flow-files-submitted="submit($file, $event, $flow)"
+            flow-file-success="uploaded( $file, $message, $flow )"
+            flow-btn flow-attrs="{accept:'image/*'}">
+      </div>
     </div>
     <div class="input-group col-sm-4 pull-left" style="margin-top:15px;">
       <h6>Seleziona tipo</h6>
@@ -45,19 +49,19 @@
       <th class="col-md-1"> <i class="fa fa-cog"></i></th>
       <th> Title </th>
       <th> type </th>
-      <th> Stagione </th>
+      <th> <i class="fa fa-photo"></i> </th>
       <th> Data </th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="post in posts">
       <td>
-        <i class="fa fa-remove" ng-click="delete(post)"></i>
-        <i class="fa fa-pencil"></i>
+        <i class="fa fa-remove pointer" ng-click="delete(post)"></i>
+        <i class="fa fa-pencil pointer" ng-click="$parent.post = post; $parent.editMode = true;"></i>
       </td>
       <td> {{ post.title }}</td>
       <td> {{ post.type }}</td>
-      <td> {{ post.season.year }}</td>
+      <td> <img ng-src="{{ post.featured.path }}" alt=""></td>
       <td> {{ post.created_at }} </td>
     </tr>
   </tbody>

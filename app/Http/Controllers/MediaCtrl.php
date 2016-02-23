@@ -73,13 +73,6 @@ class MediaCtrl extends Controller
         $media->type = 'avatar';
     }
     /**
-     * FEATURED IMAGE OF A POST
-     */
-    if($request->has('news_id')){
-        $media->news_id = $request->get('news_id');
-        $media->type = 'featured';   
-    }
-    /**
      * MAYBE NEEDED IN FUTURE
      */
     if($request->has('season_id')){
@@ -131,7 +124,7 @@ class MediaCtrl extends Controller
 
       // $crop->save($storage . $img['filename']);
     
-      return response()->json($img, 200);
+      return response()->json($media, 200);
     } else {
       return response()->json($img, 401);
     }

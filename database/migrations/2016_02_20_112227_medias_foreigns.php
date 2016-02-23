@@ -16,7 +16,7 @@ class MediasForeigns extends Migration
             $table->integer('season_id')->unsigned()->nullable();
             $table->integer('round_id')->unsigned()->nullable(); // >> club photo
             $table->integer('team_id')->unsigned()->nullable();
-            $table->integer('news_id')->unsigned()->nullable();
+            // $table->integer('news_id')->unsigned()->nullable();
             $table->integer('player_id')->unsigned()->nullable();
 
             $table->foreign('season_id')
@@ -30,10 +30,10 @@ class MediasForeigns extends Migration
                 ->on('teams')
                 ->onDelete('cascade');
 
-            $table->foreign('news_id')
-                ->references('id')
-                ->on('news')
-                ->onDelete('cascade');
+            // $table->foreign('news_id')
+            //     ->references('id')
+            //     ->on('news')
+            //     ->onDelete('cascade');
 
             $table->foreign('player_id')
                 ->references('id')
@@ -52,7 +52,7 @@ class MediasForeigns extends Migration
         Schema::table('medias', function (Blueprint $table) {
             $table->dropForeign('medias_season_id_foreign');
             $table->dropForeign('medias_team_id_foreign');
-            $table->dropForeign('medias_news_id_foreign');
+            //$table->dropForeign('medias_news_id_foreign');
             $table->dropForeign('medias_player_id_foreign');
         });
     }
