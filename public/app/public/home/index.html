@@ -1,134 +1,76 @@
+<!-- LANDING -->
 <div class="container-fluid landing-container">
   <div class="heading">
     <h1 class="title">globus<strong>cup</strong></h1>
     <h3 class="subtitle">Lorem ipsum dolor sit amet.</h3>
   </div>
-</div>
+</div><!-- LANDING -->
 
-
+<!-- SPONSOR -->
 <div class="container-fluid sponsor-container">
   <h3 class="title">i nostri <strong>sponsor</strong></h3>
-</div>
+</div><!-- SPONSOR -->
 
-<div class="container-fluid latest-match-container" id="results">
+<!-- ULTIMA GIORNATA -->
+<div class="container-fluid lastday-container" id="results">
+  <h3 class="title">ultima <strong>giornata</strong></h3>
   
-  <div class="col-md-8 col-md-offset-2 latest-match outline-box">
-    <h2 class="title">RISULTATI ULTIMA <strong>GIORNATA</strong></h2>
-
-
-    <div class="col-xs-12 col-md-4 team-a">
-      <div class="small-avatar">
-        <img src="http://lorempixel.com/200/200/" alt="">
-      </div>
-      <div class="team-name">StoCazz AS</div>
-    </div>
-    <div class="col-xs-6 col-xs-offset-3 col-md-offset-0 col-md-4 result">
-      <div class="splitted-box">
-        <span>1</span>
-        <div class="right-box">
-          <span>2</span>
+  <div class="globus-table-container col-sm-8 col-sm-offset-2">
+    <div class="pills-container clearfix">
+      <div class="pill active">A</div>
+      <div class="pill">B</div>
+      <div class="pill">C</div>
+    </div> 
+    <div class="globus-table">
+      
+      <div ng-repeat="time in [1,2,3,4,5]">
+        <div class="table-row clearfix" ng-click="showMatchDetail = !showMatchDetail ">
+          <div class="col-sm-2 text-left">
+            <div class="small-avatar">
+              <img src="http://lorempixel.com/200/200/" alt="">
+            </div>
+          </div>
+          <div class="col-sm-3 text-center">Roma</div>
+          <div class="col-sm-2 text-center result">1 - 0</div>
+          <div class="col-sm-3 text-center">Lazio</div>
+          <div class="col-sm-2 text-right">
+            <div class="small-avatar">
+              <img src="http://lorempixel.com/200/200/" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="match-detail clearfix" ng-show="showMatchDetail">
+          <div class="col-sm-3 col-sm-offset-3">
+            <div> <i class="fa fa-futbol-o"></i> tizioA</div>
+            <div> <i class="fa fa-square primary"></i> tizioA</div>
+          </div>
+          <div class="col-sm-3 col-sm-offset-2">
+            <div> <i class="fa fa-square primary"></i> tizioA</div>
+          </div>
         </div>
       </div>
+
     </div>
-    <div class="col-xs-12 col-md-4 team-b">
-      <div class="small-avatar">
-        <img src="http://lorempixel.com/200/200/" alt="">
-      </div>
-      <div class="team-name">StoCazz2 ASD</div>
-    </div>
-    <div class="clearfix"></div>
-    
-    <span class="follow-up">Tutti i risultati</span>
   </div>
 
+</div><!-- ULTIMA GIORNATA -->
 
-</div>
+<!-- CLASSIFICA MARCATORI -->
+<div class="container-fluid scorers-container" id="scorers">
+  <h3 class="title">classifica <strong>marcatori</strong></h3>
+</div><!-- CLASSIFICA MARCATORI -->
 
-<div class="container-fluid next-match-container">
- 
- <div class="splitted-box splitted-fluid">
-  <span>Classifica</span>
-  <div class="right-box">
-    <span>Marcatori</span>
-  </div>
-</div>
-  
-</div>
-
-
+<!-- NEWS -->
 <div class="container-fluid news-container" id="news">
-  
-  <div class="outline-box col-md-8 col-md-offset-2">
-    <h1 class="title">
-      ultimi
-      <strong>articoli</strong>
-    </h1>
+  <h3 class="title">news &amp; <strong> comunicati</strong></h3>
+</div><!-- NEWS -->
 
-    <div class="col-md-6 single-news" >
-      <div class="featured"></div>
-      <div class="excerpt">
-        <h1 class="single-title">Titolo news</h1>
-        <p class="body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit quaerat nisi quibusdam obcaecati facilis fugit.</p>
-        <span class="read-more">Leggi <i class="fa fa-arrow-right"></i></span>
-      </div> 
-    </div>
-
-    <div class="col-md-6 single-news" >
-      <div class="featured"></div>
-      <div class="excerpt">
-        <h1 class="single-title">Titolo news</h1>
-        <p class="body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit quaerat nisi quibusdam obcaecati facilis fugit.</p>
-        <span class="read-more">Leggi <i class="fa fa-arrow-right"></i></span>
-      </div> 
-    </div>
-
-    <div class="clearfix"></div>
-  
-    <span class="follow-up">Tutti gli articoli</span>
-
-  </div>
-
- 
-</div>
-
-
+<!-- MEDIA -->
 <div class="container-fluid media-container" id="media">
+  <h3 class="title">foto &amp; <strong>video</strong></h3>
+</div><!-- MEDIA -->
 
-  <div class="outline-box col-md-8 col-md-offset-2">
-    <h1 class="title">
-      MEDIA
-      <strong>FOTO & VIDEO</strong>
-    </h1>
-
-    <div class="media-item col-lg-2 col-xs-4 col-md-3">
-      <img src="http://lorempixel.com/500/500/" alt="">
-    </div>
-    <div class="media-item col-lg-2 col-xs-4 col-md-3">
-      <img src="http://lorempixel.com/500/500/" alt="">
-    </div>
-    <div class="media-item col-lg-2 col-xs-4 col-md-3">
-      <img src="http://lorempixel.com/500/500/" alt="">
-    </div>
-    <div class="media-item col-lg-2 col-xs-4 col-md-3">
-      <img src="http://lorempixel.com/500/500/" alt="">
-    </div>
-    <div class="media-item col-lg-2 col-xs-4 col-md-3">
-      <img src="http://lorempixel.com/500/500/" alt="">
-    </div>
-    <div class="media-item col-lg-2 col-xs-4 col-md-3">
-      <img src="http://lorempixel.com/500/500/" alt="">
-    </div>
-
-    <div class="clearfix"></div>
-  
-    <span class="follow-up">Vedi tutti</span>
-
-  </div>
-
- 
-</div>
-
+<!-- FOOTER -->
 <footer class="container-fluid footer-container">
- 
-  
-</footer>
+  footer
+</footer><!-- FOOTER -->

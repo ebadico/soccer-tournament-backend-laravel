@@ -1,0 +1,119 @@
+.landing-container{
+  position:relative;
+  top:0; left:0;
+  z-index: -9;
+  height: 100vh;
+  background-image: url('/images/stadium.jpg');
+  background-size: cover;
+  background-position: center center;
+
+  .heading{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color:@white;
+  }
+
+  .title{
+    font-size: 8em;
+    text-align: center;
+    font-family: 'Arial';
+    text-transform: lowercase;
+    color:@white;
+    text-shadow: 1px 1px 1px @black;
+    strong{
+      color:@yellow;
+    }
+  }
+  
+  .subtitle{
+    font-size: 1.25em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+
+.news-container{
+  padding-top: 75px;
+  padding-bottom: 75px;
+  
+  & > .title{
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .single-news{
+    position: relative;
+    height: 200px; 
+    
+    .featured{
+      height: 100%;
+      float:left;
+      width: 40%;
+
+      background: url('/images/field.jpg');
+      background-position: center center;
+    }
+    .excerpt{
+      text-align: center;
+      height: 100%;
+      background: @grey;
+      float:left;
+      width: 60%;
+      .single-title{ 
+        .bold;
+        font-size: 1.5em; 
+        color: @primary;
+      }
+      .body{
+        .light;
+        padding:5px;
+      }
+      .read-more{
+        cursor:pointer;
+        .bold;
+        text-transform: uppercase;
+        position: absolute;
+        bottom:10px;
+        right:25px;
+        font-size: 0.9em;
+        color:@primary;
+        
+        i{ .smooth; }
+
+        &:hover{
+          i{font-size: 1.1em;}
+        }
+      }
+    }
+  }
+}
+
+.sponsor-container{
+  min-height: 250px;
+  background: url('/images/field.jpg');
+  background-position: bottom center;
+  .title{
+    color: @white;
+    text-align: center;
+  }
+}
+
+.media-container{
+  padding-top: 75px;
+  padding-bottom: 75px;
+
+  .media-item{
+    overflow:hidden;
+    max-height: 150px;
+    margin-bottom: 20px;
+  }
+}
+
+
+.footer-container{
+  height: 250px;
+  background: @black;
+}

@@ -1,0 +1,42 @@
+.navbar{
+  background: transparent;
+  border-radius: 0px;
+  border:none;
+  left:0;
+  width: 100%;
+  color:@white;
+  text-transform: uppercase;
+  position: fixed;
+  top: 0px;
+  border-bottom: 1px solid fade(@white, 25%);
+  z-index: 9999;
+  transition: background-color ease-out 0.5s;
+
+
+  &.nav-dark{
+    background: @dark-grey;
+  }
+
+  .navbar-brand{
+    padding:10px;
+  }
+  .navbar-brand img{
+    max-height: 100%;
+  }
+
+  .open{
+    a{ background: none !important;}
+  }
+
+  .nav{ 
+    a{
+      color:@white !important;
+    }
+  }
+
+  .dropdown-menu{
+    background: fade(@secondary, 35%) !important;
+    text-align: center !important;
+    border-bottom:5px solid @primary;
+  }
+}

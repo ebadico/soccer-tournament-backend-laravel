@@ -1,3 +1,17 @@
+.small-avatar{
+  width: 40px;  
+  height: 40px;
+  overflow:hidden;
+  margin: auto;
+
+  img{
+    width: 100%;
+  }
+}
+
+.container-fluid {
+  .title{ text-align: center; }
+}
 button{
   outline: none !important;
   border:none;
@@ -11,60 +25,11 @@ button{
   top: 50%;
   transform: translateY(-50%);
 }
-.outline-box{
-  border: 3px solid @primary;
-  text-align: center;
-  position: relative;
-  padding-bottom: 25px;
-  padding-top: 50px;
-    
-  .title{ 
-    display: inline-block;
-    font-size: 2em; 
-    width: auto;
-    position: absolute;
-    left:36%;
-    top:-47px;
-    background: @white;
-    padding: 10px;
-  }
 
-  .follow-up{
-    position: relative;
-    bottom: -47px;
-
-    &:before{
-      content:'';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top:0;
-      left:0;
-      outline: 25px solid @white;
-    }
-  }
-}
 .smooth{ transition:ease-in .25s; }
-.avatar{
- overflow: hidden; 
- width: 150px;
- height: 150px;
- margin:auto;
+.smooth-mid{ transition:ease-in .5s; }
+.smooth-long{ transition:ease-in .75s; }
 
- &.round-avatar{
-  border-radius: 50%;
- }
-}
-.small-avatar{
-  overflow: hidden;
-  width: 75px;
-  height: 75px;
-  margin:auto;
-
-  &.round-avatar{
-    border-radius: 50%;
-  }
-}
 .splitted-box{
   position: relative;
   top: 50%;
