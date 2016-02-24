@@ -51,11 +51,9 @@ class NewsCtrl extends Controller{
         array_push($featured, $value->featured_id);
       }
       
-      $filenameToDelete = [];
-      foreach(Medias::where('type','=','featured')->whereNotIn('id', $featured)->select('filename')->get() as $value){
-        array_push($filenameToDelete, $value->filename);
+      foreach (Medias::where('type','=','featured')->whereNotIn('id', $featured)->get() as $mediaToDelete){
+        $mediaToDelete->delete();
       }
-      Medias::where('type','=','featured')->whereNotIn('id', $featured)->delete();
 
       if($news){
         $res['status'] = 200;

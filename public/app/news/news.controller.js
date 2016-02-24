@@ -18,6 +18,9 @@ angular
     if($message){
       var dbRecord = JSON.parse($message);
       $scope.post.featured_id = dbRecord.id;
+      $scope.post.featured = {
+        path: dbRecord.path
+      }
     }
     toastr.success('Immagine di copertina aggiunta!');
     $scope.uploadingBlock = false;
