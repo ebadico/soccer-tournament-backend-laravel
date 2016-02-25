@@ -15,15 +15,15 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         
-        <li><a ui-sref="public.home"> Home</a></li>
+        <li ng-class=" {current: stateLocation == 'public.home'} "><a ui-sref="public.home"> Home</a></li>
 
-        <li><a ui-sref="public.rankings"> Classifiche</a></li>
+        <li ng-class=" {current: stateLocation == 'public.rankings'} "><a ui-sref="public.rankings"> Classifiche</a></li>
 
-        <li><a ui-sref="public.scorers"> Marcatori</a></li>
+        <li ng-class=" {current: stateLocation == 'public.scorers'} "><a ui-sref="public.scorers"> Marcatori</a></li>
 
-        <li><a ui-sref="public.calendars"> Calendari</a></li>
+        <li ng-class=" {current: stateLocation == 'public.calendars'} "><a ui-sref="public.calendars"> Calendari</a></li>
         
-        <li class="dropdown">  
+        <li class="dropdown" ng-class=" {current: stateLocation == 'public.news' } ">  
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a ui-sref="public.news({ type: 'news' })"> Articoli</a></li>
@@ -31,7 +31,7 @@
           </ul>
         </li>
 
-        <li class="dropdown">  
+        <li class="dropdown" ng-class=" {current: stateLocation == 'public.medias' } ">  
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a ui-sref="public.medias({ type: 'photo' })"> Foto</a></li>
@@ -39,9 +39,9 @@
           </ul>
         </li>
 
-        <li><a ui-sref="public.rules"> Regolamento</a></li>
+        <li ng-class=" {current: stateLocation == 'public.rules'} "><a ui-sref="public.rules"> Regolamento</a></li>
 
-        <li><a ui-sref="public.contacts"> Contatti</a></li>
+        <li ng-class=" {current: stateLocation == 'public.contacts'} "><a ui-sref="public.contacts"> Contatti</a></li>
 
       </ul>
     </div><!-- /.navbar-collapse -->

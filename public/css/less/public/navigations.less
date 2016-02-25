@@ -45,7 +45,8 @@
       height: 40px;
       margin-left: 25px;
       .smooth;
-      &:hover{
+      &:hover, &.current{
+        a{color:@primary !important;}
         border-bottom: 4px solid @primary;
       }
       a{
@@ -54,6 +55,7 @@
         padding: 0;
         margin: 0;
         color:@white !important;
+        letter-spacing: 1px;
 
         &:hover{
           color:@primary !important;

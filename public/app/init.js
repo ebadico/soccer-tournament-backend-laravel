@@ -188,6 +188,7 @@ angular.module('app', [
   });
 
   $rootScope.$on('$stateChangeStart', function(e, stateTo, toParams, stateFrom){
+    $rootScope.stateLocation = stateTo.name;
     if ( stateTo.name.match(/^admin/) ){
       $rootScope.location = 'admin';
     }else{
