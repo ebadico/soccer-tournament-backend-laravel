@@ -3,9 +3,14 @@
   top:0; left:0;
   z-index: -9;
   height: 100vh;
-  background-image: url('/images/stadium.jpg');
+  background-image: url('/images/globus_landing.jpg');
   background-size: cover;
   background-position: center center;
+
+  .logo{
+    max-width: 600px; 
+    width: 100%;
+  }
 
   .heading{
     position: relative;
@@ -26,17 +31,38 @@
       color:@yellow;
     }
   }
-  
-  .subtitle{
-    font-size: 1.25em;
-    text-transform: uppercase;
+ 
+  .catch_phrase, .payoff{
+    .regular;
     letter-spacing: 1px;
+    font-size: 2.25em;
+  }
+  .catch_phrase{
+    margin-bottom: -10px;
+    color:@white;
+  }
+  .payoff{
+    color: @primary;
   }
 }
 
+.lastday-container{
+  padding-bottom: 50px;
+}
+
+.scorers-container{
+  min-height: 625px;
+  height: auto;
+  background: url('/images/scorers_divider.jpg');
+  background-position: center;
+  background-size: cover;
+
+  .title{
+    color:@white;
+  }
+}
 
 .news-container{
-  padding-top: 75px;
   padding-bottom: 75px;
   
   & > .title{
@@ -91,13 +117,17 @@
   }
 }
 
+
+
 .sponsor-container{
   min-height: 250px;
-  background: url('/images/field.jpg');
-  background-position: bottom center;
   .title{
-    color: @white;
+    padding-bottom: 10px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
+    border-bottom: 1px solid fade(@dark-grey, 25%);
   }
 }
 

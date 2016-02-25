@@ -1,0 +1,129 @@
+// Scorers rankings in homepage
+.scorers-excerpt{
+  margin: 13px 13px;
+  display:inline-block;
+  width: 275px;
+  border-radius: 15px;
+  background: @white;
+  border: 1px solid @primary;
+  box-shadow: 0 0 10px fade(@black, 50%);
+  overflow:hidden;
+  text-align: center;
+  .club-photo{
+    height: 140px;
+    overflow:hidden;
+    img{ width: 100%;}
+  }
+  .club-name, .round-name{
+    height: 40px;
+    line-height: 40px;
+  }
+  .club-name{
+    background: @black;
+    color:@primary;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .round-name{
+    border-bottom: 1px solid @primary;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .player{
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid @grey;
+    div{
+      font-size: .9em;
+      font-weight: bold;
+      float:left;
+      width: 33%;
+      
+      &:first-child{
+        font-size: 1em;
+      }
+      &:last-child{
+        font-size: .75em;
+        color:@dark-grey;
+        font-weight: normal;
+      }
+      &:after{
+        content: '';
+        display: block;
+        clear:both;
+      }
+    }
+  }
+  .viewmore{
+    font-size: .85em;
+    height: 30px;
+    line-height: 30px;
+    background: @grey;
+    color: @dark-grey;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+
+
+// news excerpt in homepage
+.news-excerpt{
+  background: @white;
+  margin-bottom: 25px;
+  margin-right: 25px;
+  display:inline-block;
+  width: 575px;
+  height: 275px;
+  overflow:hidden;
+
+  border: 1px solid @primary;
+  border-radius:15px;
+
+  .featured{
+    height: 100%;
+    width: 275px;
+    overflow:hidden;
+    float:left;
+    img{
+      width: 100%;
+    }
+  }
+  .post{
+    height: 100%;
+    position: relative;
+    text-align: left;
+    float:left;
+    width: 50%;
+    padding-left: 15px;
+    h1{
+      font-size: 1.25em;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: @primary;
+      margin-bottom: 5px;
+    }
+    .date{
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    .excerpt{
+      font-family: 'Helvetica';
+      font-size: 1em;
+      line-height: 150%;
+    }
+    .followup{
+      font-weight: bold;
+      text-transform: uppercase;
+      position: absolute;
+      bottom:10px;
+      right: 10px;
+      cursor:pointer;
+      .smooth;
+      &:hover{
+        color: @primary;
+      }
+    }
+  }
+}

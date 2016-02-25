@@ -10,7 +10,12 @@
 }
 
 .container-fluid {
-  .title{ text-align: center; }
+  .title{ 
+    font-size: 2em;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center; 
+  }
 }
 button{
   outline: none !important;
@@ -106,6 +111,8 @@ button{
 
 
 .follow-up{
+  .bold;
+  .smooth;
   cursor: pointer;
   display:inline-block;
   text-align: center;
@@ -113,20 +120,14 @@ button{
   background: @primary;
   color:@black;
   text-transform: uppercase;
-  font-size: 0.8em;
-  .bold;
+  font-size: 0.9em;
   width: 160px;
   height: 40px;
-
-  outline: 1px solid @black;
-  outline-offset: -5px;
-
-  .smooth;
+  border-radius: 10px;
 
   &:hover{
-    font-size: 0.9em;
-    outline: 3px solid @black;
-    outline-offset: -2px;    
+    color:@primary;
+    background: @black;
   }
 }
 
