@@ -17,6 +17,11 @@ class PrizesForeigns extends Migration
             $table->foreign('media_id')
                   ->references('id')
                   ->on('medias');
+
+            $table->integer('season_id')->unsigned()->nullable();
+            $table->foreign('season_id')
+                  ->references('id')
+                  ->on('seasons');
         });
     }
 
@@ -28,6 +33,7 @@ class PrizesForeigns extends Migration
     public function down(){
         Schema::table('prizes', function (Blueprint $table) {
             $table->dropForeign('prizes_media_id_foreign');
+            $table->dropForeign('prizes_season_id_foreign');
         });
     }
 }

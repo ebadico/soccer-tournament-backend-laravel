@@ -108,10 +108,17 @@ angular.module('app', [
         templateUrl: 'app/news/index.html',
         controller: 'NewsCtrl',
       })
+
       .state('admin.medias',{
         url: '/medias',
         templateUrl: 'app/media/index.html',
         controller: 'MediaCtrl',
+      })
+
+      .state('admin.prizes',{
+        url: '/prizes',
+        templateUrl: 'app/prize/index.html',
+        controller: 'PrizeCtrl',
       })
 
       .state('admin.season', {

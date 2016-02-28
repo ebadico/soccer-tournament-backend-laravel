@@ -33,6 +33,7 @@ Route::get('/api', function () {
 
 Route::group(['prefix'=>'api/' , 'middleware' => ['web']] , function () {
     Route::resource('/news'        , 'NewsCtrl');
+    Route::resource('/prize'       , 'PrizeCtrl');
     Route::resource('/user'        , 'UserCtrl');
     Route::resource('/round'       , 'RoundCtrl');
     Route::resource('/team'        , 'TeamCtrl');
