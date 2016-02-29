@@ -4,7 +4,12 @@
 @white: white;
 @black: #111;
 
-@yellow: #FEAF05;
+@gold: #ffae00;
+@silver: #BFBFBF;
+@bronze: #CD7F32;
+@wood: #804000;
+
+@yellow: #ffae00;
 
 @dark-grey: #333;
 @mid-grey: #5d5d5d;
@@ -23,4 +28,31 @@
 }
 .secondary-bg{
   background:@secondary;
+}
+
+
+.gold{
+  color:@gold;
+}
+.silver{
+  color:@silver;
+}
+.bronze{
+  color:@bronze;
+}
+.wood{
+  color:@wood;
+}
+
+.rank-1{
+  .gold;
+}
+.rank-2{
+  .silver;  
+}
+.rank-3{
+  .bronze;
+}
+.rank-4{
+  .wood;
 }

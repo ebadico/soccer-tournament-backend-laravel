@@ -1,63 +1,87 @@
-<div class="small-12 text-center" ng-show="!match.id">
+<div class="small-12 text-center" ng-show="!match.id" id="match-result">
   <i class="fa fa-cog fa-spin fa-5x center"></i>
 </div>
 <form ng-submit="edit(match)" class="text-center" ng-show="match.id">
   <h1>{{ teamAScores.length}} - {{ teamBScores.length}}</h1>
   <hr>
-  <label>Team di casa: </label> 
-  <span>{{ match.team_a.name }}</span>
-  <br>
-  <label>Team ospite: </label> 
-  <span>{{ match.team_b.name }}</span>
-
-  <br>
-  <label>Winner: </label> {{ match.winner_id ? match.winner_id === match.team_a.id ? match.team_a.name : match.team_b.name : null }}
-  <br><br>
-  <hr>
-  
-  <h3>Presenze & Goals</h3>
-
+   
   <div class="col-md-6">
-    <div class="small-avatar">
+    <div class="medium-avatar">
       <img ng-src="{{ match.team_a.media.path }}" alt="">
     </div>
-    <h5>{{ match.team_a.name}}</h5>
+    <h3>{{ match.team_a.name}}</h3>
     <hr>
+    
+    <!-- PERFORMANCE -->
+    <div class="performance-container col-xs-12">
+      <div class="performance-heading">
+        <div class="col-xs-3">Presenza</div>
+        <div class="col-xs-3">Giocatore</div>
+        <div class="col-xs-3">Goals</div>
+        <div class="col-xs-3">Penalità</div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="player clearfix" ng-repeat="player in match.team_a.player">
+        <div class="col-xs-3">
+          <input type="checkbox" ng-model="player.attendance" ng-checked="player.attendance">
+        </div>
+        <div class="col-xs-3">
+          {{ player.name }}
+        </div>
+        <div class="col-xs-3">
+          <input class="form-control" type="number" ng-model="player.score">
+        </div>
+        <div class="col-xs-3">
+          <select class="form-control" ng-init="player.penalty = player.penalty || 'none' " ng-model="player.penalty">
+            <option value="none" selected>No</option>
+            <option value="warning">Ammonizione</option>
+            <option value="expulsion">Esplusione</option>
+          </select>          
+        </div>
+      </div>
+    </div><!-- PERFORMANCE -->
 
-    <div ng-repeat="player in match.team_a.player" class="input-group">
-      <span class="input-group-addon" style="width:75%; text-align:left;" ng-click="player.attendance = !player.attendance">
-        <input type="checkbox" ng-model="player.attendance" ng-checked="player.attendance"> 
-        {{ player.name }}
-      </span>
-      <input class="form-control" type="number" ng-model="player.score">
-      <select class="form-control" ng-init="player.penalty = player.penalty || 'none' " ng-model="player.penalty">
-        <option value="none" selected>Nessuna</option>
-        <option value="">Ammonizione</option>
-        <option value="">Esplusione</option>
-      </select>
-    </div>
   </div>
 
 
   <div class="col-md-6">
-    <div class="small-avatar">
+    <div class="medium-avatar">
       <img ng-src="{{ match.team_b.media.path }}" alt="">
     </div>
-    <h5>{{ match.team_b.name}}</h5>
+    <h3>{{ match.team_b.name}}</h3>
     <hr>
 
-    <div ng-repeat="player in match.team_b.player" class="input-group">
-      <span class="input-group-addon" style="width:75%; text-align:left;" ng-click="player.attendance = !player.attendance">
-        <input type="checkbox" ng-model="player.attendance" ng-checked="player.attendance"> 
-        {{ player.name }}
-      </span>
-      <input class="form-control" type="number" ng-model="player.score">
-      <select class="form-control" ng-init="player.penalty = player.penalty || 'none' " ng-model="player.penalty">
-        <option value="none" selected>Nessuna</option>
-        <option value="warning">Ammonizione</option>
-        <option value="expulsion">Esplusione</option>
-      </select>
-    </div>
+    <!-- PERFORMANCE -->
+    <div class="performance-container col-xs-12">
+      <div class="performance-heading">
+        <div class="col-xs-3">Presenza</div>
+        <div class="col-xs-3">Giocatore</div>
+        <div class="col-xs-3">Goals</div>
+        <div class="col-xs-3">Penalità</div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="player clearfix" ng-repeat="player in match.team_b.player">
+        <div class="col-xs-3">
+          <input type="checkbox" ng-model="player.attendance" ng-checked="player.attendance">
+        </div>
+        <div class="col-xs-3">
+          {{ player.name }}
+        </div>
+        <div class="col-xs-3">
+          <input class="form-control" type="number" ng-model="player.score">
+        </div>
+        <div class="col-xs-3">
+          <select class="form-control" ng-init="player.penalty = player.penalty || 'none' " ng-model="player.penalty">
+            <option value="none" selected>No</option>
+            <option value="warning">Ammonizione</option>
+            <option value="expulsion">Esplusione</option>
+          </select>          
+        </div>
+      </div>
+    </div><!-- PERFORMANCE -->
+
+  </div>
+
   </div>
 
   <div class="clearfix"></div>

@@ -1,0 +1,18 @@
+<div class="globus-table-container" ng-show="ready">
+  <div class="pills-container clearfix">
+
+    <div 
+          class="pill" 
+          ng-class="{ 'active': roundFilterId === round.id }" 
+          ng-repeat="round in rounds track by $index" ng-click=" changeRound(round) "
+          ng-init=" $index === 0 ? changeRound(round) : true;">
+          {{ roundFilterId === round.id ? 'GIRONE' : '' }} {{ round.name }}
+    </div>
+  </div> 
+
+  <div class="globus-table">
+     
+    <ng-transclude></ng-transclude>
+
+  </div>
+</div>

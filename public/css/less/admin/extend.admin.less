@@ -27,6 +27,14 @@ input,select, .input-group{
   }
 }
 
+.player-name{
+  letter-spacing: 1px;
+  font-weight: bold !important;
+}
+.player-performance{
+  cursor: pointer;
+}
+
 .submit-box{
     text-align: right;
     width: 100%;
@@ -84,6 +92,7 @@ button[type=submit]{
     display:block !important;
     margin: auto !important;
     max-height: 100%;
+    max-width: 100%;
   }
   &.round{
     border-radius: 50%;
@@ -100,4 +109,27 @@ button[type=submit]{
 .small-avatar{
   width:75px;
   height:75px;  
+}
+
+.performance-container{
+  .performance-heading{
+    height: 40px;
+    text-transform: uppercase;
+    line-height: 40px;
+    background: @blue;
+    color: white;
+    
+  }
+  .player{
+    height: 53px;
+    border-bottom: 1px solid @grey;
+    padding: 10px auto;
+    input,select{
+      margin: 10px auto;
+    }
+    div{
+      height: 53px;
+      line-height: 53px;
+    }
+  }
 }

@@ -1,14 +1,37 @@
-<div class="container-fluid common-page-container">
-  <div class="heading-image">
+<div class="container-fluid common-page-container" ng-init="headerBg = '/images/field.jpg' ">
+  <div class="heading-image" ng-style="{'background-image':'url({{headerBg}})'}">
     <h1 class="title">Globus Cup <strong>Classifiche</strong></h1>
   </div>
 
   <loading show='teams.length'></loading>
 
   <main-content ng-show="teams.length">
-    <button ng-repeat="round in rounds track by $index" ng-click=" changeRound(round.id) ">{{ round.name}}</button>
+
+
+    <globus-table>
+      <div class="table-header clearfix">
+          <div class="col-xs-3 text-center"> <strong>posizione</strong> </div>
+          <div class="col-xs-4 col-xs-offset-2 text-left"> <strong>squadra</strong> </div>
+          <div class="col-xs-3 text-center"> <strong>punti</strong> </div>        
+      </div>
+      <div ng-repeat="team in teams | orderBy: '-points' | roundFilter: $parent.roundFilterId track by $index">
+        <div class="table-row clearfix">
+          <div class="col-xs-3 text-center rank-{{ $index + 1 }}" style="font-size: 1.5em;">
+               {{ $index + 1 }}
+               <i class="fa fa-trophy" ng-show="{{ $index >= 0 && $index <= 3 }} "></i>
+          </div>
+          <div class="col-xs-2 text-center avatar-bg" style="background: url({{ team.media.path }})"></div>
+          <div class="col-xs-4 text-left">{{ team.name }}</div>
+          <div class="col-xs-3 text-center">{{ team.points }}</div>
+          <div class="clearfix"></div>
+        </div>
+      </div> 
+    </globus-table>
+
+
+    <!-- <button ng-repeat="round in rounds track by $index" ng-click=" changeRound(round.id) ">{{ round.name}}</button>
     <div ng-repeat="team in teams | orderBy: '-points' | roundFilter: roundFilterId ">
       <a ui-sref="public.team({team_id: team.id })"> {{ team.name }} </a>
-    </div>
+    </div> -->
   </main-content>
 </div>

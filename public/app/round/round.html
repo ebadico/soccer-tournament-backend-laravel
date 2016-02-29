@@ -10,7 +10,7 @@
       flow-file-success="uploaded()"
       flow-btn flow-attrs="{accept:'image/*'}">
   </i>
-  <div class="medium-avatar" >
+  <div class="medium-avatar" ng-show="round.media">
     <img 
         ng-src="{{ round.media.path}}"
         ng-show="!club.photo" 

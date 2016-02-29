@@ -8,7 +8,15 @@ angular.module('app', [
   'satellizer',
 ])
 
-.config(['flowFactoryProvider', '$authProvider', '$stateProvider', '$urlRouterProvider', function(flowFactoryProvider, $authProvider, $stateProvider, $urlRouterProvider) {
+.config([
+  'flowFactoryProvider',
+  '$authProvider', 
+  '$stateProvider', 
+  '$urlRouterProvider',
+  '$httpProvider',
+  function(flowFactoryProvider, $authProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
+
+  //$httpProvider.defaults.cache = true;
 
   flowFactoryProvider.defaults = {
     chunkSize: 2048 * 2048,
@@ -88,7 +96,7 @@ angular.module('app', [
       **/
     .state('admin', {
       abstract: true,
-      cache: false,
+      //cache: false,
       url:'/admin',
       templateUrl: 'app/admin/admin-template.html',
       controller: 'AdminCtrl',

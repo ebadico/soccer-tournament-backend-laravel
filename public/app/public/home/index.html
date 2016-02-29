@@ -13,43 +13,34 @@
 <div class="container-fluid lastday-container" id="results">
   <h3 class="title">ultima <strong>giornata</strong></h3>
   
-  <div class="globus-table-container col-sm-8 col-sm-offset-2">
-    <div class="pills-container clearfix">
-      <div class="pill active">A</div>
-      <div class="pill">B</div>
-      <div class="pill">C</div>
-    </div> 
-    <div class="globus-table">
-      
-      <div ng-repeat="time in [1,2,3,4,5]">
-        <div class="table-row clearfix" ng-click="showMatchDetail = !showMatchDetail ">
-          <div class="col-xs-2 text-left">
-            <div class="small-avatar">
-              <img src="http://lorempixel.com/200/200/" alt="">
-            </div>
-          </div>
-          <div class="col-xs-3 text-center">Roma</div>
-          <div class="col-xs-2 text-center result">1 - 0</div>
-          <div class="col-xs-3 text-center">Lazio</div>
-          <div class="col-xs-2 text-right">
-            <div class="small-avatar">
-              <img src="http://lorempixel.com/200/200/" alt="">
-            </div>
+  <globus-table class="col-sm-8 col-sm-offset-2">
+    <div ng-repeat="time in [1,2,3,4,5]">
+      <div class="table-row clearfix" ng-click="showMatchDetail = !showMatchDetail ">
+        <div class="col-xs-2 text-left">
+          <div class="small-avatar">
+            <img src="http://lorempixel.com/200/200/" alt="">
           </div>
         </div>
-        <div class="match-detail clearfix" ng-show="showMatchDetail">
-          <div class="col-sm-3 col-sm-offset-3">
-            <div> <i class="fa fa-futbol-o"></i> tizioA</div>
-            <div> <i class="fa fa-square primary"></i> tizioA</div>
-          </div>
-          <div class="col-sm-3 col-sm-offset-2">
-            <div> <i class="fa fa-square primary"></i> tizioA</div>
+        <div class="col-xs-3 text-center">Roma</div>
+        <div class="col-xs-2 text-center result">1 - 0</div>
+        <div class="col-xs-3 text-center">Lazio</div>
+        <div class="col-xs-2 text-right">
+          <div class="small-avatar">
+            <img src="http://lorempixel.com/200/200/" alt="">
           </div>
         </div>
       </div>
-
-    </div>
-  </div>
+      <div class="match-detail clearfix" ng-show="showMatchDetail">
+        <div class="col-sm-3 col-sm-offset-3">
+          <div> <i class="fa fa-futbol-o"></i> tizioA</div>
+          <div> <i class="fa fa-square primary"></i> tizioA</div>
+        </div>
+        <div class="col-sm-3 col-sm-offset-2">
+          <div> <i class="fa fa-square primary"></i> tizioA</div>
+        </div>
+      </div>
+    </div> 
+  </globus-table>
 
 </div><!-- ULTIMA GIORNATA -->
 

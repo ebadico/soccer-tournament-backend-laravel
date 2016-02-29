@@ -26,6 +26,7 @@ angular
       getRounds();
   
       $scope.getDataFromRound = function(round_id){
+        $scope.teams = [];
         Team.getFromRound(round_id)
         .then(function(res){
           $scope.teams = res.data;
