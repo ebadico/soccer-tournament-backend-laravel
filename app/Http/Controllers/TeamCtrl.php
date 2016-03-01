@@ -103,9 +103,8 @@ class TeamCtrl extends Controller
     public function update(Request $request, $id)
     {
 
-        if($team = Team::find($id)->first()){
-            $team->name = $request->get('name');
-            //$team->round_id = $request->get('round_id');
+        if($team = Team::where('id', '=', $id)->first()){
+            $team->fill($request->all());
             if($team->save()){
                 $res['status'] = 202;
                 $res['message'] = 'resource updated successfully';
@@ -125,8 +124,14 @@ class TeamCtrl extends Controller
      */
     public function destroy($id)
     {
-        if($team = Team::find($id)){
-            if ($team->media()->get()->count()) $team->media()->first()->delete();
+        if ( $team = Team::where('id', '=', $id)->first() ){
+            if ($team->media()->get()->count()) {
+                $team->media()->first()->delete();
+            }
+            if ($team->group_photo()->get()->count()) {
+                $team->group_photo()->first()->delete();
+            }
+
             if($team->delete()){
                 $res['status'] = 202;
                 $res['message'] = 'resource deleted successfully';

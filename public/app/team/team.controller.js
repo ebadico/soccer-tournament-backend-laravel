@@ -33,10 +33,12 @@ angular
       Team
       .delete(team)
       .then(function (res) {
+        console.log("team.controller.js :36", res.data);
         toastr.warning('Rimosso!');
         getTeams();
       }, function (err){
-        toastr.error(err, 'Errore...');
+        toastr.error(err.data, 'Errore...');
+        console.log("team.controller.js :40", err);
       })
     }
   }

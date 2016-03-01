@@ -16,7 +16,7 @@ class CreateConfigurations extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->boolean('tournament_active');
+            $table->boolean('tournament_active')->default(false);
             $table->string('tornament_name');
             $table->string('admin_email')->default('simonecorsi.rm+globus_cup@gmail.com');
             $table->string('cms_owner')->default('Simone Corsi');

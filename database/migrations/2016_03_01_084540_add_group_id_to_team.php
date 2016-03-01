@@ -18,7 +18,7 @@ class AddGroupIdToTeam extends Migration
             $table->foreign('group_photo_id')
                   ->references('id')
                   ->on('medias')
-                  ->onCascade('delete');
+                  ->onDelete('cascade');
 
 
         });

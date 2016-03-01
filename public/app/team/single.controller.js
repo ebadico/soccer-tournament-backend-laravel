@@ -19,13 +19,18 @@ angular
   // refactor the shit out of Medias, put FK in other model idiot.
   // why in the fuckin hell you didn't do it from the start I don't even know.
   //
-  // $scope.submitGroupPhoto = function ($files, $event, $flow, team) {
-  //   $flow.opts.target = '/api/media?type=group&team_id=' + team.id;
-  //   $flow.upload();
-  // }
-  // $scope.uploadedGroupPhoto = function ($file, $message) {
-  //   getTeam();
-  // }
+  $scope.submitGroupPhoto = function($files, $event, $flow, team) {
+    $flow.opts.target = '/api/media?type=team';
+    $flow.upload();
+  }
+  $scope.uploadedGroupPhoto = function($file, $message, $flow, team){
+    if($message){
+      var img = JSON.parse($message);
+      team.group_photo_id = img.id;
+      $scope.editTeam(team);
+    }
+    //getTeam();
+  }
 
   $scope.editTeam = function(team){
     Team

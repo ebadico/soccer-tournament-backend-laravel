@@ -3,15 +3,28 @@
     <div class="team-heading">
       <div class="team-avatar " ng-show="team.media" style="background-image: url({{ team.media.path }}) "></div>
       <div class="team-name ">{{ team.name }}</div>
+      <div class="team-stat" ng-show="team.id">
+        <span><strong>Vittorie:</strong> {{team.wins}}</span>
+        <span><strong>Pareggi:</strong> {{team.draws}}</span>
+        <span><strong>Perse:</strong> {{team.losts}}</span>
+      </div>
     </div>
     <div class="clearfix"></div>
   </div>
   
   <main-content>
-    <div class="team-photo">
-      <img src="http://lorempixel.com/600/400/" alt="">
+
+    <div class="col-md-12 col-lg-4">
+      <div class="team-photo clearfix" ng-show="team.group_photo">
+        <img ng-src="{{ team.group_photo.path}}" alt="">
+      </div>
+      <last-matches matches="team.last_matchs"></last-matches>
     </div>
-    <player-container ng-repeat="player in team.player" player="player"></player-container>
+    <div class="col-md-12 col-lg-8 players-container">
+      <h6 class="title" ng-show="team.id">Giocatori</h6>
+      <player-container ng-repeat="player in team.player" player="player"></player-container>
+    </div>
+
   </main-content>
 </div>
 

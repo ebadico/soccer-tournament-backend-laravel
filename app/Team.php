@@ -11,9 +11,17 @@ class Team extends Model
     parent::boot();
     static::addGlobalScope(new \App\Scopes\SeasonScope);
   }
-  protected $fillable = ['name','wins','draws','losts','round_id','season_id','avatar'];
+  protected $fillable = ['name', 'wins', 'draws', 'losts', 'round_id', 'season_id', 'group_photo_id'];
 
-  protected $appends = ['points'];
+  protected $appends = ['points','last_matchs'];
+
+  public function getLastMatchsAttribute(){
+    $matches = Match::whereOr('team_a_id', '=', $this->attributes['id'])
+                    ->whereOr('team_b_id', '=', $this->attributes['id'])
+                    ->limit(3)
+                    ->get();
+    return $this->attributes["last_matchs"] = $matches;
+  }
 
   public function getPointsAttribute(){
     $points = ($this->attributes["wins"] * 3) + ($this->attributes["draws"] * 1);
@@ -56,7 +64,17 @@ class Team extends Model
   }
 
   public function scopeGet_all($query){
-    return $query->with('round','player.media','media','won_match')->get();
+    return $query->with(
+      'round',
+      'player.attendance',
+      'player.scores',
+      'player.warning',
+      'player.expulsion',
+      'player.media',
+      'media',
+      'group_photo',
+      'won_match'
+    )->get();
   }
   public function scopePopulate($query){
     return $query->with(
@@ -67,6 +85,7 @@ class Team extends Model
       'player.expulsion',
       'player.media',
       'media',
+      'group_photo',
       'won_match'
       )->first();
   }
@@ -84,6 +103,10 @@ class Team extends Model
 
   public function media(){
     return $this->hasOne('App\Medias');
+  }
+
+  public function group_photo(){
+    return $this->belongsTo('App\Medias');
   }
 
   public function scores(){
