@@ -45,8 +45,18 @@
       height: 40px;
       margin-left: 25px;
       .smooth;
-      &:hover, &.current{
+      &.current {
         a{color:@primary !important;}
+        .dropdown-menu{
+          a{ 
+            color: @white !important;
+            &:hover{
+              color: @primary !important;
+            }
+          }
+        }
+      }
+      &:hover, &.current{
         border-bottom: 4px solid @primary;
       }
       a{

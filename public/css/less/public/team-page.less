@@ -1,0 +1,99 @@
+.team-page{
+  .team-heading{
+    .vertical-center;
+    position: relative;
+  }
+  .team-avatar{
+    background:white;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid @primary;
+    overflow: hidden;
+    margin:auto;
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .team-name{
+    text-align: center;
+    color: @primary;
+    font-size: 2em;
+    margin-top: 25px;
+    letter-spacing: 1px;
+    .bold;
+  }
+
+  .team-photo{
+    width: 100%;
+    height:auto;
+    margin-bottom: 25px;
+    text-align: center;
+    
+    img{
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  .single-player{
+    border: 2px solid @primary;
+    height: 100px;
+    width: 100%;
+    margin-bottom: 15px;
+    overflow:hidden;
+
+    @media screen and (max-width: 800px){
+      height: auto;
+      text-align: center;
+      padding-bottom: 15px;
+      .player-avatar{ 
+        float:none !important; 
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      .player-detail{ 
+        float:none !important; 
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      
+    }
+
+    .player-avatar{
+      margin-left: 25px;
+      height:75px;
+      width:75px;
+      margin-top: 12px;
+      margin-right: 25px;
+      overflow:hidden;
+
+      text-align: center;
+      i{ line-height: 75px; }
+      
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-position: center !important;
+    }
+    .player-detail{
+      .player-name{
+        .bold;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1.5em;
+      }
+      .player-meta{
+        span{ margin-right: 25px; }
+        @media screen and (max-width: 1100px){
+          strong{ display: none; }
+        }
+        .attendance{  }
+        .scores{ }
+        .warning{ color:@yellow; }
+        .expulsion { color:red; }
+      }
+    }
+  }
+}

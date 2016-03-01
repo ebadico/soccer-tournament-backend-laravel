@@ -71,7 +71,7 @@ angular.module('app', [
         controller: 'PublicNewsCtrl',
       })
       .state('public.rankings', {
-        url:'classifiche',
+        url:'classifiche?round',
         templateUrl: 'app/public/rankings/rankings.html',
         controller: 'PublicRankingsCtrl',
       })

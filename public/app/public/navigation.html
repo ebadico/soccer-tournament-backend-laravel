@@ -17,7 +17,12 @@
         
         <li ng-class=" {current: stateLocation == 'public.home'} "><a ui-sref="public.home"> Home</a></li>
 
-        <li ng-class=" {current: stateLocation == 'public.rankings'} "><a ui-sref="public.rankings"> Classifiche</a></li>
+        <li class="dropdown" ng-class=" {current: stateLocation == 'public.rankings' } ">  
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Classifiche <span class="caret"></span></a>
+          <ul class="dropdown-menu" style="color:white;">
+            <li ng-repeat=" round in rounds"><a ui-sref="public.rankings({ round: round.id })"> Girone {{ round.name}} - <small>{{ round.club }}</small></a></li>
+          </ul>
+        </li>
 
         <li ng-class=" {current: stateLocation == 'public.scorers'} "><a ui-sref="public.scorers"> Marcatori</a></li>
 

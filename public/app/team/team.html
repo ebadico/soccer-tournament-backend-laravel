@@ -22,16 +22,16 @@
   </div>
   <div ng-show="editMode">
     <input type="text" class="form-control" ng-model="team.name" value="{{team.name}}">
-    <!-- <br>
-    <label for="round">Girone:</label>
-    <select ng-options="round.id as round.name for round in rounds" ng-model="team.round_id"></select> -->
+    <div class="clearfix"></div>
     <div class="submit-box">
       <button class="btn btn-primary" type="submit" ng-disabled='!team.name'>Modifica</button>
     </div>
   </div>
   <div class="clearfix"></div>
 </form>
-<form ng-submit="createPlayer(player)" class="text-center">
+<div class="clearfix"></div>
+
+<form ng-submit="createPlayer(player)" class="text-center col-xs-6">
   <h3>Aggiungi giocatore</h3>
   <hr>
   <div class="col-sm-12">
@@ -42,6 +42,23 @@
     <button class="btn btn-primary" type="submit" ng-disabled='!player.name'>Create</button>
   </div>
 </form>
+<div class="col-xs-6 globus-box text-center">
+  <h3>Foto di squadra</h3>
+  <hr>
+    <img ng-src="{{ team.media.path }}"
+      flow-init="{ testChunks:false, singleFile: true }" 
+      flow-files-submitted="submitGroupPhoto($file, $event, $flow, team)"
+      flow-file-success="uploadedGroupPhoto()"
+      flow-btn flow-attrs="{accept:'image/*'}">
+    <i class="fa fa-photo fa-3x"
+      ng-show="!team.media" 
+      flow-init="{ testChunks:false, singleFile: true }" 
+      flow-files-submitted="submitGroupPhoto($file, $event, $flow, team)"
+      flow-file-success="uploadedGroupPhoto()"
+      flow-btn flow-attrs="{accept:'image/*'}">
+    </i>
+</div>
+<div class="clearfix"></div>
 
 <table class="table table-hover table-striped">
   <thead>
