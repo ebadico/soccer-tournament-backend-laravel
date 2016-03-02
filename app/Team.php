@@ -16,10 +16,14 @@ class Team extends Model
   protected $appends = ['points','last_matchs'];
 
   public function getLastMatchsAttribute(){
-    $matches = Match::whereOr('team_a_id', '=', $this->attributes['id'])
-                    ->whereOr('team_b_id', '=', $this->attributes['id'])
-                    ->limit(3)
-                    ->get();
+    $matches = Match::where(function($query){
+        $query->where('team_a_id', '=', $this->attributes['id'])
+              ->whereOr('team_b_id', '=', $this->attributes['id']);
+      })
+      ->played()
+      ->limit(3)
+      ->get();
+                
     return $this->attributes["last_matchs"] = $matches;
   }
 
@@ -29,8 +33,7 @@ class Team extends Model
   }
 
   public function getWinsAttribute(){
-    $won = Match::where('winner_id', '=', $this->id)->count();
-    $this->attributes["draws"] = 20;
+    $won = Match::where('winner_id', '=', $this->id)->played()->count();
     return $this->attributes["wins"] = $won;
   }
   
@@ -40,7 +43,9 @@ class Team extends Model
                     $query
                       ->where('team_a_id', '=', $this->id)
                       ->orWhere('team_b_id','=', $this->id);
-                  })->count();
+                  })
+                  ->played()
+                  ->count();
     return $this->attributes["draws"] = $draws;
   }
 
@@ -55,10 +60,12 @@ class Team extends Model
                       ->whereNotNull('winner_id')
                       ->where('winner_id', '<>', $this->id);
                   })
+                  ->played()
                   ->count();
     return $this->attributes['losts'] = $losts;
   }
-  
+
+
   public function scopeGet_round($query, $round_id){
     return $query->where('round_id', '=', $round_id);
   }

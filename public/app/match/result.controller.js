@@ -10,7 +10,7 @@ angular
       getMatch();
   
       $scope.edit = function(result){
-        console.log("result.controller.js :13", result);
+        result.played = true;
         result.attendances = [];
   
         result.all_scores = $scope.teamAScores.concat($scope.teamBScores);

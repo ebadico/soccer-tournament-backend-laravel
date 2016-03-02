@@ -12,7 +12,7 @@ class Match extends Model{
   }
   protected $table = 'matchs'; 
   protected $date = ['match_date'];
-  protected $fillable = ['season_id','team_a_id','team_b_id','day_id', 'match_date','winner_id'];
+  protected $fillable = ['season_id','team_a_id','team_b_id','day_id', 'match_date','winner_id','played'];
 
   public function setMatchDateAttribute($startDate) {
     $this->attributes['match_date'] = Carbon::parse($startDate)->toDateTimeString();
@@ -38,6 +38,11 @@ class Match extends Model{
       $query->where('round_id', "=", $round_id)->where('id','=', $day_id);
     });
   }
+
+  public function scopePlayed($query){
+    return $query->where('played', true);
+  }
+  
 
   /** OMG I SHOULD MAYBE DO LESS QUERY IN ONE SHOT */
   /** bah who cares, it's a low traffic app */
