@@ -1,5 +1,6 @@
-<div class="team-latest-match clearfix" ng-show="latestMatches.length">
+<div class="team-latest-match clearfix text-center">
   <h3>Ultimi risultati</h3>
+  <small ng-show="!match.length">Nessun match disputato</small>
   <div class="match-row" ng-repeat="match in latestMatches">
     <span>{{ match.team_a.name}}</span>
     <span><strong>{{ match.team_a.scores.length}} - {{ match.team_b.scores.length}}</strong></span>

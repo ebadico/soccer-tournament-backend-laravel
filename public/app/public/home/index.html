@@ -47,21 +47,10 @@
 <!-- CLASSIFICA MARCATORI -->
 <div class="container-fluid scorers-container clearfix" id="scorers" >
   <h3 class="title">classifica <strong>marcatori</strong></h3>
+ 
 
   <div class="col-xs-10 col-xs-offset-1" style="text-align: center;">
-    <div class="scorers-excerpt" ng-repeat="round in [1,2,3,4]">
-      <div class="club-photo">
-          <img src="http://lorempixel.com/600/600" alt="">
-      </div>
-      <div class="club-name">Freetime</div>
-      <div class="round-name">Girone A</div>
-      <div class="player" ng-repeat="player in [1,2,3]">
-        <div>123</div> 
-        <div>Giocatore</div> 
-        <div>Squadra</div> 
-      </div>
-      <div class="viewmore">Vedi tutti</div>
-    </div>
+    <scorers ng-repeat="round in rounds" round="round"></scorers>
   </div>
 
 </div><!-- CLASSIFICA MARCATORI -->
@@ -110,6 +99,9 @@
 <div class="container-fluid media-container" id="media">
   <h3 class="title">foto &amp; <strong>video</strong></h3>
 
+  <div class="row">
+    <img ng-src="{{ photo.path }}" ng-repeat="photo in photos" class="home-photo">
+  </div>
 
 </div><!-- MEDIA -->
 
@@ -117,12 +109,24 @@
 <div class="container-fluid sponsor-container">
   <h3 class="title">i nostri <strong>sponsor</strong></h3>
   
-  <div class="col-xs-4" ng-repeat="sponsor in sponsors">
-    <img ng-src="{{ sponsor.path }}" style="max-height: 100%; max-width: 100%;">
+  <div class="row">
+    <img ng-src="{{ sponsor.path }}" ng-repeat="sponsor in sponsors" class="home-sponsor">
   </div>
 </div><!-- SPONSOR -->
 
 <!-- FOOTER -->
 <footer class="container-fluid footer-container">
-  footer
+  <div class="container">
+    <div class="col-md-4 about">
+      <img src="/images/logo.png" alt="">
+    </div>
+    <div class="col-md-4 contacts">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cumque, ullam enim labore! Corrupti dicta, fugiat officia, ad enim officiis. Nihil, ut totam veritatis, inventore earum quam. Pariatur mollitia alias dolorem perspiciatis fuga dicta optio culpa sapiente consequatur suscipit nobis, a, provident quos eos nam, totam dolores quasi omnis voluptatum.
+    </div>
+    <div class="col-md-4 social">
+      <div class="facebook">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+      </div>
+    </div>
+  </div>
 </footer><!-- FOOTER -->

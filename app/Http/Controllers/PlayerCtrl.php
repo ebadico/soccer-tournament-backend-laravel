@@ -32,6 +32,10 @@ class PlayerCtrl extends Controller
         return $filtered;
       }
 
+      if($request->has('scorers')){
+        return Player::with('scores', 'team.round')->get()->groupBy('team.round_id');
+      }
+
       return Player::with('team.round', 'media','attendance.match','scores.match','warning','expulsion')->get();
   }
 

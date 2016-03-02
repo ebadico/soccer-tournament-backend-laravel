@@ -12,6 +12,11 @@ angular
       return $http.get('/api/player/' + player_id); 
     }
 
+    this.getScorers = function(limit){
+      limit = limit || 3;
+      return $http.get('/api/player?scorers=' + limit);
+    }
+
     this.create = function(data){
       return $http.post('/api/player', data);
     }

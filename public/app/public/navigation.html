@@ -20,6 +20,7 @@
         <li class="dropdown" ng-class=" {current: stateLocation == 'public.rankings' } ">  
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Classifiche <span class="caret"></span></a>
           <ul class="dropdown-menu" style="color:white;">
+            <i class="fa fa-futbol-o fa-spin" ng-show="!rounds.length"></i>
             <li ng-repeat=" round in rounds"><a ui-sref="public.rankings({ round: round.id })"> Girone {{ round.name}} - <small>{{ round.club }}</small></a></li>
           </ul>
         </li>
@@ -31,6 +32,7 @@
         <li class="dropdown" ng-class=" {current: stateLocation == 'public.calendars' } ">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Calendari <span class="caret"></span></a>
           <ul class="dropdown-menu" style="color:white;">
+            <i class="fa fa-futbol-o fa-spin" ng-show="!rounds.length"></i>
             <li ng-repeat=" round in rounds"><a ui-sref="public.calendars({ round: round.id })"> Girone {{ round.name}} - <small>{{ round.club }}</small></a></li>
           </ul>
         </li>

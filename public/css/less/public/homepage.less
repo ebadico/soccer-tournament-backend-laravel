@@ -129,16 +129,22 @@
     text-align: center;
     border-bottom: 1px solid fade(@dark-grey, 25%);
   }
+  
+  text-align: left;
+
+  .home-sponsor{
+    margin: 10px;
+    height: 200px;
+  }
 }
 
 .media-container{
   padding-top: 75px;
   padding-bottom: 75px;
 
-  .media-item{
-    overflow:hidden;
-    max-height: 150px;
-    margin-bottom: 20px;
+  .home-photo{
+    margin: 10px;
+    height: 200px;
   }
 }
 
@@ -226,12 +232,32 @@
   .slider-position{
     position: relative;
     top: -6.5%;
-
   }
 
 }
 
 .footer-container{
+  margin-top: 50px;
   height: 250px;
   background: @black;
+
+  .about{
+    img{
+      margin-top: 15px;
+      width: 75%;
+    }
+    p{
+      color: @white;
+    }
+  }
+  .contacts{
+    padding: 25px;
+    color: @white;
+  }
+  .social{
+    padding:25px;
+    text-align: right;
+    font-size: 2em;
+    a{ color: @white; }
+  }
 }
