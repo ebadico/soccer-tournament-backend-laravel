@@ -73,29 +73,46 @@
   margin-bottom: 25px;
   margin-right: 25px;
   display:inline-block;
-  width: 575px;
+  max-width: 575px;
+  width: 45%;
   height: 275px;
   overflow:hidden;
 
   border: 1px solid @primary;
   border-radius:15px;
 
+  &.news-public-page{
+    width: 100% !important;
+  }
+
+  @media screen and (max-width:1199px){
+    width: 100%;
+  }
+
   .featured{
     height: 100%;
-    width: 275px;
+    width: 40%;
+    max-width: 275px;
     overflow:hidden;
     float:left;
-    img{
-      width: 100%;
-    }
+    
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
   .post{
+    width: 55%;
+    &.wide{
+      width: 100% !important;
+    }
     height: 100%;
     position: relative;
     text-align: left;
     float:left;
-    width: 50%;
     padding-left: 15px;
+
+    box-shadow: inset -10px 0px 5px @white;
+
     h1{
       font-size: 1.25em;
       font-weight: bold;
@@ -112,6 +129,9 @@
       font-family: 'Helvetica';
       font-size: 1em;
       line-height: 150%;
+      overflow:hidden;
+      height: 50%;
+
     }
     .followup{
       font-weight: bold;

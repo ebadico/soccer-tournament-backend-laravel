@@ -22,6 +22,7 @@ angular.module('app')
       .get()
       .then(function(res){
         $scope.players = res.data;
+        $scope.loadingOff = true;
       }, function(err){
         console.log("scorers.controller.js :12", err);
       })

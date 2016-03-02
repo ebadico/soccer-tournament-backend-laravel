@@ -17,4 +17,8 @@ class Score extends Model{
   public function match(){
     return $this->belongsTo('App\Match');
   }
+
+  public function player(){
+    return $this->belongsTo('App\Player');
+  }
 }

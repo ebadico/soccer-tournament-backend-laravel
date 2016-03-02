@@ -1,0 +1,11 @@
+<form ng-submit="create(rules)">
+  <h3>REGOLAMENTO</h3>
+  <hr>
+  <input type="text" class="form-control" placeholder="title" ng-model="rules.title">
+  <br>
+  <textarea ui-tinymce ng-model="rules.body"></textarea>
+  <div class="clearfix"></div>
+  <div class="submit-box">
+    <button class="btn btn-primary" type="submit" ng-disabled='!rules.title.length || !rules.body.length'>Salva</button>
+  </div>
+</form>

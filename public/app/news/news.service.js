@@ -13,6 +13,10 @@ angular.module('app')
       return $http.get('/api/news');
     }
 
+    this.get = function(id){
+      return $http.get('/api/news/' + id); 
+    }
+
     this.delete = function(post){
       return $http.delete('/api/news/' + post.id);
     }

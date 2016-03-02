@@ -1,13 +1,32 @@
-<div class="container-fluid common-page-container">
-  <div class="heading-image">
+<div class="container-fluid common-page-container" ng-init="headerBg = '/images/player.jpg' ">
+  <div class="heading-image" ng-style="{'background-image':'url({{headerBg}})'}" style="background-position: center bottom;">
     <h1 class="title">Classifica <strong>Marcatori</strong></h1>
   </div>
   
 
-  <loading show='players.length'></loading>
+  <loading show='players.length || loadingOff'></loading>
   <main-content ng-show="players.length">
-    <button ng-repeat="round in rounds" ng-click="roundChange(round.id)">{{ round.name }}</button>
-    <pre ng-repeat="player in players | playerRoundFilter: round_id | filter: orderByScores">{{ $index }} - {{ player.name  }} | {{ player.scores.length  }}</pre>
+    <globus-table head="true">
+      <div class="table-header clearfix">
+          <div class="col-xs-3 text-center"> <strong>posizione</strong> </div>
+          <div class="col-xs-4 col-xs-offset-2 text-left"> <strong>Giocatore</strong> </div>
+          <div class="col-xs-3 text-center"> <strong>Goals</strong> </div>        
+      </div>
+      <div ng-repeat="player in players | orderBy: '-scores.length' | playerRoundFilter: $parent.roundFilterId track by $index">
+        <div class="table-row clearfix">
+          <div class="col-xs-3 text-center rank-{{ $index + 1 }}" style="font-size: 1.5em;">
+               {{ $index + 1 }}
+               <i class="fa fa-trophy" ng-show="{{ $index >= 0 && $index <= 2 }} "></i>
+          </div>
+          <div class="col-xs-2 text-center avatar-bg" style="background: url({{ player.media.path }})"></div>
+          <div class="col-xs-4 text-left">{{ player.name }}</div>
+          <div class="col-xs-3 text-center">{{ player.scores.length }}</div>
+          <div class="clearfix"></div>
+        </div>
+      </div> 
+    </globus-table>
   </main-content>
+
 </div>
+
 

@@ -25,7 +25,7 @@ class NewsCtrl extends Controller{
       return News::where('type', '=', $type)->with('season','featured')->get();
     }
 
-    return News::with('season','featured')->get();
+    return News::where('type','<>', 'rules')->where('type','<>', 'contacts')->with('season','featured')->get();
   }
 
 
@@ -73,9 +73,14 @@ class NewsCtrl extends Controller{
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
-  {
-      //
+  public function show($id){
+    $news = News::where('id', '=', $id)->with('season','featured')->first();
+
+    if($news){
+      return $news;
+    }else{
+      return response()->json("Not Found", 404);
+    }
   }
 
   /**

@@ -1,3 +1,4 @@
+
 <div class="container-fluid common-page-container">
   <div class="heading-image">
     <h1 class="title">Calendario <strong>Giornate</strong></h1>
@@ -5,8 +6,70 @@
 
   <loading show='rounds.length'></loading>
   <main-content ng-show="rounds.length">
-    <button ng-repeat="round in rounds" ng-click="changeRound(round.id)">{{ round.name }}</button>
-    <pre>{{days | dayRoundFilter: round_id }}</pre>
+
+    <globus-table head="true">
+
+      <!-- DAY -->
+      <div ng-repeat="day in days | roundFilter: $parent.roundFilterId track by $index">
+        <h5 class="title text-center calendarTitle" >Giornata <strong>{{ $index + 1 }}</strong></h5>
+        <!-- SINGLE DAY -->
+        <div ng-repeat="match in day.matches">
+          <span class="hide" ng-repeat="score in match.scores | groupBy: 'team_id' as teamScores"></span>
+          <span class="hide" ng-repeat="filterWarnings in match.warning | groupBy: 'player.team_id' as teamWarning"></span>
+          <span class="hide" ng-repeat="filterExpulsions in match.expulsion | groupBy: 'player.team_id' as teamExpulsion"></span>
+         
+          <div class="table-row clearfix" ng-click="showMatchDetail = !showMatchDetail ">
+            <div class="col-xs-2 text-left">
+              <div class="small-avatar">
+                <img ng-src="{{ match.team_a.media.path }}" alt="">
+              </div>
+            </div>
+            <div class="col-xs-3 text-center">{{ match.team_a.name }}</div>
+            <div class="col-xs-2 text-center result">
+              {{ teamScores[match.team_a.id].length || '0' }} - {{ teamScores[match.team_b.id].length || '0' }}
+            </div>
+            <div class="col-xs-3 text-center">{{ match.team_b.name }}</div>
+            <div class="col-xs-2 text-right">
+              <div class="small-avatar">
+                <img ng-src="{{ match.team_b.media.path }}" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="match-detail clearfix" ng-show="showMatchDetail">
+            <div class="col-sm-3 col-sm-offset-3">
+
+              <div ng-repeat="score in teamScores[match.team_a.id]"> 
+                <i class="fa fa-futbol-o"></i> {{ score.player.name }}
+              </div>
+              <div ng-repeat="warning in teamWarning[match.team_a.id]"> 
+                <i class="fa fa-square primary"></i> {{ warning.player.name }}
+              </div>
+              <div ng-repeat="expulsion in teamExpulsion[match.team_a.id]"> 
+                <i class="fa fa-square red"></i> {{ expulsion.player.name }}
+              </div>
+
+            </div>
+            <div class="col-sm-3 col-sm-offset-2">
+              <div ng-repeat="score in teamScores[match.team_b.id]"> 
+                <i class="fa fa-futbol-o"></i> {{ score.player.name }}
+              </div>
+              <div ng-repeat="warning in teamWarning[match.team_b.id]"> 
+                <i class="fa fa-square primary"></i> {{ warning.player.name }}
+              </div>
+              <div ng-repeat="expulsion in teamExpulsion[match.team_b.id]"> 
+                <i class="fa fa-square red"></i> {{ expulsion.player.name }}
+              </div>              
+            </div>
+          </div>
+          
+        </div><!-- SINGLE DAY -->
+
+
+      </div><!-- DAY -->
+
+    </globus-table>
+
+
   </main-content>
 
 </div>

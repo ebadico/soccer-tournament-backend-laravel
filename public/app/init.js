@@ -1,4 +1,5 @@
 angular.module('app', [
+  'ngSanitize',
   'ngAnimate',
   'angular.filter',
   'ui.router',
@@ -51,7 +52,7 @@ angular.module('app', [
       })
 
       .state('public.calendars', {
-        url:'calendari',
+        url:'calendari?round',
         templateUrl: 'app/public/calendars/calendars.html',
         controller: 'PublicCalendarsCtrl',
       })
@@ -70,6 +71,20 @@ angular.module('app', [
         templateUrl: 'app/public/news/news.html',
         controller: 'PublicNewsCtrl',
       })
+        .state('public.singlenews', {
+          url:'news/{id}',
+          templateUrl: 'app/public/news/single-news.html',
+          controller: 'PublicSingleNewsCtrl',
+          resolve:{
+            ResolvedPost:function(News, $stateParams){
+              return News.get($stateParams.id)
+              .then(function(res){
+                return res.data;
+              })
+            }
+          }
+        })
+
       .state('public.rankings', {
         url:'classifiche?round',
         templateUrl: 'app/public/rankings/rankings.html',
@@ -115,6 +130,17 @@ angular.module('app', [
         url: '/news',
         templateUrl: 'app/news/index.html',
         controller: 'NewsCtrl',
+      })
+
+      .state('admin.rules',{
+        url: '/rules',
+        templateUrl: 'app/news/rules.html',
+        controller: 'RulesCtrl',
+      })
+      .state('admin.contacts',{
+        url: '/contacts',
+        templateUrl: 'app/news/contacts.html',
+        controller: 'ContactsCtrl',
       })
 
       .state('admin.medias',{

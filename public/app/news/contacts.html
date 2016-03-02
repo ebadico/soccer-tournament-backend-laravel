@@ -1,0 +1,9 @@
+<form ng-submit="create(contacts)">
+  <h3>REGOLAMENTO</h3>
+  <hr>
+  <textarea ui-tinymce ng-model="contacts.body"></textarea>
+  <div class="clearfix"></div>
+  <div class="submit-box">
+    <button class="btn btn-primary" type="submit" ng-disabled='!contacts.body.length'>Salva</button>
+  </div>
+</form>

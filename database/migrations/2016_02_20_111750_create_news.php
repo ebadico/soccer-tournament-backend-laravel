@@ -17,7 +17,7 @@ class CreateNews extends Migration
             $table->timestamps();
 
             $table->string('title');
-            $table->string('body');
+            $table->longtext('body');
             $table->string('type')->default('news');
         });
     }
@@ -32,3 +32,4 @@ class CreateNews extends Migration
         Schema::drop('news');
     }
 }
+ 

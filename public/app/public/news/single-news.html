@@ -1,4 +1,9 @@
-<div class="container-fluid">
-    <h1 class="title">Globus<strong>News</strong></h1>
+<div class="container-fluid common-page-container" ng-init="headerBg = '/images/globus_landing.jpg' ">
+  <div class="heading-image" ng-style="{'background-image':'url({{ post.featured.path || headerBg }})'}">
+    <h1 class="title">{{ post.title }}</h1>
+  </div>
+  
+  <main-content>
+    <div ng-bind-html="post.body"></div>
+  </main-content>
 </div>
-

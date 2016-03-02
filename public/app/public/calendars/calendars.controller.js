@@ -1,6 +1,8 @@
 angular.module('app')
 
-.controller('PublicCalendarsCtrl', ['$scope', 'Day', 'Round', function($scope, Day, Round){
+.controller('PublicCalendarsCtrl', ['$scope', '$stateParams', 'Day', 'Round', function($scope, $stateParams, Day, Round){
+  $scope.roundFilterId = $stateParams.round || undefined;
+  
   $scope.days = [];
   $scope.rounds = [];
 

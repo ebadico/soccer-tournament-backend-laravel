@@ -1,15 +1,20 @@
 <div class="container-fluid common-page-container">
   <div class="heading-image">
-    <h1 class="title">Globus<strong>News</strong></h1>
+    <h1 class="title">Globus <strong>{{ newsType }}</strong></h1>
   </div>
   
-<loading show='news.length'></loading>
+<loading show='news.length || loading'></loading>
 <main-content ng-show="news.length">
-    <button ng-class="{ 'active': newsType === undefined }" ng-click="newsType = undefined ">ALL</button>
-    <button ng-class="{ 'active': newsType === 'news' }" ng-click="newsType = 'news'">News</button>
-    <button ng-class="{ 'active': newsType === 'comunicato' }" ng-click="newsType = 'comunicato'">Comunicati</button>
-    <br>
-    <pre>{{ news | filter: { type: newsType   } }}</pre>
+
+    <div class="news-excerpt news-public-page" ng-repeat="post in news | filter: { type: newsType }" ui-sref=" public.singlenews({ id: post.id }) ">
+      <div class="featured" ng-show="post.featured.path" ng-style="{'background-image':'url({{ post.featured.path }})'}"></div>
+      <div class="post" ng-class="{ 'wide': !post.featured }">
+        <h1>{{ post.title }}</h1>
+        <div class="date">{{ post.created_at | date }}</div>
+        <div class="excerpt" ng-bind-html="post.body"></div>
+        <span class="followup">Leggi <i class="fa fa-chevron-circle-right"></i></span>
+      </div>
+    </div>
+
   </main-content>
 </div>
-

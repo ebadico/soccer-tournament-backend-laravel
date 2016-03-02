@@ -44,6 +44,7 @@ gulp.task('concat_angular_vendors', function() {
   gulp.src([
     public_dir + 'bower_components/angular/angular.min.js',
     public_dir + 'bower_components/satellizer/satellizer.min.js',
+    public_dir + 'bower_components/angular-sanitize/angular-sanitize.min.js',
     public_dir + 'bower_components/ng-flow/dist/ng-flow-standalone.min.js',
     public_dir + 'bower_components/angular-filter/dist/angular-filter.min.js',
     public_dir + 'bower_components/angular-ui-router/release/angular-ui-router.min.js',

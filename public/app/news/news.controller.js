@@ -1,7 +1,7 @@
 angular
   .module('app')
 
-.controller('NewsCtrl', ['$rootScope', '$scope', 'toastr', 'News', 'Season', function($rootScope, $scope, toastr, News, Season){
+.controller('NewsCtrl', ['$rootScope', '$scope', '$state', 'toastr', 'News', 'Season', function($rootScope, $scope, $state, toastr, News, Season){
   $scope.postType = undefined;
   $scope.posts = [];
   $scope.post = {};
