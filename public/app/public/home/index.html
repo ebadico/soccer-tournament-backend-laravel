@@ -7,6 +7,13 @@
   </div>
 </div><!-- LANDING -->
 
+<!-- SPONSOR -->
+<div class="container-fluid sponsor-container">
+  <h3 class="title">i nostri <strong>sponsor</strong></h3>  
+  <div class="row">
+    <img ng-src="{{ sponsor.path }}" ng-repeat="sponsor in sponsors" class="home-sponsor">
+  </div>
+</div><!-- SPONSOR -->
 
 
 <!-- ULTIMA GIORNATA -->
@@ -73,20 +80,10 @@
 
 </div><!-- ULTIMA GIORNATA -->
 
-<!-- SPONSOR -->
-<div class="container-fluid sponsor-container">
-  <h3 class="title">i nostri <strong>sponsor</strong></h3>  
-  <div class="row">
-    <img ng-src="{{ sponsor.path }}" ng-repeat="sponsor in sponsors" class="home-sponsor">
-  </div>
-</div><!-- SPONSOR -->
-
 
 <!-- CLASSIFICA MARCATORI -->
 <div class="container-fluid scorers-container clearfix" id="scorers" >
   <h3 class="title">classifica <strong>marcatori</strong></h3>
- 
-
   <div class="col-xs-10 col-xs-offset-1" style="text-align: center;">
     <scorers ng-repeat="round in rounds" round="round"></scorers>
   </div>
