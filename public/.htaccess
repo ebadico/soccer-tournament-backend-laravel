@@ -17,3 +17,10 @@
 
 RewriteCond %{HTTP:Authorization} ^(.*)
 RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
+
+php_value file_uploads On
+php_value upload_max_filesize 20M
+php_value post_max_size 100M
+php_value max_execution_time 600
+php_value max_input_time 600

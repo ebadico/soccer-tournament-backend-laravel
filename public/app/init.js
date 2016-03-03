@@ -7,6 +7,7 @@ angular.module('app', [
   'ui.tinymce',
   'flow',
   'satellizer',
+  'wu.masonry',
 ])
 
 .config([

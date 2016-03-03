@@ -32,15 +32,24 @@ gulp.task('concat_vendors', function() {
     public_dir + 'bower_components/jquery/dist/jquery.min.js',
     public_dir + 'bower_components/bootstrap/dist/js/bootstrap.min.js',
     public_dir + 'bower_components/tinymce-dist/tinymce.min.js',
-    public_dir + 'bower_components/underscore/underscore-min.js'
+    public_dir + 'bower_components/underscore/underscore-min.js',
+    public_dir + 'bower_components/jquery-bridget/jquery-bridget.js',
+    public_dir + 'bower_components/ev-emitter/ev-emitter.js',
+    public_dir + 'bower_components/desandro-matches-selector/matches-selector.js',
+    public_dir + 'bower_components/fizzy-ui-utils/utils.js',
+    public_dir + 'bower_components/get-size/get-size.js',
+    public_dir + 'bower_components/outlayer/item.js',
+    public_dir + 'bower_components/outlayer/outlayer.js',
+    public_dir + 'bower_components/masonry/masonry.js',
+    public_dir + 'bower_components/imagesloaded/imagesloaded.js',
   ])
   .pipe(concat('vendors.js'))
   .pipe(gulp.dest(public_dir + 'js'));
 
 });
 
+
 gulp.task('concat_angular_vendors', function() {
-  
   gulp.src([
     public_dir + 'bower_components/angular/angular.min.js',
     public_dir + 'bower_components/satellizer/satellizer.min.js',
@@ -52,6 +61,7 @@ gulp.task('concat_angular_vendors', function() {
     public_dir + 'bower_components/angular-animate/angular-animate.min.js',
     public_dir + 'bower_components/angular-ui-tinymce/src/tinymce.js',
     public_dir + 'bower_components/tinymce-dist/themes/modern/theme.min.js',
+    public_dir + 'bower_components/angular-masonry/angular-masonry.js',
   ])
   .pipe(concat('angular-vendors.js'))
   .pipe(gulp.dest(public_dir + 'js'));

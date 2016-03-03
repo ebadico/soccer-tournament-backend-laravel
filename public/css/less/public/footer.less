@@ -1,0 +1,42 @@
+.footer-container{
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-top: 50px;
+  height: 250px;
+  background: @black;
+
+  .footer-title{ 
+    text-align: left;
+    font-size: 1.25em !important;
+    text-transform: uppercase;
+    color: @white;
+    position: relative;
+    &:before{
+      content:'';
+      position: absolute;
+      border-bottom: 1px solid @white;
+      top:10px; left:0;
+      width: 25px;
+      height: 100%;
+    }
+  }
+  .about{
+    img{
+      margin-top: 15px;
+      width: 50%;
+    }
+    p{
+      color: @white;
+    }
+  }
+  .contacts{
+    padding: 25px;
+    color: @white;
+    i{ font-size: 2em;  }
+  }
+  .social{
+    padding:25px;
+    i{ font-size: 2em; margin-top: 20px;}
+    a{ color: @white; }
+  }
+}

@@ -149,6 +149,7 @@
 }
 
 .prize-container{
+  position: relative;
   margin-top: 0;
   padding: 0;
   max-height: 820px;
@@ -214,6 +215,7 @@
       margin: auto !important;
       width: 50%;
       text-transform: uppercase;
+      font-size: 7.5vw;
     }
 
     .prize-description{
@@ -230,34 +232,9 @@
   }
 
   .slider-position{
-    position: relative;
-    top: -6.5%;
+    position: absolute;
+    bottom:10px;
   }
 
 }
 
-.footer-container{
-  margin-top: 50px;
-  height: 250px;
-  background: @black;
-
-  .about{
-    img{
-      margin-top: 15px;
-      width: 75%;
-    }
-    p{
-      color: @white;
-    }
-  }
-  .contacts{
-    padding: 25px;
-    color: @white;
-  }
-  .social{
-    padding:25px;
-    text-align: right;
-    font-size: 2em;
-    a{ color: @white; }
-  }
-}

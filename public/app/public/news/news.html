@@ -11,10 +11,12 @@
       <div class="post" ng-class="{ 'wide': !post.featured }">
         <h1>{{ post.title }}</h1>
         <div class="date">{{ post.created_at | date }}</div>
-        <div class="excerpt" ng-bind-html="post.body"></div>
+        <div class="excerpt">{{ post.excerpt | limitTo: 25 }}</div>
         <span class="followup">Leggi <i class="fa fa-chevron-circle-right"></i></span>
       </div>
     </div>
 
   </main-content>
 </div>
+
+<ng-include ng-show='news.length || loading' src=" 'app/public/footer.html' "></ng-include>
