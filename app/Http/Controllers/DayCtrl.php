@@ -13,109 +13,138 @@ use Hashids;
 
 class DayCtrl extends Controller
 {
-    public function __construct(){
-       $this->middleware('jwt.auth', ['except' => ['index','show']]);
+  public function __construct(){
+     $this->middleware('jwt.auth', ['except' => ['index','show']]);
+  }
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index(Request $request){
+    if($round_id = $request->get('round_id')){
+        return Day::where('round_id','=', $round_id)->get();
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request){
-        if($round_id = $request->get('round_id')){
-            return Day::where('round_id','=', $round_id)->get();
+    
+    if($request->has('last_day')){        
+      $dayPerRound = Day::with(
+          'round',
+          'matches.teamA.media',
+          'matches.teamB.media',
+          'matches.warning.player',
+          'matches.expulsion.player',
+          'matches.scores.player'
+      )->whereHas('matches', function($query){
+          $query->where('played', true);
+      })->get()->groupBy('round_id');
+
+      $ids = [];
+      $filtered = [];
+      foreach($dayPerRound as $days){
+        $ids = [];
+        foreach($days as $day){
+          array_push($ids, $day['id']);
         }
-        return Day::with(
-            'round',
-            'matches.teamA.media',
-            'matches.teamB.media',
-            'matches.warning.player',
-            'matches.expulsion.player',
-            'matches.scores.player'
-        )->get();
+        foreach($days as $key => $day){
+          if($day['id'] == max($ids)){
+            array_push($filtered, $day);
+          }
+        }
+      }
+      return $filtered;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    return Day::with(
+        'round',
+        'matches.teamA.media',
+        'matches.teamB.media',
+        'matches.warning.player',
+        'matches.expulsion.player',
+        'matches.scores.player'
+    )->get();
+  }
+
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create()
+  {
+      //
+  }
+
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function store(Request $request){
+    $day = new Day();
+
+    $day->fill([
+        'season_id' => Season::getCurrentSeason()->id,
+        'round_id'  => $request->round_id
+    ]);
+
+    if($day->save()){
+        $res['saved'] = true;
+        $res['status'] = 200;
     }
+    return response()->json($res, $res['status']);
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request){
-      $day = new Day();
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id)
+  {
+      //
+  }
 
-      $day->fill([
-          'season_id' => Season::getCurrentSeason()->id,
-          'round_id'  => $request->round_id
-      ]);
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function edit($id)
+  {
+      //
+  }
 
-      if($day->save()){
-          $res['saved'] = true;
-          $res['status'] = 200;
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function update(Request $request, $id)
+  {
+      //
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy($id)
+  {
+      $day = Day::find($id);
+      if($day->delete()){
+          $res['deleted'] = true;
+          $res['status'] = 204;
+      }else{
+          $res['deleted'] = false;
+          $res['status'] = 404;
       }
       return response()->json($res, $res['status']);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $day = Day::find($id);
-        if($day->delete()){
-            $res['deleted'] = true;
-            $res['status'] = 204;
-        }else{
-            $res['deleted'] = false;
-            $res['status'] = 404;
-        }
-        return response()->json($res, $res['status']);
-    }
+  }
 }

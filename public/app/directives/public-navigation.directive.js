@@ -36,12 +36,12 @@ angular.module('app')
 
     },
     controller: function($scope){
-      $scope.rounds = [];
-      Round
-        .get()
-        .then(function(res){
-          $scope.rounds = res.data;
-        });
+      // $scope.rounds = [];
+      // Round
+      //   .get()
+      //   .then(function(res){
+      //     $scope.rounds = res.data;
+      //   });
     }
   };
 }])

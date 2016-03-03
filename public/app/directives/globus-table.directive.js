@@ -11,15 +11,14 @@ angular
       scope.head = attr.head === 'true' ? true : false;
     },
     controller: function($scope, Round){
-      $scope.ready = false;
-      $scope.rounds = [];
+      $scope.ready = true;
 
-      Round.get()
-      .then(function(res){
-        console.log(res.data);
-        $scope.rounds = res.data;
-        $scope.ready = true;
-      });
+      // Round.get()
+      // .then(function(res){
+      //   console.log(res.data);
+      //   $scope.rounds = res.data;
+      //   $scope.ready = true;
+      // });
 
       $scope.changeRound = function(round){
         $scope.roundFilterId = round.id;

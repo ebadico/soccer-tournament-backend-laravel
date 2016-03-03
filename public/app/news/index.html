@@ -1,3 +1,4 @@
+{{ post }}
 <form ng-submit="create(post)">
   <h3 ng-click='editMode = !editMode'><i class="fa fa-pencil pointer"></i> &nbsp; CREA ARTICOLO</h3>
   <div ng-show="editMode">
@@ -5,6 +6,8 @@
     <input type="text" class="form-control" placeholder="title" ng-model="post.title">
     <br>
     <textarea ui-tinymce ng-model="post.body"></textarea>
+    <h5>Testo riassuntivo</h5>
+    <textarea placeholder="riassunto" ng-model="post.excerpt"></textarea>
     <div class="input-group col-xs-12 col-md-4 pull-left">
       <h6>Carica Immagine di copertina</h6>
       <i  ng-show="!post.featured"  

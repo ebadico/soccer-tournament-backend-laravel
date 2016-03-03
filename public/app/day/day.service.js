@@ -5,13 +5,13 @@ angular.module('app')
   this.get = function(){
     return $http.get('/api/day');
   }
-
-  //DO GET DAY FROM ROUNDs!!!!!!!!!!!!!!!!!!!!!!
-  //YOU ARE MATCHING THE WRONG TEAMSSSSSS IN THE WRONG DAY OF THE WRONG ROUND FFS
-  //IDIOT
   
   this.getFromRound = function(round_id){
     return $http.get('/api/day?round_id=' + round_id);
+  }
+
+  this.last = function(){
+    return $http.get('/api/day?last_day=1');
   }
 
 

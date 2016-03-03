@@ -66,6 +66,12 @@ angular
       $scope.seasons = res.data;
     });
 
+  $scope.$watch('post', function(newVal, oldVal){
+    if(newVal && newVal !== oldVal){
+      $scope.post.excerpt = $scope.post.body ? String($scope.post.body).replace(/<[^>]+>/gm, '') : '';
+    }
+  }, true)
+
   function getPosts(){
     News
       .index($scope.postType)

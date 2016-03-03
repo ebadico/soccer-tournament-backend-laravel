@@ -213,7 +213,12 @@ angular.module('app', [
 }])
 
 
-.run(['$rootScope', '$state', 'Auth', function($rootScope, $state, Auth){
+.run(['$rootScope', '$state', 'Auth', 'Round', function($rootScope, $state, Auth, Round){
+  Round.get()
+  .then(function(res){
+    $rootScope.rounds = res.data;
+  });
+
   $rootScope.isLoginPage = false;
   $rootScope.sitename = '_MyTournament_';
 
