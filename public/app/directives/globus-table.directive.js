@@ -8,7 +8,7 @@ angular
     templateUrl: 'app/directives/templates/globus-table.html',
     
     // > SHOULD BE TRUE ON THE SERVER BECAUSE FUCK IT OR THE SERVER WILL INHEREDIT FROM PublicCtrl no matter what... :\
-    scope: true, 
+    scope: false, 
     // WILL FIND A PROPER FIX SOME DAY BUT NOW I DONT HAVE TIME
 
     link: function (scope, el, attr, ctrl, transclude){
