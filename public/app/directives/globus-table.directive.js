@@ -12,11 +12,7 @@ angular
     },
     controller: function($scope, $transclude, Round){
       
-      console.log("DIRECTIVE SCOPE", $scope);
-      $transclude($scope, function(clone, scope){
-        scope.$parent = $scope.$parent;
-        console.log("TRANSCLUDE SCOPE", scope); 
-      })
+      $transclude($scope);
 
       $scope.ready = true;
 
