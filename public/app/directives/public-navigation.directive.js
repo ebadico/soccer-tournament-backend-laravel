@@ -25,11 +25,11 @@ angular.module('app')
         }
       }
 
-      $('#navigation-container').click(function(e){
+      // $('#navigation-container').click(function(e){
 
-        if ( $(e.target).parent().hasClass('dropdown') && $('#navigation-container').attr('data-mobile') === 'true' ) return;
-        $('.navbar-toggle').trigger('click');
-      });
+      //   if ( $(e.target).parent().hasClass('dropdown') && $('#navigation-container').attr('data-mobile') === 'true' ) return;
+      //   $('.navbar-toggle').trigger('click');
+      // });
 
       
       if( $(window).width() <= 1090 ){
