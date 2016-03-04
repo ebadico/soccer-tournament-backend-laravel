@@ -5,6 +5,7 @@ angular.module('app')
   function(Round, $state) {
   return {
     link: function(scope, element){
+
       var handler = function(){
         var landingHeight = $('body').find('.landing-container').height() || false;
         if ($(this).scrollTop() > landingHeight - 25 ){
@@ -24,15 +25,28 @@ angular.module('app')
         }
       }
 
+      
+      if( $(window).width() <= 1090 ){
+        $('#navigation-container').attr('data-mobile','true');
+      }else{
+        $('#navigation-container').attr('data-mobile','false');
+      }
+
+      var $collapse = $('#navigation-container');
+      $('.navbar-toggle').click(function(e){
+        if ( $(this).attr('data-open') === 'true'){
+          $collapse.css('height','0px');
+          $(this).attr('data-open', 'false');
+          $('#navigation-container').attr('data-open', 'false');
+        }else{
+          $collapse.css('height','350px');
+          $(this).attr('data-open', 'true');
+          $('#navigation-container').attr('data-open', 'true');
+        }
+      });
+
       $(document).ready(handler);
       $(window).scroll(handler);      
-      // $(window).scroll(function(){
-      //  if($(element).find('.navbar-collapse').hasClass('in')){
-      //   $('body').find('.navbar-toggle').trigger('click');
-      //  }
-      // });
-
-
 
     },
     controller: function($scope){

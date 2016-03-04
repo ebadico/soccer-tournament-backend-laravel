@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mobile-nav" aria-expanded="false">
+      <button type="button" class="navbar-toggle collapsed" data-open="false">
         <span class="sr-only">Toggle navigation</span>
         <i class="fa fa-bars fa-3x"></i>
       </button>
@@ -12,7 +12,7 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="mobile-nav">
+    <div id="navigation-container">
       <ul class="nav navbar-nav navbar-right">
         
         <li ng-class=" {current: stateLocation == 'public.home'} "><a ui-sref="public.home"> Home</a></li>
