@@ -6,8 +6,8 @@
 
   <loading show='teams.length'></loading>
 
+  <pre>{{team | json }}</pre>
   <main-content ng-show="teams.length">
-    <pre>{{team | json }}</pre>
     <globus-table head="true">
       <div class="table-header clearfix">
           <div class="col-xs-3 text-center"> <strong>posizione</strong> </div>
