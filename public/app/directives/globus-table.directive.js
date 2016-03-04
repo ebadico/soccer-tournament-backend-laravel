@@ -12,8 +12,8 @@ angular
     },
     controller: function($scope, $transclude, Round){
       
+      $transclude($scope); 
       
-
       $scope.ready = true;
 
       $scope.changeRound = function(round){
