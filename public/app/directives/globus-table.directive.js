@@ -10,7 +10,7 @@ angular
     link: function (scope, el, attr, ctrl, transclude){
       scope.head = attr.head === 'true' ? true : false;
 
-      transclude(scope.$parent);
+      transclude(scope);
     },
     controller: function($scope, Round){
       console.log("globus-table.directive.js :14", $scope);
