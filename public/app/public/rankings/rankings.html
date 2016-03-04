@@ -16,7 +16,6 @@
       <div ng-repeat="team in teams | orderBy: '-points' | roundFilter: roundFilterId track by $index"
            ui-sref="public.team({ team_id: team.id })"> <!-- $parent -->
         <div class="table-row clearfix">
-          <pre>{{ $parent.team }}</pre>
           <div class="col-xs-3 text-center rank-{{ $index + 1 }}" style="font-size: 1.5em;">
                {{ $index + 1 }}
                <i class="fa fa-trophy" ng-show="{{ $index >= 0 && $index <= 3 }} "></i>
