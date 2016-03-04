@@ -93,4 +93,4 @@ gulp.task('watch', function() {
 
 
 gulp.task('default', ['less','concat_vendors','concat_angular_vendors','concat_angular_app']);
-gulp.task('watch', ['less','concat_vendors','concat_angular_vendors','concat_angular_app','watch']);
+gulp.task('watcher', ['less','concat_vendors','concat_angular_vendors','concat_angular_app','watch']);
