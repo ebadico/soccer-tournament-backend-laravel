@@ -25,6 +25,12 @@ angular.module('app')
         }
       }
 
+      $('#navigation-container').click(function(e){
+        e.stopPropagation();
+        if ($(e.target).parent().hasClass('dropdown')) return;
+        $('.navbar-toggle').trigger('click');
+      });
+
       
       if( $(window).width() <= 1090 ){
         $('#navigation-container').attr('data-mobile','true');
