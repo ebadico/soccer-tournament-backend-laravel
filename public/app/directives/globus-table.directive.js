@@ -6,10 +6,15 @@ angular
     restrict: 'E', // this allows restriction of blink to an HTML element.
     transclude: true, // transclusion instructs angular to embed the original content from the DOM into the resultant outputi
     templateUrl: 'app/directives/templates/globus-table.html',
-    scope: false, // > SHOULD BE FALSE ON THE SERVER BECAUSE FUCK IT OR THE SERVER WILL INHEREDIT FROM PublicCtrl no matter what... :\
+    
+    // > SHOULD BE TRUE ON THE SERVER BECAUSE FUCK IT OR THE SERVER WILL INHEREDIT FROM PublicCtrl no matter what... :\
+    scope: true, 
+    // WILL FIND A PROPER FIX SOME DAY BUT NOT I DONT HAVE TIME
+
     link: function (scope, el, attr, ctrl, transclude){
       scope.head = attr.head === 'true' ? true : false;
     },
+
     controller: function($scope, $transclude, Round){
       
       $transclude($scope.$parent); 
