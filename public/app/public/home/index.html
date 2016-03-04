@@ -1,14 +1,16 @@
 <!-- LANDING -->
-<div class="container-fluid landing-container">
+<div class="container-fluid landing-container" id="landing">
   <div class="heading">
     <h3 class="catch_phrase">Tornei di Calcio A5</h3>
-    <img src="/images/logo.png" alt="" class="logo">
+    <img src="/images/logo.png" alt="" class="logo" class="animated bounce infinite">
     <h3 class="payoff">il torneo che ti fa viaggiare</h3>
   </div>
+
+  <fa class="fa fa-angle-double-down scroll-down-arrow animated infinite bounce"></fa>
 </div><!-- LANDING -->
 
 <!-- SPONSOR -->
-<div class="container-fluid sponsor-container">
+<div class="container-fluid sponsor-container hidden-xs" id="sponsors">
   <h3 class="title">i nostri <strong>sponsor</strong></h3>  
   <div class="row">
     <img ng-src="{{ sponsor.path }}" ng-repeat="sponsor in sponsors" class="home-sponsor">
@@ -19,7 +21,8 @@
 <!-- ULTIMA GIORNATA -->
 <div class="container-fluid lastday-container" id="results">
   <h3 class="title">ultima <strong>giornata</strong></h3>
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2" style="text-align: center;">
+    
+
       <globus-table head="true">
         <!-- DAY -->
         <div ng-repeat="day in days | roundFilter: $parent.roundFilterId track by $index">
@@ -47,7 +50,7 @@
               </div>
             </div>
             <div class="match-detail clearfix" ng-show="showMatchDetail">
-              <div class="col-xs-6 col-xs-offset-0 col-sm-3 col-sm-offset-3">
+              <div class="col-xs-6 col-xs-offset-0 col-sm-3 col-sm-offset-2 detail-left">
 
                 <div ng-repeat="score in teamScores[match.team_a.id]"> 
                   <i class="fa fa-futbol-o"></i> {{ score.player.name }}
@@ -60,7 +63,7 @@
                 </div>
 
               </div>
-              <div class="col-sm-3 col-sm-offset-2">
+              <div class="col-xs-6 col-xs-offset-0 col-sm-3 col-sm-offset-2 detail-rigth">
                 <div ng-repeat="score in teamScores[match.team_b.id]"> 
                   <i class="fa fa-futbol-o"></i> {{ score.player.name }}
                 </div>
@@ -76,7 +79,7 @@
         </div><!-- DAY -->
 
       </globus-table>
-    </div>
+
 
 </div><!-- ULTIMA GIORNATA -->
 
@@ -84,9 +87,8 @@
 <!-- CLASSIFICA MARCATORI -->
 <div class="container-fluid scorers-container clearfix" id="scorers" >
   <h3 class="title">classifica <strong>marcatori</strong></h3>
-  <div class="col-xs-10 col-xs-offset-1" style="text-align: center;">
-    <scorers ng-repeat="round in rounds" round="round"></scorers>
-  </div>
+  
+  <scorers ng-repeat="round in rounds" round="round"></scorers>
 
 </div><!-- CLASSIFICA MARCATORI -->
 
@@ -94,20 +96,18 @@
 <div class="container-fluid news-container" id="news">
   <h3 class="title">news &amp; <strong> comunicati</strong></h3>
 
-  <div class="col-xs-10 col-xs-offset-1" style="text-align: center;">
-    <div class="news-excerpt" ng-repeat="post in news | limitTo: 4 " ui-sref=" public.singlenews({ id: post.id }) ">
-      <div class="featured" ng-show="post.featured.path" ng-style="{'background-image':'url({{ post.featured.path }})'}"></div>
-      <div class="post" ng-class="{ 'wide': !post.featured }">
-        <h1>{{ post.title }}</h1>
-        <div class="date">{{ post.created_at | date }}</div>
-        <div class="excerpt">{{ post.excerpt | limitTo: 25 }}</div>
-        <span class="followup">Leggi <i class="fa fa-chevron-circle-right"></i></span>
-      </div>
+  <div class="news-excerpt" ng-repeat="post in news | limitTo: 4 " ui-sref=" public.singlenews({ id: post.id }) ">
+    <div class="featured" ng-show="post.featured.path" ng-style="{'background-image':'url({{ post.featured.path }})'}"></div>
+    <div class="post" ng-class="{ 'wide': !post.featured }">
+      <h1>{{ post.title }}</h1>
+      <div class="date">{{ post.created_at | date }}</div>
+      <div class="excerpt">{{ post.excerpt | limitTo: 25 }}</div>
+      <span class="followup">Leggi <i class="fa fa-chevron-circle-right"></i></span>
     </div>
-    <div class="clearfix"></div>
-    <div class="container-fluid text-center">
-      <span class="follow-up pointer" ui-sref="public.news({ type: 'news' })">leggi tutte</span>
-    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="container-fluid text-center">
+    <span class="follow-up pointer" ui-sref="public.news({ type: 'news' })">leggi tutte</span>
   </div>
 
 </div><!-- NEWS -->

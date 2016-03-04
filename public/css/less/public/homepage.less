@@ -1,4 +1,4 @@
-.landing-container{
+#landing{
   position:relative;
   top:0; left:0;
   z-index: -9;
@@ -6,6 +6,15 @@
   background-image: url('/images/globus_landing.jpg');
   background-size: cover;
   background-position: center center;
+
+  .scroll-down-arrow{
+    font-size: 3em;
+    color: @white;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    @media @sm { left: 45%; }
+  }
 
   .logo{
     max-width: 600px; 
@@ -20,22 +29,24 @@
     color:@white;
   }
 
-  .title{
-    font-size: 8em;
-    text-align: center;
-    font-family: 'Arial';
-    text-transform: lowercase;
-    color:@white;
-    text-shadow: 1px 1px 1px @black;
-    strong{
-      color:@yellow;
-    }
-  }
+  // .title{
+  //   font-size: 8em;
+  //   text-align: center;
+  //   font-family: 'Arial';
+  //   text-transform: lowercase;
+  //   color:@white;
+  //   text-shadow: 1px 1px 1px @black;
+  //   strong{
+  //     color:@yellow;
+  //   }
+  // }
  
   .catch_phrase, .payoff{
     .regular;
     letter-spacing: 1px;
     font-size: 2.25em;
+    @media @sm{ font-size: 1.25em !important; }
+    @media @md{ font-size: 1.75em; }
   }
   .catch_phrase{
     margin-bottom: -10px;
@@ -43,14 +54,20 @@
   }
   .payoff{
     color: @primary;
+    @media @xs{ margin-top: 5px; } 
   }
 }
 
-.lastday-container{
+#results{
   padding-bottom: 50px;
+
+  @media @sm{
+    margin: 0;
+  }
 }
 
-.scorers-container{
+#scorers{
+  text-align: center;
   min-height: 625px;
   height: auto;
   background: url('/images/scorers_divider.jpg');
@@ -62,8 +79,9 @@
   }
 }
 
-.news-container{
+#news{
   padding-bottom: 75px;
+  text-align: center;
   
   & > .title{
     text-align: center;
@@ -119,8 +137,9 @@
 
 
 
-.sponsor-container{
+#sponsors{
   min-height: 250px;
+
   .title{
     padding-bottom: 10px;
     width: 300px;
@@ -130,31 +149,43 @@
     border-bottom: 1px solid fade(@dark-grey, 25%);
   }
   
-  text-align: left;
+  text-align: center;
 
   .home-sponsor{
     margin: 10px;
     height: 200px;
+
+    @media @sm{
+      margin: 10px auto;
+      height: auto;
+      max-width: 85%;
+      display:block;
+    }
   }
 }
 
 .media-container{
-  padding-top: 75px;
   padding-bottom: 75px;
-
+  text-align: center;
+  
   .home-photo{
     margin: 10px;
-    height: 200px;
+    max-height: 200px;
+    max-width: 90%;
   }
 }
 
-.prize-container{
+#prize{
   position: relative;
   margin-top: 0;
   padding: 0;
-  max-height: 820px;
   height: 100%;
   text-align: center;
+  overflow:hidden;
+  
+  max-height: 720px;
+  @media @md{ max-height: 480px; }
+  @media @sm{ max-height: 320px; }
   
   .single-prize{
     
@@ -194,6 +225,7 @@
       color:@primary;
       position: relative;
       top:4%;
+      @media @xs{ top:2.5%; }
     }
 
     .title{
@@ -202,8 +234,13 @@
       top:10%;
       color: @white;
       margin: auto;
-      width: 50%;
       text-transform: none;
+      width: 50%;
+      @media @xs{
+        width: 75%;
+        font-size: 1.25em;
+        top: 4%;
+      }
     }
 
     .prize-city{
@@ -216,6 +253,7 @@
       width: 50%;
       text-transform: uppercase;
       font-size: 7.5vw;
+
     }
 
     .prize-description{
@@ -227,13 +265,38 @@
       margin: auto;
       width: 40%;
       text-transform: none;
+      @media @xs{
+        width: 80%;
+        font-size: 1em;
+      }
     }
 
   }
 
   .slider-position{
     position: absolute;
-    bottom:10px;
+    bottom:25px;
+    @media @xs{
+      bottom:10px;
+    }
+    .circle{
+      display: inline-block;
+      margin-right: 10px;
+      border-radius: 50%;
+      height: 20px;
+      width: 20px;
+      border:2px solid @white;
+
+      @media @xs{
+        height: 10px;
+        width: 10px;
+        margin-right: 3px;
+      }
+
+      &.active{
+        background:@white;
+      }
+    }
   }
 
 }

@@ -6,7 +6,7 @@
           ng-class="{ 'active': roundFilterId === round.id }" 
           ng-repeat="round in rounds track by $index" ng-click=" changeRound(round) "
           ng-init=" ( !roundFilterId && $index === 0) ? changeRound(round) : true;">
-          {{ roundFilterId === round.id ? 'GIRONE' : '' }} {{ round.name }}
+          <span class="girone-label">{{ roundFilterId === round.id ? 'GIRONE' : '' }}</span> {{ round.name }}
     </div>
     
   </div> 

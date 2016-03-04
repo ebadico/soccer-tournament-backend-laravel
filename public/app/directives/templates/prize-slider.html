@@ -1,4 +1,3 @@
-<span ng-repeat="prize in prizes track by $index" ng-click="setCurrentSlideIndex($index)">{{ $index }}</span>
 <div class="single-prize" style="background:url({{ prize.media.path }});" 
       ng-repeat="prize in prizes track by $index" ng-hide="!isCurrentSlideIndex($index)">
   <h5 class="little-title text-center">PREMI</h5>

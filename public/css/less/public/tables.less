@@ -1,4 +1,10 @@
 .globus-table-container{
+  display:block;  
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 80%;
+  @media @sm{ width: 100%; }
 
   .pills-container{
     .pill{
@@ -6,6 +12,11 @@
       float:left;
       width: 40px;
       height: 40px;
+      @media @sm{ 
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+        width: 40px !important;
+      }
       
       color: @mid-grey;
       background: @grey;
@@ -39,6 +50,11 @@
         padding-right: 40px;
         background: @primary;
         color: @white;
+        
+
+        .girone-label{
+          @media @sm{ display:none; }
+        }
       }
 
     }
@@ -91,6 +107,13 @@
       border-bottom: 1px solid @primary;
       padding-top: 10px;
       padding-bottom: 10px;
+      text-align: center;
+      
+
+      @media @sm{
+        .detail-left{  text-align: left; }
+        .detail-rigth{ text-align: right; }
+      }
     }
 
     .table-viewmore{
