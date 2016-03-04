@@ -1,6 +1,6 @@
 angular
 .module('app')
-.controller('HomeCtrl', ['$scope', 'Round', 'News', 'Media', 'Day', '$q', function($scope, Round, News, Media, Day, $q){
+.controller('HomeCtrl', ['$scope', 'Round', 'News', 'Media', 'Day', function($scope, Round, News, Media, Day){
  
 
   News.index('news')
@@ -32,7 +32,10 @@ angular
 
   Day.last()
   .then(function(res){
+    console.log("home.controller.js :35", res.data);
     $scope.days = res.data;
+  }, function(err){
+    console.log("home.controller.js :38", err);
   });
 
 }])
