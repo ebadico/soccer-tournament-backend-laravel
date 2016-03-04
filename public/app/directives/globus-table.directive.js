@@ -14,6 +14,7 @@ angular
       
       console.log("DIRECTIVE SCOPE", $scope);
       $transclude($scope, function(clone, scope){
+        scope.$parent = $scope.$parent;
         console.log("TRANSCLUDE SCOPE", scope); 
       })
 
