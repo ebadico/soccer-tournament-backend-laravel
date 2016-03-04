@@ -27,7 +27,7 @@ angular.module('app')
 
       $('#navigation-container').click(function(e){
         e.stopPropagation();
-        if ($(e.target &&  $('#navigation-container').attr('data-mobile') === 'true' ).parent().hasClass('dropdown')) return;
+        if ( $(e.target).parent().hasClass('dropdown') && $('#navigation-container').attr('data-mobile') === 'true' ) return;
         $('.navbar-toggle').trigger('click');
       });
 
