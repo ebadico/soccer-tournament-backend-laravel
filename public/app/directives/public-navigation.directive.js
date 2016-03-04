@@ -26,11 +26,11 @@ angular.module('app')
 
       $(document).ready(handler);
       $(window).scroll(handler);      
-      $(window).scroll(function(){
-       if($(element).find('.navbar-collapse').hasClass('in')){
-        $('body').find('.navbar-toggle').trigger('click');
-       }
-      });
+      // $(window).scroll(function(){
+      //  if($(element).find('.navbar-collapse').hasClass('in')){
+      //   $('body').find('.navbar-toggle').trigger('click');
+      //  }
+      // });
 
 
 
