@@ -14,8 +14,8 @@
           <div class="col-xs-4 col-xs-offset-2 text-left"> <strong>squadra</strong> </div>
           <div class="col-xs-3 text-center"> <strong>punti</strong> </div>        
       </div>
-      <div ng-repeat="team in teams | orderBy: '-points' | roundFilter: $parent.roundFilterId track by $index"
-           ui-sref="public.team({ team_id: team.id })">
+      <div ng-repeat="team in teams | orderBy: '-points' | roundFilter: roundFilterId track by $index"
+           ui-sref="public.team({ team_id: team.id })"> <!-- $parent -->
         <div class="table-row clearfix">
           <div class="col-xs-3 text-center rank-{{ $index + 1 }}" style="font-size: 1.5em;">
                {{ $index + 1 }}

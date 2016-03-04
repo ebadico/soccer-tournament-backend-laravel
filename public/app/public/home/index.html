@@ -22,7 +22,6 @@
 <div class="container-fluid lastday-container" id="results">
   <h3 class="title">ultima <strong>giornata</strong></h3>
     <globus-table head="true">
-      <pre>{{ days | json }}</pre>
       <!-- DAY -->
       <div ng-repeat="day in days | roundFilter: roundFilterId track by $index"> <!-- $parent -->
         <!-- SINGLE DAY -->

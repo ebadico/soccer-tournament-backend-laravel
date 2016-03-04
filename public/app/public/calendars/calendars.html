@@ -10,7 +10,7 @@
     <globus-table head="true">
 
       <!-- DAY -->
-      <div ng-repeat="day in days | roundFilter: $parent.roundFilterId track by $index">
+      <div ng-repeat="day in days | roundFilter: roundFilterId track by $index"> <!-- $parent -->
         <h5 class="title text-center calendarTitle" >Giornata <strong>{{ $index + 1 }}</strong></h5>
         <!-- SINGLE DAY -->
         <div ng-repeat="match in day.matches">
