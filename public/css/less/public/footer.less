@@ -5,6 +5,11 @@
   height: 250px;
   background: @black;
 
+  @media @xs{
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
   .footer-title{ 
     text-align: left;
     font-size: 1.25em !important;
@@ -21,6 +26,11 @@
     }
   }
   .about{
+    @media @xs{
+      text-align: center;
+      margin-bottom: 20px;
+      img{ width: 75px;}
+    }
     img{
       margin-top: 15px;
       width: 50%;
@@ -29,13 +39,19 @@
       color: @white;
     }
   }
-  .contacts{
+
+  .contacts, .social{
     padding: 25px;
+    @media @xs{
+      padding: 0px;
+      margin-bottom: 25px;
+    }
+  }
+  .contacts{
     color: @white;
     i{ font-size: 2em;  }
   }
   .social{
-    padding:25px;
     i{ font-size: 2em; margin-top: 20px;}
     a{ color: @white; }
   }
