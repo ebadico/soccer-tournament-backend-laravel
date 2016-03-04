@@ -11,7 +11,7 @@ angular
       scope.head = attr.head === 'true' ? true : false;
     },
     controller: function($scope, $transclude, Round){
-      $transclude($scope.$parent);
+      $transclude($scope);
       console.log("globus-table.directive.js :15", $scope.$parent);
       $scope.ready = true;
 
