@@ -13,17 +13,16 @@
   <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.min.css">
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" ng-href="css/main.{{ location || 'public' }}.min.css">
-  
-  <script src='/js/vendors.js'></script>                    
-  <script src="/js/angular-vendors.js"></script>
-  <script src="/js/app.core.js"></script>
-  <script src="/js/app.module.js"></script>
 
 </head>
 <body class="body-{{ location }}">
 
   <div style="height:100%" ui-view></div>
 
+  <script src='/js/vendors.js'></script>                    
+  <script src="/js/angular-vendors.js"></script>
+  <script src="/js/app.core.js"></script>
+  <script src="/js/app.module.js"></script>
 
   <script type="text/javascript">
     WebFontConfig = {
