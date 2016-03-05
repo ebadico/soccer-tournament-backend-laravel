@@ -13,6 +13,20 @@ class Match extends Model{
   protected $table = 'matchs'; 
   protected $date = ['match_date'];
   protected $fillable = ['season_id','team_a_id','team_b_id','day_id', 'match_date','winner_id','played'];
+  protected $appends = ['date','hour'];
+
+  public function getDateAttribute(){
+    return $this->attributes['date'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['match_date'])->format('d-m-Y');
+  }
+  public function getHourAttribute(){
+    $hour = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['match_date'])->hour;
+    $minute = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['match_date'])->minute;
+    if($minute < 10){
+      $minute = '0' . $minute;
+    }
+    $complete = $hour . ':' . $minute;
+    return $this->attributes['hour'] = $complete;
+  }
 
   public function setMatchDateAttribute($startDate) {
     $this->attributes['match_date'] = Carbon::parse($startDate)->toDateTimeString();

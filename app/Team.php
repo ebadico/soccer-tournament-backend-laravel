@@ -13,7 +13,11 @@ class Team extends Model
   }
   protected $fillable = ['name', 'wins', 'draws', 'losts', 'round_id', 'season_id', 'group_photo_id'];
 
-  protected $appends = ['points','last_matchs'];
+  protected $appends = ['points','last_matchs', 'all_scores'];
+
+  public function getAllScoresAttribute(){
+    return $this->attributes['all_scores'] = $this->scores()->count();
+  }
 
   public function getLastMatchsAttribute(){
     $matches = Match::where(function($query){

@@ -4,9 +4,12 @@
       <div class="team-avatar " ng-show="team.media" style="background-image: url({{ team.media.path }}) "></div>
       <div class="team-name ">{{ team.name }}</div>
       <div class="team-stat" ng-show="team.id">
+        <span><strong>Partite Giocate:</strong> {{ team.wins + team.draws + team.losts }}</span>
         <span><strong>Vittorie:</strong> {{team.wins}}</span>
         <span><strong>Pareggi:</strong> {{team.draws}}</span>
         <span><strong>Perse:</strong> {{team.losts}}</span>
+        <span><strong>Goals:</strong> {{team.all_scores}}</span>
+        <br>
       </div>
     </div>
     <div class="clearfix"></div>

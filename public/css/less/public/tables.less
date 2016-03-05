@@ -3,7 +3,7 @@
   margin-left: auto;
   margin-right: auto;
   // RIVEDI STRUTTURE TABELLE IN MOBILE SU QUELLE PIENE DI DATI
-  width: 80%;
+  width: 95%;
   @media @sm{ width: 100%; }
 
   .pills-container{
@@ -92,6 +92,11 @@
       border-bottom: 1px solid @grey;
       cursor:pointer;
 
+      @media @sm{
+        height: auto !important;
+        line-height: normal !important; 
+      }
+
       &:hover{
         color:@primary;
       }
@@ -113,6 +118,24 @@
       @media @sm{
         .detail-left{  text-align: left; }
         .detail-rigth{ text-align: right; }
+      }
+    }
+
+    .match_date{
+      text-align: center;
+      padding: 10px 0 0 0;
+      position: relative;
+      
+      &:after{
+        position: relative;
+        display: block;
+        bottom: -5px;
+        left: 0;
+        height: 1px;
+        margin: auto;
+        content: '';
+        border-bottom: 1px solid #111;
+        width: 40px;
       }
     }
 

@@ -30,6 +30,7 @@
           <span class="hide" ng-repeat="filterWarnings in match.warning | groupBy: 'player.team_id' as teamWarning"></span>
           <span class="hide" ng-repeat="filterExpulsions in match.expulsion | groupBy: 'player.team_id' as teamExpulsion"></span>
          
+          <div class="match_date"> <i class="fa fa-calendar"></i> {{ match.date}} &nbsp; <i class="fa fa-clock-o"></i> {{ match.hour }}</div>
           <div class="table-row clearfix" ng-click="showMatchDetail = !showMatchDetail ">
             <div class="col-sm-2 text-left hidden-xs" >
               <div class="small-avatar">
@@ -38,7 +39,7 @@
             </div>
             <div class="col-xs-4 col-sm-3 text-center">{{ match.team_a.name }}</div>
             <div class="col-xs-4 col-sm-2 text-center result">
-              {{ teamScores[match.team_a.id].length || '0' }} - {{ teamScores[match.team_b.id].length || '0' }}
+              {{ teamScores[match.team_a.id].length || '0' }} - {{ teamScores[match.team_b.id].length || '0' }} <br>
             </div>
             <div class="col-xs-4 col-sm-3 text-center">{{ match.team_b.name }}</div>
             <div class="col-sm-2 text-right hidden-xs" >
@@ -94,7 +95,7 @@
 <div class="container-fluid news-container" id="news">
   <h3 class="title">news &amp; <strong> comunicati</strong></h3>
 
-  <div class="news-excerpt" ng-repeat="post in news | limitTo: 4 " ui-sref=" public.singlenews({ id: post.id }) ">
+  <div class="news-excerpt" ng-repeat="post in news | limitTo: 3 " ui-sref=" public.singlenews({ id: post.id }) ">
     <div class="featured" ng-show="post.featured.path" ng-style="{'background-image':'url({{ post.featured.path }})'}"></div>
     <div class="post" ng-class="{ 'wide': !post.featured }">
       <h1>{{ post.title }}</h1>
