@@ -22,7 +22,7 @@ angular.module('app')
 
       $interval(function(){
         var index = $scope.currentIndex + 1;
-        if(index >= $scope.prizes.length) index = 0;
+        if( $scope.prizes && index >= $scope.prizes.length) index = 0;
         $scope.setCurrentSlideIndex(index);
       }, 5000);
 

@@ -13,16 +13,15 @@ angular.module('app')
         }else{
             $(element).removeClass('nav-dark');
         }
-        if(!landingHeight) $(element).addClass('nav-dark');
+        
+        //if(!landingHeight) $(element).addClass('nav-dark');
         
         if($state.current.name === 'public.login'){
           $(element).fadeOut();
         }else{
           $(element).fadeIn();
         }
-        if($state.current.name != 'public.home'){
-          $(element).addClass('nav-dark');
-        }
+
       }
 
       $('#navigation-container').click(function(e){

@@ -16,7 +16,7 @@ class CreateMatchs extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->date('match_date');
+            $table->datetime('match_date');
         });
     }
 
