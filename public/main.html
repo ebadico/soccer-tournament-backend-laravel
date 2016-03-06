@@ -23,7 +23,7 @@
   <script src="/js/angular-vendors.js"></script>
   <script src="/js/app.core.js"></script>
   <script src="/js/app.module.js"></script>
-
+  
   <script type="text/javascript">
     WebFontConfig = {
       google: { families: [ 'Oswald:700:latin', 'Raleway:400,600,700:latin' ] }
@@ -36,6 +36,35 @@
       var s = document.getElementsByTagName('script')[0];
       s.parentNode.insertBefore(wf, s);
     })(); 
+  </script>
+
+  <script src="/js/jquery.flexisel.js"></script>
+  <script>
+    $(window).load(function() {
+      $("#SponsorCarousel").flexisel({
+        visibleItems: 4,
+        animationSpeed: 1500,
+        autoPlay: true,
+        autoPlaySpeed: 1500,
+        pauseOnHover: false,
+        clone:true,
+        enableResponsiveBreakpoints: true,
+        responsiveBreakpoints: {
+          portrait: {
+            changePoint:480,
+            visibleItems: 1
+          }, 
+          landscape: {
+            changePoint:640,
+            visibleItems: 2
+          },
+          tablet: {
+            changePoint:768,
+            visibleItems: 3
+          }
+        }
+      });
+    });
   </script>
 
 </body>

@@ -10,17 +10,19 @@
 </div><!-- LANDING -->
 
 <!-- SPONSOR -->
-<div class="container-fluid sponsor-container hidden-xs" id="sponsors">
+<div class="container-fluid sponsor-container" id="sponsors">
   <h3 class="title">i nostri <strong>sponsor</strong></h3>  
-  <div class="row">
-    <img ng-src="{{ sponsor.path }}" ng-repeat="sponsor in sponsors" class="home-sponsor">
-  </div>
-</div><!-- SPONSOR -->
 
-<!-- PRIZES -->
-<div class="container-fluid prize-container" id="prize">
-  <prize-slider></prize-slider>
-</div><!-- PRIZES -->
+  <div class="carousel-container">
+    <ul id="SponsorCarousel" class="nbs-flexisel-ul" style="left: -227px; display: block;">     
+      <li class="nbs-flexisel-item" ng-repeat="sponsor in sponsors" >
+        <img ng-src="{{ sponsor.path }}" class="home-sponsor">
+      </li>
+    </ul>
+  </div>
+      
+
+</div><!-- SPONSOR -->
 
 
 <!-- ULTIMA GIORNATA -->
@@ -115,6 +117,11 @@
   </div>
 
 </div><!-- NEWS -->
+
+<!-- PRIZES -->
+<div class="container-fluid prize-container" id="prize">
+  <prize-slider></prize-slider>
+</div><!-- PRIZES -->
 
 <!-- MEDIA -->
 <div class="container-fluid media-container" id="media">
