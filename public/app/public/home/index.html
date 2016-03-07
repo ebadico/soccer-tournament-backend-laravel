@@ -12,25 +12,17 @@
 <!-- SPONSOR -->
 <div class="container-fluid sponsor-container" id="sponsors">
   <h3 class="title">i nostri <strong>sponsor</strong></h3>  
-
-
-    <slick settings="slickConfig" ng-if="sponsorLoaded">
-      <div class="" ng-repeat="sponsor in sponsors">
-        <img ng-src="{{ sponsor.path }}">
-      </div>
-    </slick>
-
-  <!-- <div class="carousel-container">
-    <ul id="SponsorCarousel" class="nbs-flexisel-ul" style="left: -227px; display: block;">     
-      <li class="nbs-flexisel-item" ng-repeat="sponsor in sponsors" >
-        <img ng-src="{{ sponsor.path }}" class="home-sponsor">
-      </li>
-    </ul>
-  </div> -->
-      
-
+  <slick settings="slickConfig" ng-if="sponsorLoaded">
+    <div class="" ng-repeat="sponsor in sponsors">
+      <img ng-src="{{ sponsor.path }}">
+    </div>
+  </slick>
 </div><!-- SPONSOR -->
 
+<!-- PRIZES -->
+<div class="container-fluid prize-container" id="prize">
+  <prize-slider></prize-slider>
+</div><!-- PRIZES -->
 
 <!-- ULTIMA GIORNATA -->
 <div class="container-fluid lastday-container" id="results">
@@ -124,11 +116,6 @@
   </div>
 
 </div><!-- NEWS -->
-
-<!-- PRIZES -->
-<div class="container-fluid prize-container" id="prize">
-  <prize-slider></prize-slider>
-</div><!-- PRIZES -->
 
 <!-- MEDIA -->
 <div class="container-fluid media-container" id="media">
