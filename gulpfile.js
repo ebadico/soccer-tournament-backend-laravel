@@ -65,7 +65,7 @@ gulp.task('css_vendor_concat_min', function () {
   .pipe(gulp.dest(public_dir + 'css'));
 
   gulp.src(bower_dir + 'font-awesome/fonts/**')
-    .pipe(gulp.dest(public_dir + 'fonts/'));
+    .pipe(gulp.dest(public_dir + 'font-awesome/fonts'));
 });
 
 
