@@ -13,13 +13,20 @@
 <div class="container-fluid sponsor-container" id="sponsors">
   <h3 class="title">i nostri <strong>sponsor</strong></h3>  
 
-  <div class="carousel-container">
+
+    <slick settings="slickConfig" ng-if="sponsorLoaded">
+      <div class="" ng-repeat="sponsor in sponsors">
+        <img ng-src="{{ sponsor.path }}">
+      </div>
+    </slick>
+
+  <!-- <div class="carousel-container">
     <ul id="SponsorCarousel" class="nbs-flexisel-ul" style="left: -227px; display: block;">     
       <li class="nbs-flexisel-item" ng-repeat="sponsor in sponsors" >
         <img ng-src="{{ sponsor.path }}" class="home-sponsor">
       </li>
     </ul>
-  </div>
+  </div> -->
       
 
 </div><!-- SPONSOR -->

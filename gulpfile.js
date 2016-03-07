@@ -1,11 +1,13 @@
-var gulp   = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var less   = require('gulp-less');
-var cssmin = require('gulp-cssmin');
-var rename = require('gulp-rename');
+var gulp      = require('gulp');
+var concat    = require('gulp-concat');
+var uglify    = require('gulp-uglify');
+var less      = require('gulp-less');
+var cssmin    = require('gulp-cssmin');
+var rename    = require('gulp-rename');
+var concatCss = require('gulp-concat-css');
 
 var public_dir  = 'public/';
+var bower_dir   = 'public/bower_components/';
 var angular_dir = 'public/app/';
 
 
@@ -29,46 +31,65 @@ gulp.task('less', function (){
 gulp.task('concat_vendors', function() {
   
   gulp.src([
-    public_dir + 'bower_components/jquery/dist/jquery.min.js',
-    public_dir + 'bower_components/bootstrap/dist/js/bootstrap.min.js',
-    public_dir + 'bower_components/tinymce-dist/tinymce.min.js',
-    public_dir + 'bower_components/underscore/underscore-min.js',
-    public_dir + 'bower_components/jquery-bridget/jquery-bridget.js',
-    public_dir + 'bower_components/ev-emitter/ev-emitter.js',
-    public_dir + 'bower_components/desandro-matches-selector/matches-selector.js',
-    public_dir + 'bower_components/fizzy-ui-utils/utils.js',
-    public_dir + 'bower_components/get-size/get-size.js',
-    public_dir + 'bower_components/outlayer/item.js',
-    public_dir + 'bower_components/outlayer/outlayer.js',
-    public_dir + 'bower_components/masonry/masonry.js',
-    public_dir + 'bower_components/imagesloaded/imagesloaded.js',
+    bower_dir + 'jquery/dist/jquery.min.js',
+    bower_dir + 'bootstrap/dist/js/bootstrap.min.js',
+    bower_dir + 'tinymce-dist/tinymce.min.js',
+    bower_dir + 'underscore/underscore-min.js',
+    bower_dir + 'jquery-bridget/jquery-bridget.js',
+    bower_dir + 'ev-emitter/ev-emitter.js',
+    bower_dir + 'desandro-matches-selector/matches-selector.js',
+    bower_dir + 'fizzy-ui-utils/utils.js',
+    bower_dir + 'get-size/get-size.js',
+    bower_dir + 'outlayer/item.js',
+    bower_dir + 'outlayer/outlayer.js',
+    bower_dir + 'masonry/masonry.js',
+    bower_dir + 'imagesloaded/imagesloaded.js',
+    bower_dir + 'slick-carousel/slick/slick.js',
   ])
   .pipe(concat('vendors.js'))
   .pipe(gulp.dest(public_dir + 'js'));
 
 });
 
+gulp.task('css_vendor_concat_min', function () {
+  gulp.src([
+    bower_dir + 'bootstrap/dist/css/bootstrap.min.css',
+    bower_dir + 'angular-toastr/dist/angular-toastr.min.css',
+    bower_dir + 'slick-carousel/slick/slick.css',
+    bower_dir + 'slick-carousel/slick/slick-theme.css',
+    bower_dir + 'font-awesome/css/font-awesome.min.css',
+  ])
+  .pipe(concatCss("vendors.css"))
+  .pipe(cssmin())
+  .pipe(rename({ suffix:'.min'}))
+  .pipe(gulp.dest(public_dir + 'css'));
+
+  gulp.src(bower_dir + 'font-awesome/fonts/**')
+    .pipe(gulp.dest(public_dir + 'fonts/'));
+});
+
 
 gulp.task('concat_angular_vendors', function() {
   gulp.src([
-    public_dir + 'bower_components/angular/angular.min.js',
-    public_dir + 'bower_components/satellizer/satellizer.min.js',
-    public_dir + 'bower_components/angular-sanitize/angular-sanitize.min.js',
-    public_dir + 'bower_components/ng-flow/dist/ng-flow-standalone.min.js',
-    public_dir + 'bower_components/angular-filter/dist/angular-filter.min.js',
-    public_dir + 'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-    public_dir + 'bower_components/angular-toastr/dist/angular-toastr.tpls.min.js',
-    public_dir + 'bower_components/angular-animate/angular-animate.min.js',
-    public_dir + 'bower_components/angular-ui-tinymce/src/tinymce.js',
-    public_dir + 'bower_components/tinymce-dist/themes/modern/theme.min.js',
-    public_dir + 'bower_components/angular-masonry/angular-masonry.js',
+    bower_dir + 'angular/angular.min.js',
+    bower_dir + 'satellizer/satellizer.min.js',
+    bower_dir + 'angular-sanitize/angular-sanitize.min.js',
+    bower_dir + 'ng-flow/dist/ng-flow-standalone.min.js',
+    bower_dir + 'angular-filter/dist/angular-filter.min.js',
+    bower_dir + 'angular-ui-router/release/angular-ui-router.min.js',
+    bower_dir + 'angular-toastr/dist/angular-toastr.tpls.min.js',
+    bower_dir + 'angular-animate/angular-animate.min.js',
+    bower_dir + 'angular-ui-tinymce/src/tinymce.js',
+    bower_dir + 'tinymce-dist/themes/modern/theme.min.js',
+    bower_dir + 'angular-masonry/angular-masonry.js',
+    bower_dir + 'angular-slick-carousel/dist/angular-slick.min.js',
   ])
   .pipe(concat('angular-vendors.js'))
   .pipe(gulp.dest(public_dir + 'js'));
 
   //TinyMCE vendors
   gulp
-    .src(public_dir + 'bower_components/tinymce-dist/skins/**/**')
+    .src(bower_dir + 'tinymce-dist/skins/**/**')
     .pipe(gulp.dest(public_dir + 'js/skins/'));
 
 });
@@ -92,5 +113,5 @@ gulp.task('watch', function() {
 });
 
 
-gulp.task('default', ['less','concat_vendors','concat_angular_vendors','concat_angular_app']);
-gulp.task('watcher', ['less','concat_vendors','concat_angular_vendors','concat_angular_app','watch']);
+gulp.task('default', ['less','concat_vendors','concat_angular_vendors', 'css_vendor_concat_min', 'concat_angular_app']);
+gulp.task('watcher', ['less','concat_vendors','concat_angular_vendors', 'css_vendor_concat_min', 'concat_angular_app','watch']);

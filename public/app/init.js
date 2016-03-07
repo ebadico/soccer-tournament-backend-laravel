@@ -8,6 +8,7 @@ angular.module('app', [
   'flow',
   'satellizer',
   'wu.masonry',
+  'slickCarousel',
 ])
 
 .config([
