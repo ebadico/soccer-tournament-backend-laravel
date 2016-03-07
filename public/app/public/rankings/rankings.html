@@ -9,20 +9,26 @@
   <main-content ng-show="teams.length">
     <globus-table head="true">
       <div class="table-header clearfix">
-          <div class="col-xs-3 text-center"> <strong>posizione</strong> </div>
-          <div class="col-xs-4 col-xs-offset-2 text-left"> <strong>squadra</strong> </div>
-          <div class="col-xs-3 text-center"> <strong>punti</strong> </div>        
+          <div class="col-xs-4 col-sm-3 text-center"> <strong>posizione</strong> </div>
+          <div class="col-xs-4 col-sm-5 text-center"> <strong>squadra</strong> </div>
+          <div class="col-xs-4 col-sm-1 text-center"> <strong>Pt.</strong> </div>
+          <div class="col-sm-3 text-center hidden-xs text-center"> <strong>V/P/S - Gf/Gs</strong> </div>
       </div>
       <div ng-repeat="team in teams | orderBy: '-points' | roundFilter: roundFilterId track by $index"
            ui-sref="public.team({ team_id: team.id })"> <!-- $parent -->
         <div class="table-row clearfix">
-          <div class="col-xs-3 text-center rank-{{ $index + 1 }}" style="font-size: 1.5em;">
+
+          <div class="col-sm-3 col-xs-4 text-center rank-{{ $index + 1 }}" style="font-size: 1.5em;">
                {{ $index + 1 }}
                <i class="fa fa-trophy" ng-show="{{ $index >= 0 && $index <= 3 }} "></i>
           </div>
-          <div class="col-xs-2 text-center avatar-bg" style="background: url({{ team.media.path }})"></div>
-          <div class="col-xs-4 text-left">{{ team.name }}</div>
-          <div class="col-xs-3 text-center">{{ team.points }}</div>
+          <div class="col-xs-2 hidden-xs text-center avatar-bg" style="background: url({{ team.media.path }})"></div>
+          <div class="col-sm-3 col-xs-4 text-left">{{ team.name }}</div>
+          <div class="col-sm-1 col-xs-4 text-center">{{ team.points }}</div>
+          <div class="col-xs-3 hidden-xs text-center">
+            {{ team.wins }}/{{team.draws}}/{{team.losts}} - {{ team.all_scores }}/{{ team.scores_conceded }}
+          </div>
+          
           <div class="clearfix"></div>
         </div>
       </div> 

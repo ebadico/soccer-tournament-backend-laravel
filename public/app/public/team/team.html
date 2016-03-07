@@ -4,11 +4,9 @@
       <div class="team-avatar " ng-show="team.media" style="background-image: url({{ team.media.path }}) "></div>
       <div class="team-name ">{{ team.name }}</div>
       <div class="team-stat" ng-show="team.id">
-        <span><strong>Partite Giocate:</strong> {{ team.wins + team.draws + team.losts }}</span>
         <span><strong>Vittorie:</strong> {{team.wins}}</span>
         <span><strong>Pareggi:</strong> {{team.draws}}</span>
         <span><strong>Perse:</strong> {{team.losts}}</span>
-        <span><strong>Goals:</strong> {{team.all_scores}}</span>
         <br>
       </div>
     </div>
@@ -22,6 +20,16 @@
         <img ng-src="{{ team.group_photo.path}}" alt="">
       </div>
       <last-matches matches="team.last_matchs"></last-matches>
+      <br>
+      <div class="team-latest-match clearfix text-center">
+        <h3>Statistiche</h3>
+        <div class="match-row">Partite giocate: {{ team.wins + team.draws + team.losts }}</div>
+        <div class="match-row">Vittorie: {{team.wins}}</div>
+        <div class="match-row">Pareggi: {{team.draws}}</div>
+        <div class="match-row">Perse: {{team.losts}}</div>
+        <div class="match-row">Goals: {{team.all_scores}}</div>
+        <div class="match-row">Goals subiti: {{team.scores_conceded}}</div>
+      </div>
     </div>
     <div class="col-md-12 col-lg-8 players-container">
       <h6 class="title" ng-show="team.id">Giocatori</h6>

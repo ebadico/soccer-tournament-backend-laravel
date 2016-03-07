@@ -13,7 +13,7 @@ class Team extends Model
   }
   protected $fillable = ['name', 'wins', 'draws', 'losts', 'round_id', 'season_id', 'group_photo_id'];
 
-  protected $appends = ['points','last_matchs', 'all_scores'];
+  protected $appends = ['points','last_matchs', 'all_scores','scores_conceded'];
 
   public function getAllScoresAttribute(){
     return $this->attributes['all_scores'] = $this->scores()->count();
@@ -49,8 +49,28 @@ class Team extends Model
                       ->orWhere('team_b_id','=', $this->id);
                   })
                   ->played()
+
                   ->count();
     return $this->attributes["draws"] = $draws;
+  }
+
+  public function getScoresConcededAttribute(){
+    $all_team_matchs = Match::where(function($query){
+                    $query
+                      ->where('team_a_id', '=', $this->id)
+                      ->orWhere('team_b_id','=', $this->id);
+                  })
+                  ->with('scores')
+                  ->get();
+
+    $conceded = 0;
+    foreach($all_team_matchs as $team_match){
+      foreach ($team_match->scores as $score) {
+        if($score->team_id !== $this->id) $conceded++;
+      }
+    }
+
+    return $this->attributes["scores_conceded"] = $conceded;
   }
 
   public function getLostsAttribute(){
