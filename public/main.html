@@ -14,7 +14,7 @@
 
 </head>
 <body class="body-{{ location }}">
-  <div style="height:100%" ui-view></div>
+  <div style="height:100%; overflow-x:hidden; " ui-view></div>
   
   <!-- SCRIPTS -->
   <script src='/js/vendors.js'></script>                    
@@ -47,6 +47,11 @@
     ga('create', 'UA-42108262-11', 'auto');
     ga('send', 'pageview');
   </script>
+    
+  <script type="text/javascript">
+    window.cookieconsent_options = {"message":"Questa applicazione fa utilizzo di cookies per assicurarne un miglior funzionamento.","dismiss":"Ok, ho capito!","learnMore":"Leggi tutto", "theme":"dark-floating"};
+  </script>
+
 
 </body>
 </html>

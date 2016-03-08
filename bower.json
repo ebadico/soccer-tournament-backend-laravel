@@ -31,6 +31,7 @@
     "satellizer": "~0.13.4",
     "ngFlowGrid": "~1.0.2",
     "angular-masonry": "~0.16.0",
-    "angular-slick-carousel": "~3.1.4"
+    "angular-slick-carousel": "~3.1.4",
+    "cookieconsent2": "~1.0.10"
   }
 }

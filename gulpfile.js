@@ -45,6 +45,7 @@ gulp.task('concat_vendors', function() {
     bower_dir + 'masonry/masonry.js',
     bower_dir + 'imagesloaded/imagesloaded.js',
     bower_dir + 'slick-carousel/slick/slick.js',
+    bower_dir + 'cookieconsent2/build/cookieconsent.min.js',
   ])
   .pipe(concat('vendors.js'))
   .pipe(gulp.dest(public_dir + 'js'));
