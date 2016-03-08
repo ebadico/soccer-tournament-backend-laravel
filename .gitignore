@@ -1,4 +1,5 @@
 app/.git/**
+public/.git/**
 .vagrant/
 /vendor
 /node_modules
