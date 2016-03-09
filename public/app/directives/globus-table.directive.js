@@ -18,7 +18,7 @@ angular
 
     controller: function($scope, $transclude, Round){
       
-      $transclude($scope);
+      //$transclude($scope.$parent);
 
       $scope.ready = true;
 
