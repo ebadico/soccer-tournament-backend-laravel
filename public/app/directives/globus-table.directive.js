@@ -9,7 +9,7 @@ angular
     
     // > SHOULD BE TRUE ON THE SERVER BECAUSE FUCK IT OR THE SERVER WILL INHEREDIT FROM PublicCtrl no matter what... :\
     //scope: (window.location.hostname === 'www.globuscup.it' ? true : false), 
-    scope: false,
+    scope: true,
     // WILL FIND A PROPER FIX SOME DAY BUT NOW I DONT HAVE TIME
 
     link: function (scope, el, attr, ctrl, transclude){
@@ -18,7 +18,7 @@ angular
 
     controller: function($scope, $transclude, Round){
       
-      $transclude($scope.$parent);
+      $transclude($scope);
 
       $scope.ready = true;
 
