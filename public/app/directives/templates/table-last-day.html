@@ -13,9 +13,9 @@
   </div> 
 
   <div class="globus-table">
-    <pre>{{ days | json }}</pre>
     <!-- DAY -->
     <div ng-repeat="day in days | roundFilter: roundFilterId">
+      <pre>{{ day | json }}</pre>
       <!-- SINGLE DAY -->
       <div ng-repeat="match in day.matches">
         <span class="hide" ng-repeat="score in match.scores | groupBy: 'team_id' as teamScores"></span>
