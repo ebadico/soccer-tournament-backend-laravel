@@ -24,7 +24,7 @@ angular
         return array;
       }else{
         var filtered = array.filter(function(element) {
-          console.log("filters.js :27", element);
+          console.log("filters.js :27", (element.round_id === round_id));
           return (element.round_id === round_id);
         });
         return filtered;
