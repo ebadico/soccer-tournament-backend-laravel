@@ -18,19 +18,13 @@ angular
   .filter('roundFilter', function(){
     return function(array, round_id){
       array = array || [];
-      console.log("filters.js :28 >>>", array);
+      if(!round_id) return array;
 
-      if(!round_id) {
-        return array;
-      }else{
-        var filtered = array.filter(function(element) {
-          console.log("filters.js :27", round_id + " as " + typeof round_id);
-          console.log("filters.js :27", element.round_id + " as " + typeof element.round_id);
-          console.log("filters.js :27", (element.round_id === round_id));
-          return (element.round_id === round_id);
-        });
-        return filtered;
-      }
+      var filtered = array.filter(function(index) {
+        return (String(index.round_id) === String(round_id));
+      });
+
+      return filtered;
 
     };
   })
