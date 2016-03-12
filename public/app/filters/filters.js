@@ -19,15 +19,15 @@ angular
     return function(array, round_id){
       array = array || [];
 
-      console.log("filters.js :22", round_id);
-
-      if(!round_id) return array;
-
-      var filtered = array.filter(function(index) {
-        return (index.round_id === round_id);
-      });
-
-      return filtered;
+      if(!round_id) {
+        return array;
+      }else{
+        var filtered = array.filter(function(index) {
+          return (index.round_id === round_id);
+        });
+        console.log("filters.js :28 >>>", filtered);
+        return filtered;
+      }
 
     };
   })
