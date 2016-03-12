@@ -19,6 +19,7 @@ angular
     controller: function($scope, $transclude, Round){
       
       $transclude($scope.$parent);
+      // DROP TRANSCLUDE TOO MANY SCOPE ERRORS
 
       $scope.ready = true;
 
