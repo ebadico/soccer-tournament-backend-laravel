@@ -17,9 +17,9 @@ angular
 
   .filter('roundFilter', function(){
     return function(array, round_id){
-      //array = array || [];
+      array = array || [];
 
-      if(!array) return [];
+      console.log("filters.js :22", round_id);
 
       if(!round_id) return array;
 
