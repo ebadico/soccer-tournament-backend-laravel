@@ -18,6 +18,8 @@ angular
         $scope.rounds = newVal || [];
       });
 
+      console.log("table-last-day.directive.js :21", $scope);
+
       $scope.ready = true;
 
       $scope.changeRound = function(round){
