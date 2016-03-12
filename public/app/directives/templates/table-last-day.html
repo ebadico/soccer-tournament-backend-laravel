@@ -14,7 +14,7 @@
 
   <div class="globus-table">
     <!-- DAY -->
-    <div ng-repeat="day in days | roundFilter: roundFilterId">
+    <div ng-repeat="day in days">
       <pre>{{ day | json }}</pre>
       <!-- SINGLE DAY -->
       <div ng-repeat="match in day.matches">
