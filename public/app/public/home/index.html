@@ -25,67 +25,9 @@
 </div><!-- PRIZES -->
 
 <!-- ULTIMA GIORNATA -->
-<div class="container-fluid lastday-container" id="results">
+<div class="container-fluid lastday-container clearfix" id="results">
   <h3 class="title">ultima <strong>giornata</strong></h3>
-    <globus-table head="true">
-      <!-- DAY -->
-      <div ng-repeat="day in days | roundFilter: roundFilterId track by $index"> <!-- $parent -->
-        <!-- SINGLE DAY -->
-        <div ng-repeat="match in day.matches">
-          <span class="hide" ng-repeat="score in match.scores | groupBy: 'team_id' as teamScores"></span>
-          <span class="hide" ng-repeat="filterWarnings in match.warning | groupBy: 'player.team_id' as teamWarning"></span>
-          <span class="hide" ng-repeat="filterExpulsions in match.expulsion | groupBy: 'player.team_id' as teamExpulsion"></span>
-         
-          <div class="match_date"> <i class="fa fa-calendar"></i> {{ match.date}} &nbsp; <i class="fa fa-clock-o"></i> {{ match.hour }}</div>
-          <div class="table-row clearfix" ng-click="showMatchDetail = !showMatchDetail ">
-            <div class="col-sm-2 text-left hidden-xs" >
-              <div class="small-avatar">
-                <img ng-src="{{ match.team_a.media.path }}" alt="">
-              </div>
-            </div>
-            <div class="col-xs-4 col-sm-3 text-center">{{ match.team_a.name }}</div>
-            <div class="col-xs-4 col-sm-2 text-center result">
-              {{ teamScores[match.team_a.id].length || '0' }} - {{ teamScores[match.team_b.id].length || '0' }} <br>
-            </div>
-            <div class="col-xs-4 col-sm-3 text-center">{{ match.team_b.name }}</div>
-            <div class="col-sm-2 text-right hidden-xs" >
-              <div class="small-avatar">
-                <img ng-src="{{ match.team_b.media.path }}" alt="">
-              </div>
-            </div>
-          </div>
-          <div class="match-detail clearfix" ng-show="showMatchDetail">
-            <div class="col-xs-6 col-xs-offset-0 col-sm-3 col-sm-offset-2 detail-left">
-
-              <div ng-repeat="score in teamScores[match.team_a.id]"> 
-                <i class="fa fa-futbol-o"></i> {{ score.player.name }}
-              </div>
-              <div ng-repeat="warning in teamWarning[match.team_a.id]"> 
-                <i class="fa fa-square primary"></i> {{ warning.player.name }}
-              </div>
-              <div ng-repeat="expulsion in teamExpulsion[match.team_a.id]"> 
-                <i class="fa fa-square red"></i> {{ expulsion.player.name }}
-              </div>
-
-            </div>
-            <div class="col-xs-6 col-xs-offset-0 col-sm-3 col-sm-offset-2 detail-rigth">
-              <div ng-repeat="score in teamScores[match.team_b.id]"> 
-                <i class="fa fa-futbol-o"></i> {{ score.player.name }}
-              </div>
-              <div ng-repeat="warning in teamWarning[match.team_b.id]"> 
-                <i class="fa fa-square primary"></i> {{ warning.player.name }}
-              </div>
-              <div ng-repeat="expulsion in teamExpulsion[match.team_b.id]"> 
-                <i class="fa fa-square red"></i> {{ expulsion.player.name }}
-              </div>              
-            </div>
-          </div>
-        </div><!-- SINGLE DAY -->
-      </div><!-- DAY -->
-
-    </globus-table>
-
-
+    <table-last-day days="days"></table-last-day>
 </div><!-- ULTIMA GIORNATA -->
 
 

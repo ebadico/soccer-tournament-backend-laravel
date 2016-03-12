@@ -1,0 +1,40 @@
+<div class="globus-table-container" ng-show="ready">
+  <div class="pills-container clearfix">
+
+    <div  
+          class="pill" 
+          ng-class="{ 'active': roundFilterId === round.id }" 
+          ng-repeat="round in rounds track by $index" ng-click=" changeRound(round) "
+          ng-init=" ( !roundFilterId && $index === 0) ? changeRound(round) : true;">
+          <span class="girone-label">{{ roundFilterId === round.id ? 'GIRONE' : '' }}</span> {{ round.name }}
+    </div>
+    
+  </div> 
+
+  <div class="globus-table">
+    <div class="table-header clearfix">
+          <div class="col-xs-4 col-sm-3 text-center"> <strong>posizione</strong> </div>
+          <div class="col-xs-4 col-sm-5 text-center"> <strong>squadra</strong> </div>
+          <div class="col-xs-4 col-sm-1 text-center"> <strong>Pt.</strong> </div>
+          <div class="col-sm-3 text-center hidden-xs text-center"> <strong>V/P/S - Gf/Gs</strong> </div>
+      </div>
+      <div ng-repeat="team in teams | orderBy: '-points' | roundFilter: roundFilterId track by $index"
+           ui-sref="public.team({ team_id: team.id })"> <!-- $parent -->
+        <div class="table-row clearfix">
+
+          <div class="col-sm-3 col-xs-4 text-center rank-{{ $index + 1 }}" style="font-size: 1.5em;">
+               {{ $index + 1 }}
+               <i class="fa fa-trophy" ng-show="{{ $index >= 0 && $index <= 3 }} "></i>
+          </div>
+          <div class="col-xs-2 hidden-xs text-center avatar-bg" style="background: url({{ team.media.path }})"></div>
+          <div class="col-sm-3 col-xs-4 text-left">{{ team.name }}</div>
+          <div class="col-sm-1 col-xs-4 text-center">{{ team.points }}</div>
+          <div class="col-xs-3 hidden-xs text-center">
+            {{ team.wins }}/{{team.draws}}/{{team.losts}} - {{ team.all_scores }}/{{ team.scores_conceded }}
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div> 
+
+  </div>
+</div>
