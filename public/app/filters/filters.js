@@ -23,8 +23,9 @@ angular
       if(!round_id) {
         return array;
       }else{
-        var filtered = array.filter(function(index) {
-          return (index.round_id === round_id);
+        var filtered = array.filter(function(element) {
+          console.log("filters.js :27", element);
+          return (element.round_id === round_id);
         });
         return filtered;
       }
