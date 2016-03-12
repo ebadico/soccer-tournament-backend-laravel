@@ -20,8 +20,8 @@ angular
       array = array || [];
       if(!round_id) return array;
 
-      var filtered = array.filter(function(index) {
-        return (String(index.round_id) === String(round_id));
+      var filtered = array.filter(function(element) {
+        return (String(element.round_id) === String(round_id));
       });
 
       return filtered;
@@ -34,8 +34,8 @@ angular
       array = array || [];
       if(!round_id) return array;
 
-      var filtered = array.filter(function(index) {
-        return (index.round_id === round_id);
+      var filtered = array.filter(function(element) {
+        return (String(element.round_id) === String(round_id));
       });
 
       return filtered;
@@ -48,8 +48,8 @@ angular
 
       if(!round_id) return array;
 
-      var filtered = array.filter(function(index) {
-        return (index.team.round_id === round_id);
+      var filtered = array.filter(function(element) {
+        return (String(element.team.round_id) === String(round_id));
       });
 
       return filtered;
