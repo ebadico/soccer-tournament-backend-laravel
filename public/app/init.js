@@ -217,8 +217,6 @@ angular.module('app', [
 
 .run(['$window', '$rootScope', '$state', 'Auth', 'Round', function($window, $rootScope, $state, Auth, Round){
 
-  console.log("init.js :220", "AOOOOO");
-
   $window.fbAsyncInit = function() {
     FB.init({
       appId      : '1020464471354564',
@@ -227,7 +225,7 @@ angular.module('app', [
       xfbml: true,
       version    : 'v2.5'
     });
-    console.log("init.js :228", "FACEBOOK");
+    console.log("init.js :228", "fbsdk_online");
   };
 
   Round.get()
