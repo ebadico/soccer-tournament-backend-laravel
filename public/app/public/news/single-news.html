@@ -1,3 +1,8 @@
+  <meta property="og:url"                content="{{ CURRENT_URL }}" />
+  <meta property="og:type"               content="article" />
+  <meta property="og:title"              content="{{ post.title }}" />
+  <meta property="og:description"        content="{{ post.excerpt || 'GlobusCup 2016'}}" />
+  <meta property="og:image"              content="{{ post.featured.path || headerBg}}" />
 
 
 <div class="container-fluid common-page-container" ng-init="headerBg = '/images/globus_landing.jpg' ">
@@ -5,11 +10,6 @@
     <h1 class="title">{{ post.title }}</h1>
   </div>
 
-  <meta property="og:url"                content="{{ CURRENT_URL }}" />
-  <meta property="og:type"               content="article" />
-  <meta property="og:title"              content="{{ post.title }}" />
-  <meta property="og:description"        content="{{ post.excerpt || 'GlobusCup 2016'}}" />
-  <meta property="og:image"              content="{{ post.featured.path || headerBg}}" />
   
   <main-content>
     <div
