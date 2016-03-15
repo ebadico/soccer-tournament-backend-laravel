@@ -1,6 +1,6 @@
 <div class="single-prize" style="background:url({{ prize.media.path }});" 
       ng-repeat="prize in prizes track by $index" ng-hide="!isCurrentSlideIndex($index)">
-  <h5 class="little-title text-center">PREMI</h5>
+  <h5 class="little-title text-center">{{ prize.type.length ? prize.type : 'premio' | uppercase }}</h5>
   <h2 class="title">Vinci un viaggio con la tua squadra</h2>
   <h1 class="prize-city">{{ prize.title }}</h1>
   <p class="prize-description">{{ prize.description }}</p>

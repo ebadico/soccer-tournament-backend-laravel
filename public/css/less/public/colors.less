@@ -44,17 +44,24 @@
   color:@wood;
 }
 
-.rank-1{
-  .gold;
-}
-.rank-2{
-  .silver;  
-}
-.rank-3{
+[class*="rank-"]{
   .bronze;
 }
-.rank-4{
-  .wood;
+.rank-1, .rank-2,.rank-3, .rank-4{
+  .gold;
+}
+.rank-5, .rank-6,.rank-7, .rank-8{
+  .silver;
+}
+
+.scorer-rank-1{
+  .gold;
+}
+.scorer-rank-2{
+  .silver;  
+}
+.scorer-rank-3{
+  .bronze;
 }
 
 .red{

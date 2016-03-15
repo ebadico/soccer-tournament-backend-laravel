@@ -6,7 +6,7 @@
   <div class="round-name">Girone {{ round.name }}</div>
   <div class="player" ng-repeat="player in scorers | limitTo: 3 | orderBy: '-scores.length' " ng-if=" player.scores.length ">
     <div>{{ player.scores.length }}</div> 
-    <div>{{ player.name }}</div> 
+    <div style="text-overflow: ellipsis; white-space: nowrap;">{{ player.name }}</div> 
     <div>{{ player.team.name }}</div> 
   </div>
   <div class="viewmore pointer" style="cursor: pointer !important;" ui-sref="public.scorers">Vedi tutti</div>

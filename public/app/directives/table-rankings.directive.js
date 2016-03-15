@@ -13,7 +13,8 @@ angular
 
     },
 
-    controller: function($scope, $rootScope){
+    controller: function($scope, $rootScope, $stateParams){
+      console.log("table-rankings.directive.js :17", $stateParams);
       $rootScope.$watch('rounds', function(newVal, oldVal){
         $scope.rounds = newVal || [];
       });
@@ -25,8 +26,8 @@ angular
         return true;
       }
 
-      if($scope.roundFilterId){
-        $scope.changeRound({ id: Number($scope.roundFilterId) });
+      if($stateParams.round){
+        $scope.changeRound({ id: Number($stateParams.round) });
       }
 
     }

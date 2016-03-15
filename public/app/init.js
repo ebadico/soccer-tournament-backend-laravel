@@ -215,7 +215,18 @@ angular.module('app', [
 }])
 
 
-.run(['$rootScope', '$state', 'Auth', 'Round', function($rootScope, $state, Auth, Round){
+.run(['$window', '$rootScope', '$state', 'Auth', 'Round', function($window, $rootScope, $state, Auth, Round){
+
+  $window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1020464471354564',
+      status: true, 
+      cookie: true, 
+      xfbml: true,
+      version    : 'v2.5'
+    });
+  };
+
   Round.get()
   .then(function(res){
     $rootScope.rounds = res.data;

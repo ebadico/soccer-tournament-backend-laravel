@@ -26,9 +26,9 @@
             <strong class="hidden-xs">Goals</strong> 
           </div>
       </div>
-      <div ng-repeat="player in players | orderBy: '-scores.length' | playerRoundFilter: roundFilterId track by $index">
-        <div class="table-row clearfix">
-          <div class="col-xs-3 text-center rank-{{ $index + 1 }}" style="font-size: 1.5em;">
+      <div ng-repeat="player in players | orderBy: '-scores.length' | playerRoundFilter: roundFilterId | limitTo: scorerLimit track by $index ">
+        <div class="table-row clearfix" ui-sref="public.team({ team_id: {{player.team.id}} })">
+          <div class="col-xs-3 text-center scorer-rank-{{ $index + 1 }}" style="font-size: 1.5em;">
                {{ $index + 1 }}
                <i class="fa fa-trophy" ng-show="{{ $index >= 0 && $index <= 2 }} "></i>
           </div>
@@ -39,5 +39,8 @@
         <div class="clearfix"></div>
       </div> 
 
+  <div class="table-viewmore pointer" ng-click="scorerLimit = undefined">Vedi tutti</div>
   </div>
 </div>
+
+{{filtered_results.length}}

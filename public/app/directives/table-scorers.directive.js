@@ -13,15 +13,20 @@ angular
 
     },
 
-    controller: function($scope, $rootScope){
+    controller: function($scope, $rootScope, $stateParams){
       $rootScope.$watch('rounds', function(newVal, oldVal){
         $scope.rounds = newVal || [];
       });
+
+
+      var limit = 10;
+      $scope.scorerLimit = limit;
 
       $scope.ready = true;
 
       $scope.changeRound = function(round){
         $scope.roundFilterId = round.id;
+        $scope.scorerLimit = limit;
         return true;
       }
 
