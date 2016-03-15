@@ -217,6 +217,8 @@ angular.module('app', [
 
 .run(['$window', '$rootScope', '$state', 'Auth', 'Round', function($window, $rootScope, $state, Auth, Round){
 
+  console.log("init.js :220", "AOOOOO");
+
   $window.fbAsyncInit = function() {
     FB.init({
       appId      : '1020464471354564',
