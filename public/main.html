@@ -25,16 +25,6 @@
   <link rel="stylesheet" href="css/vendors.min.css">
   <link rel="stylesheet" ng-href="css/main.{{ location || 'public' }}.min.css">
 
-  <script>
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-
 </head>
 <body class="body-{{ location }}">
   <div style="height:100%; overflow-x:hidden; " ui-view></div>
@@ -73,6 +63,17 @@
     
   <script type="text/javascript">
     window.cookieconsent_options = {"message":"Questa applicazione fa utilizzo di cookies per assicurarne un miglior funzionamento.","dismiss":"Ok, ho capito!","learnMore":"Leggi tutto", "theme":"dark-floating"};
+  </script>
+
+  <div id="fb-root"></div>
+  <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   </script>
 
 </body>
