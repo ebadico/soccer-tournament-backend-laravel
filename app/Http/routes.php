@@ -50,12 +50,7 @@ Route::get('/api/auth/check', ['middleware' => 'jwt.auth', function () {
     return response()->json([ "auth"=>true ], 200);
 }]);
 
-// Route::get('/', function () {
-//     View::addExtension('html', 'php');
-//     return View::make('main');
-// });
-
-Route::get('/{any}', function () {
+Route::get('/', function () {
     View::addExtension('html', 'php');
     return View::make('main');
-})->where('any', '.*');;
+});
