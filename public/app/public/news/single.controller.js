@@ -8,6 +8,7 @@ angular.module('app')
   $rootScope.FB_post_title = '';
   $rootScope.FB_post_excerpt = '';
   $rootScope.FB_post_image = '';
+  $rootScope.FB_post_url = $window.location.href;
 
 
   setTimeout(function(){
