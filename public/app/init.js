@@ -217,6 +217,14 @@ angular.module('app', [
 
 .run(['$window', '$rootScope', '$state', 'Auth', 'Round', function($window, $rootScope, $state, Auth, Round){
 
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
   $window.fbAsyncInit = function() {
     FB.init({
       appId      : '1020464471354564',
@@ -228,14 +236,6 @@ angular.module('app', [
     console.log("init.js :228", "fbsdk_online");
   };
   
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
   $window.fbAsyncInit();
 
   Round.get()
