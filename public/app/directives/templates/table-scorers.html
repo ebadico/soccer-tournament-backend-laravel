@@ -39,8 +39,6 @@
         <div class="clearfix"></div>
       </div> 
 
-  <div class="table-viewmore pointer" ng-click="scorerLimit = undefined">Vedi tutti</div>
+  <div class="table-viewmore pointer" ng-click="scorerLimit = undefined">{{ scorerLimit ? 'Vedi tutti' : ''}}</div>
   </div>
 </div>
-
-{{filtered_results.length}}
