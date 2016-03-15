@@ -5,8 +5,8 @@ angular.module('app')
   $scope.CURRENT_URL = $window.location.href;
   $scope.BASE_URL = $window.location.host;
 
-  // setTimeout(function(){
-  //   $window.fbAsyncInit();
-  // }, 2000);
+  setTimeout(function(){
+    $window.fbAsyncInit();
+  }, 2000);
 
 }])
