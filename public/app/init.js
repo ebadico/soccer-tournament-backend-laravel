@@ -225,6 +225,7 @@ angular.module('app', [
       xfbml: true,
       version    : 'v2.5'
     });
+    console.log("init.js :228", "FACEBOOK");
   };
 
   Round.get()
