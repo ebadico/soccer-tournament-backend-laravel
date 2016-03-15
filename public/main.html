@@ -24,9 +24,9 @@
 
   <meta property="og:url"                content="{{ window.location.hostname }}" />
   <meta property="og:type"               content="article" />
-  <meta property="og:title"              content="{{ FBpost.title }}" />
-  <meta property="og:description"        content="{{ FBexcerpt || 'GlobusCup 2016'}}" />
-  <meta property="og:image"              content="www.globuscup.it/images/globus_landing.jpg" />
+  <meta property="og:title"              content="{{ FB_post_title }}" />
+  <meta property="og:description"        content="{{ FB_post_excerpt || 'GlobusCup 2016'}}" />
+  <meta property="og:image"              content="www.globuscup.it/{{ FB_post_image }}" />
   
   <link rel="stylesheet" href="css/vendors.min.css">
   <link rel="stylesheet" ng-href="css/main.{{ location || 'public' }}.min.css">
