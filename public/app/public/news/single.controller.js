@@ -4,5 +4,6 @@ angular.module('app')
   $window.fbAsyncInit();
   $scope.post = ResolvedPost;
   $scope.CURRENT_URL = $window.location.href;
+  $scope.BASE_URL = $window.location.host;
 
 }])
