@@ -11,8 +11,6 @@ angular.module('app', [
   'slickCarousel',
 ])
 
-.constant('BASE_URL', window.location.origin)
-
 .config([
   'flowFactoryProvider',
   '$authProvider', 
