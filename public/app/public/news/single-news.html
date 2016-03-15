@@ -1,14 +1,15 @@
-<meta property="og:url"                content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
-<meta property="og:type"               content="article" />
-<meta property="og:title"              content="When Great Minds Don’t Think Alike" />
-<meta property="og:description"        content="How much does culture influence creative thinking?" />
-<meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
 
 
 <div class="container-fluid common-page-container" ng-init="headerBg = '/images/globus_landing.jpg' ">
   <div class="heading-image" ng-style="{'background-image':'url({{ post.featured.path || headerBg }})'}">
     <h1 class="title">{{ post.title }}</h1>
   </div>
+
+  <meta property="og:url"                content="{{ CURRENT_URL }}" />
+  <meta property="og:type"               content="article" />
+  <meta property="og:title"              content="{{ post.title }}" />
+  <meta property="og:description"        content="{{ post.excerpt || 'GlobusCup 2016'}}" />
+  <meta property="og:image"              content="{{ post.featured.path || headerBg}}" />
   
   <main-content>
     <div
@@ -16,8 +17,7 @@
       data-share="true"
       data-width="450"
       data-show-faces="true">
-      asdasda
-    </div>
+    </div>  
     <hr>
     <div ng-bind-html="post.body"></div>
   </main-content>

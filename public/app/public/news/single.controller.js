@@ -1,5 +1,7 @@
 angular.module('app')
 
-.controller('PublicSingleNewsCtrl', ['$scope', 'ResolvedPost', function($scope, ResolvedPost){
+.controller('PublicSingleNewsCtrl', ['$scope', 'ResolvedPost', '$window', function($scope, ResolvedPost, $window){
   $scope.post = ResolvedPost;
+  $scope.CURRENT_URL = $window.location.href;
+
 }])
