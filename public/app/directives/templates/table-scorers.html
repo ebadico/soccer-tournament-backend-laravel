@@ -28,12 +28,12 @@
       </div>
       <div ng-repeat="player in players | orderBy: '-scores.length' | playerRoundFilter: roundFilterId | limitTo: scorerLimit track by $index ">
         <div class="table-row clearfix" ui-sref="public.team({ team_id: {{player.team.id}} })">
-          <div class="col-xs-3 text-center scorer-rank-{{ $index + 1 }}" style="font-size: 1.5em;">
+          <div class="col-xs-2 text-center scorer-rank-{{ $index + 1 }}" style="font-size: 1.5em;">
                {{ $index + 1 }}
                <i class="fa fa-trophy" ng-show="{{ $index >= 0 && $index <= 2 }} "></i>
           </div>
           <div class="col-xs-2 text-center avatar-bg hidden-xs" style="background: url({{ player.media.path }})"></div>
-          <div class="col-xs-5 col-sm-4 text-left">{{ player.name }} - <small>{{ player.team.name }}</small></div>
+          <div class="col-xs-6 col-sm-4 text-left">{{ player.name }} - <small>{{ player.team.name }}</small></div>
           <div class="col-xs-4 col-sm-3 text-center">{{ player.scores.length }}</div>
         </div>
         <div class="clearfix"></div>
