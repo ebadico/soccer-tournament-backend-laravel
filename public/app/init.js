@@ -227,6 +227,7 @@ angular.module('app', [
     });
     console.log("init.js :228", "fbsdk_online");
   };
+  $window.fbAsyncInit();
 
   Round.get()
   .then(function(res){
