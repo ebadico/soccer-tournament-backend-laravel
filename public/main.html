@@ -22,11 +22,11 @@
 
   <meta name="author" content="Simone Corsi">
 
-  <meta property="og:url"                content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
+  <meta property="og:url"                content="{{ window.location.hostname }}" />
   <meta property="og:type"               content="article" />
-  <meta property="og:title"              content="When Great Minds Don’t Think Alike" />
-  <meta property="og:description"        content="How much does culture influence creative thinking?" />
-  <meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+  <meta property="og:title"              content="{{ FBpost.title }}" />
+  <meta property="og:description"        content="{{ FBexcerpt || 'GlobusCup 2016'}}" />
+  <meta property="og:image"              content="www.globuscup.it/images/globus_landing.jpg" />
   
   <link rel="stylesheet" href="css/vendors.min.css">
   <link rel="stylesheet" ng-href="css/main.{{ location || 'public' }}.min.css">
