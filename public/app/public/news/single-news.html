@@ -4,11 +4,10 @@
   </div>
   
   <main-content>
-    <div
-      class="fb-like"
-      data-share="true"
-      data-width="450"
-      data-show-faces="true">
+    <!-- Your share button code -->
+    <div class="fb-share-button" 
+      data-href="http://www.globuscup.it/#/news/{{ post.id }}"
+      data-layout="button_count">
     </div>  
     <hr>
     <div ng-bind-html="post.body"></div>
