@@ -63,8 +63,6 @@ class Team extends Model
                   ->with('scores')
                   ->get();
 
-    return $all_team_matchs;
-
     $conceded = 0;
     // foreach($all_team_matchs as $team_match){
     //   foreach ($team_match->scores as $score) {
