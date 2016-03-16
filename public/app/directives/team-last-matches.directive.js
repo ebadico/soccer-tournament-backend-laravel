@@ -34,6 +34,7 @@ angular.module('app')
             match.team_b.scores.push(score);
           }
         });
+        console.log("team-last-matches.directive.js :37", match);
         return match;
       }
 

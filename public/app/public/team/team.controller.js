@@ -10,7 +10,7 @@ angular
     Team
       .getTeam(team_id)
       .then(function(res){
-        console.log("team.controller.js :13", res);
+        //console.log("team.controller.js :13", res);
         $scope.team = res.data;
       }, function(err){
         console.log("team.controller.js :15", err);
