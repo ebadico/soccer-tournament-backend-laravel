@@ -35,20 +35,20 @@ angular
             $scope.match.team_a.player.forEach(function(player){
               player.score = 0;
               $scope.match.scores.forEach(function(score){
-                if( score.player_id === player.id ) player.score++;
+                if( score.player_id == player.id ) player.score++;
               });
   
               player.attendance.forEach(function(attend){
-                if(attend.match_id === $scope.match.id ) player.attendance = true;
+                if(attend.match_id == $scope.match.id ) player.attendance = true;
                 else player.attendance = false;
               });
 
               player.warning.forEach(function(warning){
-                if(warning.match_id === $scope.match.id ) player.penalty = 'warning';
+                if(warning.match_id == $scope.match.id ) player.penalty = 'warning';
               });
 
               player.expulsion.forEach(function(expulsion){
-                if(expulsion.match_id === $scope.match.id ) player.penalty = 'expulsion';
+                if(expulsion.match_id == $scope.match.id ) player.penalty = 'expulsion';
               });
 
   
@@ -56,18 +56,18 @@ angular
             $scope.match.team_b.player.forEach(function(player){
               player.score = 0;
               $scope.match.scores.forEach(function(score){
-                if( score.player_id === player.id ) player.score++;
+                if( score.player_id == player.id ) player.score++;
               });
               player.attendance.forEach(function(attend){
-                if(attend.match_id === $scope.match.id ) player.attendance = true;
+                if(attend.match_id == $scope.match.id ) player.attendance = true;
                 else player.attendance = false;
               });
               player.warning.forEach(function(warning){
-                if(warning.match_id === $scope.match.id ) player.penalty = 'warning';
+                if(warning.match_id == $scope.match.id ) player.penalty = 'warning';
               });
 
               player.expulsion.forEach(function(expulsion){
-                if(expulsion.match_id === $scope.match.id ) player.penalty = 'expulsion';
+                if(expulsion.match_id == $scope.match.id ) player.penalty = 'expulsion';
               });
             });
           });
@@ -95,7 +95,7 @@ angular
             }
             $scope.teamBScores = teamBScores;
           });
-          if($scope.teamAScores.length === $scope.teamBScores.length ){
+          if($scope.teamAScores.length == $scope.teamBScores.length ){
             $scope.match.winner_id = null;
           }
           if($scope.teamAScores.length > $scope.teamBScores.length ){
