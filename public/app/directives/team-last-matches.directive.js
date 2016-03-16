@@ -28,7 +28,6 @@ angular.module('app')
         match.team_a.scores = [];
         match.team_b.scores = [];
         match.scores.forEach( function(score, index) {
-          console.log("team-last-matches.directive.js :31", score.team_id === match.team_a.id);
           if(score.team_id == match.team_a.id) {
             match.team_a.scores.push(score);
           }
@@ -36,6 +35,7 @@ angular.module('app')
             match.team_b.scores.push(score);
           }
         });
+        console.log("team-last-matches.directive.js :38", match);
         return match;
       }
 
