@@ -53,6 +53,8 @@ angular
 
   
             });
+
+
             $scope.match.team_b.player.forEach(function(player){
               player.score = 0;
               $scope.match.scores.forEach(function(score){
@@ -95,7 +97,7 @@ angular
             }
             $scope.teamBScores = teamBScores;
           });
-          if($scope.teamAScores.length == $scope.teamBScores.length ){
+          if($scope.teamAScores.length === $scope.teamBScores.length ){
             $scope.match.winner_id = null;
           }
           if($scope.teamAScores.length > $scope.teamBScores.length ){
