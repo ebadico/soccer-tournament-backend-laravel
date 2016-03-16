@@ -40,15 +40,28 @@
       font-size: .9em;
       font-weight: bold;
       float:left;
-      width: 33%;
+      
       
       &:first-child{
         font-size: 1em;
+        width: 40px;
+        text-overflow: ellipsis; 
+        white-space: nowrap;
+        overflow:hidden;
+      }
+      &:nth-child(2){
+       width: 120px; 
+       text-overflow: ellipsis; 
+       white-space: nowrap;
+       overflow:hidden;
       }
       &:last-child{
+        width: 110px; 
         font-size: .75em;
         color:@dark-grey;
         font-weight: normal;
+        white-space: nowrap;
+        overflow:hidden;
       }
       &:after{
         content: '';
