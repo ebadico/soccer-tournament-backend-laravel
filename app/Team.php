@@ -64,13 +64,13 @@ class Team extends Model
                   ->get();
 
     $conceded = 0;
-    // foreach($all_team_matchs as $team_match){
-    //   foreach ($team_match->scores as $score) {
-    //     if($score->team_id !== $this->id) $conceded++;
-    //   }
-    // }
+    foreach($all_team_matchs as $team_match){
+      foreach ($team_match->scores as $score) {
+        if($score->team_id != $this->id) $conceded++;
+      }
+    }
 
-    return $this->attributes["scores_conceded"] = 0;
+    return $this->attributes["scores_conceded"] = $conceded;
   }
 
   public function getLostsAttribute(){
