@@ -29,6 +29,8 @@ angular.module('app')
         match.team_b.scores = [];
         match.scores.forEach( function(score, index) {
           if(score.team_id === match.team_a.id) {
+            console.log("team-last-matches.directive.js :32", score.team_id + " as " + typeof match.team_a.id);
+
             match.team_a.scores.push(score);
           }else{
             match.team_b.scores.push(score);
