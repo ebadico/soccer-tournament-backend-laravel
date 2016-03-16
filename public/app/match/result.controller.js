@@ -40,7 +40,7 @@ angular
   
               player.attendance.forEach(function(attend){
                 if(attend.match_id == $scope.match.id ) player.attendance = true;
-                else player.attendance = false;
+                else player.attendance = [false];
               });
 
               player.warning.forEach(function(warning){
@@ -62,7 +62,7 @@ angular
               });
               player.attendance.forEach(function(attend){
                 if(attend.match_id == $scope.match.id ) player.attendance = true;
-                else player.attendance = false;
+                else player.attendance = [false];
               });
               player.warning.forEach(function(warning){
                 if(warning.match_id == $scope.match.id ) player.penalty = 'warning';
