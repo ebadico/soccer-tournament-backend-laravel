@@ -30,8 +30,6 @@ class MatchCtrl extends Controller
       $day_id = $request->get('day_id');
       $round_id = $request->get('round_id');
 
-
-
       if( $day_id && $round_id ){
           return Match::get_from_filter($day_id, $round_id)->get_all();
       }else if ($day_id){
@@ -43,16 +41,6 @@ class MatchCtrl extends Controller
       }
 
       return Match::get_all();
-  }
-
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function create()
-  {
-      //
   }
 
   /**
