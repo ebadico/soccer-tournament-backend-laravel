@@ -12,9 +12,6 @@
   </div> 
 
   <div class="globus-table">
-
-
-
       <!-- DAY -->
       <div ng-repeat="day in days | roundFilter: roundFilterId track by $index"> <!-- $parent -->
         <h5 class="title text-center calendarTitle" >Giornata <strong>{{ $index + 1 }}</strong></h5>
@@ -33,7 +30,8 @@
             </div>
             <div class="col-xs-3 text-center">{{ match.team_a.name }}</div>
             <div class="col-xs-2 text-center result">
-              {{ teamScores[match.team_a.id].length || '0' }} - {{ teamScores[match.team_b.id].length || '0' }}
+              <span ng-show="match.played">{{ teamScores[match.team_a.id].length || '0' }} - {{ teamScores[match.team_b.id].length || '0' }}</span>
+              <span ng-show="!match.played">- : -</span>
             </div>
             <div class="col-xs-3 text-center">{{ match.team_b.name }}</div>
             <div class="col-xs-2 text-right">
@@ -68,13 +66,7 @@
               </div>              
             </div>
           </div>
-          
         </div><!-- SINGLE DAY -->
-
-
       </div><!-- DAY -->
-
-    
-
   </div>
 </div>

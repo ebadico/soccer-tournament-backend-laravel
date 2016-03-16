@@ -19,7 +19,7 @@
     <tr ng-repeat="match in matches | filter:searchTeam | filter: { day:{ round: { id: selectedRound } } }">
         <td> <i class="fa fa-remove" ng-click="delete(match)"></i> <i class="fa fa-pencil" ui-sref="admin.result({ match_id: match.id})" style="cursor:pointer;"></i> </td>
         <td>{{ match.team_a.name }}</td>
-        <td> <strong> {{ match.team_a.match_score.length }} - {{ match.team_b.match_score.length }} </strong> </td>
+        <td> <strong ng-show="match.played"> {{ match.team_a.match_score.length }}-{{ match.team_b.match_score.length }}</strong> <strong ng-show="!match.played"> - : - </strong></td>
         <td>{{ match.team_b.name }}</td>
         <td>{{ match.day.round.name }}</td>
         <td>{{ match.match_date }}</td>
