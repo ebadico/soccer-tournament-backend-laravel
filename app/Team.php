@@ -72,7 +72,7 @@ class Team extends Model
     //   }
     // }
 
-    return $this->attributes["scores_conceded"] = $conceded;
+    return $this->attributes["scores_conceded"] = 0;
   }
 
   public function getLostsAttribute(){
