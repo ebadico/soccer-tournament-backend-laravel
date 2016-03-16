@@ -68,8 +68,9 @@ class Team extends Model
     $conceded = 0;
     foreach($all_team_matchs as $team_match){
       foreach ($team_match->scores as $score) {
-        return $this->attributes["scores_conceded"] = ($score->team_id !== $this->id);
-        if($score->team_id !== $this->id) $conceded++;
+        //if($score->team_id !== $this->id) $conceded++;
+        $conceded = ($score->team_id !== $this->id);
+        break;
       }
     }
 
