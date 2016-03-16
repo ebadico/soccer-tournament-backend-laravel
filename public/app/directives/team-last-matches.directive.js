@@ -30,9 +30,9 @@ angular.module('app')
         match.scores.forEach( function(score, index) {
           console.log("team-last-matches.directive.js :32", score.team_id + " as " + typeof match.team_a.id);
           if(score.team_id === match.team_a.id) {
-
             match.team_a.scores.push(score);
-          }else{
+          }
+          if(score.team_id === match.team_b.id) {
             match.team_b.scores.push(score);
           }
         });
