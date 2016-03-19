@@ -243,6 +243,9 @@
       border: 3px solid @primary;
       top:5%; 
       border-radius: 15px;
+      @media @sm{
+        width: 15%;
+      }
     }
     &:before{
       left:5% !important;
@@ -264,7 +267,10 @@
       color:@primary;
       position: relative;
       top:4%;
-      @media @xs{ top:2.5%; }
+      @media @sm{ 
+        top:2.5%;
+        font-size: 1.25em;
+      }
     }
 
     .title{
