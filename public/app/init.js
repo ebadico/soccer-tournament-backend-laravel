@@ -11,7 +11,7 @@ angular.module('app', [
   'slickCarousel',
 ])
 
-.constant('IS_DEBUGGING', true)
+.constant('IS_DEBUGGING', false)
 
 .config([
   'flowFactoryProvider',
