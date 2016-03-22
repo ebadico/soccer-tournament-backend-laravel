@@ -99,7 +99,8 @@ class MediaCtrl extends Controller
     $storage = public_path() . '/uploads/';
     $config->setTempDir( $tmp );
 
-    $filename = $request->getFileName();
+    $filename = strtolower($request->getFileName());
+
     if (strpos($filename, '.jpg') || strpos($filename, '.jpeg')) {
         $extension = '.jpg';
     }
@@ -116,21 +117,22 @@ class MediaCtrl extends Controller
     $img['path'] = '/uploads/' . $img['filename'];
 
     if (Flow\Basic::save( $storage . $img['filename'], $config, $request)) {
+      //resize?? 
+      $crop = Image::make($storage . $img['filename']);
+      
+      $crop->resize(1920, null, function($constraint){
+          $constraint->aspectRatio();
+          $constraint->upsize();
+      });
+      
+      Storage::delete($img['filename']);
+
+      $crop->save($storage . $img['filename']);
       $media->fill([
           "path"     => $img['path'],
           "filename" => $img['filename']
       ])->save();
 
-      //resize?? 
-      // $crop = Image::make($storage . $img['filename']);
-      
-      // $crop->resize(50, null, function($constraint){
-      //     $constraint->aspectRatio();
-      // });
-      
-      // Storage::delete($img['filename']);
-
-      // $crop->save($storage . $img['filename']);
     
       return response()->json($media, 200);
     } else {

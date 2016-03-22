@@ -6,7 +6,8 @@
       <!-- FOTO UPLOAD -->
       <div class="col-xs-12 col-md-4">
         <h3 class="text-center">FOTO</h3>
-        <div  flow-init="{target: '/api/media', testChunks:false, singleFile: true }" 
+        <div  flow-init="{target: '/api/media', testChunks:false, singleFile: true }"
+              flow-file-error="uploadPhotoError( $file, $message, $flow )"
               flow-files-submitted="$flow.upload()"
               flow-file-success="uploadPhotoSucces()">
 

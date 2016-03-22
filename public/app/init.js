@@ -11,6 +11,8 @@ angular.module('app', [
   'slickCarousel',
 ])
 
+.constant('IS_DEBUGGING', false)
+
 .config([
   'flowFactoryProvider',
   '$authProvider', 
@@ -215,7 +217,7 @@ angular.module('app', [
 }])
 
 
-.run(['$window', '$rootScope', '$state', 'Auth', 'Round', function($window, $rootScope, $state, Auth, Round){
+.run(['$window', 'IS_DEBUGGING', '$rootScope', '$state', 'Auth', 'Round', function($window, IS_DEBUGGING, $rootScope, $state, Auth, Round){
 
 
   $window.fbAsyncInit = function() {
@@ -226,7 +228,7 @@ angular.module('app', [
       xfbml: true,
       version    : 'v2.5'
     });
-    console.log("init.js :228", "FACEBOOK");
+    console.log("init.js :228", "fb_sdk");
   };
 
   Round.get()
@@ -258,4 +260,8 @@ angular.module('app', [
   });
 
   console.log("init.js :4", "Core Loaded!");
+
+  if(!IS_DEBUGGING){
+    console.log = function(){};
+  }
 }])

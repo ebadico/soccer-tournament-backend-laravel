@@ -25,6 +25,11 @@ angular
         toastr.success('Photo Uploaded!');
         getPhotos();
       }
+
+      $scope.uploadPhotoError = function( $file, $message, $flow ){
+        console.log("media.controller.js :30", $message);
+      }
+
       $scope.uploadSponsorSucces = function(){
         toastr.success('Photo Uploaded!');
         getSponsors();
