@@ -14,7 +14,7 @@ class Medias extends Model
       });
     }
 
-    protected $fillable = ['path','type', 'filename', 'season_id', 'team_id', 'news_id', 'round_id'];
+    protected $fillable = ['path','type', 'filename', 'season_id', 'team_id', 'news_id', 'round_id','ext_url'];
 
     public function season(){
       return $this->belongsTo('App\Season');

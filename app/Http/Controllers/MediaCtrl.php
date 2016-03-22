@@ -152,18 +152,6 @@ class MediaCtrl extends Controller
   }
 
   /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function show($id)
-  {
-      //
-  }
-
-
-  /**
    * Update the specified resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
@@ -172,7 +160,11 @@ class MediaCtrl extends Controller
    */
   public function update(Request $request, $id)
   {
-      //
+      if($request->has('ext_url')){
+        $media = Medias::where('id', $id)->first();
+        $media->ext_url = $request->get('ext_url');
+        $media->save();
+      }
   }
 
   /**
@@ -183,7 +175,7 @@ class MediaCtrl extends Controller
    */
   public function destroy($id)
   {
-    $media = Medias::find($id);
+    $media = Medias::where('id', $id)->first();
     $media->delete();
     $media->exists = false;
     return $media;

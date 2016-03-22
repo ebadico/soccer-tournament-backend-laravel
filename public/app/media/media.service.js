@@ -9,6 +9,10 @@ angular
       this.delete = function(media){
         return $http.delete('/api/media/' + media.id);
       }
+
+      this.update = function(sponsor){
+        return $http.put('/api/media/' + sponsor.id, sponsor);
+      }
   
       this.get = function(){
         return $http.get('/api/media');

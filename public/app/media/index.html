@@ -74,8 +74,9 @@
     <div class="col-xs-6 col-md-3" ng-repeat="sponsor in sponsors">
       <a class="thumbnail">
         <i class="fa fa-remove fa-2x" ng-click="delete(sponsor)"></i>
+        <i class="fa fa-save fa-2x pull-right pointer" ng-click="update(sponsor)"></i>
         <img ng-src="{{ sponsor.path }}" alt="">
-        <input class="form-control" type="text" value="{{sponsor.path}}" readonly>
+        <input class="form-control" type="text" value="{{sponsor.ext_url}}" ng-model="sponsor.ext_url" placeholder="url sito (senza http://)">
       </a>
     </div>
   </div>

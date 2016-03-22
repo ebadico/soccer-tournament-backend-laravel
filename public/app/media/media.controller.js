@@ -46,6 +46,16 @@ angular
             });
         }
       }
+
+      $scope.update = function(sponsor){
+        Media
+          .update(sponsor)
+          .then(function(res){
+            console.log("media.controller.js :54", res);
+          },function(err){
+            console.log("media.controller.js :56", err);
+          })
+      }
   
   
       function getMedias(){

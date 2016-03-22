@@ -14,7 +14,7 @@
   <h3 class="title">i nostri <strong>sponsor</strong></h3>  
   <slick settings="slickConfig" ng-if="sponsorLoaded">
     <div class="" ng-repeat="sponsor in sponsors">
-      <img ng-src="{{ sponsor.path }}">
+      <a target="_blank" ng-href="http://{{ sponsor.ext_url }}"><img ng-src="{{ sponsor.path }}" ></a>
     </div>
   </slick>
 </div><!-- SPONSOR -->
