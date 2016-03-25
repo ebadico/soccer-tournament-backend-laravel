@@ -70,6 +70,12 @@ angular.module('app', [
         templateUrl: 'app/public/medias/medias.html',
         controller: 'PublicMediasCtrl',
       })
+        .state('public.medias.modal', {
+          cache: false,
+          reload: true,
+          url: '/{item}',
+          template: '<modal id="modal"></modal>',
+        })
       .state('public.news', {
         url:'news?type',
         templateUrl: 'app/public/news/news.html',
@@ -259,7 +265,25 @@ angular.module('app', [
     }
   });
 
-  console.log("init.js :4", "Core Loaded!");
+  $rootScope.tinymceOptions = {
+    onChange: function(e) {
+      // put logic here for keypress and cut/paste changes
+    },
+    inline: false,
+    plugins : 'advlist autolink link image lists charmap print preview paste',
+    skin: 'lightgray',
+    theme : 'modern',
+    paste_use_dialog : false,
+    paste_auto_cleanup_on_paste : true,
+    paste_convert_headers_to_strong : false,
+    paste_strip_class_attributes : "all",
+    paste_remove_spans : true,
+    paste_remove_styles : true,
+    paste_retain_style_properties : "",
+  };
+
+  console.log('CoreLoaded');
+  console.log("Welcome to GlobusCup 2016!");
 
   if(!IS_DEBUGGING){
     console.log = function(){};

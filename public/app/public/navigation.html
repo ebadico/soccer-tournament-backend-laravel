@@ -39,14 +39,15 @@
         </li>
 
         
-        <li class="dropdown" ng-class=" {current: stateLocation == 'public.news'  || stateLocation == 'public.rules' } ">  
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articoli <span class="caret"></span></a>
+        <li class="dropdown" ng-class=" {current: stateLocation == 'public.news' } ">  
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a ui-sref="public.news({ type: 'news' })"> Articoli</a></li>
             <li><a ui-sref="public.news({ type: 'comunicato' })"> Comunicati</a></li>
-            <li ng-class=" {current: stateLocation == 'public.rules'} "><a ui-sref="public.rules"> Regolamento</a></li>
           </ul>
         </li>
+        
+        <li ng-class=" {current: stateLocation == 'public.rules'} "><a ui-sref="public.rules"> Regolamento</a></li>
 
         <li class="dropdown" ng-class=" {current: stateLocation == 'public.medias' } ">  
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Media <span class="caret"></span></a>

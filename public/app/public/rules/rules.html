@@ -3,8 +3,8 @@
     <h1 class="title">Globus Cup <strong>Regolamento</strong></h1>
   </div>
   <main-content>
-    <div class="col-xs-12" ng-bind-html="rules.body"></div>
+    <div class="col-xs-12 rules-body" ng-bind-html="rules.body"></div>
   </main-content>
 </div>
 
-<ng-include ng-show='rules' src=" 'app/public/footer.html' "></ng-include>
+<ng-include ng-show='rules.body.length' src=" 'app/public/footer.html' "></ng-include>

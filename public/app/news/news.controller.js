@@ -2,6 +2,8 @@ angular
   .module('app')
 
 .controller('NewsCtrl', ['$rootScope', '$scope', '$state', 'toastr', 'News', 'Season', function($rootScope, $scope, $state, toastr, News, Season){
+  $scope.excerpt_size = 150;
+
   $scope.postType = undefined;
   $scope.posts = [];
   $scope.post = {};
@@ -68,9 +70,11 @@ angular
 
   $scope.$watch('post', function(newVal, oldVal){
     if(newVal && newVal !== oldVal){
-      $scope.post.excerpt = $scope.post.body ? String($scope.post.body).replace(/<[^>]+>/gm, '') : '';
+      if($scope.post.excerpt && $scope.post.excerpt.length >= $scope.excerpt_size){
+        $scope.post.excerpt = $scope.post.excerpt.slice( 0, $scope.excerpt_size - 3 ) + "...";
+      }
     }
-  }, true)
+  }, true);
 
   function getPosts(){
     News

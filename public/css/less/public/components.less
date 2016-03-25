@@ -1,5 +1,6 @@
 // Scorers rankings in homepage
 .scorers-excerpt{
+  vertical-align: top !important;
   margin: 13px;
   @media @xs{
     margin: 10px 0px;
@@ -92,7 +93,7 @@
   width: 45%;
   height: 275px;
   overflow:hidden;
-
+  position: relative;
   border: 1px solid @primary;
   border-radius:15px;
 
@@ -148,19 +149,87 @@
       height: 50%;
 
     }
-    .followup{
-      font-weight: bold;
-      text-transform: uppercase;
-      position: absolute;
-      bottom:10px;
-      right: 10px;
-      cursor:pointer;
-      .smooth;
-      &:hover{
-        color: @primary;
-      }
+  }
+  .followup{
+    font-weight: bold;
+    text-transform: uppercase;
+    position: absolute;
+    bottom:10px;
+    right: 10px;
+    cursor:pointer;
+    .smooth;
+    &:hover{
+      color: @primary;
     }
   }
+
+  &.news-public-page{
+    border-radius:0px;
+    border-width: 2px;
+    width: 100%;
+    max-width: none;
+    margin-right: auto;
+    margin-left: auto;
+    border-top:none;
+    border-left:none;
+    border-right:none;
+    .post{
+      width: 50%;
+    }
+    .followup{
+      bottom: 40px;
+      right: 30px;
+    }
+  }
+}
+
+
+#modal{
+  position: fixed;
+  z-index: 9999;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  color: @white;
+  
+  .fa-close{
+    cursor: pointer;
+    position: absolute;
+    top: 1.5em;
+    right: 1.5em;
+    font-size: 3em;
+  }
+
+  &:before{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: fade(@black, 90%);
+  }
+
+  .single-img-container{
+    position: relative;
+    top:50%;
+    transform: translateY(-50%);
+    width: 85%;
+    height: 75%;
+    overflow:hidden;
+    margin: 0 auto;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    
+    
+  }
+
+
 }
 
 

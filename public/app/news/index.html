@@ -5,7 +5,7 @@
     <input type="text" class="form-control" placeholder="title" ng-model="post.title">
     <br>
     <textarea ui-tinymce ng-model="post.body"></textarea>
-    <h5>Testo riassuntivo</h5>
+    <h5>Testo riassuntivo <small> ( {{ post.excerpt.length }} / 35) </small></h5>
     <textarea placeholder="riassunto" ng-model="post.excerpt"></textarea>
     <div class="input-group col-xs-12 col-md-4 pull-left">
       <h6>Carica Immagine di copertina</h6>
@@ -67,3 +67,4 @@
     </tr>
   </tbody>
 </table>
+

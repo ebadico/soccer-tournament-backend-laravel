@@ -51,8 +51,10 @@ angular
         Media
           .update(sponsor)
           .then(function(res){
+            toastr.success('Link inserito!');
             console.log("media.controller.js :54", res);
           },function(err){
+            toastr.error('Impossibile inserire link, contattare amministratore.');
             console.log("media.controller.js :56", err);
           })
       }
