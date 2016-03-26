@@ -15,6 +15,9 @@
 Route::get('/api', function () {
     return "Globus Cup API Version: " . env('APP_VERSION');
 });
+Route::get('/', function () {
+    return "Globus Cup API Version: " . env('APP_VERSION');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +53,3 @@ Route::get('/api/auth/check', ['middleware' => 'jwt.auth', function () {
     return response()->json([ "auth"=>true ], 200);
 }]);
 
-Route::get('/', function () {
-    View::addExtension('html', 'php');
-    return View::make('main');
-});

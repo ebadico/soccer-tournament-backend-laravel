@@ -1,8 +1,0 @@
-<div class="featured" ng-show="post.featured.path" ng-style="{'background-image':'url({{ post.featured.path }})'}"></div>
-
-<div class="post" ng-class="{ 'wide': !post.featured }">
-  <h1>{{ post.title }}</h1>
-  <!-- <div class="date">{{ post.created_at | date }}</div> -->
-  <div class="excerpt">{{ post.excerpt | limitTo: 150 }}</div>
-</div>
-<span class="followup">Leggi <i class="fa fa-chevron-circle-right"></i></span>
