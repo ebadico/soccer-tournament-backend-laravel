@@ -49,3 +49,7 @@ Route::get('/api/auth/check', ['middleware' => 'jwt.auth', function () {
     return response()->json([ "auth"=>true ], 200);
 }]);
 
+Route::get('/socialbot/news/{id}', function($id){
+   return "OK";
+});
+
