@@ -1,10 +1,17 @@
 app/.git/**
+
 public/.git/**
+
 .vagrant/
 /vendor
 /node_modules
 Homestead.yaml
 Homestead.json
+
 .env
+
 public/uploads/**
+
 public/bower_components/**
+
+.DS_Store

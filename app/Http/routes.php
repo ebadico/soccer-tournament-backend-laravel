@@ -10,14 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-
-Route::get('/api', function () {
-    return "Globus Cup API Version: " . env('APP_VERSION');
-});
-Route::get('/', function () {
-    return "Globus Cup API Version: " . env('APP_VERSION');
-});
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +23,11 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['prefix'=>'api/' , 'middleware' => ['web']] , function () {
+Route::get('/', function(){
+    return "Welcome to GlobusCup_API v" . ENV('APP_VERSION', "1");
+});
+
+Route::group(['prefix'=>'api' , 'middleware' => ['web']] , function () {
     Route::resource('/news'        , 'NewsCtrl');
     Route::resource('/prize'       , 'PrizeCtrl');
     Route::resource('/user'        , 'UserCtrl');
@@ -44,7 +41,6 @@ Route::group(['prefix'=>'api/' , 'middleware' => ['web']] , function () {
     Route::resource('/season'      , 'SeasonCtrl');
     Route::resource('/media'       , 'MediaCtrl');
     Route::post('/video'           , 'MediaCtrl@StoreVideo');
-
 
 });
 Route::post('/api/auth', 'AuthCtrl@authenticate');
