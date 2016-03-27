@@ -50,6 +50,6 @@ Route::get('/api/auth/check', ['middleware' => 'jwt.auth', function () {
 }]);
 
 Route::get('/socialbot/news/{id}', function($id){
-   return "OK";
+   return $id;
 });
 
