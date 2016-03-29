@@ -11,7 +11,7 @@
     <meta property="fb:app_id"             content="1020464471354564">
 
     <meta property="og:site_name"          content="GlobusCup">
-    <!-- <meta property="og:url"                content="http://dev.globuscup.it/news/{{ $news->id }}" /> -->
+    <meta property="og:url"                content="http://dev.globuscup.it/news/{{ $news->id }}/" />
 
     <meta property="og:title"              content="{{ $news->title }}" />
     <meta property="og:description"        content="{{ $news->excerpt ? $news->excerpt : 'GlobusCup 2016 Tornei di calcio A5' }}" />
