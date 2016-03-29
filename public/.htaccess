@@ -8,9 +8,9 @@
 
     AddDefaultCharset UTF-8
 
-    RewriteBase /
-    RewriteCond %{HTTP_USER_AGENT} !=(facebookexternalhit/[0-9]|Facebot|Twitterbot|Pinterest|Google.*snippet)
-    Rewriterule ^socialbot/news/(.*)$ http://dev.globuscup.it/news/$1 [NC,L]
+    #RewriteBase /
+    #RewriteCond %{HTTP_USER_AGENT} !=(facebookexternalhit/[0-9]|Facebot|Twitterbot|Pinterest|Google.*snippet)
+    #Rewriterule ^socialbot/news/(.*)$ http://dev.globuscup.it/news/$1 [NC,L]
 
     
     # Redirect Trailing Slashes If Not A Folder...
