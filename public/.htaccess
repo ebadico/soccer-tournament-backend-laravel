@@ -6,6 +6,13 @@
 
     RewriteEngine On
 
+    AddDefaultCharset UTF-8
+
+    RewriteBase /
+    #RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Facebot|Twitterbot|Pinterest|Google.*snippet)
+    Rewriterule ^socialbot/news/(.*)$ http://dev.globuscup.it/news/$1 [NC,L]
+
+    
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)/$ /$1 [L,R=301]
@@ -14,6 +21,8 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+
 </IfModule>
 
 RewriteCond %{HTTP:Authorization} ^(.*)
