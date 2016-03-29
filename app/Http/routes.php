@@ -50,6 +50,7 @@ Route::get('/api/auth/check', ['middleware' => 'jwt.auth', function () {
 }]);
 
 Route::get('/socialbot/news/{id}', function($id){
-   return view('static');
+    $news = \App\News::where('id',$id)->first();
+    return view('static', compact('news'));
 });
 
