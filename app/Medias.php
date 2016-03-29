@@ -18,9 +18,10 @@ class Medias extends Model
 
     public function getPathAttribute(){
       if($this->attributes['type'] != 'video'){
-        return $this->attributes['path'] = ENV('APP_FQDN') . $this->attributes['path'];
+        return $this->attributes['path'] = ENV('APP_FQDN') . '/uploads/' . $this->attributes['filename'];
+      }else{
+        return $this->attributes['path'];
       }
-      return $this->attributes['path'];
     }
 
     public function season(){
