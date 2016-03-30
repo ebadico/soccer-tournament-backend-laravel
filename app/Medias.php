@@ -11,6 +11,9 @@ class Medias extends Model
 
       static::deleting(function($media){
         \Storage::delete($media->filename);
+        if(\Storage::disk('thumb')->delete($media->filename)){
+          \Storage::disk('thumb')->exists($media->filename);
+        }
       });
     }
 
