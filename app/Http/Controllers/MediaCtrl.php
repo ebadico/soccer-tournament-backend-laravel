@@ -120,14 +120,23 @@ class MediaCtrl extends Controller
       //resize?? 
       $crop = Image::make($storage . $img['filename']);
       
-      $crop->resize(1920, null, function($constraint){
-          $constraint->aspectRatio();
-          $constraint->upsize();
-      });
+      $crop
+        ->resize(1920, null, function($constraint){
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
       
       Storage::delete($img['filename']);
 
       $crop->save($storage . $img['filename']);
+
+      Image::make($storage . $img['filename'])
+      ->resize(600, null, function($constraint){
+          $constraint->aspectRatio();
+          $constraint->upsize();
+      })
+      ->encode('jpg', 25)->save($storage . '/thumb/' . $img['filename']);
+
       $media->fill([
           "path"     => $img['path'],
           "filename" => $img['filename']
