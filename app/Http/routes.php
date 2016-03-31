@@ -51,6 +51,11 @@ Route::get('/api/auth/check', ['middleware' => 'jwt.auth', function () {
 
 Route::get('/socialbot/news/{id}', function($id){
     $news = \App\News::where('id',$id)->first();
-    return view('static', compact('news'));
+    return view('news', compact('news'));
+});
+
+Route::get('/socialbot/team/{id}', function($id){
+    $team = \App\Team::where('id',$id)->first();
+    return view('team', compact('team'));
 });
 
