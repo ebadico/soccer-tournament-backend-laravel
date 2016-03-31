@@ -38,8 +38,10 @@ class DayCtrl extends Controller
           $query->where('played', true);
       })->get()->groupBy('round_id');
 
+
       $ids = [];
       $filtered = [];
+      
       foreach($dayPerRound as $days){
         $ids = [];
         foreach($days as $day){
