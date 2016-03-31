@@ -22,7 +22,7 @@ class Team extends Model
   public function getLastMatchsAttribute(){
     $matches = Match::where(function($query){
         $query->where('team_a_id', '=', $this->attributes['id'])
-              ->whereOr('team_b_id', '=', $this->attributes['id']);
+              ->orWhere('team_b_id', '=', $this->attributes['id']);
       })
       ->played()
       ->limit(3)
