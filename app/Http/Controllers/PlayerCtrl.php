@@ -25,11 +25,14 @@ class PlayerCtrl extends Controller
   {
       // filtered per round
       if($request->has('round_id')){
-        $players = Player::with('team.round', 'media','attendance.match','scores.match','warning','expulsion')->get()->toArray();
-        $filtered = array_filter($players, function($item) use($request){
-          return $item['team']['round_id'] == $request->get('round_id');
-        });
-        return $filtered;
+        // $players = Player::with('team.round', 'media','attendance.match','scores.match','warning','expulsion')->get()->toArray();
+        // $filtered = array_filter($players, function($item) use($request){
+        //   return $item['team']['round_id'] == $request->get('round_id');
+        // });
+        // return $filtered;
+        return Player::whereHas('team', function($query) use($request) {
+          $query->where('round_id', $request->get('round_id'));
+        })->with('team.round', 'media','attendance.match','scores.match','warning','expulsion')->get()->toArray();
       }
 
       if($request->has('scorers')){
