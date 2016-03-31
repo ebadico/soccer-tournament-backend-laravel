@@ -27,36 +27,60 @@ class DayCtrl extends Controller
     }
     
     if($request->has('last_day')){        
-      $dayPerRound = Day::with(
-          'round',
-          'matches.teamA.media',
-          'matches.teamB.media',
-          'matches.warning.player',
-          'matches.expulsion.player',
-          'matches.scores.player'
-      )->whereHas('matches', function($query){
+      $last_day = [];
+      //get all rounds id
+      $all_rounds = \DB::table('days')->distinct()->select('round_id')->lists('round_id');
+      foreach ($all_rounds as $round_id) {
+        //get last played day in this round
+        $round_last_day = Day::where('round_id', $round_id)
+        ->whereHas('matches', function($query){
           $query->where('played', true);
-      })->get()->groupBy('round_id');
-
-
-      $ids = [];
-      $filtered = [];
-      
-      foreach($dayPerRound as $days){
-        $ids = [];
-        foreach($days as $day){
-          array_push($ids, $day['id']);
-        }
-        foreach($days as $key => $day){
-          if($day['id'] == max($ids)){
-            array_push($filtered, $day);
-          }
-        }
+        })
+        ->get()
+        ->max('id');
+        array_push($last_day, $round_last_day);
       }
-      return $filtered;
+      return Day::with(
+        'round',
+        'matches.teamA.media',
+        'matches.teamB.media',
+        'matches.warning.player',
+        'matches.expulsion.player',
+        'matches.scores.player'
+      )
+      ->whereIn('id', $last_day)
+      ->get();
     }
+    // OLD version of the above
+    // if($request->has('last_day')){        
+    //   $dayPerRound = Day::with(
+    //       'round',
+    //       'matches.teamA.media',
+    //       'matches.teamB.media',
+    //       'matches.warning.player',
+    //       'matches.expulsion.player',
+    //       'matches.scores.player'
+    //   )->whereHas('matches', function($query){
+    //       $query->where('played', true);
+    //   })->get()->groupBy('round_id');
+    //
+    //   $ids = [];
+    //   $filtered = [];    
+    //   foreach($dayPerRound as $days){
+    //     $ids = [];
+    //     foreach($days as $day){
+    //       array_push($ids, $day['id']);
+    //     }
+    //     foreach($days as $key => $day){
+    //       if($day['id'] == max($ids)){
+    //         array_push($filtered, $day);
+    //       }
+    //     }
+    //   }
+    //   return $filtered;
+    // }
 
-    // HELPER
+    // HELPER to count days per round if database is not wiped
     // if($request->has('count_please')){
     //   $round_ids = \DB::table('days')->distinct()->select('round_id')->lists('round_id');
     //   foreach ($round_ids as $round_id) {
