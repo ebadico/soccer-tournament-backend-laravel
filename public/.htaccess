@@ -13,7 +13,6 @@
     #if not facebook redirect to application
     RewriteCond %{HTTP_USER_AGENT} !facebookexternalhit/[0-9]
     Rewriterule ^socialbot/news/(.*)$ http://www.globuscup.it/news/$1 [NC,L]
-    Rewriterule ^socialbot/team/(.*)$ http://www.globuscup.it/team/$1 [NC,L]
 
     
     # Redirect Trailing Slashes If Not A Folder...
