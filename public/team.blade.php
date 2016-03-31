@@ -15,7 +15,7 @@
 
     <meta property="og:title"              content="{{ $team->name }}" />
     <meta property="og:description"        content="Vittorie: {{ $team->wins }} | Pareggi: {{ $team->draws }} | Sconfitte: {{ $team->losts }}" />
-    <meta property="og:image"              content="{{ $team->group_photo ? $team->group_photo->path :'http://www.globuscup.it/images/globus_facebook.jpg' }}" />
+    <meta property="og:image"              content="{{ $team->group_photo ? $team->group_photo->path . '?v=1' :'http://www.globuscup.it/images/globus_facebook.jpg' }}" />
 
 </head>
 <body>
