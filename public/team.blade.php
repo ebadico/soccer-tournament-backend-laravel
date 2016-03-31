@@ -11,7 +11,7 @@
     <meta property="fb:app_id"             content="1020464471354564">
 
     <meta property="og:site_name"          content="GlobusCup">
-    <!-- <meta property="og:url"                content="http://dev.globuscup.it/news/{{ $news->id }}" /> -->
+    
 
     <meta property="og:title"              content="{{ $team->name }}" />
     <meta property="og:description"        content="Vittorie: {{ $team->wins }} | Pareggi: {{ $team->draws }} | Sconfitte: {{ $team->losts }}" />
