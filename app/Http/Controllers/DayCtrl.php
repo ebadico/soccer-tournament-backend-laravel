@@ -105,6 +105,12 @@ class DayCtrl extends Controller
         'round_id'  => $request->round_id
     ]);
 
+    if(Day::where('round_id', $day->round_id)->count()){
+      $day->count = (integer)(Day::where('round_id', $day->round_id)->get()->last()->count) + 1;
+    }else{
+      $day->count = 1;
+    }
+
     if($day->save()){
         $res['saved'] = true;
         $res['status'] = 200;
