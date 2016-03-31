@@ -56,22 +56,20 @@ class DayCtrl extends Controller
       return $filtered;
     }
 
-    if($request->has('count_please')){
-      
-      $round_ids = \DB::table('days')->distinct()->select('round_id')->lists('round_id');
-
-      foreach ($round_ids as $round_id) {
-        //$cnt = (integer)(Day::where('round_id', $round_id)->first()->count);
-        $cnt = 0;
-        foreach (Day::where('round_id', $round_id)->get() as $day){
-          $day->count = (integer)($cnt + 1);
-          $day->save();
-          $cnt++;
-        }
-      }
-
-      return "DONE";
-    }
+    // HELPER
+    // if($request->has('count_please')){
+    //   $round_ids = \DB::table('days')->distinct()->select('round_id')->lists('round_id');
+    //   foreach ($round_ids as $round_id) {
+    //     //$cnt = (integer)(Day::where('round_id', $round_id)->first()->count);
+    //     $cnt = 0;
+    //     foreach (Day::where('round_id', $round_id)->get() as $day){
+    //       $day->count = (integer)($cnt + 1);
+    //       $day->save();
+    //       $cnt++;
+    //     }
+    //   }
+    //   return "DONE";
+    // }
 
     return Day::with(
         'round',
