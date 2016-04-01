@@ -18,6 +18,7 @@ class Medias extends Model
     }
 
     protected $fillable = ['path','type', 'filename', 'season_id', 'team_id', 'news_id', 'round_id','ext_url'];
+    protected $appends = ['thumb'];
 
     public function getPathAttribute(){
       if($this->attributes['type'] != 'video'){
@@ -25,6 +26,13 @@ class Medias extends Model
       }else{
         return $this->attributes['path'];
       }
+    }
+
+    public function getThumbAttribute(){
+      if($this->attributes['type'] != 'video'){
+        return $this->attributes['thumb'] = ENV('APP_FQDN') . '/uploads/thumb/' . $this->attributes['filename'];
+      }
+      return $this->attributes['thumb'] = null;
     }
 
     public function season(){
