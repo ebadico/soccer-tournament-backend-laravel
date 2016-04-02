@@ -17,6 +17,10 @@
     RewriteCond %{HTTP_USER_AGENT} !facebookexternalhit/[0-9]
     Rewriterule ^socialbot/team/(.*)$ http://www.globuscup.it/team/$1 [NC,L]
 
+    #home
+    RewriteCond %{HTTP_USER_AGENT} !facebookexternalhit/[0-9]
+    Rewriterule ^socialbot/home(.*)$ http://www.globuscup.it [NC,L]
+
     
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
