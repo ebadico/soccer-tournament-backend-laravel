@@ -11,7 +11,7 @@
     <meta property="og:description"        content="Il torneo dei Castelli Romani" />
     <meta property="og:site_name"          content="GlobusCup">
     <meta property="fb:app_id"             content="1020464471354564">
-    <meta property="og:image"              content="http://www.globuscup.it/images/globus_facebook.jpg?v=2.0.0" />
+    <meta property="og:image"              content="http://api.globuscup.it/globus_facebook.jpg?v=2.0.0" />
     <meta property="og:rich_attachment"    content="true">
     <meta property="fb:profile_id"         content="Globus-Cup-499735930135609">
 
