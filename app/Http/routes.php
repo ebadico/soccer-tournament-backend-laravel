@@ -59,3 +59,7 @@ Route::get('/socialbot/team/{id}', function($id){
     return view('team', compact('team'));
 });
 
+Route::get('/socialbot/home', function(){
+    return view('home');
+});
+
