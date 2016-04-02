@@ -5,7 +5,7 @@
   <title>Globuscup 2016</title>
 
 
-    <!-- <meta property="og:url"                content="http://www.globuscup.it" /> -->
+    <meta property="og:url"                content="http://api.globuscup.it/socialbot/home" />
     <meta property="og:type"               content="website" />
     <meta property="og:title"              content="Globus Cup Il torneo che ti fa viaggiare" />
     <meta property="og:description"        content="Il torneo dei Castelli Romani" />
