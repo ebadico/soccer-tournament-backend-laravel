@@ -1,3 +1,6 @@
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "HEAD, POST, GET, OPTIONS, PUT, DELETE"
+Header set Access-Control-Allow-Headers "Content-Type, Accept, Authorization, X-Requested-With"
 
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
@@ -45,3 +48,4 @@ php_value post_max_size 100M
 php_value max_execution_time 600
 php_value max_input_time 600
 php_value always_populate_raw_post_data -1
+
