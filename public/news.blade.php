@@ -11,6 +11,7 @@
     <meta property="fb:app_id"             content="1020464471354564">
 
     <meta property="og:site_name"          content="GlobusCup">
+    <meta property="og:url"                content="www.globuscup.it">
     
 
     <meta property="og:title"              content="{{ $news->title }}" />
