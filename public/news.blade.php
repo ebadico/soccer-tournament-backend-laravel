@@ -4,15 +4,17 @@
   <meta charset="UTF-8">
   <title>Globuscup 2016</title>
 
+    <meta property="author" content="Simone Corsi">
+    <link rel="canonical" href="http://www.globuscup.it">
+
+
 
     <meta property="fb:profile_id"         content="Globus-Cup-499735930135609">
     <meta property="og:rich_attachment"    content="true">
     <meta property="og:type"               content="article" />
     <meta property="fb:app_id"             content="1020464471354564">
 
-    <meta property="og:site_name"          content="GlobusCup">
-    <meta property="og:url"                content="http://www.globuscup.it">
-    
+    <meta property="og:site_name"          content="GlobusCup"> 
 
     <meta property="og:title"              content="{{ $news->title }}" />
     <meta property="og:description"        content="{{ $news->excerpt ? $news->excerpt : 'GlobusCup 2016 Tornei di calcio A5' }}" />
