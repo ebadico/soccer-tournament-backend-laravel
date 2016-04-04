@@ -15,7 +15,7 @@
 
     <meta property="og:title"              content="{{ $news->title }}" />
     <meta property="og:description"        content="{{ $news->excerpt ? $news->excerpt : 'GlobusCup 2016 Tornei di calcio A5' }}" />
-    <meta property="og:image"              content="{{ $news->featured ? $news->featured->path . '?v=2' :'http://www.globuscup.it/images/globus_facebook.jpg' }}" />
+    <meta property="og:image"              content="{{ $news->featured ? $news->featured->path  :'http://www.globuscup.it/images/globus_facebook.jpg' }}" />
 
 </head>
 <body>
