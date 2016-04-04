@@ -11,9 +11,15 @@ class Match extends Model{
     static::addGlobalScope(new \App\Scopes\SeasonScope);
   }
   protected $table = 'matchs'; 
-  protected $date = ['match_date'];
   protected $fillable = ['season_id','team_a_id','team_b_id','day_id', 'match_date','winner_id','played'];
   protected $appends = ['date','hour'];
+  protected $date = ['match_date'];
+
+  
+  public function setMatchDateAttribute($date){
+    $EU_ROME = new Carbon($date);
+    return $this->attributes['match_date'] = $EU_ROME->timezone('Europe/Rome');
+  }
 
   public function getDateAttribute(){
     return $this->attributes['date'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['match_date'])->format('d-m-Y');
@@ -26,10 +32,6 @@ class Match extends Model{
     }
     $complete = $hour . ':' . $minute;
     return $this->attributes['hour'] = $complete;
-  }
-
-  public function setMatchDateAttribute($startDate) {
-    $this->attributes['match_date'] = Carbon::parse($startDate)->toDateTimeString();
   }
 
   static public function getFromDay($day_id){

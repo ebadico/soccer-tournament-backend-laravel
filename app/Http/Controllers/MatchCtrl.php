@@ -61,6 +61,7 @@ class MatchCtrl extends Controller
     ]);
 
     if($match->save()){
+        $res['match'] = $match;
         $res['saved'] = true;
         $res['status'] = 200;
     }
