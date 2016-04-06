@@ -150,7 +150,7 @@ class MediaCtrl extends Controller
   }
   public function StoreVideo(Request $request){
      $media = new Medias();
-     $media->path = 'https://www.youtube.com/v/' . $request->get('url');
+     $media->path = 'https://www.youtube.com/embed/' . $request->get('url');
      $media->type = "video";
      if($media->save()){
       return response()->json($media, 200);
