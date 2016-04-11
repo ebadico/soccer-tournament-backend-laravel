@@ -1,8 +1,7 @@
 
 <IfModule mod_headers.c>
 SetEnvIfNoCase Origin "https?://(www\.)?(globuscup\.it|globus\.local)(:\d+)?$" ACAO=$0
-#Header set Access-Control-Allow-Origin %{ACAO}e env=ACAO
-Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Origin %{ACAO}e env=ACAO
 Header set Access-Control-Allow-Methods "HEAD, POST, GET, OPTIONS, PUT, DELETE"
 Header set Access-Control-Allow-Headers "Content-Type, Accept, Authorization, X-Requested-With"
 </IfModule>
