@@ -10,9 +10,11 @@ class Medias extends Model
       parent::boot();
 
       static::deleting(function($media){
-        \Storage::delete($media->filename);
-        if(\Storage::disk('thumb')->delete($media->filename)){
-          \Storage::disk('thumb')->exists($media->filename);
+        if($media->type != 'video'){
+          \Storage::delete($media->filename);
+          if(\Storage::disk('thumb')->delete($media->filename)){
+            \Storage::disk('thumb')->exists($media->filename);
+          }
         }
       });
     }
