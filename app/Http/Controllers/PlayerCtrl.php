@@ -34,7 +34,7 @@ class PlayerCtrl extends Controller
         return Player::with('scores', 'team.round')->get()->groupBy('team.round_id');
       }
 
-      return Player::with('team.round', 'media','attendance.match','scores.match','warning','expulsion')->get();
+      return Player::with('media','attendance.match','scores.match','warning','expulsion')->get()->toArray();
   }
 
   /**
