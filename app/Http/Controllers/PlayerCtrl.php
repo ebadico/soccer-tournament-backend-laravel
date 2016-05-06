@@ -27,7 +27,7 @@ class PlayerCtrl extends Controller
       if($request->has('round_id')){
         return Player::whereHas('team', function($query) use($request) {
           $query->where('round_id', $request->get('round_id'));
-        })->with('team.round', 'media','attendance.match','scores.match','warning','expulsion')->get()->toArray();
+        })->with('media','attendance.match','scores.match','warning','expulsion')->get()->toArray();
       }
 
       if($request->has('scorers')){
