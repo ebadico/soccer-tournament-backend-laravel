@@ -11,10 +11,13 @@ class Player extends Model
     static::addGlobalScope(new \App\Scopes\SeasonScope);
   }
   protected $fillable = ['name','season_id','team_id'];
-  protected $appends = ['team'];
+  protected $appends = ['team','scores'];
   
   public function getTeamAttribute(){
-    return $this->attributes['team_name'] = \DB::table('teams')->select('id','name', 'round_id')->where('id', $this->team_id)->first();
+    return $this->attributes['team'] = \DB::table('teams')->select('id','name', 'round_id')->where('id', $this->team_id)->first();
+  }
+  public function getScoresAttribute(){
+    return $this->attributes['scores'] = \DB::table('scores')->select('id','player_id')->where('player_id', $this->id)->count();
   }
 
   public function attendance(){
