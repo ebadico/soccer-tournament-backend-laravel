@@ -22,9 +22,8 @@ class RoundCtrl extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
-  {
-    return Round::with('day','team','media')->get();
+  public function index(){
+    return Round::with('day', 'media')->get(); // there was teams too but meh
   }
 
   /**
