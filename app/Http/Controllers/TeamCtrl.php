@@ -27,8 +27,13 @@ class TeamCtrl extends Controller
         if($request->get('round_id')){
             return Team::get_round($request->get('round_id'))->get_all();
         }
+
+        if($request->has('all')){
+            return Team::get_all();
+        }
+
+        return Team::with('round','media','group_photo')->get();
         
-        return Team::get_all();
     }
 
     /**
