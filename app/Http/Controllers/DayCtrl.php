@@ -40,60 +40,31 @@ class DayCtrl extends Controller
         ->max('id');
         array_push($last_day, $round_last_day);
       }
-      return Day::with(
-        'round',
-        'matches.teamA.media',
-        'matches.teamB.media',
-        'matches.warning.player',
-        'matches.expulsion.player',
-        'matches.scores.player'
+      // >> this is slow <<
+      return Day::with([ 
+          "round" => function($query){
+           $query->select('id');
+          },
+          "matches.warning.player" => function($query){
+           $query->select('id', 'name');
+          },
+          "matches.expulsion.player" => function($query){
+           $query->select('id', 'name');
+          },
+          "matches.scores.player" => function($query){
+           $query->select('id', 'name');
+          },
+          "matches.teamA" => function($query){
+            return $query->with('media');
+          },
+          "matches.teamB" => function($query){
+            return $query->with('media');
+          },
+        ]
       )
       ->whereIn('id', $last_day)
       ->get();
     }
-    // OLD version of the above
-    // if($request->has('last_day')){        
-    //   $dayPerRound = Day::with(
-    //       'round',
-    //       'matches.teamA.media',
-    //       'matches.teamB.media',
-    //       'matches.warning.player',
-    //       'matches.expulsion.player',
-    //       'matches.scores.player'
-    //   )->whereHas('matches', function($query){
-    //       $query->where('played', true);
-    //   })->get()->groupBy('round_id');
-    //
-    //   $ids = [];
-    //   $filtered = [];    
-    //   foreach($dayPerRound as $days){
-    //     $ids = [];
-    //     foreach($days as $day){
-    //       array_push($ids, $day['id']);
-    //     }
-    //     foreach($days as $key => $day){
-    //       if($day['id'] == max($ids)){
-    //         array_push($filtered, $day);
-    //       }
-    //     }
-    //   }
-    //   return $filtered;
-    // }
-
-    // HELPER to count days per round if database is not wiped
-    // if($request->has('count_please')){
-    //   $round_ids = \DB::table('days')->distinct()->select('round_id')->lists('round_id');
-    //   foreach ($round_ids as $round_id) {
-    //     //$cnt = (integer)(Day::where('round_id', $round_id)->first()->count);
-    //     $cnt = 0;
-    //     foreach (Day::where('round_id', $round_id)->get() as $day){
-    //       $day->count = (integer)($cnt + 1);
-    //       $day->save();
-    //       $cnt++;
-    //     }
-    //   }
-    //   return "DONE";
-    // }
 
     return Day::with(
         'round',
@@ -103,16 +74,6 @@ class DayCtrl extends Controller
         'matches.expulsion.player',
         'matches.scores.player'
     )->get();
-  }
-
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function create()
-  {
-      //
   }
 
   /**

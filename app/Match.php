@@ -63,18 +63,25 @@ class Match extends Model{
   /** OMG I SHOULD MAYBE DO LESS QUERY IN ONE SHOT */
   /** bah who cares, it's a low traffic app */
   public function scopeGet_all($query){
+      // return $query->with(
+      //   'teamA.media',
+      //   'teamB.media',
+      //   'teamA.player.attendance',
+      //   'teamB.player.attendance',
+      //   'teamA.player.warning',
+      //   'teamA.player.expulsion',
+      //   'teamB.player.warning',
+      //   'teamB.player.expulsion',
+      //   'day.round',
+      //   'winner',
+      //   'attendance.player',
+      //   'scores'
+      //   )->get();
       return $query->with(
         'teamA.media',
         'teamB.media',
-        'teamA.player.attendance',
-        'teamB.player.attendance',
-        'teamA.player.warning',
-        'teamA.player.expulsion',
-        'teamB.player.warning',
-        'teamB.player.expulsion',
         'day.round',
         'winner',
-        'attendance.player',
         'scores'
         )->get();
   }
