@@ -32,6 +32,10 @@ class TeamCtrl extends Controller
             return Team::get_all();
         }
 
+        if($request->has('stats')){
+            return Team::get_statistics();
+        }
+
         return Team::with('round','media','group_photo')->get();
         
     }

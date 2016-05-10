@@ -41,29 +41,35 @@ class DayCtrl extends Controller
         array_push($last_day, $round_last_day);
       }
       // >> this is slow <<
-      return Day::with([ 
-          "round" => function($query){
-           $query->select('id');
-          },
-          "matches.warning.player" => function($query){
-           $query->select('id', 'name');
-          },
-          "matches.expulsion.player" => function($query){
-           $query->select('id', 'name');
-          },
-          "matches.scores.player" => function($query){
-           $query->select('id', 'name');
-          },
-          "matches.teamA" => function($query){
-            return $query->with('media');
-          },
-          "matches.teamB" => function($query){
-            return $query->with('media');
-          },
-        ]
+      return Day::with(
+        'round',
+        'matches.teamA.media',
+        'matches.teamB.media',
+        'matches.warning',
+        'matches.expulsion',
+        'matches.scores'
       )
       ->whereIn('id', $last_day)
       ->get();
+    }
+
+    if($request->has('plain')){
+      return Day::with(
+        'round',
+        'matches.teamA.media',
+        'matches.teamB.media',
+        'matches.warning',
+        'matches.expulsion',
+        'matches.scores'
+      )->get();
+      // return Day::with([
+      //   'round' => function($query){},
+      //   'matches.teamA.media' => function($query){},
+      //   'matches.teamB.media' => function($query){},
+      //   'matches.warning' => function($query){},
+      //   'matches.expulsion' => function($query){},
+      //   'matches.scores' => function($query){}
+      // ])->get();
     }
 
     return Day::with(
@@ -74,6 +80,7 @@ class DayCtrl extends Controller
         'matches.expulsion.player',
         'matches.scores.player'
     )->get();
+    
   }
 
   /**
