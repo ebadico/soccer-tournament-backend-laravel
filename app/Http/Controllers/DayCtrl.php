@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 
 use App\Day;
 use App\Season;
-use Hashids;
 
 class DayCtrl extends Controller
 {
@@ -22,10 +21,25 @@ class DayCtrl extends Controller
    * @return \Illuminate\Http\Response
    */
   public function index(Request $request){
+    /**
+     * GET MATCH FOR ROUNDS
+     */
     if($round_id = $request->get('round_id')){
-        return Day::where('round_id','=', $round_id)->get();
+        return Day::where('round_id','=', $round_id)
+        ->with( 
+          'round',
+          'matches.teamA.media',
+          'matches.teamB.media',
+          'matches.warning',
+          'matches.expulsion',
+          'matches.scores'
+        )
+        ->get();
     }
     
+    /**
+     * LAST DAY OF GAMES
+     */
     if($request->has('last_day')){        
       $last_day = [];
       //get all rounds id
@@ -40,38 +54,40 @@ class DayCtrl extends Controller
         ->max('id');
         array_push($last_day, $round_last_day);
       }
-      // >> this is slow <<
-      return Day::with(
-        'round',
-        'matches.teamA.media',
-        'matches.teamB.media',
-        'matches.warning',
-        'matches.expulsion',
-        'matches.scores'
-      )
-      ->whereIn('id', $last_day)
-      ->get();
+      return \Cache::rememberForever('last_days', function() use ($last_day) {
+        return Day::with(
+          'round',
+          'matches.teamA.media',
+          'matches.teamB.media',
+          'matches.warning',
+          'matches.expulsion',
+          'matches.scores'
+        )
+        ->whereIn('id', $last_day)
+        ->get()
+        ->toArray();
+      });
     }
 
+    /**
+     * GET DAY WITH LES DATA FOR PERFORMANCE
+     */
     if($request->has('plain')){
-      return Day::with(
-        'round',
-        'matches.teamA.media',
-        'matches.teamB.media',
-        'matches.warning',
-        'matches.expulsion',
-        'matches.scores'
-      )->get();
-      // return Day::with([
-      //   'round' => function($query){},
-      //   'matches.teamA.media' => function($query){},
-      //   'matches.teamB.media' => function($query){},
-      //   'matches.warning' => function($query){},
-      //   'matches.expulsion' => function($query){},
-      //   'matches.scores' => function($query){}
-      // ])->get();
+      return \Cache::rememberForever('days_plain', function() {
+        return Day::with(
+          'round',
+          'matches.teamA.media',
+          'matches.teamB.media',
+          'matches.warning',
+          'matches.expulsion',
+          'matches.scores'
+        )->get()->toArray();
+      });
     }
 
+    /**
+     * GET ALL DATA FOR DAYS, REALLY SLOW.
+     */
     return Day::with(
         'round',
         'matches.teamA.media',

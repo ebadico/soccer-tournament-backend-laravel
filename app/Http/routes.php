@@ -43,6 +43,12 @@ Route::group(['prefix'=>'api' , 'middleware' => ['web']] , function () {
     Route::post('/video'           , 'MediaCtrl@StoreVideo');
 
 });
+
+Route::post('/debug/flush_cache', ['middleware' => 'jwt.auth', function () {
+    \Cache::flush();
+    return 200;
+}]);
+
 Route::post('/api/auth', 'AuthCtrl@authenticate');
 
 Route::get('/api/auth/check', ['middleware' => 'jwt.auth', function () {

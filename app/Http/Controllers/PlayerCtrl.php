@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Player;
 use App\Season;
+Use Cache;
 
 
 class PlayerCtrl extends Controller
@@ -34,7 +35,9 @@ class PlayerCtrl extends Controller
       }
 
       if($request->has('plain')){
-        return Player::with('media')->get();
+        return Cache::rememberForever('players_plain', function(){
+          return Player::with('media')->get()->toArray();
+        });
       }
 
       if($request->has('top_scorers') && $request->has('round_id')){
@@ -52,15 +55,18 @@ class PlayerCtrl extends Controller
         // WHERE player.round_id = 6
         // ORDER BY scores desc
         // LIMIT 3;
-        return \DB::table('players as p')
-                          ->where('round_id', $request->get('round_id'))
-                          ->selectRaw('p.team_id, teams.round_id, p.name, teams.name as team_name, COUNT(p.id) as scores')
-                          ->leftJoin('teams', 'team_id', '=', 'teams.id')
-                          ->leftJoin('scores as s', 's.player_id', '=', 'p.id')
-                          ->groupBy('p.id')
-                          ->orderBy('scores','desc')
-                          ->limit(3)
-                          ->get();
+        $round_id = $request->get('round_id');
+        return Cache::rememberForever('top_scorers_round_id=' . $round_id, function() use($round_id){
+          return \DB::table('players as p')
+                            ->where('round_id', $round_id)
+                            ->selectRaw('p.team_id, teams.round_id, p.name, teams.name as team_name, COUNT(p.id) as scores')
+                            ->leftJoin('teams', 'team_id', '=', 'teams.id')
+                            ->leftJoin('scores as s', 's.player_id', '=', 'p.id')
+                            ->groupBy('p.id')
+                            ->orderBy('scores','desc')
+                            ->limit(3)
+                            ->get();
+        });
       }
 
       return Player::with('media','attendance','scores','warning','expulsion')->get();
