@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Player;
 use App\Season;
+Use Cache;
 
 
 class PlayerCtrl extends Controller
@@ -21,13 +22,12 @@ class PlayerCtrl extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index(Request $request)
-  {
+  public function index(Request $request){
       // filtered per round
-      if($request->has('round_id')){
+      if($request->has('round_id') && !$request->has('top_scorers')){
         return Player::whereHas('team', function($query) use($request) {
           $query->where('round_id', $request->get('round_id'));
-        })->with('scores')->get()->toArray();
+        })->with('scores')->get();
       }
 
       if($request->has('scorers')){
@@ -35,10 +35,42 @@ class PlayerCtrl extends Controller
       }
 
       if($request->has('plain')){
-        return Player::with('media')->get();
+        return Cache::rememberForever('players_plain', function(){
+          return Player::with('media')->get()->toArray();
+        });
       }
 
-      return Player::with('media','attendance.match','scores.match','warning','expulsion')->get()->toArray();
+      if($request->has('top_scorers') && $request->has('round_id')){
+        // SELECT *
+        // FROM
+        // (
+        //   SELECT p.team_id, teams.round_id, p.name, teams.name as team_name, COUNT(p.id) as scores
+        //   FROM players as p
+        //   LEFT JOIN teams
+        //   ON team_id = teams.id
+        //   LEFT JOIN scores as s
+        //   ON s.player_id = p.id
+        //   GROUP BY p.id
+        // ) player
+        // WHERE player.round_id = 6
+        // ORDER BY scores desc
+        // LIMIT 3;
+        $round_id = $request->get('round_id');
+        return Cache::rememberForever('top_scorers_round_id=' . $round_id, function() use($round_id){
+          return \DB::table('players as p')
+                            ->where('round_id', $round_id)
+                            ->selectRaw('p.team_id, teams.round_id, p.name, teams.name as team_name, COUNT(p.id) as scores')
+                            ->leftJoin('teams', 'team_id', '=', 'teams.id')
+                            ->leftJoin('scores as s', 's.player_id', '=', 'p.id')
+                            ->groupBy('p.id')
+                            ->orderBy('scores','desc')
+                            ->limit(3)
+                            ->get();
+        });
+      }
+
+      return Player::with('media','attendance','scores','warning','expulsion')->get();
+      //return Player::with('media','attendance.match','scores.match','warning','expulsion')->get();
   }
 
   /**
@@ -46,8 +78,7 @@ class PlayerCtrl extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function create()
-  {
+  public function create(){
       //
   }
 

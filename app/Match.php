@@ -9,6 +9,11 @@ class Match extends Model{
   protected static function boot(){
     parent::boot();
     static::addGlobalScope(new \App\Scopes\SeasonScope);
+
+    // clean cached queryes.
+    static::saved(function($match){
+      \Cache::flush(); 
+    });
   }
   protected $table = 'matchs'; 
   protected $fillable = ['season_id','team_a_id','team_b_id','day_id', 'match_date','winner_id','played'];

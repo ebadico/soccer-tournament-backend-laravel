@@ -13,7 +13,40 @@ class Team extends Model
   }
   protected $fillable = ['name', 'wins', 'draws', 'losts', 'round_id', 'season_id', 'group_photo_id'];
 
-  protected $appends = ['points','last_matchs', 'all_scores','scores_conceded'];
+  //protected $appends = ['points','last_matchs', 'all_scores','scores_conceded'];
+
+  public function getWinsAttribute(){
+    $won = Match::where('winner_id', '=', $this->id)->played()->count();
+    return $this->attributes["wins"] = $won;
+  }
+  
+  public function getDrawsAttribute(){
+    $draws = Match::whereNull('winner_id')
+                  ->where(function($query){
+                    $query
+                      ->where('team_a_id', '=', $this->id)
+                      ->orWhere('team_b_id','=', $this->id);
+                  })
+                  ->played()
+
+                  ->count();
+    return $this->attributes["draws"] = $draws;
+  }
+  public function getLostsAttribute(){
+    $losts = Match::where(function($query){
+                    $query
+                      ->where('team_a_id', '=', $this->id)
+                      ->orWhere('team_b_id','=', $this->id);
+                  })
+                  ->where(function($query){
+                    $query
+                      ->whereNotNull('winner_id')
+                      ->where('winner_id', '<>', $this->id);
+                  })
+                  ->played()
+                  ->count();
+    return $this->attributes['losts'] = $losts;
+  }
 
   public function getAllScoresAttribute(){
     return $this->attributes['all_scores'] = $this->scores()->count();
@@ -36,23 +69,6 @@ class Team extends Model
     return $this->attributes["points"] = $points;
   }
 
-  public function getWinsAttribute(){
-    $won = Match::where('winner_id', '=', $this->id)->played()->count();
-    return $this->attributes["wins"] = $won;
-  }
-  
-  public function getDrawsAttribute(){
-    $draws = Match::whereNull('winner_id')
-                  ->where(function($query){
-                    $query
-                      ->where('team_a_id', '=', $this->id)
-                      ->orWhere('team_b_id','=', $this->id);
-                  })
-                  ->played()
-
-                  ->count();
-    return $this->attributes["draws"] = $draws;
-  }
 
   public function getScoresConcededAttribute(){
     $all_team_matchs = Match::where(function($query){
@@ -73,21 +89,6 @@ class Team extends Model
     return $this->attributes["scores_conceded"] = $conceded;
   }
 
-  public function getLostsAttribute(){
-    $losts = Match::where(function($query){
-                    $query
-                      ->where('team_a_id', '=', $this->id)
-                      ->orWhere('team_b_id','=', $this->id);
-                  })
-                  ->where(function($query){
-                    $query
-                      ->whereNotNull('winner_id')
-                      ->where('winner_id', '<>', $this->id);
-                  })
-                  ->played()
-                  ->count();
-    return $this->attributes['losts'] = $losts;
-  }
 
 
   public function scopeGet_round($query, $round_id){
@@ -108,7 +109,7 @@ class Team extends Model
     )->get();
   }
   public function scopePopulate($query){
-    return $query->with(
+    $team = $query->with(
       'round',
       'player.attendance',
       'player.scores',
@@ -118,7 +119,27 @@ class Team extends Model
       'media',
       'group_photo',
       'won_match'
-      )->first();
+    )->first();
+    $team->last_matchs;
+    $team->all_scores;
+    $team->scores_conceded;   
+    return $team;
+  }
+
+  public static function scopeGet_statistics(){
+    $teams = Team::all();
+    foreach ($teams as $team) {
+      $team->media;
+      $team->points;
+      $team->last_matchs;
+      $team->all_scores;
+      $team->scores_conceded;
+      $team->wins;
+      $team->draws;
+      $team->losts;
+    }
+    return $teams;
+
   }
 
   public function match(){

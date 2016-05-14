@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Hashids;
+use Cache;
 use App\Team;
 use App\Round;
 use App\Season;
@@ -30,6 +30,12 @@ class TeamCtrl extends Controller
 
         if($request->has('all')){
             return Team::get_all();
+        }
+
+        if($request->has('stats')){
+            return Cache::rememberForever('teams_with_stats', function(){
+                return Team::get_statistics();
+            });
         }
 
         return Team::with('round','media','group_photo')->get();
