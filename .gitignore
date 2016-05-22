@@ -6,8 +6,6 @@ Homestead.json
 
 .env
 
-public/uploads/**
-
-public/bower_components/**
+public/**/**
 
 .DS_Store
